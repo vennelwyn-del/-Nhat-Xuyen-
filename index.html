@@ -299,13 +299,13 @@
     }
 
     .book-float {
-      animation: bookFloat 4.2s ease-in-out infinite;
+      animation: bookFloat 3.6s ease-in-out infinite;
       transform-style: preserve-3d;
-      transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease;
     }
     @keyframes bookFloat {
-      0%, 100% { transform: translateY(0px) rotateX(8deg) rotateZ(-1deg); }
-      50%      { transform: translateY(-12px) rotateX(10deg) rotateZ(0.8deg); }
+      0%, 100% { transform: translateY(0px) rotateX(7deg) rotateZ(-0.8deg); }
+      50%      { transform: translateY(-10px) rotateX(9deg) rotateZ(0.6deg); }
     }
 
     .book-shadow {
@@ -315,8 +315,8 @@
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.25) 0%, rgba(127, 168, 214, 0.1) 55%, transparent 75%);
       filter: blur(5px);
-      animation: shadowFloat 4.2s ease-in-out infinite;
-      transition: opacity 0.4s ease;
+      animation: shadowFloat 3.6s ease-in-out infinite;
+      transition: opacity 0.3s ease;
     }
     @keyframes shadowFloat {
       0%, 100% { transform: scale(1); opacity: 0.85; }
@@ -324,14 +324,13 @@
     }
 
     .center-stack.is-shaking .book-float {
-      animation: bookShake 0.38s ease-in-out;
+      animation: bookShake 0.22s ease-in-out;
     }
     @keyframes bookShake {
-      0%, 100% { transform: translateY(-4px) rotateX(9deg) rotateZ(0deg); }
-      20%      { transform: translate(-5px, -7px) rotateX(9deg) rotateZ(-2.4deg); }
-      40%      { transform: translate(5px, -4px) rotateX(9deg) rotateZ(2.2deg); }
-      60%      { transform: translate(-4px, -6px) rotateX(9deg) rotateZ(-1.5deg); }
-      80%      { transform: translate(3px, -5px) rotateX(9deg) rotateZ(1.1deg); }
+      0%, 100% { transform: translateY(-4px) rotateX(8deg) rotateZ(0deg); }
+      25%      { transform: translate(-4px, -6px) rotateX(8deg) rotateZ(-2deg); }
+      50%      { transform: translate(4px, -4px) rotateX(8deg) rotateZ(2deg); }
+      75%      { transform: translate(-3px, -5px) rotateX(8deg) rotateZ(-1.2deg); }
     }
 
     .center-stack.is-opening .book-float {
@@ -345,65 +344,55 @@
       transform: translateY(8px);
     }
 
-    /* Cuốn sách mở 3D */
+    /* Cuốn sách mở 3D: không viền ngoài, không bo góc */
     .open-book {
       position: relative;
       width: min(84vw, 440px);
       height: min(54vw, 285px);
       display: flex;
       transform-style: preserve-3d;
-      background: linear-gradient(90deg, var(--c-deep) 0%, var(--c-sky) 49%, rgba(42, 60, 82, 0.35) 50%, var(--c-sky) 51%, var(--c-deep) 100%);
-      padding: 8px 10px 10px;
-      border-radius: 9px;
-      box-shadow:
-        0 20px 42px rgba(42, 60, 82, 0.24),
-        inset 0 2px 4px rgba(255, 255, 255, 0.55);
-      transition: background 0.5s ease;
+      padding: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: 0 20px 42px rgba(42, 60, 82, 0.26);
     }
 
     .book-half {
       position: relative;
       flex: 1;
       height: 100%;
-      background: var(--c-cream);
-      border-radius: 4px;
+      background: var(--paper-light);
+      border-radius: 0;
       overflow: hidden;
     }
 
-    .book-left {
-      border-top-right-radius: 2px;
-      border-bottom-right-radius: 2px;
-      background: var(--paper-light);
-      border-left: 3px solid #EDE3C3;
-    }
-
+    .book-left,
     .book-right {
-      border-top-left-radius: 2px;
-      border-bottom-left-radius: 2px;
-      background: var(--paper-light);
-      border-right: 3px solid #EDE3C3;
+      border: none;
+      border-radius: 0;
     }
 
+    /* Trang lật nhanh hơn & không bo góc */
     .flutter-page {
       position: absolute;
-      top: 8px;
-      right: 10px;
+      top: 0;
+      right: 0;
       z-index: 2;
-      width: calc(50% - 10px);
-      height: calc(100% - 18px);
+      width: 50%;
+      height: 100%;
       overflow: hidden;
       transform-origin: left center;
       transform-style: preserve-3d;
       background: var(--paper-light);
-      border-radius: 2px 4px 4px 2px;
-      box-shadow: -4px 4px 14px rgba(42, 60, 82, 0.14);
-      animation: pageBreeze 3.6s ease-in-out infinite;
-      transition: transform 0.78s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      border-radius: 0;
+      box-shadow: -4px 4px 14px rgba(42, 60, 82, 0.16);
+      animation: pageBreeze 1.65s ease-in-out infinite;
+      transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     @keyframes pageBreeze {
-      0%, 100% { transform: rotateY(-5deg); }
-      50%      { transform: rotateY(-22deg); }
+      0%, 100% { transform: rotateY(-4deg); }
+      50%      { transform: rotateY(-28deg); }
     }
 
     .center-stack.is-opening .flutter-page {
@@ -411,7 +400,7 @@
       transform: rotateY(-168deg);
     }
 
-    /* Ảnh trong trang sách: rõ nét 100%, không làm mờ */
+    /* Ảnh trong trang sách rõ nét 100% */
     .page-photo {
       position: absolute;
       top: 0;
@@ -432,18 +421,18 @@
       left: -100%;
     }
 
-    /* Chỉ tạo bóng gáy sách nhẹ ở khe giữa, giữ nguyên độ nét của ảnh */
+    /* Chỉ giữ bóng nếp gáy sách ở chính giữa, không làm mờ viền ngoài */
     .page-vignette {
       position: absolute;
       inset: 0;
       pointer-events: none;
     }
     .book-left .page-vignette {
-      background: linear-gradient(90deg, rgba(255, 253, 245, 0.22) 0%, transparent 8%, transparent 84%, rgba(42, 60, 82, 0.22) 100%);
+      background: linear-gradient(90deg, transparent 84%, rgba(42, 60, 82, 0.24) 100%);
     }
     .book-right .page-vignette,
     .flutter-page .page-vignette {
-      background: linear-gradient(270deg, rgba(255, 253, 245, 0.22) 0%, transparent 8%, transparent 84%, rgba(42, 60, 82, 0.18) 100%);
+      background: linear-gradient(270deg, transparent 84%, rgba(42, 60, 82, 0.2) 100%);
     }
 
     /* === CHỮ & NÚT BÊN DƯỚI SÁCH === */
@@ -742,8 +731,8 @@
           document.body.classList.remove('intro-locked');
           worldPage.classList.add('is-visible');
           isTransitioning = false;
-        }, 620);
-      }, 380);
+        }, 360);
+      }, 220);
     }
 
     function reopenBook() {
