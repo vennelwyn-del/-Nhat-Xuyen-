@@ -356,17 +356,16 @@
       opacity: 0;
       transform: translateY(8px);
     }
-
-    .open-book {
+.open-book {
       position: relative;
       width: min(84vw, 440px);
       height: min(54vw, 285px);
       display: flex;
       transform-style: preserve-3d;
-      background: linear-gradient(90deg, var(--c-deep) 0%, var(--c-sky) 48%, rgba(42, 60, 82, 0.30) 50%, var(--c-sky) 52%, var(--c-deep) 100%);
-      padding: 6px 8px 8px;
-      border-radius: 8px;
-      box-shadow: 0 22px 46px rgba(42, 60, 82, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.60);
+      background: transparent;
+      padding: 0;
+      border-radius: 6px;
+      box-shadow: 0 22px 44px rgba(42, 60, 82, 0.22);
     }
 
     .book-half {
@@ -377,23 +376,21 @@
       overflow: hidden;
     }
     .book-left {
-      border-radius: 4px 2px 2px 4px;
-      background: linear-gradient(90deg, #EDE3C3 0%, #F7EFD4 4%, var(--paper-light) 16%, var(--c-cream) 84%, #CFC3A1 100%);
-      border-left: 3px solid #E8DEC0;
+      border-radius: 6px 0 0 6px;
+      background: linear-gradient(90deg, var(--c-cream) 0%, var(--paper-light) 12%, var(--c-cream) 88%, rgba(185, 174, 145, 0.72) 100%);
     }
     .book-right {
-      border-radius: 2px 4px 4px 2px;
-      background: linear-gradient(270deg, #EDE3C3 0%, #F7EFD4 4%, var(--paper-light) 16%, var(--c-cream) 84%, #CFC3A1 100%);
-      border-right: 3px solid #E8DEC0;
+      border-radius: 0 6px 6px 0;
+      background: linear-gradient(270deg, var(--c-cream) 0%, var(--paper-light) 12%, var(--c-cream) 88%, rgba(185, 174, 145, 0.72) 100%);
     }
 
     .flip-sheet {
       position: absolute;
-      top: 6px;
-      right: 8px;
+      top: 0;
+      right: 0;
       z-index: 4;
-      width: calc(50% - 8px);
-      height: calc(100% - 14px);
+      width: 50%;
+      height: 100%;
       transform-origin: left center;
       transform-style: preserve-3d;
       animation: softPageFlip 2.1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
@@ -409,14 +406,14 @@
       background-color: var(--c-cream);
     }
     .flip-front {
-      border-radius: 2px 6px 6px 2px;
-      background: linear-gradient(90deg, #D5C8A3 0%, var(--paper-light) 14%, var(--c-cream) 86%, #EDE3C3 100%);
+      border-radius: 0 6px 6px 0;
+      background: linear-gradient(90deg, #D5C8A3 0%, var(--paper-light) 12%, var(--c-cream) 88%, #EDE3C3 100%);
       box-shadow: -3px 3px 14px rgba(42, 60, 82, 0.14);
     }
     .flip-back {
-      border-radius: 6px 2px 2px 6px;
+      border-radius: 6px 0 0 6px;
       transform: rotateY(180deg);
-      background: linear-gradient(270deg, #D5C8A3 0%, var(--paper-light) 14%, var(--c-cream) 86%, #EDE3C3 100%);
+      background: linear-gradient(270deg, #D5C8A3 0%, var(--paper-light) 12%, var(--c-cream) 88%, #EDE3C3 100%);
       box-shadow: 3px 3px 14px rgba(42, 60, 82, 0.14);
     }
 
@@ -445,8 +442,8 @@
       background-image: var(--book-page-image);
       background-size: cover;
       background-position: center;
-      opacity: 0.72;
-      filter: blur(0.6px) saturate(0.98);
+      opacity: 0.82;
+      filter: blur(0.4px) saturate(0.98);
       pointer-events: none;
     }
     .book-left .page-photo,
@@ -457,7 +454,7 @@
     .page-vignette {
       position: absolute;
       inset: 0;
-      box-shadow: inset 0 0 18px 4px rgba(255, 253, 245, 0.42);
+      box-shadow: inset 0 0 14px 2px rgba(255, 253, 245, 0.35);
       pointer-events: none;
     }
 
