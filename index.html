@@ -13,7 +13,7 @@
   <style>
     :root {
       /* === 1. DÁN LINK ẢNH BACKGROUND GIAO DIỆN 1 VÀO ĐÂY === */
-      --intro-bg-image: url('');
+      --intro-bg-image: url('./assets/nhatxuyen1.png');
 
       /* === 2. BẢNG MÀU CHỦ ĐẠO === */
       --buttercup-sky:  #FFF2B2;
@@ -39,6 +39,11 @@
       color: var(--ink-dark);
       background-color: var(--cloud-puff);
       overflow-x: hidden;
+    }
+
+    body.intro-locked {
+      height: 100vh;
+      overflow: hidden;
     }
 
     /* =========================================================
@@ -76,7 +81,7 @@
         linear-gradient(155deg, #1B2838 0%, #2B4059 48%, #47668B 85%, #6A89AD 100%);
     }
     body.night-mode .bg-soft-veil {
-      background: linear-gradient(135deg, rgba(22, 34, 50, 0.58) 0%, rgba(36, 54, 77, 0.48) 100%);
+      background: linear-gradient(135deg, rgba(18, 28, 44, 0.68) 0%, rgba(30, 48, 70, 0.56) 100%);
     }
     body.night-mode .hero-quote {
       color: #FFFDF5;
@@ -84,8 +89,8 @@
     }
     body.night-mode .hero-spacing-title,
     body.night-mode .touch-caption {
-      color: rgba(255, 247, 214, 0.9);
-      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+      color: rgba(255, 247, 214, 0.92);
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
     }
 
     .bg-soft-veil {
@@ -149,7 +154,7 @@
       100% { transform: translate(35px, -70px) scale(1.1); opacity: 0; }
     }
 
-    /* === CÁC FORM NHỎ Ở GÓC TRÊN (NA NÁ BÁO ỨNG ĐỜI NHAU) === */
+    /* === CÁC FORM NHỎ Ở GÓC TRÊN === */
     .corner-bar {
       position: absolute;
       top: 16px;
@@ -204,7 +209,7 @@
       font-weight: 700;
     }
 
-    /* Đĩa nhạc nhỏ trên nút Radio */
+    /* Đĩa nhạc nhỏ trên nút Đài phát thanh */
     .radio-disc {
       width: 22px;
       height: 22px;
@@ -212,6 +217,7 @@
       background: radial-gradient(circle, #FFFDF5 0 22%, #2A3C52 24% 36%, #7FA8D6 38% 100%);
       border: 1px solid rgba(255, 255, 255, 0.75);
       display: inline-block;
+      flex-shrink: 0;
     }
     .radio-disc.spinning {
       animation: discSpin 3.6s linear infinite;
@@ -245,8 +251,8 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
+      font-size: 0.92rem;
+      letter-spacing: 0.06em;
     }
     .radio-close {
       background: transparent;
@@ -301,7 +307,7 @@
     }
 
     .book-shadow {
-      width: min(64vw, 350px);
+      width: min(64vw, 370px);
       height: 20px;
       margin-top: 18px;
       border-radius: 50%;
@@ -342,8 +348,8 @@
     /* Cuốn sách mở 3D */
     .open-book {
       position: relative;
-      width: min(76vw, 400px);
-      height: min(50vw, 265px);
+      width: min(84vw, 440px);
+      height: min(54vw, 285px);
       display: flex;
       transform-style: preserve-3d;
       background: linear-gradient(90deg, var(--morning-breeze) 0%, #6D95C4 49%, #557BA8 50%, #6D95C4 51%, var(--morning-breeze) 100%);
@@ -369,7 +375,7 @@
       border-bottom-right-radius: 2px;
       background: linear-gradient(90deg, #F6EED0 0%, var(--paper-light) 12%, var(--cloud-puff) 88%, #E7DEC0 100%);
       border-left: 3px solid #EDE3C3;
-      padding: 16px 14px;
+      padding: 18px 15px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -381,17 +387,19 @@
       border-bottom-left-radius: 2px;
       background: linear-gradient(270deg, #F6EED0 0%, var(--paper-light) 12%, var(--cloud-puff) 88%, #E7DEC0 100%);
       border-right: 3px solid #EDE3C3;
-      padding: 16px 14px;
+      padding: 18px 14px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
     }
 
     .flutter-page {
       position: absolute;
       top: 8px;
       right: 10px;
+      z-index: 2;
       width: calc(50% - 10px);
       height: calc(100% - 18px);
       transform-origin: left center;
@@ -399,11 +407,12 @@
       background: linear-gradient(270deg, #F8F0D4 0%, var(--paper-light) 25%, var(--cloud-puff) 92%, #EAE0C2 100%);
       border-radius: 2px 4px 4px 2px;
       box-shadow: -4px 4px 14px rgba(42, 60, 82, 0.14);
-      padding: 16px 14px;
+      padding: 18px 14px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
       animation: pageBreeze 3.6s ease-in-out infinite;
       transition: transform 0.78s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     }
@@ -419,22 +428,24 @@
     }
 
     .book-tag {
-      font-size: clamp(0.58rem, 1.5vw, 0.72rem);
-      letter-spacing: 0.14em;
+      font-size: clamp(0.56rem, 1.4vw, 0.7rem);
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--morning-breeze);
     }
     .book-quote {
       font-style: italic;
-      font-size: clamp(0.75rem, 1.9vw, 0.92rem);
+      font-size: clamp(0.75rem, 1.9vw, 0.94rem);
       color: var(--ink-muted);
       line-height: 1.5;
     }
     .book-title-cover {
-      font-size: clamp(1.1rem, 3vw, 1.55rem);
+      font-size: clamp(1rem, 2.7vw, 1.42rem);
       font-weight: 600;
       color: var(--ink-dark);
-      margin: 4px 0 6px;
+      margin: 6px 0;
+      line-height: 1.25;
+      word-break: break-word;
     }
     .book-ornament {
       width: 44px;
@@ -448,9 +459,9 @@
       font-style: italic;
     }
 
-    /* === FORM CHỮ & NÚT BÊN DƯỚI SÁCH (NA NÁ BÁO ỨNG ĐỜI NHAU) === */
+    /* === FORM CHỮ & NÚT BÊN DƯỚI SÁCH === */
     .hero-text-group {
-      margin-top: 10px;
+      margin-top: 12px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -460,7 +471,7 @@
     .hero-quote {
       font-style: italic;
       font-weight: 600;
-      font-size: clamp(1.45rem, 3.6vw, 2.35rem);
+      font-size: clamp(1.38rem, 3.4vw, 2.2rem);
       line-height: 1.3;
       color: var(--ink-dark);
       margin: 0 0 10px;
@@ -567,12 +578,12 @@
 
     @media (max-width: 600px) {
       .corner-bar { top: 12px; left: 12px; right: 12px; }
-      .glass-pill { padding: 6px 11px; font-size: 0.82rem; }
+      .glass-pill { padding: 6px 11px; font-size: 0.8rem; }
       .touch-caption { letter-spacing: 0.22em; text-indent: 0.22em; font-size: 0.68rem; }
     }
   </style>
 </head>
-<body>
+<body class="intro-locked">
 
   <!-- GIAO DIỆN 1 -->
   <div id="intro-stage" aria-label="Bìa mở đầu">
@@ -595,7 +606,7 @@
         </button>
         <button type="button" class="glass-pill" id="btnRadioToggle">
           <span class="radio-disc spinning" id="radioDisc"></span>
-          <span> ĐÀI PHÁT THANH </span>
+          <span>ĐÀI PHÁT THANH</span>
         </button>
       </div>
     </div>
@@ -603,11 +614,10 @@
     <!-- Hộp Radio nhỏ thả xuống -->
     <div class="radio-popover" id="radioPopover">
       <div class="radio-head">
-        <span> 𓆩❤︎𓆪 ĐÀI PHÁT THANH NHẤT XUYÊN </span>
+        <span>𓆩❤︎𓆪 ĐÀI PHÁT THANH NHẤT XUYÊN</span>
         <button type="button" class="radio-close" id="btnRadioClose">&times;</button>
       </div>
       <div class="radio-embed-wrap">
-        <!-- Thay ID bài Spotify khác vào đoạn track/... nếu muốn đổi nhạc -->
         <iframe
           src="https://open.spotify.com/embed/track/21qg0IBZf8R12qHd9A3AA4?utm_source=generator&theme=0"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -623,24 +633,23 @@
           <div class="book-float">
             <div class="open-book">
               <div class="book-half book-left">
-                <div class="book-tag"> Lưu bút ᰔ Thanh xuân</div>
+                <div class="book-tag">Lưu bút ᰔ Thanh xuân</div>
                 <div class="book-quote">
-                  “Nắng sớm nghiêng qua khung cửa,<br />
-                  gió khẽ lật những trang giấy còn thơm…”
+                  “Tiên phong về Trí tuệ, Pháo đài của Kỷ luật.”
                 </div>
-                <div class="book-tag" style="opacity:0.7;">Nhất Xuyên</div>
+                <div class="book-tag" style="opacity:0.7;">ST. VANGUARD ACADEMY</div>
               </div>
 
               <div class="book-half book-right">
-                <div class="book-tag">Worldbuild</div>
-                <div class="book-title-cover"> જ⁀➴ ♡ Nhất Xuyên ‿✶ </div>
+                <div class="book-tag">ST. VANGUARD ACADEMY</div>
+                <div class="book-title-cover">જ⁀➴ ♡<br />Nhất Xuyên ‿✶</div>
                 <div class="book-ornament"></div>
-                <div class="book-sub"> ╰☜ Đang mở trang đầu tiên...</div>
+                <div class="book-sub">╰☜ Đang mở trang đầu tiên...</div>
               </div>
 
               <div class="flutter-page">
-                <div class="book-tag">Worldbuilding Archive</div>
-                <div class="book-title-cover"> °ᡣ𐭩 ° Nhất Xuyên </div>
+                <div class="book-tag">Nhất Xuyên ₊⊹ Archive</div>
+                <div class="book-title-cover">°ᡣ𐭩 °<br />Nhất Xuyên</div>
                 <div class="book-ornament"></div>
                 <div class="book-sub">Thanh xuân vườn trường</div>
               </div>
@@ -651,7 +660,7 @@
       </div>
 
       <div class="hero-text-group">
-        <h1 class="hero-quote">“Thanh xuân là cuốn sách mở giữa buổi sáng đầy nắng.”</h1>
+        <h1 class="hero-quote">“Tiên phong về Trí tuệ, Pháo đài của Kỷ luật.”</h1>
         <div class="hero-spacing-title">N H Ấ T &nbsp; X U Y Ê N</div>
         <button type="button" class="btn-enter-world" id="btnEnterWorld">
           <span>༄</span>
@@ -675,7 +684,18 @@
   </div>
 
   <script>
-    // 1. Tạo hạt nắng bay nhẹ
+    // 1. Khai báo các phần tử trước
+    const introStage   = document.getElementById('intro-stage');
+    const centerStack  = document.getElementById('center-stack');
+    const bookTrigger  = document.getElementById('book-trigger');
+    const bookTilt     = document.getElementById('bookTilt');
+    const btnEnter     = document.getElementById('btnEnterWorld');
+    const touchCaption = document.getElementById('touchCaption');
+    const worldPage    = document.getElementById('world-page');
+    const radioPopover = document.getElementById('radioPopover');
+    let isTransitioning = false;
+
+    // 2. Tạo hạt nắng bay nhẹ
     (function createDust() {
       const layer = document.getElementById('dust-layer');
       for (let i = 0; i < 24; i++) {
@@ -692,8 +712,7 @@
       }
     })();
 
-    // 2. Nghiêng cuốn sách 3D nhẹ theo chuột (giống card bên Báo Ứng)
-    const bookTilt = document.getElementById('bookTilt');
+    // 3. Nghiêng cuốn sách 3D nhẹ theo chuột
     window.addEventListener('mousemove', (e) => {
       if (introStage.classList.contains('is-hidden')) return;
       const x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -701,12 +720,11 @@
       bookTilt.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
     });
 
-    // 3. Nút Sáng/Tối & Radio
+    // 4. Nút Sáng/Tối & Đài phát thanh
     document.getElementById('btnThemeToggle').addEventListener('click', () => {
       document.body.classList.toggle('night-mode');
     });
 
-    const radioPopover = document.getElementById('radioPopover');
     document.getElementById('btnRadioToggle').addEventListener('click', () => {
       radioPopover.classList.toggle('open');
     });
@@ -714,15 +732,7 @@
       radioPopover.classList.remove('open');
     });
 
-    // 4. Hiệu ứng Rung nhẹ -> Lật mở Zoom to -> Chuyển sang Giao diện 2
-    const introStage   = document.getElementById('intro-stage');
-    const centerStack  = document.getElementById('center-stack');
-    const bookTrigger  = document.getElementById('book-trigger');
-    const btnEnter     = document.getElementById('btnEnterWorld');
-    const touchCaption = document.getElementById('touchCaption');
-    const worldPage    = document.getElementById('world-page');
-    let isTransitioning = false;
-
+    // 5. Hiệu ứng Rung nhẹ -> Lật mở Zoom to -> Chuyển sang Giao diện 2
     function openBookSequence() {
       if (isTransitioning) return;
       isTransitioning = true;
@@ -736,6 +746,7 @@
 
         setTimeout(() => {
           introStage.classList.add('is-hidden');
+          document.body.classList.remove('intro-locked');
           worldPage.classList.add('is-visible');
           isTransitioning = false;
         }, 620);
@@ -745,6 +756,7 @@
     function reopenBook() {
       worldPage.classList.remove('is-visible');
       centerStack.classList.remove('is-opening', 'is-shaking');
+      document.body.classList.add('intro-locked');
       introStage.classList.remove('is-hidden');
     }
 
