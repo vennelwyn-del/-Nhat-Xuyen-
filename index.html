@@ -971,6 +971,395 @@
       .radio-popover { top: 88px; right: 10px; }
       .hero-school-sub { letter-spacing: 0.22em; text-indent: 0.22em; }
     }
+  /* =========================================================
+       DECOR RIÊNG CHO PHẦN 1 (CHƯƠNG I · TỔNG QUAN HỌC VIỆN)
+    ========================================================= */
+    .ch1-subtitle-en {
+      font-size: 0.9rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+      opacity: 0.9;
+      margin: -8px 0 26px;
+    }
+
+    .ch1-editorial-block,
+    .ch1-section-block {
+      margin-bottom: 30px;
+    }
+    .ch1-section-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .ch1-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: var(--gold-text);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .ch1-heading {
+      margin: 0 0 12px;
+      font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+      color: #FFFFFF;
+      line-height: 1.25;
+    }
+
+    .ch1-lead {
+      margin: 0 0 12px;
+      font-size: 1.12rem;
+      line-height: 1.7;
+      color: #FFFDF5;
+    }
+    .ch1-body-p {
+      margin: 0;
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: rgba(255, 253, 245, 0.88);
+    }
+
+    /* Chia cột chữ + ảnh kiểu editorial */
+    .ch1-split {
+      display: grid;
+      grid-template-columns: 1.18fr 0.82fr;
+      gap: 22px;
+      align-items: stretch;
+    }
+    .ch1-split-reverse {
+      grid-template-columns: 1.12fr 0.88fr;
+      margin-bottom: 20px;
+    }
+    .ch1-vector-row {
+      margin-top: 20px;
+      grid-template-columns: 1.22fr 0.78fr;
+    }
+
+    /* Khung ảnh chờ sẵn: hover sáng lên, click lá rụng lả tả */
+    .photo-slot {
+      position: relative;
+      min-height: 230px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.20));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.35s ease, filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+    .photo-slot:hover {
+      transform: translateY(-3px) scale(1.015);
+      filter: brightness(1.15);
+      border-color: var(--gold-text);
+      box-shadow: 0 0 26px var(--glow-color), 0 12px 28px rgba(0, 0, 0, 0.24);
+    }
+    .photo-slot.is-leaf-flash {
+      filter: brightness(1.22);
+      box-shadow: 0 0 34px var(--glow-color), 0 0 54px var(--glow-color);
+    }
+
+    .photo-slot img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.35s ease, transform 0.45s ease;
+      z-index: 2;
+    }
+    .photo-slot img.loaded {
+      opacity: 1;
+    }
+    .photo-slot:hover img.loaded {
+      transform: scale(1.04);
+    }
+
+    .photo-placeholder {
+      position: relative;
+      z-index: 1;
+      padding: 22px 18px 46px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .ph-badge {
+      padding: 2px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      font-size: 0.76rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+    }
+    .ph-icon {
+      font-size: 1.7rem;
+      color: var(--gold-text);
+      opacity: 0.85;
+      margin: 4px 0 2px;
+    }
+    .ph-title {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .ph-sub {
+      font-size: 0.88rem;
+      font-style: italic;
+      color: rgba(255, 253, 245, 0.72);
+    }
+
+    .photo-caption {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 3;
+      padding: 18px 14px 10px;
+      background: linear-gradient(180deg, transparent 0%, rgba(16, 24, 18, 0.72) 100%);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(255, 253, 245, 0.92);
+      pointer-events: none;
+    }
+
+    /* Thanh quote dẫn chuyển đoạn */
+    .ch1-quote-strip {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 22px 0 18px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+    }
+    .ch1-quote-bar {
+      width: 3px;
+      align-self: stretch;
+      background: var(--gold-text);
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+    .ch1-quote-strip p {
+      margin: 0;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold-text);
+    }
+
+    .ch1-three-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .ch1-two-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .ch1-pillar .pillar-num {
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      color: var(--gold-text);
+      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    /* Khối II Backstory đậm điểm nhấn kiểu mẫu editorial */
+    .ch1-dark-feature {
+      margin: 28px 0 32px;
+      padding: 26px 24px;
+      border-radius: 16px;
+      background: rgba(18, 24, 20, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: inset 0 0 36px rgba(0, 0, 0, 0.18);
+    }
+    .ch1-feature-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.25);
+      padding-bottom: 12px;
+    }
+    .ch1-file-code {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: var(--gold-text);
+    }
+
+    .ch1-poem-quote {
+      border-left: 2px solid var(--gold-text);
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .ch1-poem-quote p {
+      margin: 0;
+      font-size: 1.04rem;
+      line-height: 1.68;
+      color: rgba(255, 253, 245, 0.92);
+    }
+
+    .ch1-side-label {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+      opacity: 0.85;
+      margin-bottom: 6px;
+    }
+
+    /* Bảng thông số 1.1 */
+    .ch1-info-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .ch1-spec-row {
+      background: var(--subcard-glass);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      border-radius: 10px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .spec-key {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+      font-weight: 600;
+    }
+    .spec-val {
+      font-size: 1.02rem;
+      line-height: 1.58;
+      color: rgba(255, 253, 245, 0.92);
+    }
+
+    /* Dải số liệu 1.2 */
+    .ch1-stat-ribbon {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin: 6px 0 18px;
+    }
+    .stat-cell {
+      background: rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 12px;
+      padding: 14px 12px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-cell strong {
+      font-size: 1.65rem;
+      color: var(--gold-text);
+      line-height: 1.1;
+    }
+    .stat-cell span {
+      font-size: 0.88rem;
+      color: rgba(255, 253, 245, 0.85);
+    }
+
+    .ch1-grade-pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      color: var(--gold-text);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+    }
+
+    /* Thanh tỷ lệ ABO */
+    .abo-bar {
+      display: flex;
+      height: 26px;
+      border-radius: 999px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      margin: 10px 0 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .abo-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .abo-beta {
+      background: rgba(255, 255, 255, 0.26);
+      color: #FFFFFF;
+    }
+    .abo-alpha {
+      background: var(--c-deep);
+      color: #FFFFFF;
+    }
+    .abo-omega {
+      background: var(--gold-text);
+      color: var(--ink-dark);
+    }
+    .abo-legend {
+      margin: 0 0 10px;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: rgba(255, 253, 245, 0.9);
+    }
+    .abo-legend code {
+      background: rgba(0, 0, 0, 0.22);
+      padding: 1px 6px;
+      border-radius: 6px;
+      color: var(--gold-text);
+      font-size: 0.9rem;
+    }
+    .abo-exception {
+      margin: 0;
+      font-size: 0.94rem;
+      color: var(--gold-text);
+      opacity: 0.9;
+    }
+
+    @media (max-width: 820px) {
+      .ch1-split,
+      .ch1-split-reverse,
+      .ch1-vector-row {
+        grid-template-columns: 1fr;
+      }
+      .ch1-dark-feature {
+        padding: 20px 16px;
+      }
+      .photo-slot {
+        min-height: 210px;
+      }
+    }  
   </style>
 </head>
 <body class="intro-locked">
@@ -1115,66 +1504,219 @@
       </aside>
 
       <div class="world-content">
-        <section class="content-section" id="sec-1">
-          <div class="sec-kicker">Phần 1 ౨ৎ</div>
-          <h2>Thông tin cần biết</h2>
-          <div class="info-grid">
-            <div class="sub-card">
-              <h3>Tổng quan học viện</h3>
-              <p>Điền lịch sử thành lập, vị trí, kiến trúc khuôn viên và không khí chung của Trường Trung Học Nhất Xuyên.</p>
-            </div>
-            <div class="sub-card">
-              <h3>Kỷ luật &amp; Nội quy</h3>
-              <p>Điền các quy định đặc trưng của St. Vanguard Academy, giờ giấc, đồng phục hoặc hệ thống ban cán sự.</p>
-            </div>
-            <div class="sub-card">
-              <h3>Cơ cấu lớp &amp; Câu lạc bộ</h3>
-              <p>Điền phân chia các khối lớp, hệ chuyên, hội học sinh và các hoạt động thường niên trong năm học.</p>
-            </div>
-          </div>
-        </section>
+       <section class="content-section" id="sec-1">
+          <div class="sec-kicker">Phần 1 ౨ৎ Chương I</div>
+          <h2>Tổng quan thế giới &amp; Học viện Nhất Xuyên</h2>
+          <div class="ch1-subtitle-en">ST. VANGUARD ACADEMY — 圣先锋学院</div>
 
-        <section class="content-section" id="sec-2">
-          <div class="sec-kicker">Phần 2 ౨ৎ</div>
-          <h2>Thuật ngữ</h2>
-          <div class="glossary-list">
-            <div class="glossary-item">
-              <div class="glossary-term">Thuật ngữ 01 ౨ৎ (Tên khái niệm)</div>
-              <p class="glossary-desc">Giải thích ngắn gọn ý nghĩa, nguồn gốc hoặc cách sử dụng thuật ngữ này trong bối cảnh Nhất Xuyên.</p>
-            </div>
-            <div class="glossary-item">
-              <div class="glossary-term">Thuật ngữ 02 ౨ৎ (Tên khái niệm)</div>
-              <p class="glossary-desc">Giải thích quy ước riêng giữa các học viên, ký hiệu nội bộ hoặc địa điểm đặc biệt.</p>
-            </div>
-          </div>
-        </section>
+          <!-- I. TIỀN ĐỀ: PHÁO ĐÀI CỦA SỰ NGỘT NGẠT -->
+          <div class="ch1-editorial-block">
+            <div class="ch1-split">
+              <div class="ch1-text-col">
+                <div class="ch1-tag">I · Tiền đề</div>
+                <h3 class="ch1-heading">Pháo đài của sự ngột ngạt</h3>
+                <p class="ch1-lead">
+                  Chào mừng bạn đến với <strong>Trường Trung học Trọng điểm Bán Quốc tế Nhất Xuyên (St. Vanguard Academy)</strong> — pháo đài giáo dục tinh anh số một toàn thành phố, nơi sản sinh ra những thủ khoa đại học hàng đầu (Thanh Hoa, Bắc Đại, khối Ivy League) và những người thừa kế tương lai của các tập đoàn tài phiệt xuyên quốc gia.
+                </p>
+                <p class="ch1-body-p">
+                  Nhìn từ bên ngoài, Nhất Xuyên là một giấc mơ quý tộc: những tòa giảng đường phong cách Anh Quốc uy nghiêm ốp gạch xám, hàng cây ngân hạnh rợp bóng sân trung tâm, những bộ đồng phục blazer màu xanh Midnight Navy may đo chuẩn xác đến từng đường chỉ và xe hơi sang trọng nối đuôi nhau ngoài cổng chính.
+                </p>
+              </div>
 
-        <section class="content-section" id="sec-3">
-          <div class="sec-kicker">Phần 3 ౨ৎ</div>
-          <h2>Hồ sơ nhân vật</h2>
-          <div class="char-grid">
-            <div class="char-card">
-              <div class="char-avatar"><span>Ảnh nhân vật 01</span></div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 1</div>
-                <p class="char-note">Đôi dòng giới thiệu tính cách, biệt danh hoặc dấu ấn nổi bật.</p>
+              <!-- KHUNG ẢNH 01 -->
+              <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+                <img src="" alt="Toàn cảnh Học viện Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                <div class="photo-placeholder">
+                  <span class="ph-badge">Ảnh 01</span>
+                  <span class="ph-icon">❀</span>
+                  <span class="ph-title">Khuôn viên &amp; Giảng đường Anh Quốc</span>
+                  <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                </div>
+                <div class="photo-caption">Fig. 01 — Cổng chính &amp; hàng ngân hạnh rợp bóng sân trung tâm</div>
               </div>
             </div>
-            <div class="char-card">
-              <div class="char-avatar"><span>Ảnh nhân vật 02</span></div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 2</div>
-                <p class="char-note">Đôi dòng giới thiệu tính cách, mối quan hệ hoặc câu chuyện riêng.</p>
+
+            <div class="ch1-quote-strip">
+              <span class="ch1-quote-bar"></span>
+              <p>Phía sau cánh cổng sắt luôn khóa chặt là một cỗ máy nghiền áp lực tàn khốc.</p>
+            </div>
+
+            <div class="ch1-three-cols">
+              <div class="sub-card ch1-pillar">
+                <div class="pillar-num">01</div>
+                <h3>450 Học sinh nội trú khép kín 100%</h3>
+                <p>Cả trường chỉ duy trì đúng 450 sinh mệnh (mỗi khối đúng 150 học sinh, chia đều cho 5 lớp học). Mỗi người ngồi một bàn đơn độc lập, hoàn toàn không có “bạn cùng bàn ngồi sát nách” để chia sẻ gánh nặng.</p>
+              </div>
+              <div class="sub-card ch1-pillar">
+                <div class="pillar-num">02</div>
+                <h3>Chiến trường 750 điểm Cao Khảo</h3>
+                <p>Tiếng quạt trần kẽo kẹt giữa trưa hè 38°C, bụi phấn bay lơ lửng trong vệt nắng gay gắt, tiếng ngòi bút kim loại cào rách mép giấy nháp và những xấp đề thi thử Ngũ Tam chất cao ngang đầu. Ở đây, điểm số là tôn nghiêm duy nhất. Sai một nét bút, thứ hạng trên Hồng Bảng sẽ tụt dốc không phanh.</p>
+              </div>
+              <div class="sub-card ch1-pillar">
+                <div class="pillar-num">03</div>
+                <h3>Quả bom sinh học dưới cổ áo sơ mi</h3>
+                <p>Giữa không gian phòng học đóng kín điều hòa 24°C, sự ngột ngạt của thi cử va đập trực diện với sự thức tỉnh của tuyến thể sau gáy. Chỉ một vệt mồ hôi làm rã lớp keo dán cách ly cũng đủ khiến tin tức tố phát tán, đánh thức bản năng chiếm hữu bị kìm nén và kích hoạt tiếng còi báo động chói tai trên tường.</p>
               </div>
             </div>
-            <div class="char-card">
-              <div class="char-avatar"><span>Ảnh nhân vật 03</span></div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 3</div>
-                <p class="char-note">Gắn thêm thông tin chi tiết nhân vật tại đây.</p>
+          </div>
+
+          <!-- II. BACKSTORY: SỰ CỐ PHÒNG LAB TÒA C -->
+          <div class="ch1-dark-feature">
+            <div class="ch1-feature-head">
+              <div>
+                <div class="ch1-tag">II · Backstory · 3 năm trước</div>
+                <h3 class="ch1-heading">“Sự cố phòng Lab Tòa C” &amp; Mặt tối dưới lồng kính kỷ luật</h3>
+              </div>
+              <span class="ch1-file-code">[ ARCHIVE // INCIDENT-03Y ]</span>
+            </div>
+
+            <div class="ch1-split ch1-split-reverse">
+              <div class="ch1-poem-quote">
+                <p>
+                  Sự kiểm soát sinh học nghẹt thở đến từng milimet của Học viện Nhất Xuyên hiện tại thực chất được dựng lên để che đậy một vết sẹo đẫm máu xảy ra vào <strong>3 năm trước</strong>.
+                </p>
+                <p>
+                  Năm đó, tại phòng thực nghiệm bỏ trống ở <strong>Tầng 5 Tòa C</strong>, một nam sinh Omega Khối 10 thuộc diện nhận học bổng toàn phần đã bị một nhóm Alpha con nhà đại tài phiệt nhốt kín. Đám Alpha cậy thế gia tộc đã cố tình giật rách miếng dán cách ly sau gáy cậu, phóng thích tin tức tố ép cậu phát sốt Heat tại chỗ rồi quay video làm nhục.
+                </p>
+                <p>
+                  Thế nhưng khi nạn nhân đứng ra tố cáo, các gia tộc tài phiệt đã dùng tiền và quyền lực bịt miệng Ban Giám Hiệu. Nạn nhân bị tước học bổng với lý do <em>“làm ô nhiễm nồng độ tin tức tố trường học”</em>, bị tước quyền thi Cao Khảo đến mức uất ức nhảy lầu tự vẫn từ Tòa A (dù rơi trúng lưới an toàn giữ được mạng sống nhưng bị thương tật nhẹ và phải lặng lẽ xuất viện trong im lặng).
+                </p>
+              </div>
+
+              <!-- KHUNG ẢNH 02 -->
+              <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+                <img src="" alt="Phòng Lab Tòa C" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                <div class="photo-placeholder">
+                  <span class="ph-badge">Ảnh 02</span>
+                  <span class="ph-icon">❦</span>
+                  <span class="ph-title">Tầng 5 Tòa C · Phòng thực nghiệm cũ</span>
+                  <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                </div>
+                <div class="photo-caption">Fig. 02 — Vết sẹo bị ém nhẹm dưới lồng kính kỷ luật</div>
+              </div>
+            </div>
+
+            <div class="ch1-two-cols">
+              <div class="sub-card">
+                <div class="ch1-side-label">Bề nổi · Trật tự</div>
+                <h3>1. Pháo đài giám sát T-80 trên bề nổi</h3>
+                <p>Để dập tắt dư luận ngầm và giữ vững bộ mặt “Top 1 thành phố”, nhà trường siết chặt kỷ luật thành một lồng sắt sinh học: lắp đặt cảm biến <strong>Model T-80</strong> phủ kín mọi phòng học, xây dựng <strong>Buồng cách ly áp suất âm</strong> tại Tòa B và trao quyền giám sát cho Ban Kỷ Luật trên <strong>Tầng 5 Tòa A</strong>. Mọi vụ rò rỉ mùi hương đều bị trấn áp cưỡng chế trong 90 giây bất kể nguyên nhân.</p>
+              </div>
+              <div class="sub-card">
+                <div class="ch1-side-label">Bóng tối · Giao dịch</div>
+                <h3>2. Hội Tị Phong &amp; Diễn đàn ngầm [Tị Phong Cảng]</h3>
+                <p>Một nhóm học sinh Beta và Omega bình dân lập nên <strong>Hội Tị Phong (Nơi Tránh Gió)</strong> chạy qua proxy Wi-Fi Ký túc xá Tòa F với khẩu hiệu: <em>“Đom đóm đêm đông, tự sưởi ấm cho nhau”</em>. Ban đầu hội hỗ trợ miễn phí thuốc ức chế tạm, miếng dán cấp cứu, đề cương. Sau 3 năm, nhóm trục lợi ngầm tha hóa tổ chức: mọi vụ cầu cứu lớn (xóa dấu vết máy chủ, che camera, bao che sắp nổ Rut/Heat) đều <strong>bắt buộc phải trả giá tương đương</strong> — tiền mặt, làm bài tập hộ cả kỳ, hoặc trộm đề cương mật của Lớp 1.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 1.1: ĐỊNH DANH, TRIẾT LÝ & CƠ CHẾ VẬN HÀNH -->
+          <div class="ch1-section-block">
+            <div class="ch1-tag">1.1 · Định danh, Triết lý &amp; Cơ chế vận hành</div>
+            <div class="ch1-split">
+              <div class="ch1-info-stack">
+                <div class="ch1-spec-row">
+                  <span class="spec-key">Tên gọi chính thức</span>
+                  <span class="spec-val">Trường Trung học Trọng điểm Nhất Xuyên (Học viện Nhất Xuyên / St. Vanguard Academy)</span>
+                </div>
+                <div class="ch1-spec-row">
+                  <span class="spec-key">Châm ngôn học viện</span>
+                  <span class="spec-val"><em>“Vanguard of Intellect, Citadel of Discipline”</em> (Tiên phong Trí tuệ, Pháo đài Kỷ luật)</span>
+                </div>
+                <div class="ch1-spec-row">
+                  <span class="spec-key">Mô hình &amp; Vị thế</span>
+                  <span class="spec-val">Trường Trung học Trọng điểm Bán Quốc tế (Elite Semi-International Boarding School), độc chiếm vị trí <strong>Top 1 toàn thành phố</strong> — kết hợp luyện thi Cao Khảo tàn khốc và kỷ luật quý tộc khép kín.</span>
+                </div>
+                <div class="ch1-spec-row">
+                  <span class="spec-key">Nội trú khép kín 100%</span>
+                  <span class="spec-val">Bắt buộc ở nội trú từ sáng Thứ Hai đến hết Thứ Sáu. Di chuyển giữa các tòa nhà phải quét thẻ từ sinh trắc học và đo thân nhiệt tự động.</span>
+                </div>
+                <div class="ch1-spec-row">
+                  <span class="spec-key">Lưới giám sát T-80</span>
+                  <span class="spec-val">Từng mét vuông phòng học, hành lang, nhà ăn gắn cảm biến nồng độ tin tức tố <strong>Model T-80</strong> nối về ma trận CCTV tại Tòa Án Học Đường (Tầng 5 - Tòa A) &amp; Trạm Y tế (Tầng 1 - Tòa B), cưỡng chế trong 60–90 giây.</span>
+                </div>
+              </div>
+
+              <!-- KHUNG ẢNH 03 -->
+              <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+                <img src="" alt="Cảm biến T-80 và Hành lang Tòa A" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                <div class="photo-placeholder">
+                  <span class="ph-badge">Ảnh 03</span>
+                  <span class="ph-icon">⌖</span>
+                  <span class="ph-title">Tòa A · Hệ thống thẻ từ &amp; Lưới T-80</span>
+                  <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                </div>
+                <div class="photo-caption">Fig. 03 — Hành lang điều hòa 24°C &amp; cảm biến sinh học</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 1.2: QUY MÔ NHÂN KHẨU HỌC & CẤU TRÚC LỚP HỌC -->
+          <div class="ch1-section-block">
+            <div class="ch1-tag">1.2 · Quy mô nhân khẩu học cứng &amp; Cấu trúc lớp học bàn đơn</div>
+
+            <div class="ch1-stat-ribbon">
+              <div class="stat-cell"><strong>450</strong><span>Học sinh khóa cứng</span></div>
+              <div class="stat-cell"><strong>3 × 150</strong><span>3 Khối · 5 Lớp/khối</span></div>
+              <div class="stat-cell"><strong>30</strong><span>Bàn đơn độc lập / lớp</span></div>
+              <div class="stat-cell"><strong>60 cm</strong><span>Cự ly nhìn thẳng vào gáy</span></div>
+            </div>
+
+            <div class="ch1-three-cols">
+              <div class="sub-card">
+                <div class="ch1-grade-pill">Khối 10 · Cao Nhất (16 tuổi)</div>
+                <h3>150 học sinh · Lớp 10-1 đến 10-5</h3>
+                <p><strong>Đặc trưng sinh học:</strong> Vừa trải qua cột mốc <em>Phân hóa thứ cấp</em> (tuyến thể thức tỉnh sau cơn sốt 1–3 ngày, đau nhức đốt sống cổ C3–C4). Nhập học bắt buộc nộp Giấy xét nghiệm chỉ số kích thích tố về Phòng Y tế để cấp mã số sinh học.</p>
+              </div>
+              <div class="sub-card">
+                <div class="ch1-grade-pill">Khối 11 · Cao Nhị (17 tuổi)</div>
+                <h3>150 học sinh · Lớp 11-1 đến 11-5</h3>
+                <p><strong>Đặc trưng:</strong> Giai đoạn phân hóa chuyên ban sâu sắc, gia tốc khối lượng kiến thức và tiếp quản các vị trí nòng cốt trong câu lạc bộ, ban thanh tra học đường.</p>
+              </div>
+              <div class="sub-card">
+                <div class="ch1-grade-pill">Khối 12 · Cao Tam (18 tuổi)</div>
+                <h3>150 học sinh · Lớp 12-1 đến 12-5</h3>
+                <p><strong>Đặc trưng sinh học &amp; Học thuật:</strong> Tuổi 18 hoàn thiện nội tiết 100%, kích phát <em>Rut</em> hoặc <em>Heat</em> đầu tiên va đập trực diện với <strong>100 ngày đếm ngược Cao Khảo</strong> — lựa chọn nghiệt ngã giữa thuốc ức chế Class-S (suy giảm trí nhớ ngắn hạn, buồn nôn) hoặc bị nhốt vào Buồng cách ly áp suất âm và lỡ kỳ thi thử.</p>
+              </div>
+            </div>
+
+            <div class="ch1-split ch1-vector-row">
+              <div>
+                <div class="sub-card" style="margin-bottom:16px;">
+                  <h3>Sĩ số mỗi lớp &amp; Véc-tơ bàn đơn 60cm</h3>
+                  <p>Biên chế cố định đúng <strong>30 học sinh</strong> ngồi tại <strong>30 bàn đơn độc lập</strong> (3 dãy dọc: Dãy 1 Cửa sổ, Dãy 2 Giữa, Dãy 3 Hành lang; mỗi dãy 10 bàn). Người ngồi bàn sau có tầm nhìn trực diện ở cự ly chưa đầy <strong>60cm</strong> chĩa thẳng vào gáy và miếng dán cách ly của người ngồi trước.</p>
+                </div>
+
+                <div class="sub-card">
+                  <h3>Tỷ lệ giới tính thứ hai tự nhiên (ABO Ratio)</h3>
+                  <div class="abo-bar" aria-label="Tỷ lệ ABO">
+                    <div class="abo-seg abo-beta" style="width:70%">Beta 70%</div>
+                    <div class="abo-seg abo-alpha" style="width:20%">Alpha 20%</div>
+                    <div class="abo-seg abo-omega" style="width:10%">10%</div>
+                  </div>
+                  <ul class="abo-legend">
+                    <li><strong>Beta (~70% — 315 học sinh):</strong> Tuyến thể thoái hóa hoặc không có túi tiết hương (<code>0.0 ppm</code>), vô hương, “điếc mùi” tin tức tố, <strong>miễn nhiễm 100% áp bách</strong> — lực lượng giữ trật tự ổn định nhất.</li>
+                    <li><strong>Alpha (~20% — 90 học sinh):</strong> Tuyến thể hơi lồi, thể chất và cơ bắp phát triển vượt trội, phản xạ nhạy bén, bản năng cạnh tranh lãnh địa mạnh, rất nhạy với tin tức tố Omega.</li>
+                    <li><strong>Omega (~10% — 45 học sinh):</strong> Tuyến thể mỏng manh (biểu bì mỏng hơn 40%), thể chất trung bình yếu hơn, nhạy nhiệt độ, dễ bị tổn thương và áp chế bởi Alpha cấp cao.</li>
+                  </ul>
+                  <p class="abo-exception"><em>* Ngoại lệ bệnh lý: Ghi nhận các trường hợp cá biệt Phân hóa muộn ở tuổi 16–17 hoặc Tuyến thể khiếm khuyết / tổn thương do bẩm sinh và tai nạn ngoại lực.</em></p>
+                </div>
+              </div>
+
+              <!-- KHUNG ẢNH 04 -->
+              <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+                <img src="" alt="Lớp học bàn đơn 60cm dưới nắng hè" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                <div class="photo-placeholder">
+                  <span class="ph-badge">Ảnh 04</span>
+                  <span class="ph-icon">☀</span>
+                  <span class="ph-title">Phòng học bàn đơn · Nắng cửa sổ</span>
+                  <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                </div>
+                <div class="photo-caption">Fig. 04 — Khoảng cách 60cm chĩa thẳng vào miếng dán sau gáy</div>
               </div>
             </div>
           </div>
@@ -1424,6 +1966,67 @@
       });
       if (currentId) pinHandbookItem(currentId);
     }, { passive: true });
+    /* === HIỆU ỨNG ẤN VÀO KHUNG ẢNH LÁ RỤNG LẢ TẢ === */
+    function spawnPhotoLeaves(el) {
+      const rect = el.getBoundingClientRect();
+      const colors = ['var(--leaf-color-1)', 'var(--leaf-color-2)', 'var(--leaf-color-3)'];
+      const leafCount = 24;
+
+      for (let i = 0; i < leafCount; i++) {
+        const leaf = document.createElement('div');
+        leaf.className = 'falling-leaf';
+
+        const startX = rect.left + Math.random() * rect.width;
+        const startY = rect.top + Math.random() * rect.height;
+        const size   = 13 + Math.random() * 14;
+        const dur    = 2.5 + Math.random() * 1.9;
+        const color  = colors[i % colors.length];
+
+        leaf.style.left = startX + 'px';
+        leaf.style.top  = startY + 'px';
+        leaf.style.setProperty('--leaf-size', size + 'px');
+        leaf.style.setProperty('--fall-dur', dur + 's');
+        leaf.style.animationDelay = (i * 0.04) + 's';
+
+        const dir = i % 2 === 0 ? 1 : -1;
+        leaf.style.setProperty('--sway-a', (dir * (28 + Math.random() * 44)) + 'px');
+        leaf.style.setProperty('--sway-b', (-dir * (24 + Math.random() * 46)) + 'px');
+        leaf.style.setProperty('--sway-c', (dir * (22 + Math.random() * 42)) + 'px');
+        leaf.style.setProperty('--sway-d', (-dir * (16 + Math.random() * 34)) + 'px');
+
+        leaf.style.setProperty('--r0', (Math.random() * 50 - 25) + 'deg');
+        leaf.style.setProperty('--r1', (dir * (40 + Math.random() * 45)) + 'deg');
+        leaf.style.setProperty('--r2', (-dir * (30 + Math.random() * 45)) + 'deg');
+        leaf.style.setProperty('--r3', (dir * (35 + Math.random() * 50)) + 'deg');
+        leaf.style.setProperty('--r4', (Math.random() * 50 - 25) + 'deg');
+
+        leaf.innerHTML =
+          '<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none">' +
+            '<path d="M19.5 4.5C12.5 4.5 6.5 8.8 5 16.5C4.7 18 5.8 19.3 7.3 19C15 17.5 19.5 11.5 19.5 4.5Z" style="fill:' + color + '; fill-opacity:0.94;"/>' +
+            '<path d="M5.5 18.5C9.5 14.5 13.5 10.5 18 6" stroke="rgba(255,255,255,0.75)" stroke-width="1.2" stroke-linecap="round"/>' +
+          '</svg>';
+
+        leafOverlay.appendChild(leaf);
+        setTimeout(() => leaf.remove(), (dur + 0.8) * 1000);
+      }
+    }
+
+    document.querySelectorAll('.interactive-photo').forEach((photo) => {
+      const triggerPhoto = () => {
+        photo.classList.remove('is-leaf-flash');
+        void photo.offsetWidth;
+        photo.classList.add('is-leaf-flash');
+        spawnPhotoLeaves(photo);
+        setTimeout(() => photo.classList.remove('is-leaf-flash'), 450);
+      };
+      photo.addEventListener('click', triggerPhoto);
+      photo.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          triggerPhoto();
+        }
+      });
+    });
   </script>
 </body>
 </html>
