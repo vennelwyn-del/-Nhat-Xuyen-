@@ -24,10 +24,10 @@
       --c-deep:     #7FA8D6;
 
       --bg-grad:        linear-gradient(155deg, #9AC0E8 0%, #A8C6E7 42%, #FFF2B2 82%, #FFF7D6 100%);
-      --veil-grad:      linear-gradient(135deg, rgba(255, 242, 178, 0.16) 0%, rgba(168, 198, 231, 0.12) 55%, rgba(127, 168, 214, 0.16) 100%);
+      --veil-grad:      linear-gradient(135deg, rgba(255, 247, 214, 0.34) 0%, rgba(168, 198, 231, 0.24) 55%, rgba(255, 242, 178, 0.28) 100%);
       --world-veil:     linear-gradient(180deg, rgba(32, 50, 74, 0.16) 0%, rgba(86, 122, 164, 0.10) 55%, rgba(32, 50, 74, 0.16) 100%);
-      --pill-bg:        rgba(58, 82, 110, 0.58);
-      --pill-hover:     rgba(58, 82, 110, 0.82);
+      --pill-bg:        rgba(58, 82, 110, 0.60);
+      --pill-hover:     rgba(58, 82, 110, 0.84);
 
       --banner-glass:   rgba(44, 68, 96, 0.58);
       --section-glass:  rgba(44, 68, 96, 0.48);
@@ -42,8 +42,8 @@
       --leaf-color-2:   #FFF2B2;
       --leaf-color-3:   #A8C6E7;
 
-      --ink-dark:       #2A3C52;
-      --ink-muted:      #526982;
+      --ink-dark:       #223347;
+      --ink-muted:      #394E66;
       --paper-light:    #FFFDF5;
     }
 
@@ -56,10 +56,10 @@
       --c-deep:     #9DBF7C;
 
       --bg-grad:        linear-gradient(155deg, #9DBF7C 0%, #A7BC9A 38%, #C7DDAA 68%, #E6F0C3 100%);
-      --veil-grad:      linear-gradient(135deg, rgba(255, 242, 166, 0.16) 0%, rgba(199, 221, 170, 0.12) 55%, rgba(157, 191, 124, 0.16) 100%);
+      --veil-grad:      linear-gradient(135deg, rgba(230, 240, 195, 0.34) 0%, rgba(199, 221, 170, 0.26) 55%, rgba(255, 242, 166, 0.28) 100%);
       --world-veil:     linear-gradient(180deg, rgba(44, 58, 32, 0.16) 0%, rgba(112, 136, 92, 0.10) 55%, rgba(44, 58, 32, 0.16) 100%);
-      --pill-bg:        rgba(92, 108, 82, 0.64);
-      --pill-hover:     rgba(76, 92, 66, 0.86);
+      --pill-bg:        rgba(92, 108, 82, 0.66);
+      --pill-hover:     rgba(76, 92, 66, 0.88);
 
       --banner-glass:   rgba(74, 88, 54, 0.62);
       --section-glass:  rgba(66, 80, 48, 0.50);
@@ -74,8 +74,8 @@
       --leaf-color-2:   #C7DDAA;
       --leaf-color-3:   #FFF2A6;
 
-      --ink-dark:       #2B3B28;
-      --ink-muted:      #4F6348;
+      --ink-dark:       #223020;
+      --ink-muted:      #394A34;
       --paper-light:    #F9FCEB;
     }
 
@@ -103,7 +103,7 @@
     }
 
     /* =========================================================
-       GIAO DIỆN 1
+       GIAO DIỆN 1: CÓ LỚP KÍNH MỜ VỚI BACKGROUND + BỎ HẾT BO GÓC
     ========================================================= */
     #intro-stage {
       position: fixed;
@@ -116,9 +116,6 @@
       padding: 72px 20px 28px;
       overflow: hidden;
       background-color: var(--c-sky);
-      background-image: var(--intro-bg-image), var(--bg-grad);
-      background-size: cover;
-      background-position: center;
       transition: opacity 0.85s ease, visibility 0.85s ease;
     }
     #intro-stage.is-hidden {
@@ -127,10 +124,25 @@
       pointer-events: none;
     }
 
+    .intro-bg-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background-color: var(--c-sky);
+      background-image: var(--intro-bg-image), var(--bg-grad);
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.03);
+      pointer-events: none;
+    }
+
     .bg-soft-veil {
       position: absolute;
       inset: 0;
+      z-index: 1;
       background: var(--veil-grad);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       pointer-events: none;
     }
 
@@ -138,6 +150,7 @@
       position: absolute;
       top: -20%;
       left: -18%;
+      z-index: 2;
       width: 115vw;
       height: 120vh;
       background:
@@ -156,6 +169,7 @@
     .dust-layer {
       position: absolute;
       inset: 0;
+      z-index: 3;
       pointer-events: none;
       overflow: hidden;
     }
@@ -173,6 +187,7 @@
       100% { transform: translate(35px, -70px) scale(1.1); opacity: 0; }
     }
 
+    /* Thanh nút góc trên: BỎ HẾT BO GÓC */
     .corner-bar {
       position: fixed;
       top: 14px;
@@ -199,7 +214,7 @@
       align-items: center;
       gap: 7px;
       padding: 7px 14px;
-      border-radius: 999px;
+      border-radius: 0;
       background: var(--pill-bg);
       border: 1px solid rgba(255, 255, 255, 0.50);
       color: #FFFDF5;
@@ -222,7 +237,7 @@
       justify-content: center;
       width: 20px;
       height: 20px;
-      border-radius: 50%;
+      border-radius: 0;
       background: #FFFDF5;
       color: var(--ink-dark);
       font-size: 0.78rem;
@@ -315,7 +330,7 @@
       width: min(64vw, 370px);
       height: 20px;
       margin-top: 16px;
-      border-radius: 50%;
+      border-radius: 0;
       background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.28) 0%, transparent 75%);
       filter: blur(5px);
       animation: shadowFloat 4.2s ease-in-out infinite;
@@ -372,7 +387,6 @@
       border-right: 3px solid #E8DEC0;
     }
 
-    /* Các tờ giấy in ảnh 2 mặt đục mềm lật liên tục */
     .flip-sheet {
       position: absolute;
       top: 8px;
@@ -437,13 +451,9 @@
       pointer-events: none;
     }
     .book-left .page-photo,
-    .flip-back .page-photo {
-      left: 0;
-    }
+    .flip-back .page-photo { left: 0; }
     .book-right .page-photo,
-    .flip-front .page-photo {
-      left: -100%;
-    }
+    .flip-front .page-photo { left: -100%; }
 
     .page-vignette {
       position: absolute;
@@ -475,7 +485,7 @@
       color: var(--ink-dark);
       margin: 0 0 4px;
       line-height: 1.18;
-      text-shadow: 0 2px 16px rgba(255, 253, 245, 0.9);
+      text-shadow: 0 2px 16px rgba(255, 253, 245, 0.95);
     }
     .hero-school-sub {
       font-size: clamp(0.76rem, 1.7vw, 0.92rem);
@@ -483,6 +493,8 @@
       text-indent: 0.34em;
       text-transform: uppercase;
       color: var(--ink-muted);
+      font-weight: 600;
+      text-shadow: 0 1px 10px rgba(255, 253, 245, 0.95);
       margin-bottom: 20px;
     }
     .btn-enter-world {
@@ -506,14 +518,15 @@
     }
     .touch-caption {
       margin-top: 14px;
-      font-size: 0.82rem;
+      font-size: 0.86rem;
       letter-spacing: 0.16em;
-      color: var(--ink-muted);
+      color: var(--ink-dark);
+      text-shadow: 0 1px 10px rgba(255, 253, 245, 0.95);
       cursor: pointer;
     }
 
     /* =========================================================
-       GIAO DIỆN 2 (ĐÃ FIX NỀN BỊ CHE + BỎ HẾT BO GÓC BLOCK)
+       GIAO DIỆN 2: KÍNH MỜ VUÔNG GÓC + SỔ TAY XỔ XUỐNG ẨN/HIỆN
     ========================================================= */
     #world-page {
       display: none;
@@ -593,7 +606,7 @@
       align-items: center;
       gap: 10px;
       padding: 7px 18px;
-      border-radius: 999px;
+      border-radius: 0;
       background: rgba(0, 0, 0, 0.14);
       border: 1px solid rgba(255, 255, 255, 0.36);
       color: var(--gold-text);
@@ -609,7 +622,7 @@
     }
     .wave-bars span {
       width: 2.5px;
-      border-radius: 2px;
+      border-radius: 0;
       background: var(--gold-text);
       animation: wavePulse 1.1s ease-in-out infinite;
     }
@@ -661,6 +674,7 @@
       align-items: start;
     }
 
+    /* === SỔ TAY HỌC VIÊN: MẶC ĐỊNH CHỈ 1 DÒNG, ẤN MỚI TRƯỢT XUỐNG === */
     .handbook-nav {
       position: sticky;
       top: 72px;
@@ -682,7 +696,7 @@
     .hb-header {
       width: 100%;
       border: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.26);
+      border-bottom: 1px solid transparent;
       background: var(--block-head-bg);
       color: var(--gold-text);
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
@@ -694,28 +708,46 @@
       font-size: 1.15rem;
       font-weight: 600;
       text-align: left;
-      cursor: default;
-      transition: background 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
     }
-    .hb-mobile-arrow {
-      display: none;
+    .handbook-stack.is-open .hb-header,
+    .handbook-stack.has-pinned .hb-header {
+      border-bottom-color: rgba(255, 255, 255, 0.26);
+    }
+    .hb-header:hover,
+    .hb-header.is-pulsing {
+      background: var(--block-pulse-bg);
+      box-shadow: inset 0 0 22px var(--glow-color), 0 0 18px var(--glow-color);
+      animation: blockClickShake 0.36s ease-in-out;
+    }
+
+    .hb-arrow {
       font-size: 0.9rem;
-      transition: transform 0.25s ease;
+      transition: transform 0.28s ease;
+    }
+    .handbook-stack.is-open .hb-arrow {
+      transform: rotate(180deg);
     }
 
     .hb-list {
       display: flex;
       flex-direction: column;
     }
+
     .hb-item {
       position: relative;
       width: 100%;
+      max-height: 0;
+      opacity: 0;
+      padding: 0 18px;
       border: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+      border-bottom: 0 solid rgba(255, 255, 255, 0.22);
+      overflow: hidden;
+      pointer-events: none;
       background: transparent;
       color: #FFFDF5;
       text-shadow: 0 1px 8px rgba(0, 0, 0, 0.42);
-      padding: 15px 18px;
       text-align: left;
       font-size: 1.05rem;
       line-height: 1.4;
@@ -724,9 +756,30 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      transition: background 0.28s ease, box-shadow 0.28s ease, padding-left 0.22s ease;
+      transition:
+        max-height 0.34s ease,
+        opacity 0.26s ease,
+        padding 0.28s ease,
+        background 0.28s ease,
+        box-shadow 0.28s ease;
     }
-    .hb-item:last-child { border-bottom: 0; }
+
+    .handbook-stack.is-open .hb-item,
+    .hb-item.is-pinned {
+      max-height: 76px;
+      opacity: 1;
+      padding: 15px 18px;
+      border-bottom-width: 1px;
+      pointer-events: auto;
+    }
+    .hb-item:last-child,
+    .hb-item.is-pinned {
+      border-bottom-width: 0;
+    }
+    .handbook-stack.is-open .hb-item:not(:last-child) {
+      border-bottom-width: 1px;
+    }
+
     .hb-item::before {
       content: "";
       position: absolute;
@@ -751,12 +804,14 @@
       box-shadow: inset 0 0 28px var(--glow-color), 0 0 24px var(--glow-color), 0 0 42px var(--glow-color);
       animation: blockClickShake 0.4s ease-in-out;
     }
-    .hb-item.is-active {
+    .hb-item.is-active,
+    .hb-item.is-pinned {
       background: var(--block-hover-bg);
       color: var(--gold-text);
       font-weight: 600;
     }
     .hb-item.is-active::before,
+    .hb-item.is-pinned::before,
     .hb-item:hover::before,
     .hb-item.is-pulsing::before { opacity: 1; }
 
@@ -767,6 +822,7 @@
     }
     .hb-item:hover .hb-bow,
     .hb-item.is-active .hb-bow,
+    .hb-item.is-pinned .hb-bow,
     .hb-item.is-pulsing .hb-bow {
       opacity: 1;
       color: var(--gold-text);
@@ -813,6 +869,7 @@
       100% { opacity: 0; transform: translate3d(var(--sway-d, -16px), 102vh, 0) rotate(var(--r4, 14deg)) scale(0.80); }
     }
 
+    /* CỘT PHẢI 3/4: BỎ HẾT BO GÓC */
     .world-content {
       display: flex;
       flex-direction: column;
@@ -907,29 +964,8 @@
       .academy-hero-band { padding: 34px 16px 32px; }
       .world-layout { grid-template-columns: 1fr; padding: 18px 14px 72px 0; gap: 18px; }
       .world-content { padding-left: 14px; }
-
       .handbook-nav { top: 96px; margin-right: 14px; }
-      .hb-header { cursor: pointer; }
-      .hb-header:hover,
-      .hb-header.is-pulsing {
-        background: var(--block-pulse-bg);
-        box-shadow: inset 0 0 22px var(--glow-color), 0 0 20px var(--glow-color);
-        animation: blockClickShake 0.38s ease-in-out;
-      }
-      .hb-mobile-arrow { display: inline-block; }
-      .handbook-stack.mobile-open .hb-mobile-arrow { transform: rotate(180deg); }
-
-      .hb-list {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: max-height 0.35s ease, opacity 0.28s ease;
-      }
-      .handbook-stack.mobile-open .hb-list {
-        max-height: 360px;
-        opacity: 1;
-      }
-      .content-section { scroll-margin-top: 162px; padding: 22px 18px; }
+      .content-section { scroll-margin-top: 172px; padding: 22px 18px; }
     }
 
     @media (max-width: 600px) {
@@ -982,6 +1018,7 @@
 
   <!-- GIAO DIỆN 1 -->
   <div id="intro-stage" aria-label="Bìa mở đầu">
+    <div class="intro-bg-layer"></div>
     <div class="bg-soft-veil"></div>
     <div class="sunbeam-left"></div>
     <div class="dust-layer" id="dust-layer"></div>
@@ -1064,11 +1101,11 @@
         <div class="handbook-stack" id="handbookStack">
           <button type="button" class="hb-header" id="hbHeaderBtn" aria-expanded="false">
             <span>✎ᝰ౨ৎ Sổ tay học viên</span>
-            <span class="hb-mobile-arrow">▾</span>
+            <span class="hb-arrow">▾</span>
           </button>
 
           <div class="hb-list" id="hbList">
-            <button type="button" class="hb-item is-active" data-target="sec-1">
+            <button type="button" class="hb-item" data-target="sec-1">
               <span>Phần 1 ౨ৎ Thông tin cần biết</span>
               <span class="hb-bow">౨ৎ</span>
             </button>
@@ -1174,6 +1211,7 @@
     let isTransitioning = false;
     let isAutoScrolling = false;
     let scrollLockTimer = null;
+    let closeHoverTimer = null;
 
     (function createDust() {
       const layer = document.getElementById('dust-layer');
@@ -1306,27 +1344,63 @@
       setTimeout(() => el.classList.remove('is-pulsing'), 550);
     }
 
-    function setActiveBlock(targetId) {
-      hbItems.forEach((btn) => {
-        btn.classList.toggle('is-active', btn.getAttribute('data-target') === targetId);
-      });
+    function openHandbookMenu() {
+      clearTimeout(closeHoverTimer);
+      handbookStack.classList.add('is-open');
+      hbHeaderBtn.setAttribute('aria-expanded', 'true');
     }
 
-    hbHeaderBtn.addEventListener('click', () => {
-      if (window.innerWidth > 820) return;
+    function closeHandbookMenu() {
+      clearTimeout(closeHoverTimer);
+      handbookStack.classList.remove('is-open');
+      hbHeaderBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function pinHandbookItem(targetId) {
+      let hasPinned = false;
+      hbItems.forEach((btn) => {
+        const match = btn.getAttribute('data-target') === targetId;
+        btn.classList.toggle('is-active', match);
+        btn.classList.toggle('is-pinned', match);
+        if (match) hasPinned = true;
+      });
+      handbookStack.classList.toggle('has-pinned', hasPinned);
+    }
+
+    hbHeaderBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       triggerGlowAndSway(hbHeaderBtn);
-      const opened = handbookStack.classList.toggle('mobile-open');
-      hbHeaderBtn.setAttribute('aria-expanded', String(opened));
+      if (handbookStack.classList.contains('is-open')) {
+        closeHandbookMenu();
+      } else {
+        openHandbookMenu();
+      }
+    });
+
+    handbookStack.addEventListener('mouseenter', () => {
+      clearTimeout(closeHoverTimer);
+    });
+    handbookStack.addEventListener('mouseleave', () => {
+      if (!handbookStack.classList.contains('is-open')) return;
+      closeHoverTimer = setTimeout(closeHandbookMenu, 220);
+    });
+
+    document.addEventListener('pointerdown', (e) => {
+      if (!handbookStack.contains(e.target) && handbookStack.classList.contains('is-open')) {
+        closeHandbookMenu();
+      }
     });
 
     hbItems.forEach((btn) => {
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         const targetId = btn.getAttribute('data-target');
         const targetSec = document.getElementById(targetId);
         if (!targetSec) return;
 
         triggerGlowAndSway(btn);
-        setActiveBlock(targetId);
+        pinHandbookItem(targetId);
+        closeHandbookMenu();
 
         isAutoScrolling = true;
         clearTimeout(scrollLockTimer);
@@ -1335,22 +1409,16 @@
         targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
         targetSec.classList.add('is-highlighted');
         setTimeout(() => targetSec.classList.remove('is-highlighted'), 950);
-
-        if (window.innerWidth <= 820) {
-          setTimeout(() => {
-            handbookStack.classList.remove('mobile-open');
-            hbHeaderBtn.setAttribute('aria-expanded', 'false');
-          }, 260);
-        }
       });
     });
 
     window.addEventListener('scroll', () => {
       if (isAutoScrolling || !worldPage.classList.contains('is-visible')) return;
+      if (!handbookStack.classList.contains('has-pinned')) return;
 
       const atBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 16;
       if (atBottom && sections.length > 0) {
-        setActiveBlock(sections[sections.length - 1].id);
+        pinHandbookItem(sections[sections.length - 1].id);
         return;
       }
 
@@ -1361,7 +1429,7 @@
           currentId = sec.id;
         }
       });
-      if (currentId) setActiveBlock(currentId);
+      if (currentId) pinHandbookItem(currentId);
     }, { passive: true });
   </script>
 </body>
