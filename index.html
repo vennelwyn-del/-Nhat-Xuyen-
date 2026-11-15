@@ -1293,37 +1293,87 @@
       font-size: 0.82rem;
       margin-bottom: 8px;
     }
-
-    /* Thanh tỷ lệ ABO */
+/* Thanh tỷ lệ ABO (chuyển động sóng nhẹ liên tục) */
     .abo-bar {
+      position: relative;
       display: flex;
-      height: 26px;
+      height: 30px;
       border-radius: 999px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16), inset 0 1px 4px rgba(255, 255, 255, 0.25);
       margin: 10px 0 14px;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       font-weight: 600;
     }
     .abo-seg {
+      position: relative;
+      z-index: 1;
       display: flex;
       align-items: center;
       justify-content: center;
       white-space: nowrap;
       overflow: hidden;
+      background-size: 200% 100%;
+      animation: aboGlowShift 4.5s ease-in-out infinite;
     }
-    .abo-beta {
-      background: rgba(255, 255, 255, 0.26);
-      color: #FFFFFF;
+    .abo-seg span {
+      position: relative;
+      z-index: 3;
+      letter-spacing: 0.03em;
     }
     .abo-alpha {
-      background: var(--c-deep);
+      background-image: linear-gradient(90deg, var(--c-deep), var(--c-sky), var(--c-deep));
       color: #FFFFFF;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+      border-right: 1px solid rgba(255, 255, 255, 0.35);
     }
     .abo-omega {
-      background: var(--gold-text);
+      background-image: linear-gradient(90deg, var(--c-sun), var(--gold-text), var(--c-sun));
       color: var(--ink-dark);
+      border-right: 1px solid rgba(255, 255, 255, 0.35);
+      animation-delay: -1.5s;
     }
+    .abo-beta {
+      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.38), rgba(255, 255, 255, 0.22));
+      color: #FFFFFF;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.28);
+      animation-delay: -3s;
+    }
+
+    @keyframes aboGlowShift {
+      0%, 100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+
+    /* Hai lớp sóng lượn nhẹ phủ qua thanh ABO */
+    .abo-wave-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .abo-wave {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 100%;
+      will-change: transform;
+    }
+    .abo-wave-1 {
+      animation: aboWaveSlide 3.4s linear infinite;
+    }
+    .abo-wave-2 {
+      animation: aboWaveSlide 5.2s linear infinite reverse;
+      opacity: 0.75;
+    }
+    @keyframes aboWaveSlide {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
     .abo-legend {
       margin: 0 0 10px;
       padding-left: 18px;
@@ -1339,6 +1389,7 @@
       border-radius: 6px;
       color: var(--gold-text);
       font-size: 0.9rem;
+      white-space: nowrap;
     }
     .abo-exception {
       margin: 0;
@@ -1346,7 +1397,6 @@
       color: var(--gold-text);
       opacity: 0.9;
     }
-
     @media (max-width: 820px) {
       .ch1-split,
       .ch1-split-reverse,
@@ -1689,18 +1739,27 @@
                   <h3>Sĩ số mỗi lớp &amp; Véc-tơ bàn đơn 60cm</h3>
                   <p>Biên chế cố định đúng <strong>30 học sinh</strong> ngồi tại <strong>30 bàn đơn độc lập</strong> (3 dãy dọc: Dãy 1 Cửa sổ, Dãy 2 Giữa, Dãy 3 Hành lang; mỗi dãy 10 bàn). Người ngồi bàn sau có tầm nhìn trực diện ở cự ly chưa đầy <strong>60cm</strong> chĩa thẳng vào gáy và miếng dán cách ly của người ngồi trước.</p>
                 </div>
-
-                <div class="sub-card">
+               <div class="sub-card">
                   <h3>Tỷ lệ giới tính thứ hai tự nhiên (ABO Ratio)</h3>
                   <div class="abo-bar" aria-label="Tỷ lệ ABO">
-                    <div class="abo-seg abo-beta" style="width:70%">Beta 70%</div>
-                    <div class="abo-seg abo-alpha" style="width:20%">Alpha 20%</div>
-                    <div class="abo-seg abo-omega" style="width:10%">10%</div>
+                    <div class="abo-seg abo-alpha" style="width:40%"><span>Alpha 40%</span></div>
+                    <div class="abo-seg abo-omega" style="width:30%"><span>Omega 30%</span></div>
+                    <div class="abo-seg abo-beta" style="width:30%"><span>Beta 30%</span></div>
+
+                    <!-- Lớp sóng chuyển động nhẹ -->
+                    <div class="abo-wave-wrap" aria-hidden="true">
+                      <svg class="abo-wave abo-wave-1" viewBox="0 0 400 32" preserveAspectRatio="none">
+                        <path d="M0,18 Q25,10 50,18 T100,18 T150,18 T200,18 T250,18 T300,18 T350,18 T400,18 L400,32 L0,32 Z" fill="rgba(255,255,255,0.20)" />
+                      </svg>
+                      <svg class="abo-wave abo-wave-2" viewBox="0 0 400 32" preserveAspectRatio="none">
+                        <path d="M0,14 Q25,22 50,14 T100,14 T150,14 T200,14 T250,14 T300,14 T350,14 T400,14 L400,32 L0,32 Z" fill="rgba(255,255,255,0.14)" />
+                      </svg>
+                    </div>
                   </div>
                   <ul class="abo-legend">
-                    <li><strong>Beta (~70% — 315 học sinh):</strong> Tuyến thể thoái hóa hoặc không có túi tiết hương (<code>0.0 ppm</code>), vô hương, “điếc mùi” tin tức tố, <strong>miễn nhiễm 100% áp bách</strong> — lực lượng giữ trật tự ổn định nhất.</li>
-                    <li><strong>Alpha (~20% — 90 học sinh):</strong> Tuyến thể hơi lồi, thể chất và cơ bắp phát triển vượt trội, phản xạ nhạy bén, bản năng cạnh tranh lãnh địa mạnh, rất nhạy với tin tức tố Omega.</li>
-                    <li><strong>Omega (~10% — 45 học sinh):</strong> Tuyến thể mỏng manh (biểu bì mỏng hơn 40%), thể chất trung bình yếu hơn, nhạy nhiệt độ, dễ bị tổn thương và áp chế bởi Alpha cấp cao.</li>
+                    <li><strong>Alpha (~40% — 180 học sinh):</strong> Tuyến thể hơi lồi, thể chất và cơ bắp phát triển vượt trội, phản xạ nhạy bén, bản năng cạnh tranh lãnh địa mạnh, rất nhạy với tin tức tố Omega.</li>
+                    <li><strong>Omega (~30% — 135 học sinh):</strong> Tuyến thể mỏng manh (biểu bì mỏng hơn 40%), thể chất trung bình yếu hơn, nhạy nhiệt độ, dễ bị tổn thương và áp chế bởi Alpha cấp cao.</li>
+                    <li><strong>Beta (~30% — 135 học sinh):</strong> Tuyến thể thoái hóa hoặc không có túi tiết hương (<code>0.0 ppm</code>), vô hương, “điếc mùi” tin tức tố, <strong>miễn nhiễm 100% áp bách</strong> — lực lượng giữ trật tự ổn định nhất.</li>
                   </ul>
                   <p class="abo-exception"><em>* Ngoại lệ bệnh lý: Ghi nhận các trường hợp cá biệt Phân hóa muộn ở tuổi 16–17 hoặc Tuyến thể khiếm khuyết / tổn thương do bẩm sinh và tai nạn ngoại lực.</em></p>
                 </div>
