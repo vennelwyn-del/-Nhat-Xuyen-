@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -13,11 +12,10 @@
 
   <style>
     :root {
-      /* === DÁN LINK ẢNH BACKGROUND GIAO DIỆN 1 VÀO ĐÂY === */
-      /* Ví dụ: url('https://...') hoặc url('./assets/bg.jpg') */
+      /* === 1. DÁN LINK ẢNH BACKGROUND GIAO DIỆN 1 VÀO ĐÂY === */
       --intro-bg-image: url('');
 
-      /* === BẢNG MÀU === */
+      /* === 2. BẢNG MÀU CHỦ ĐẠO === */
       --buttercup-sky:  #FFF2B2;
       --dewy-blue:      #A8C6E7;
       --sunwashed:      #FFE08A;
@@ -25,7 +23,7 @@
       --morning-breeze: #7FA8D6;
 
       --ink-dark:       #2A3C52;
-      --ink-muted:      #586E87;
+      --ink-muted:      #526982;
       --paper-light:    #FFFDF5;
     }
 
@@ -44,7 +42,7 @@
     }
 
     /* =========================================================
-       GIAO DIỆN 1: SÁCH LƠ LỬNG & NẮNG SỚM GÓC TRÁI
+       GIAO DIỆN 1: BÌA MỞ ĐẦU (GIỐNG FORM BÊN BÁO ỨNG ĐỜI NHAU)
     ========================================================= */
     #intro-stage {
       position: fixed;
@@ -54,6 +52,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 72px 20px 28px;
       overflow: hidden;
       background-color: var(--dewy-blue);
       background-image:
@@ -61,7 +60,7 @@
         linear-gradient(155deg, #9AC0E8 0%, var(--dewy-blue) 42%, var(--buttercup-sky) 82%, var(--cloud-puff) 100%);
       background-size: cover;
       background-position: center;
-      transition: opacity 0.85s ease, visibility 0.85s ease;
+      transition: opacity 0.85s ease, visibility 0.85s ease, background 0.6s ease;
     }
 
     #intro-stage.is-hidden {
@@ -70,19 +69,39 @@
       pointer-events: none;
     }
 
+    /* Chế độ Tối khi bấm nút Sáng/Tối */
+    body.night-mode #intro-stage {
+      background-image:
+        var(--intro-bg-image),
+        linear-gradient(155deg, #1B2838 0%, #2B4059 48%, #47668B 85%, #6A89AD 100%);
+    }
+    body.night-mode .bg-soft-veil {
+      background: linear-gradient(135deg, rgba(22, 34, 50, 0.58) 0%, rgba(36, 54, 77, 0.48) 100%);
+    }
+    body.night-mode .hero-quote {
+      color: #FFFDF5;
+      text-shadow: 0 2px 18px rgba(168, 198, 231, 0.45);
+    }
+    body.night-mode .hero-spacing-title,
+    body.night-mode .touch-caption {
+      color: rgba(255, 247, 214, 0.9);
+      text-shadow: 0 1px 10px rgba(0, 0, 0, 0.35);
+    }
+
     .bg-soft-veil {
       position: absolute;
       inset: 0;
       background: linear-gradient(
         135deg,
-        rgba(255, 242, 178, 0.36) 0%,
-        rgba(168, 198, 231, 0.20) 55%,
+        rgba(255, 242, 178, 0.34) 0%,
+        rgba(168, 198, 231, 0.22) 55%,
         rgba(127, 168, 214, 0.26) 100%
       );
       pointer-events: none;
+      transition: background 0.5s ease;
     }
 
-    /* Ánh sáng chiếu chéo từ góc trên bên trái xuống */
+    /* Ánh sáng chiếu từ góc trên bên trái xuống */
     .sunbeam-left {
       position: absolute;
       top: -20%;
@@ -90,11 +109,11 @@
       width: 115vw;
       height: 120vh;
       background:
-        radial-gradient(circle at 8% 8%, rgba(255, 247, 214, 0.94) 0%, rgba(255, 224, 138, 0.48) 24%, transparent 58%),
+        radial-gradient(circle at 8% 8%, rgba(255, 247, 214, 0.92) 0%, rgba(255, 224, 138, 0.46) 24%, transparent 58%),
         conic-gradient(
           from 118deg at 0% 0%,
           transparent 0deg,
-          rgba(255, 247, 214, 0.40) 10deg,
+          rgba(255, 247, 214, 0.38) 10deg,
           rgba(255, 242, 178, 0.12) 22deg,
           rgba(255, 247, 214, 0.34) 34deg,
           transparent 54deg
@@ -104,7 +123,6 @@
       pointer-events: none;
       animation: rayPulse 7s ease-in-out infinite alternate;
     }
-
     @keyframes rayPulse {
       0%   { opacity: 0.78; transform: scale(1); }
       100% { opacity: 1;    transform: scale(1.04); }
@@ -131,10 +149,134 @@
       100% { transform: translate(35px, -70px) scale(1.1); opacity: 0; }
     }
 
-    /* Không gian 3D chứa sách */
-    .book-scene {
+    /* === CÁC FORM NHỎ Ở GÓC TRÊN (NA NÁ BÁO ỨNG ĐỜI NHAU) === */
+    .corner-bar {
+      position: absolute;
+      top: 16px;
+      left: 18px;
+      right: 18px;
+      z-index: 20;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      pointer-events: none;
+    }
+    .corner-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      pointer-events: auto;
+    }
+
+    .glass-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: rgba(54, 78, 106, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #FFFDF5;
+      text-decoration: none;
+      font-size: 0.94rem;
+      letter-spacing: 0.03em;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 6px 18px rgba(42, 60, 82, 0.16);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .glass-pill:hover {
+      background: rgba(54, 78, 106, 0.72);
+      transform: translateY(-1px);
+    }
+
+    .pill-badge-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #FFFDF5;
+      color: var(--ink-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* Đĩa nhạc nhỏ trên nút Radio */
+    .radio-disc {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FFFDF5 0 22%, #2A3C52 24% 36%, #7FA8D6 38% 100%);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      display: inline-block;
+    }
+    .radio-disc.spinning {
+      animation: discSpin 3.6s linear infinite;
+    }
+    @keyframes discSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    /* Hộp Radio nhỏ thả xuống ở góc phải */
+    .radio-popover {
+      position: absolute;
+      top: 60px;
+      right: 18px;
+      z-index: 30;
+      width: min(88vw, 310px);
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(54, 78, 106, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(14px);
+      color: #FFFDF5;
+      box-shadow: 0 14px 32px rgba(42, 60, 82, 0.28);
+      display: none;
+    }
+    .radio-popover.open {
+      display: block;
+    }
+    .radio-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+    }
+    .radio-close {
+      background: transparent;
+      border: none;
+      color: #FFFDF5;
+      font-size: 1.2rem;
+      cursor: pointer;
+      line-height: 1;
+    }
+    .radio-embed-wrap iframe {
+      width: 100%;
+      height: 152px;
+      border: 0;
+      border-radius: 12px;
+      display: block;
+    }
+
+    /* === KHỐI TRUNG TÂM: SÁCH + QUOTE + TÊN + NÚT === */
+    .center-stack {
       position: relative;
       z-index: 5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 720px;
+      width: 100%;
+    }
+
+    .book-scene {
       perspective: 1600px;
       display: flex;
       flex-direction: column;
@@ -143,19 +285,9 @@
       user-select: none;
     }
 
-    .book-shadow {
-      width: min(72vw, 430px);
-      height: 26px;
-      margin-top: 28px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.28) 0%, rgba(127, 168, 214, 0.12) 55%, transparent 75%);
-      filter: blur(6px);
-      animation: shadowFloat 4.2s ease-in-out infinite;
-      transition: opacity 0.5s ease;
-    }
-    @keyframes shadowFloat {
-      0%, 100% { transform: scale(1); opacity: 0.85; }
-      50%      { transform: scale(0.88); opacity: 0.55; }
+    .book-tilt {
+      transform-style: preserve-3d;
+      transition: transform 0.16s ease-out;
     }
 
     .book-float {
@@ -164,45 +296,62 @@
       transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.6s ease;
     }
     @keyframes bookFloat {
-      0%, 100% { transform: translateY(0px) rotateX(8deg) rotateZ(-1.2deg); }
-      50%      { transform: translateY(-16px) rotateX(11deg) rotateZ(0.8deg); }
+      0%, 100% { transform: translateY(0px) rotateX(8deg) rotateZ(-1deg); }
+      50%      { transform: translateY(-12px) rotateX(10deg) rotateZ(0.8deg); }
+    }
+
+    .book-shadow {
+      width: min(64vw, 350px);
+      height: 20px;
+      margin-top: 18px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.25) 0%, rgba(127, 168, 214, 0.1) 55%, transparent 75%);
+      filter: blur(5px);
+      animation: shadowFloat 4.2s ease-in-out infinite;
+      transition: opacity 0.4s ease;
+    }
+    @keyframes shadowFloat {
+      0%, 100% { transform: scale(1); opacity: 0.85; }
+      50%      { transform: scale(0.88); opacity: 0.52; }
     }
 
     /* Rung nhẹ khi ấn */
-    .book-scene.is-shaking .book-float {
+    .center-stack.is-shaking .book-float {
       animation: bookShake 0.38s ease-in-out;
     }
     @keyframes bookShake {
-      0%, 100% { transform: translateY(-6px) rotateX(9deg) rotateZ(0deg); }
-      20%      { transform: translate(-5px, -8px) rotateX(9deg) rotateZ(-2.5deg); }
-      40%      { transform: translate(5px, -5px) rotateX(9deg) rotateZ(2.2deg); }
-      60%      { transform: translate(-4px, -7px) rotateX(9deg) rotateZ(-1.6deg); }
-      80%      { transform: translate(3px, -6px) rotateX(9deg) rotateZ(1.2deg); }
+      0%, 100% { transform: translateY(-4px) rotateX(9deg) rotateZ(0deg); }
+      20%      { transform: translate(-5px, -7px) rotateX(9deg) rotateZ(-2.4deg); }
+      40%      { transform: translate(5px, -4px) rotateX(9deg) rotateZ(2.2deg); }
+      60%      { transform: translate(-4px, -6px) rotateX(9deg) rotateZ(-1.5deg); }
+      80%      { transform: translate(3px, -5px) rotateX(9deg) rotateZ(1.1deg); }
     }
 
     /* Lật mở & zoom to */
-    .book-scene.is-opening .book-float {
+    .center-stack.is-opening .book-float {
       animation: none;
       transform: translateY(0) scale(2.85) rotateX(0deg) rotateZ(0deg);
       opacity: 0;
     }
-    .book-scene.is-opening .book-shadow,
-    .book-scene.is-opening .intro-hint {
+    .center-stack.is-opening .book-shadow,
+    .center-stack.is-opening .hero-text-group {
       opacity: 0;
+      transform: translateY(8px);
     }
 
+    /* Cuốn sách mở 3D */
     .open-book {
       position: relative;
-      width: min(86vw, 540px);
-      height: min(58vw, 360px);
+      width: min(76vw, 400px);
+      height: min(50vw, 265px);
       display: flex;
       transform-style: preserve-3d;
       background: linear-gradient(90deg, var(--morning-breeze) 0%, #6D95C4 49%, #557BA8 50%, #6D95C4 51%, var(--morning-breeze) 100%);
-      padding: 10px 12px 12px;
-      border-radius: 10px;
+      padding: 8px 10px 10px;
+      border-radius: 9px;
       box-shadow:
-        0 24px 48px rgba(42, 60, 82, 0.24),
-        inset 0 2px 4px rgba(255, 255, 255, 0.5);
+        0 20px 42px rgba(42, 60, 82, 0.24),
+        inset 0 2px 4px rgba(255, 255, 255, 0.55);
     }
 
     .book-half {
@@ -212,50 +361,49 @@
       background: var(--cloud-puff);
       border-radius: 4px;
       overflow: hidden;
-      box-shadow: inset 0 0 18px rgba(255, 224, 138, 0.25);
+      box-shadow: inset 0 0 16px rgba(255, 224, 138, 0.25);
     }
 
     .book-left {
       border-top-right-radius: 2px;
       border-bottom-right-radius: 2px;
       background: linear-gradient(90deg, #F6EED0 0%, var(--paper-light) 12%, var(--cloud-puff) 88%, #E7DEC0 100%);
-      border-left: 4px solid #EDE3C3;
-      padding: 24px 22px;
+      border-left: 3px solid #EDE3C3;
+      padding: 16px 14px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      text-align: left;
     }
 
     .book-right {
       border-top-left-radius: 2px;
       border-bottom-left-radius: 2px;
       background: linear-gradient(270deg, #F6EED0 0%, var(--paper-light) 12%, var(--cloud-puff) 88%, #E7DEC0 100%);
-      border-right: 4px solid #EDE3C3;
-      padding: 24px 22px;
+      border-right: 3px solid #EDE3C3;
+      padding: 16px 14px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
     }
 
     .flutter-page {
       position: absolute;
-      top: 10px;
-      right: 12px;
-      width: calc(50% - 12px);
-      height: calc(100% - 22px);
+      top: 8px;
+      right: 10px;
+      width: calc(50% - 10px);
+      height: calc(100% - 18px);
       transform-origin: left center;
       transform-style: preserve-3d;
       background: linear-gradient(270deg, #F8F0D4 0%, var(--paper-light) 25%, var(--cloud-puff) 92%, #EAE0C2 100%);
       border-radius: 2px 4px 4px 2px;
-      box-shadow: -4px 4px 16px rgba(42, 60, 82, 0.14);
-      padding: 24px 22px;
+      box-shadow: -4px 4px 14px rgba(42, 60, 82, 0.14);
+      padding: 16px 14px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      text-align: center;
       animation: pageBreeze 3.6s ease-in-out infinite;
       transition: transform 0.78s cubic-bezier(0.45, 0.05, 0.55, 0.95);
     }
@@ -265,59 +413,99 @@
       50%      { transform: rotateY(-22deg); }
     }
 
-    .book-scene.is-opening .flutter-page {
+    .center-stack.is-opening .flutter-page {
       animation: none;
       transform: rotateY(-168deg);
     }
 
     .book-tag {
-      font-size: clamp(0.68rem, 1.8vw, 0.82rem);
+      font-size: clamp(0.58rem, 1.5vw, 0.72rem);
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--morning-breeze);
     }
     .book-quote {
       font-style: italic;
-      font-size: clamp(0.85rem, 2.2vw, 1.05rem);
+      font-size: clamp(0.75rem, 1.9vw, 0.92rem);
       color: var(--ink-muted);
-      line-height: 1.55;
+      line-height: 1.5;
     }
     .book-title-cover {
-      font-size: clamp(1.35rem, 3.8vw, 2rem);
+      font-size: clamp(1.1rem, 3vw, 1.55rem);
       font-weight: 600;
       color: var(--ink-dark);
-      margin: 6px 0 8px;
-      line-height: 1.25;
+      margin: 4px 0 6px;
     }
     .book-ornament {
-      width: 56px;
+      width: 44px;
       height: 2px;
       background: linear-gradient(90deg, transparent, var(--sunwashed), var(--morning-breeze), transparent);
-      margin: 8px auto;
+      margin: 6px auto;
     }
     .book-sub {
-      font-size: clamp(0.78rem, 2vw, 0.95rem);
+      font-size: clamp(0.68rem, 1.6vw, 0.82rem);
       color: var(--ink-muted);
       font-style: italic;
     }
 
-    .intro-hint {
-      margin-top: 14px;
-      padding: 7px 18px;
-      border-radius: 999px;
-      background: rgba(255, 247, 214, 0.78);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      color: var(--ink-dark);
-      font-size: 0.95rem;
-      letter-spacing: 0.04em;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 6px 18px rgba(42, 60, 82, 0.1);
-      animation: hintPulse 2.4s ease-in-out infinite;
-      transition: opacity 0.4s ease;
+    /* === FORM CHỮ & NÚT BÊN DƯỚI SÁCH (NA NÁ BÁO ỨNG ĐỜI NHAU) === */
+    .hero-text-group {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity 0.45s ease, transform 0.45s ease;
     }
-    @keyframes hintPulse {
-      0%, 100% { transform: translateY(0); opacity: 0.9; }
-      50%      { transform: translateY(-3px); opacity: 1; }
+
+    .hero-quote {
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.45rem, 3.6vw, 2.35rem);
+      line-height: 1.3;
+      color: var(--ink-dark);
+      margin: 0 0 10px;
+      text-shadow: 0 2px 16px rgba(255, 253, 245, 0.95);
+    }
+
+    .hero-spacing-title {
+      font-size: clamp(0.78rem, 1.8vw, 0.95rem);
+      letter-spacing: 0.46em;
+      text-indent: 0.46em;
+      text-transform: uppercase;
+      color: var(--ink-dark);
+      opacity: 0.85;
+      margin-bottom: 20px;
+    }
+
+    .btn-enter-world {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 28px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      background: var(--paper-light);
+      color: var(--ink-dark);
+      font-size: 1.05rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 10px 26px rgba(42, 60, 82, 0.16);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-enter-world:hover {
+      background: var(--buttercup-sky);
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(42, 60, 82, 0.22);
+    }
+
+    .touch-caption {
+      margin-top: 16px;
+      font-size: 0.74rem;
+      letter-spacing: 0.36em;
+      text-indent: 0.36em;
+      color: var(--ink-muted);
+      cursor: pointer;
+      user-select: none;
     }
 
     /* =========================================================
@@ -376,6 +564,12 @@
     .nav-pill:hover {
       background: var(--buttercup-sky);
     }
+
+    @media (max-width: 600px) {
+      .corner-bar { top: 12px; left: 12px; right: 12px; }
+      .glass-pill { padding: 6px 11px; font-size: 0.82rem; }
+      .touch-caption { letter-spacing: 0.22em; text-indent: 0.22em; font-size: 0.68rem; }
+    }
   </style>
 </head>
 <body>
@@ -386,36 +580,85 @@
     <div class="sunbeam-left"></div>
     <div class="dust-layer" id="dust-layer"></div>
 
-    <div class="book-scene" id="book-trigger" role="button" tabindex="0" title="Nhấn để mở sổ tay">
-      <div class="book-float">
-        <div class="open-book">
-          <div class="book-half book-left">
-            <div class="book-tag">Lưu bút · Thanh xuân</div>
-            <div class="book-quote">
-              “Nắng sớm nghiêng qua khung cửa,<br />
-              gió khẽ lật những trang giấy còn thơm…”
-            </div>
-            <div class="book-tag" style="opacity:0.7;">Nhất Xuyên</div>
-          </div>
-
-          <div class="book-half book-right">
-            <div class="book-tag">Worldbuild</div>
-            <div class="book-title-cover">Nhất Xuyên</div>
-            <div class="book-ornament"></div>
-            <div class="book-sub">Đang mở trang đầu tiên...</div>
-          </div>
-
-          <div class="flutter-page">
-            <div class="book-tag">Worldbuilding Archive</div>
-            <div class="book-title-cover">Nhất Xuyên</div>
-            <div class="book-ornament"></div>
-            <div class="book-sub">Chạm vào cuốn sách để mở</div>
-          </div>
-        </div>
+    <!-- Thanh form nhỏ góc trên -->
+    <div class="corner-bar">
+      <div class="corner-group">
+        <a href="https://vennelwyn-del.github.io/Baoungdoinhau/" class="glass-pill">
+          <span class="pill-badge-icon">↺</span>
+          <span>Báo Ứng Đời Nhau</span>
+        </a>
       </div>
 
-      <div class="book-shadow"></div>
-      <div class="intro-hint">✦ Chạm vào trang sách để mở ✦</div>
+      <div class="corner-group">
+        <button type="button" class="glass-pill" id="btnThemeToggle">
+          <span>ʕ˖͜͡˖ʔ Sáng/Tối</span>
+        </button>
+        <button type="button" class="glass-pill" id="btnRadioToggle">
+          <span class="radio-disc spinning" id="radioDisc"></span>
+          <span> ĐÀI PHÁT THANH </span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Hộp Radio nhỏ thả xuống -->
+    <div class="radio-popover" id="radioPopover">
+      <div class="radio-head">
+        <span> 𓆩❤︎𓆪 ĐÀI PHÁT THANH NHẤT XUYÊN </span>
+        <button type="button" class="radio-close" id="btnRadioClose">&times;</button>
+      </div>
+      <div class="radio-embed-wrap">
+        <!-- Thay ID bài Spotify khác vào đoạn track/... nếu muốn đổi nhạc -->
+        <iframe
+          src="https://open.spotify.com/embed/track/21qg0IBZf8R12qHd9A3AA4?utm_source=generator&theme=0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Cụm trung tâm: Cuốn sách + Form quote/chữ/nút -->
+    <div class="center-stack" id="center-stack">
+      <div class="book-scene" id="book-trigger" role="button" tabindex="0" title="Nhấn để lật trang sách">
+        <div class="book-tilt" id="bookTilt">
+          <div class="book-float">
+            <div class="open-book">
+              <div class="book-half book-left">
+                <div class="book-tag"> Lưu bút ᰔ Thanh xuân</div>
+                <div class="book-quote">
+                  “Nắng sớm nghiêng qua khung cửa,<br />
+                  gió khẽ lật những trang giấy còn thơm…”
+                </div>
+                <div class="book-tag" style="opacity:0.7;">Nhất Xuyên</div>
+              </div>
+
+              <div class="book-half book-right">
+                <div class="book-tag">Worldbuild</div>
+                <div class="book-title-cover"> જ⁀➴ ♡ Nhất Xuyên ‿✶ </div>
+                <div class="book-ornament"></div>
+                <div class="book-sub"> ╰☜ Đang mở trang đầu tiên...</div>
+              </div>
+
+              <div class="flutter-page">
+                <div class="book-tag">Worldbuilding Archive</div>
+                <div class="book-title-cover"> °ᡣ𐭩 ° Nhất Xuyên </div>
+                <div class="book-ornament"></div>
+                <div class="book-sub">Thanh xuân vườn trường</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="book-shadow"></div>
+      </div>
+
+      <div class="hero-text-group">
+        <h1 class="hero-quote">“Thanh xuân là cuốn sách mở giữa buổi sáng đầy nắng.”</h1>
+        <div class="hero-spacing-title">N H Ấ T &nbsp; X U Y Ê N</div>
+        <button type="button" class="btn-enter-world" id="btnEnterWorld">
+          <span>༄</span>
+          <span>Xem Nhất Xuyên</span>
+        </button>
+        <div class="touch-caption" id="touchCaption">࿐ ࿔ ✦ &nbsp; C H Ạ M &nbsp; Đ Ể &nbsp; M Ở &nbsp; ✦ ࿔ ࿐</div>
+      </div>
     </div>
   </div>
 
@@ -432,6 +675,7 @@
   </div>
 
   <script>
+    // 1. Tạo hạt nắng bay nhẹ
     (function createDust() {
       const layer = document.getElementById('dust-layer');
       for (let i = 0; i < 24; i++) {
@@ -440,7 +684,7 @@
         const size = 3 + Math.random() * 5;
         dot.style.width = size + 'px';
         dot.style.height = size + 'px';
-        dot.style.left = (Math.random() * 75) + '%';
+        dot.style.left = (Math.random() * 78) + '%';
         dot.style.top = (10 + Math.random() * 80) + '%';
         dot.style.animationDuration = (5 + Math.random() * 6) + 's';
         dot.style.animationDelay = (Math.random() * 5) + 's';
@@ -448,20 +692,47 @@
       }
     })();
 
-    const introStage  = document.getElementById('intro-stage');
-    const bookTrigger = document.getElementById('book-trigger');
-    const worldPage   = document.getElementById('world-page');
+    // 2. Nghiêng cuốn sách 3D nhẹ theo chuột (giống card bên Báo Ứng)
+    const bookTilt = document.getElementById('bookTilt');
+    window.addEventListener('mousemove', (e) => {
+      if (introStage.classList.contains('is-hidden')) return;
+      const x = (e.clientX / window.innerWidth) * 2 - 1;
+      const y = (e.clientY / window.innerHeight) * 2 - 1;
+      bookTilt.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+    });
+
+    // 3. Nút Sáng/Tối & Radio
+    document.getElementById('btnThemeToggle').addEventListener('click', () => {
+      document.body.classList.toggle('night-mode');
+    });
+
+    const radioPopover = document.getElementById('radioPopover');
+    document.getElementById('btnRadioToggle').addEventListener('click', () => {
+      radioPopover.classList.toggle('open');
+    });
+    document.getElementById('btnRadioClose').addEventListener('click', () => {
+      radioPopover.classList.remove('open');
+    });
+
+    // 4. Hiệu ứng Rung nhẹ -> Lật mở Zoom to -> Chuyển sang Giao diện 2
+    const introStage   = document.getElementById('intro-stage');
+    const centerStack  = document.getElementById('center-stack');
+    const bookTrigger  = document.getElementById('book-trigger');
+    const btnEnter     = document.getElementById('btnEnterWorld');
+    const touchCaption = document.getElementById('touchCaption');
+    const worldPage    = document.getElementById('world-page');
     let isTransitioning = false;
 
     function openBookSequence() {
       if (isTransitioning) return;
       isTransitioning = true;
+      radioPopover.classList.remove('open');
 
-      bookTrigger.classList.add('is-shaking');
+      centerStack.classList.add('is-shaking');
 
       setTimeout(() => {
-        bookTrigger.classList.remove('is-shaking');
-        bookTrigger.classList.add('is-opening');
+        centerStack.classList.remove('is-shaking');
+        centerStack.classList.add('is-opening');
 
         setTimeout(() => {
           introStage.classList.add('is-hidden');
@@ -473,11 +744,13 @@
 
     function reopenBook() {
       worldPage.classList.remove('is-visible');
-      bookTrigger.classList.remove('is-opening', 'is-shaking');
+      centerStack.classList.remove('is-opening', 'is-shaking');
       introStage.classList.remove('is-hidden');
     }
 
     bookTrigger.addEventListener('click', openBookSequence);
+    btnEnter.addEventListener('click', openBookSequence);
+    touchCaption.addEventListener('click', openBookSequence);
     bookTrigger.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
