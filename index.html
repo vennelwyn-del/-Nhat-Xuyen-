@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Trường Trung Học Nhất Xuyên · Worldbuild</title>
 
   <!-- Font mặc định: EB Garamond -->
@@ -16,6 +16,9 @@
       --intro-bg-image: url('./assets/assets/OPW/Nhatxuyen/System/nhatxuyen1.png');
       --book-page-image: url('./assets/assets/OPW/Nhatxuyen/System/nhatxuyen2.png');
 
+      /* Chiều cao thanh trên cùng (tự động cập nhật bằng JS cho mọi màn hình) */
+      --topbar-offset: 76px;
+
       /* === 2. BẢNG MÀU BÌNH MINH (ẢNH 2) === */
       --c-accent-1: #FFF2B2; /* Buttercup Sky */
       --c-sky:      #A8C6E7; /* Dewy Blue */
@@ -25,6 +28,7 @@
 
       --bg-grad:    linear-gradient(155deg, #9AC0E8 0%, #A8C6E7 42%, #FFF2B2 82%, #FFF7D6 100%);
       --veil-grad:  linear-gradient(135deg, rgba(255, 242, 178, 0.42) 0%, rgba(168, 198, 231, 0.32) 55%, rgba(255, 247, 214, 0.44) 100%);
+      --glass-card: linear-gradient(135deg, rgba(64, 92, 124, 0.56) 0%, rgba(36, 52, 72, 0.72) 100%);
       --text-mist:  rgba(255, 251, 236, 0.78);
       --pill-bg:    rgba(54, 78, 106, 0.52);
       --pill-hover: rgba(54, 78, 106, 0.72);
@@ -43,6 +47,7 @@
 
       --bg-grad:    linear-gradient(155deg, #9DBF7C 0%, #A7BC9A 38%, #C7DDAA 68%, #E6F0C3 100%);
       --veil-grad:  linear-gradient(135deg, rgba(255, 242, 166, 0.40) 0%, rgba(199, 221, 170, 0.34) 55%, rgba(230, 240, 195, 0.44) 100%);
+      --glass-card: linear-gradient(135deg, rgba(82, 108, 70, 0.58) 0%, rgba(44, 62, 38, 0.74) 100%);
       --text-mist:  rgba(246, 251, 226, 0.80);
       --pill-bg:    rgba(72, 94, 62, 0.56);
       --pill-hover: rgba(72, 94, 62, 0.78);
@@ -54,12 +59,14 @@
     * {
       box-sizing: border-box;
       font-family: 'EB Garamond', Georgia, serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html, body {
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      min-height: 100dvh;
       color: var(--ink-dark);
       background-color: var(--c-cream);
       overflow-x: hidden;
@@ -68,7 +75,142 @@
 
     body.intro-locked {
       height: 100vh;
+      height: 100dvh;
       overflow: hidden;
+    }
+
+    /* =========================================================
+       THANH GÓC TRÊN CỐ ĐỊNH CHUNG CHO CẢ GIAO DIỆN 1 & 2
+    ========================================================= */
+    .corner-bar {
+      position: fixed;
+      top: max(14px, env(safe-area-inset-top));
+      left: 16px;
+      right: 16px;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .corner-group {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      pointer-events: auto;
+    }
+
+    .glass-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 999px;
+      background: var(--pill-bg);
+      border: 1px solid rgba(255, 255, 255, 0.48);
+      color: #FFFDF5;
+      text-decoration: none;
+      font-size: 0.92rem;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 6px 18px rgba(42, 60, 82, 0.16);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    @media (hover: hover) {
+      .glass-pill:hover {
+        background: var(--pill-hover);
+        transform: translateY(-1px);
+      }
+    }
+    .glass-pill:active {
+      transform: scale(0.97);
+    }
+
+    .only-world {
+      display: none;
+    }
+    body:not(.intro-locked) .only-world {
+      display: inline-flex;
+    }
+
+    .pill-badge-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #FFFDF5;
+      color: var(--ink-dark);
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    .radio-disc {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FFFDF5 0 22%, #2A3C52 24% 36%, var(--c-deep) 38% 100%);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+    .radio-disc.spinning {
+      animation: discSpin 3.6s linear infinite;
+    }
+    @keyframes discSpin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .radio-popover {
+      position: fixed;
+      top: var(--topbar-offset);
+      right: 16px;
+      z-index: 210;
+      width: min(calc(100vw - 32px), 320px);
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--pill-hover);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      color: #FFFDF5;
+      box-shadow: 0 14px 32px rgba(42, 60, 82, 0.28);
+      display: none;
+    }
+    .radio-popover.open {
+      display: block;
+    }
+    .radio-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+    }
+    .radio-close {
+      background: transparent;
+      border: none;
+      color: #FFFDF5;
+      font-size: 1.3rem;
+      cursor: pointer;
+      line-height: 1;
+      padding: 2px 6px;
+    }
+    .radio-embed-wrap iframe {
+      width: 100%;
+      height: 152px;
+      border: 0;
+      border-radius: 12px;
+      display: block;
     }
 
     /* =========================================================
@@ -82,13 +224,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 72px 20px 28px;
-      overflow: hidden;
+      padding: var(--topbar-offset) 18px 24px;
+      overflow-x: hidden;
+      overflow-y: auto;
       background-color: var(--c-sky);
       background-image: var(--intro-bg-image), var(--bg-grad);
       background-size: cover;
       background-position: center;
-      transition: opacity 0.85s ease, visibility 0.85s ease, background 0.6s ease;
+      transition: opacity 0.75s ease, visibility 0.75s ease, background 0.6s ease;
     }
 
     #intro-stage.is-hidden {
@@ -97,7 +240,6 @@
       pointer-events: none;
     }
 
-    /* Lớp phủ làm mờ dịu nền phía sau để chữ và sách nổi bật */
     .bg-soft-veil {
       position: absolute;
       inset: 0;
@@ -108,7 +250,6 @@
       transition: background 0.5s ease;
     }
 
-    /* Ánh sáng chiếu từ góc trên bên trái xuống */
     .sunbeam-left {
       position: absolute;
       top: -20%;
@@ -135,7 +276,6 @@
       100% { opacity: 1;    transform: scale(1.04); }
     }
 
-    /* Hạt nắng bay nhẹ */
     .dust-layer {
       position: absolute;
       inset: 0;
@@ -156,123 +296,6 @@
       100% { transform: translate(35px, -70px) scale(1.1); opacity: 0; }
     }
 
-    /* === THANH GÓC TRÊN === */
-    .corner-bar {
-      position: absolute;
-      top: 16px;
-      left: 18px;
-      right: 18px;
-      z-index: 20;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      pointer-events: none;
-    }
-    .corner-group {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      pointer-events: auto;
-    }
-
-    .glass-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 15px;
-      border-radius: 999px;
-      background: var(--pill-bg);
-      border: 1px solid rgba(255, 255, 255, 0.48);
-      color: #FFFDF5;
-      text-decoration: none;
-      font-size: 0.92rem;
-      letter-spacing: 0.03em;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 6px 18px rgba(42, 60, 82, 0.16);
-      cursor: pointer;
-      transition: transform 0.2s ease, background 0.2s ease;
-    }
-    .glass-pill:hover {
-      background: var(--pill-hover);
-      transform: translateY(-1px);
-    }
-
-    .pill-badge-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      background: #FFFDF5;
-      color: var(--ink-dark);
-      font-size: 0.78rem;
-      font-weight: 700;
-    }
-
-    .radio-disc {
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: radial-gradient(circle, #FFFDF5 0 22%, #2A3C52 24% 36%, var(--c-deep) 38% 100%);
-      border: 1px solid rgba(255, 255, 255, 0.75);
-      display: inline-block;
-      flex-shrink: 0;
-    }
-    .radio-disc.spinning {
-      animation: discSpin 3.6s linear infinite;
-    }
-    @keyframes discSpin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
-
-    .radio-popover {
-      position: absolute;
-      top: 60px;
-      right: 18px;
-      z-index: 30;
-      width: min(88vw, 310px);
-      padding: 14px;
-      border-radius: 16px;
-      background: var(--pill-hover);
-      border: 1px solid rgba(255, 255, 255, 0.45);
-      backdrop-filter: blur(14px);
-      color: #FFFDF5;
-      box-shadow: 0 14px 32px rgba(42, 60, 82, 0.28);
-      display: none;
-    }
-    .radio-popover.open {
-      display: block;
-    }
-    .radio-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 0.9rem;
-      letter-spacing: 0.05em;
-    }
-    .radio-close {
-      background: transparent;
-      border: none;
-      color: #FFFDF5;
-      font-size: 1.2rem;
-      cursor: pointer;
-      line-height: 1;
-    }
-    .radio-embed-wrap iframe {
-      width: 100%;
-      height: 152px;
-      border: 0;
-      border-radius: 12px;
-      display: block;
-    }
-
-    /* === KHỐI TRUNG TÂM === */
     .center-stack {
       position: relative;
       z-index: 5;
@@ -282,6 +305,7 @@
       text-align: center;
       max-width: 760px;
       width: 100%;
+      margin: auto 0;
     }
 
     .book-scene {
@@ -310,8 +334,8 @@
 
     .book-shadow {
       width: min(64vw, 370px);
-      height: 20px;
-      margin-top: 16px;
+      height: 18px;
+      margin-top: 14px;
       border-radius: 50%;
       background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.25) 0%, rgba(127, 168, 214, 0.1) 55%, transparent 75%);
       filter: blur(5px);
@@ -344,11 +368,10 @@
       transform: translateY(8px);
     }
 
-    /* Cuốn sách mở 3D: không viền ngoài, không bo góc */
     .open-book {
       position: relative;
-      width: min(84vw, 440px);
-      height: min(54vw, 285px);
+      width: min(82vw, 440px);
+      height: min(52vw, 285px);
       display: flex;
       transform-style: preserve-3d;
       padding: 0;
@@ -366,13 +389,6 @@
       overflow: hidden;
     }
 
-    .book-left,
-    .book-right {
-      border: none;
-      border-radius: 0;
-    }
-
-    /* Trang lật nhanh hơn & không bo góc */
     .flutter-page {
       position: absolute;
       top: 0;
@@ -389,7 +405,6 @@
       animation: pageBreeze 1.65s ease-in-out infinite;
       transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1);
     }
-
     @keyframes pageBreeze {
       0%, 100% { transform: rotateY(-4deg); }
       50%      { transform: rotateY(-28deg); }
@@ -400,7 +415,6 @@
       transform: rotateY(-168deg);
     }
 
-    /* Ảnh trong trang sách rõ nét 100% */
     .page-photo {
       position: absolute;
       top: 0;
@@ -410,18 +424,12 @@
       background-size: cover;
       background-position: center;
       opacity: 1;
-      filter: none;
       pointer-events: none;
     }
-    .book-left .page-photo {
-      left: 0;
-    }
+    .book-left .page-photo { left: 0; }
     .book-right .page-photo,
-    .flutter-page .page-photo {
-      left: -100%;
-    }
+    .flutter-page .page-photo { left: -100%; }
 
-    /* Chỉ giữ bóng nếp gáy sách ở chính giữa, không làm mờ viền ngoài */
     .page-vignette {
       position: absolute;
       inset: 0;
@@ -435,10 +443,9 @@
       background: linear-gradient(270deg, transparent 84%, rgba(42, 60, 82, 0.2) 100%);
     }
 
-    /* === CHỮ & NÚT BÊN DƯỚI SÁCH === */
     .hero-text-group {
-      margin-top: 10px;
-      padding: 18px 34px 12px;
+      margin-top: 8px;
+      padding: 16px 32px 10px;
       border-radius: 28px;
       background: radial-gradient(ellipse at center, var(--text-mist) 0%, rgba(255, 253, 245, 0.42) 55%, transparent 82%);
       display: flex;
@@ -450,7 +457,7 @@
     .hero-quote {
       font-style: italic;
       font-weight: 500;
-      font-size: clamp(1.12rem, 2.5vw, 1.55rem);
+      font-size: clamp(1.04rem, 2.5vw, 1.52rem);
       line-height: 1.4;
       color: var(--ink-dark);
       margin: 0 0 8px;
@@ -458,7 +465,7 @@
     }
 
     .hero-school-title {
-      font-size: clamp(1.6rem, 4.2vw, 2.6rem);
+      font-size: clamp(1.48rem, 4.2vw, 2.55rem);
       font-weight: 600;
       letter-spacing: 0.04em;
       color: var(--ink-dark);
@@ -468,13 +475,13 @@
     }
 
     .hero-school-sub {
-      font-size: clamp(0.78rem, 1.7vw, 0.94rem);
+      font-size: clamp(0.75rem, 1.7vw, 0.94rem);
       font-weight: 600;
-      letter-spacing: 0.34em;
-      text-indent: 0.34em;
+      letter-spacing: 0.32em;
+      text-indent: 0.32em;
       text-transform: uppercase;
       color: var(--ink-muted);
-      margin-bottom: 20px;
+      margin-bottom: 18px;
       text-shadow: 0 1px 10px rgba(255, 253, 245, 0.98), 0 0 18px rgba(255, 253, 245, 0.95);
     }
 
@@ -487,23 +494,28 @@
       border: 1px solid rgba(255, 255, 255, 0.92);
       background: var(--paper-light);
       color: var(--ink-dark);
-      font-size: 1.06rem;
+      font-size: 1.05rem;
       font-weight: 600;
       cursor: pointer;
       box-shadow: 0 10px 26px rgba(42, 60, 82, 0.18);
       transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
-    .btn-enter-world:hover {
-      background: var(--c-accent-1);
-      transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(42, 60, 82, 0.22);
+    @media (hover: hover) {
+      .btn-enter-world:hover {
+        background: var(--c-accent-1);
+        transform: translateY(-2px);
+        box-shadow: 0 14px 30px rgba(42, 60, 82, 0.22);
+      }
+    }
+    .btn-enter-world:active {
+      transform: scale(0.97);
     }
 
     .touch-caption {
-      margin-top: 14px;
-      font-size: 0.88rem;
+      margin-top: 12px;
+      font-size: 0.86rem;
       font-weight: 600;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       color: var(--ink-dark);
       text-shadow: 0 1px 10px rgba(255, 253, 245, 0.98), 0 0 18px rgba(255, 253, 245, 0.95);
       cursor: pointer;
@@ -511,71 +523,306 @@
     }
 
     /* =========================================================
-       GIAO DIỆN 2: KHUNG CHỜ WORLDBUILD NHẤT XUYÊN (LÀM SAU)
+       GIAO DIỆN 2: WORLDBUILD NHẤT XUYÊN
     ========================================================= */
     #world-page {
+      position: relative;
+      display: none;
       opacity: 0;
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 32px 20px;
-      background: linear-gradient(180deg, var(--c-cream) 0%, var(--paper-light) 55%, var(--c-sky) 100%);
-      transition: opacity 0.85s ease, background 0.5s ease;
+      min-height: 100dvh;
+      padding: var(--topbar-offset) 0 60px;
+      transition: opacity 0.65s ease;
+    }
+    #world-page.is-mounted {
+      display: block;
     }
     #world-page.is-visible {
       opacity: 1;
     }
-    .placeholder-box {
-      max-width: 540px;
-      padding: 36px 28px;
-      border-radius: 14px;
-      background: var(--paper-light);
-      border: 1px solid var(--c-sky);
-      box-shadow: 0 12px 32px rgba(42, 60, 82, 0.12);
-    }
-    .placeholder-box h1 {
-      margin: 0 0 10px;
-      font-size: 2.1rem;
-    }
-    .placeholder-box p {
-      margin: 0 0 22px;
-      color: var(--ink-muted);
-      font-size: 1.1rem;
-    }
-    .btn-row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-    .nav-pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 16px;
-      border-radius: 999px;
-      background: var(--c-cream);
-      border: 1px solid var(--c-sky);
-      color: var(--ink-dark);
-      text-decoration: none;
-      font-size: 0.98rem;
-      cursor: pointer;
-    }
-    .nav-pill:hover {
-      background: var(--c-accent-1);
+
+    /* Lớp nền cố định riêng (tương thích mượt cả iOS/Android và Laptop) */
+    .world-bg-fixed {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-color: var(--c-sky);
+      background-image: var(--intro-bg-image), var(--bg-grad);
+      background-size: cover;
+      background-position: center;
+      pointer-events: none;
+      transition: background 0.6s ease;
     }
 
-    @media (max-width: 600px) {
-      .corner-bar { top: 12px; left: 12px; right: 12px; }
-      .glass-pill { padding: 6px 11px; font-size: 0.8rem; }
-      .hero-text-group { padding: 14px 16px 10px; }
-      .hero-school-sub { letter-spacing: 0.22em; text-indent: 0.22em; }
+    .world-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      background: var(--veil-grad);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      pointer-events: none;
+    }
+
+    .world-content {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+    }
+
+    /* === BLOCK LƯU TRỮ KÉO HẾT MÀN HÌNH NGANG === */
+    .archive-banner-full {
+      position: relative;
+      width: 100%;
+      padding: clamp(28px, 5vw, 56px) clamp(16px, 5vw, 64px);
+      text-align: center;
+      color: #FFFDF5;
+      background: var(--glass-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.42);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.42);
+      box-shadow:
+        0 18px 42px rgba(28, 42, 58, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      overflow: hidden;
+    }
+
+    .archive-banner-full::before {
+      content: "";
+      position: absolute;
+      top: -40%;
+      left: -15%;
+      width: 65%;
+      height: 180%;
+      background: radial-gradient(ellipse at center, rgba(255, 247, 214, 0.20) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Dòng 1 */
+    .archive-line-1 {
+      position: relative;
+      font-size: clamp(0.8rem, 1.8vw, 1.08rem);
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-indent: 0.2em;
+      text-transform: uppercase;
+      color: var(--c-accent-1);
+      margin-bottom: 10px;
+      line-height: 1.45;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Dòng 2 */
+    .archive-line-2 {
+      position: relative;
+      margin: 0 0 16px;
+      font-size: clamp(1.75rem, 5.2vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-indent: 0.14em;
+      text-transform: uppercase;
+      color: #FFFDF5;
+      line-height: 1.15;
+      text-shadow: 0 4px 18px rgba(0, 0, 0, 0.28);
+    }
+
+    /* Dòng 3: Mã chuyển động nhấp nhô như đang tải dữ liệu */
+    .archive-line-3 {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 10px;
+      max-width: 100%;
+      padding: 8px 18px;
+      margin-bottom: 18px;
+      border-radius: 20px;
+      background: rgba(255, 253, 245, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: clamp(0.82rem, 1.7vw, 1rem);
+      color: #FFFDF5;
+      letter-spacing: 0.06em;
+    }
+
+    .wave-bars {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+    .wave-bars span {
+      display: inline-block;
+      width: 3px;
+      height: 100%;
+      border-radius: 2px;
+      background: var(--c-accent-1);
+      animation: barWave 1.15s ease-in-out infinite;
+    }
+    .wave-bars span:nth-child(2) { animation-delay: 0.15s; }
+    .wave-bars span:nth-child(3) { animation-delay: 0.30s; }
+    .wave-bars span:nth-child(4) { animation-delay: 0.45s; }
+    .wave-bars span:nth-child(5) { animation-delay: 0.60s; }
+
+    @keyframes barWave {
+      0%, 100% { transform: scaleY(0.32); opacity: 0.55; }
+      50%      { transform: scaleY(1);    opacity: 1; }
+    }
+
+    .wave-code {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0 0.28em;
+      line-height: 1.45;
+    }
+    .wave-word {
+      display: inline-flex;
+      white-space: nowrap;
+    }
+    .wave-char {
+      display: inline-block;
+      animation: charBob 1.9s ease-in-out infinite;
+    }
+    @keyframes charBob {
+      0%, 100% { transform: translateY(0px); opacity: 0.80; }
+      50%      { transform: translateY(-3.5px); opacity: 1; color: var(--c-accent-1); }
+    }
+
+    /* Đường hoa văn trang trí */
+    .archive-ornament {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 4px auto 16px;
+      color: rgba(255, 253, 245, 0.82);
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+    }
+    .archive-ornament .orn-line {
+      width: min(16vw, 110px);
+      height: 2px;
+      border-top: 1px solid rgba(255, 253, 245, 0.55);
+      border-bottom: 1px solid rgba(255, 253, 245, 0.35);
+    }
+
+    /* Dòng 4 */
+    .archive-line-4 {
+      position: relative;
+      margin: 0 0 8px;
+      font-style: italic;
+      font-size: clamp(1.12rem, 2.8vw, 1.65rem);
+      font-weight: 500;
+      color: #FFFDF5;
+      line-height: 1.4;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.22);
+    }
+
+    /* Dòng 5 */
+    .archive-line-5 {
+      position: relative;
+      margin: 0;
+      font-size: clamp(0.9rem, 2vw, 1.12rem);
+      color: rgba(255, 253, 245, 0.86);
+      letter-spacing: 0.03em;
+      line-height: 1.5;
+    }
+
+    /* === RESPONSIVE ĐIỆN THOẠI & MÀN HÌNH THẤP === */
+    @media (max-width: 640px) {
+      .corner-bar {
+        top: max(10px, env(safe-area-inset-top));
+        left: 10px;
+        right: 10px;
+        gap: 6px;
+      }
+      .corner-group { gap: 6px; }
+      .glass-pill {
+        padding: 5px 10px;
+        font-size: 0.78rem;
+        gap: 5px;
+      }
+      .pill-badge-icon,
+      .radio-disc {
+        width: 17px;
+        height: 17px;
+        font-size: 0.7rem;
+      }
+      .open-book {
+        width: min(76vw, 330px);
+        height: min(49vw, 214px);
+      }
+      .hero-text-group {
+        padding: 12px 14px 8px;
+      }
+      .hero-school-sub {
+        letter-spacing: 0.18em;
+        text-indent: 0.18em;
+        margin-bottom: 14px;
+      }
+      .btn-enter-world {
+        padding: 10px 22px;
+        font-size: 0.98rem;
+      }
+      .archive-line-1 { letter-spacing: 0.1em; text-indent: 0.1em; }
+      .archive-line-2 { letter-spacing: 0.08em; text-indent: 0.08em; }
+      .archive-line-3 { padding: 8px 12px; border-radius: 14px; }
+    }
+
+    @media (max-height: 680px) {
+      .open-book {
+        width: min(70vw, 340px);
+        height: min(44vw, 215px);
+      }
+      .book-shadow { margin-top: 8px; }
+      .hero-text-group { margin-top: 4px; padding-top: 8px; }
+      .hero-school-sub { margin-bottom: 12px; }
     }
   </style>
 </head>
 <body class="intro-locked">
+
+  <!-- THANH GÓC TRÊN CỐ ĐỊNH (HIỆN Ở CẢ GIAO DIỆN 1 VÀ 2) -->
+  <div class="corner-bar" id="cornerBar">
+    <div class="corner-group">
+      <a href="https://vennelwyn-del.github.io/Baoungdoinhau/" class="glass-pill">
+        <span class="pill-badge-icon">↺</span>
+        <span>Báo Ứng Đời Nhau</span>
+      </a>
+      <button type="button" class="glass-pill only-world" id="btnReopenBook">
+        <span>📖 Bìa sách</span>
+      </button>
+    </div>
+
+    <div class="corner-group">
+      <button type="button" class="glass-pill" id="btnThemeToggle">
+        <span id="themeLabel">☀ Bình minh</span>
+      </button>
+      <button type="button" class="glass-pill" id="btnRadioToggle">
+        <span class="radio-disc spinning" id="radioDisc"></span>
+        <span>ĐÀI PHÁT THANH</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- HỘP RADIO -->
+  <div class="radio-popover" id="radioPopover">
+    <div class="radio-head">
+      <span>𓆩❤︎𓆪 ĐÀI PHÁT THANH NHẤT XUYÊN</span>
+      <button type="button" class="radio-close" id="btnRadioClose">&times;</button>
+    </div>
+    <div class="radio-embed-wrap">
+      <iframe
+        src="https://open.spotify.com/embed/track/21qg0IBZf8R12qHd9A3AA4?utm_source=generator&theme=0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+    </div>
+  </div>
 
   <!-- GIAO DIỆN 1 -->
   <div id="intro-stage" aria-label="Bìa mở đầu">
@@ -583,42 +830,6 @@
     <div class="sunbeam-left"></div>
     <div class="dust-layer" id="dust-layer"></div>
 
-    <!-- Thanh góc trên -->
-    <div class="corner-bar">
-      <div class="corner-group">
-        <a href="https://vennelwyn-del.github.io/Baoungdoinhau/" class="glass-pill">
-          <span class="pill-badge-icon">↺</span>
-          <span>Báo Ứng Đời Nhau</span>
-        </a>
-      </div>
-
-      <div class="corner-group">
-        <button type="button" class="glass-pill" id="btnThemeToggle">
-          <span id="themeLabel">☀ Bình minh</span>
-        </button>
-        <button type="button" class="glass-pill" id="btnRadioToggle">
-          <span class="radio-disc spinning" id="radioDisc"></span>
-          <span>ĐÀI PHÁT THANH</span>
-        </button>
-      </div>
-    </div>
-
-    <!-- Hộp Radio -->
-    <div class="radio-popover" id="radioPopover">
-      <div class="radio-head">
-        <span>𓆩❤︎𓆪 ĐÀI PHÁT THANH NHẤT XUYÊN</span>
-        <button type="button" class="radio-close" id="btnRadioClose">&times;</button>
-      </div>
-      <div class="radio-embed-wrap">
-        <iframe
-          src="https://open.spotify.com/embed/track/21qg0IBZf8R12qHd9A3AA4?utm_source=generator&theme=0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy">
-        </iframe>
-      </div>
-    </div>
-
-    <!-- Cụm trung tâm -->
     <div class="center-stack" id="center-stack">
       <div class="book-scene" id="book-trigger" role="button" tabindex="0" title="Nhấn để lật trang sách">
         <div class="book-tilt" id="bookTilt">
@@ -656,19 +867,42 @@
     </div>
   </div>
 
-  <!-- GIAO DIỆN 2 (CHỜ LẮP NỘI DUNG WORLDBUILD NHẤT XUYÊN) -->
+  <!-- GIAO DIỆN 2: WORLDBUILD NHẤT XUYÊN -->
   <div id="world-page">
-    <div class="placeholder-box">
-      <h1>Trường Trung Học Nhất Xuyên</h1>
-      <p>Khung Giao diện 2 đang chờ sẵn để lắp nội dung chi tiết cho Nhất Xuyên.</p>
-      <div class="btn-row">
-        <a href="https://vennelwyn-del.github.io/Baoungdoinhau/" class="nav-pill">← Về Báo Ứng Đời Nhau</a>
-        <button class="nav-pill" type="button" onclick="reopenBook()">↺ Xem lại bìa sách</button>
-      </div>
-    </div>
+    <div class="world-bg-fixed"></div>
+    <div class="world-backdrop"></div>
+
+    <main class="world-content">
+      <!-- BLOCK LƯU TRỮ KÉO HẾT MÀN HÌNH NGANG -->
+      <section class="archive-banner-full" aria-label="Hồ sơ nhập học Học viện Nhất Xuyên">
+        <div class="archive-line-1">HỒ SƠ NHẬP HỌC &amp; ĐĂNG KÝ SINH TRẮC HỌC ABO</div>
+        <h1 class="archive-line-2">ST. VANGUARD ACADEMY</h1>
+
+        <div class="archive-line-3" aria-label="Đang tải dữ liệu sinh trắc">
+          <span class="wave-bars" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </span>
+          <span class="wave-code" id="waveCode" data-text="[ SYS.ABO // 0101-NX :: ĐANG TRUY XUẤT DỮ LIỆU SINH TRẮC... ]"></span>
+        </div>
+
+        <div class="archive-ornament" aria-hidden="true">
+          <span>❀ • °</span>
+          <span class="orn-line"></span>
+          <span>❦ ♡ ❦</span>
+          <span class="orn-line"></span>
+          <span>° • ❀</span>
+        </div>
+
+        <p class="archive-line-4">“Tiên phong về Trí tuệ, Pháo đài của Kỷ luật.”</p>
+        <p class="archive-line-5">— Khẩu hiệu khắc trên phiến đá cẩm thạch tại Cổng chính Học viện.</p>
+      </section>
+
+      <!-- Các phần nội dung Worldbuild tiếp theo của Nhất Xuyên sẽ đặt ở bên dưới đây -->
+    </main>
   </div>
 
   <script>
+    const cornerBar    = document.getElementById('cornerBar');
     const introStage   = document.getElementById('intro-stage');
     const centerStack  = document.getElementById('center-stack');
     const bookTrigger  = document.getElementById('book-trigger');
@@ -680,6 +914,17 @@
     const themeLabel   = document.getElementById('themeLabel');
     let isTransitioning = false;
 
+    // 1. Tự căn khoảng trống dưới thanh corner-bar cho cả điện thoại & laptop
+    function syncTopbarOffset() {
+      const rect = cornerBar.getBoundingClientRect();
+      const offset = Math.ceil(rect.bottom + 14);
+      document.documentElement.style.setProperty('--topbar-offset', offset + 'px');
+    }
+    window.addEventListener('resize', syncTopbarOffset);
+    window.addEventListener('load', syncTopbarOffset);
+    syncTopbarOffset();
+
+    // 2. Tạo hạt nắng bay nhẹ ở Giao diện 1
     (function createDust() {
       const layer = document.getElementById('dust-layer');
       for (let i = 0; i < 24; i++) {
@@ -696,25 +941,53 @@
       }
     })();
 
-    window.addEventListener('mousemove', (e) => {
-      if (introStage.classList.contains('is-hidden')) return;
-      const x = (e.clientX / window.innerWidth) * 2 - 1;
-      const y = (e.clientY / window.innerHeight) * 2 - 1;
-      bookTilt.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
-    });
+    // 3. Tạo hiệu ứng từng ký tự nhấp nhô theo từ (tự xuống dòng gọn trên điện thoại)
+    (function buildWaveCode() {
+      const el = document.getElementById('waveCode');
+      const text = el.getAttribute('data-text') || '';
+      let charIndex = 0;
+      text.split(' ').forEach((word) => {
+        const wordSpan = document.createElement('span');
+        wordSpan.className = 'wave-word';
+        for (const ch of word) {
+          const span = document.createElement('span');
+          span.className = 'wave-char';
+          span.textContent = ch;
+          span.style.animationDelay = (charIndex * 0.045) + 's';
+          wordSpan.appendChild(span);
+          charIndex++;
+        }
+        el.appendChild(wordSpan);
+        charIndex++;
+      });
+    })();
 
+    // 4. Nghiêng sách nhẹ theo chuột (chỉ bật trên thiết bị dùng chuột như laptop/PC)
+    if (window.matchMedia('(pointer: fine)').matches) {
+      window.addEventListener('mousemove', (e) => {
+        if (introStage.classList.contains('is-hidden')) return;
+        const x = (e.clientX / window.innerWidth) * 2 - 1;
+        const y = (e.clientY / window.innerHeight) * 2 - 1;
+        bookTilt.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
+      });
+    }
+
+    // 5. Đổi chế độ Bình minh / Chiều muộn
     document.getElementById('btnThemeToggle').addEventListener('click', () => {
       const isAfternoon = document.body.classList.toggle('afternoon-mode');
       themeLabel.textContent = isAfternoon ? '🍃 Chiều muộn' : '☀ Bình minh';
     });
 
+    // 6. Đài phát thanh
     document.getElementById('btnRadioToggle').addEventListener('click', () => {
+      syncTopbarOffset();
       radioPopover.classList.toggle('open');
     });
     document.getElementById('btnRadioClose').addEventListener('click', () => {
       radioPopover.classList.remove('open');
     });
 
+    // 7. Chuyển mượt từ Giao diện 1 -> Giao diện 2
     function openBookSequence() {
       if (isTransitioning) return;
       isTransitioning = true;
@@ -729,19 +1002,34 @@
         setTimeout(() => {
           introStage.classList.add('is-hidden');
           document.body.classList.remove('intro-locked');
-          worldPage.classList.add('is-visible');
+          worldPage.classList.add('is-mounted');
+          syncTopbarOffset();
+          requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+              worldPage.classList.add('is-visible');
+            });
+          });
+          window.scrollTo({ top: 0, behavior: 'instant' });
           isTransitioning = false;
         }, 360);
       }, 220);
     }
 
+    // Quay lại Giao diện 1
     function reopenBook() {
+      if (isTransitioning) return;
+      radioPopover.classList.remove('open');
       worldPage.classList.remove('is-visible');
-      centerStack.classList.remove('is-opening', 'is-shaking');
-      document.body.classList.add('intro-locked');
-      introStage.classList.remove('is-hidden');
+      setTimeout(() => {
+        worldPage.classList.remove('is-mounted');
+        centerStack.classList.remove('is-opening', 'is-shaking');
+        document.body.classList.add('intro-locked');
+        introStage.classList.remove('is-hidden');
+        syncTopbarOffset();
+      }, 250);
     }
 
+    document.getElementById('btnReopenBook').addEventListener('click', reopenBook);
     bookTrigger.addEventListener('click', openBookSequence);
     btnEnter.addEventListener('click', openBookSequence);
     touchCaption.addEventListener('click', openBookSequence);
