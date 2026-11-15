@@ -24,7 +24,7 @@
       --c-deep:     #7FA8D6;
 
       --bg-grad:        linear-gradient(155deg, #9AC0E8 0%, #A8C6E7 42%, #FFF2B2 82%, #FFF7D6 100%);
-      --veil-grad:      linear-gradient(135deg, rgba(255, 247, 214, 0.34) 0%, rgba(168, 198, 231, 0.24) 55%, rgba(255, 242, 178, 0.28) 100%);
+      --veil-grad:      linear-gradient(135deg, rgba(255, 247, 214, 0.32) 0%, rgba(168, 198, 231, 0.22) 55%, rgba(255, 242, 178, 0.26) 100%);
       --world-veil:     linear-gradient(180deg, rgba(32, 50, 74, 0.16) 0%, rgba(86, 122, 164, 0.10) 55%, rgba(32, 50, 74, 0.16) 100%);
       --pill-bg:        rgba(58, 82, 110, 0.60);
       --pill-hover:     rgba(58, 82, 110, 0.84);
@@ -56,7 +56,7 @@
       --c-deep:     #9DBF7C;
 
       --bg-grad:        linear-gradient(155deg, #9DBF7C 0%, #A7BC9A 38%, #C7DDAA 68%, #E6F0C3 100%);
-      --veil-grad:      linear-gradient(135deg, rgba(230, 240, 195, 0.34) 0%, rgba(199, 221, 170, 0.26) 55%, rgba(255, 242, 166, 0.28) 100%);
+      --veil-grad:      linear-gradient(135deg, rgba(230, 240, 195, 0.32) 0%, rgba(199, 221, 170, 0.24) 55%, rgba(255, 242, 166, 0.26) 100%);
       --world-veil:     linear-gradient(180deg, rgba(44, 58, 32, 0.16) 0%, rgba(112, 136, 92, 0.10) 55%, rgba(44, 58, 32, 0.16) 100%);
       --pill-bg:        rgba(92, 108, 82, 0.66);
       --pill-hover:     rgba(76, 92, 66, 0.88);
@@ -103,7 +103,7 @@
     }
 
     /* =========================================================
-       GIAO DIỆN 1: CÓ LỚP KÍNH MỜ VỚI BACKGROUND + BỎ HẾT BO GÓC
+       GIAO DIỆN 1: MỀM MẠI, BO GÓC THANH THOÁT & KÍNH MỜ
     ========================================================= */
     #intro-stage {
       position: fixed;
@@ -187,7 +187,6 @@
       100% { transform: translate(35px, -70px) scale(1.1); opacity: 0; }
     }
 
-    /* Thanh nút góc trên: BỎ HẾT BO GÓC */
     .corner-bar {
       position: fixed;
       top: 14px;
@@ -213,8 +212,8 @@
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 7px 14px;
-      border-radius: 0;
+      padding: 7px 15px;
+      border-radius: 999px;
       background: var(--pill-bg);
       border: 1px solid rgba(255, 255, 255, 0.50);
       color: #FFFDF5;
@@ -237,7 +236,7 @@
       justify-content: center;
       width: 20px;
       height: 20px;
-      border-radius: 0;
+      border-radius: 50%;
       background: #FFFDF5;
       color: var(--ink-dark);
       font-size: 0.78rem;
@@ -263,7 +262,7 @@
       z-index: 130;
       width: min(88vw, 310px);
       padding: 14px;
-      border-radius: 0;
+      border-radius: 16px;
       background: var(--pill-hover);
       border: 1px solid rgba(255, 255, 255, 0.45);
       backdrop-filter: blur(14px);
@@ -290,11 +289,11 @@
       width: 100%;
       height: 152px;
       border: 0;
-      border-radius: 0;
+      border-radius: 10px;
       display: block;
     }
 
-    /* === CUỐN SÁCH MỀM VUÔNG GÓC, CẢ TRANG ẢNH LẬT LIÊN TỤC === */
+    /* === CUỐN SÁCH MỀM MẠI, BO GÓC NHẸ NHÀNG & LẬT ÊM === */
     .center-stack {
       position: relative;
       z-index: 5;
@@ -330,9 +329,9 @@
       width: min(64vw, 370px);
       height: 20px;
       margin-top: 16px;
-      border-radius: 0;
-      background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.28) 0%, transparent 75%);
-      filter: blur(5px);
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.26) 0%, transparent 75%);
+      filter: blur(6px);
       animation: shadowFloat 4.2s ease-in-out infinite;
     }
     @keyframes shadowFloat {
@@ -364,10 +363,10 @@
       height: min(54vw, 285px);
       display: flex;
       transform-style: preserve-3d;
-      background: linear-gradient(90deg, var(--c-deep) 0%, var(--c-sky) 48%, rgba(42, 60, 82, 0.36) 50%, var(--c-sky) 52%, var(--c-deep) 100%);
-      padding: 8px 10px 10px;
-      border-radius: 0;
-      box-shadow: 0 22px 44px rgba(42, 60, 82, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+      background: linear-gradient(90deg, var(--c-deep) 0%, var(--c-sky) 48%, rgba(42, 60, 82, 0.30) 50%, var(--c-sky) 52%, var(--c-deep) 100%);
+      padding: 6px 8px 8px;
+      border-radius: 8px;
+      box-shadow: 0 22px 46px rgba(42, 60, 82, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.60);
     }
 
     .book-half {
@@ -375,29 +374,29 @@
       flex: 1;
       height: 100%;
       background: var(--c-cream);
-      border-radius: 0;
       overflow: hidden;
     }
     .book-left {
+      border-radius: 4px 2px 2px 4px;
       background: linear-gradient(90deg, #EDE3C3 0%, #F7EFD4 4%, var(--paper-light) 16%, var(--c-cream) 84%, #CFC3A1 100%);
       border-left: 3px solid #E8DEC0;
     }
     .book-right {
+      border-radius: 2px 4px 4px 2px;
       background: linear-gradient(270deg, #EDE3C3 0%, #F7EFD4 4%, var(--paper-light) 16%, var(--c-cream) 84%, #CFC3A1 100%);
       border-right: 3px solid #E8DEC0;
     }
 
     .flip-sheet {
       position: absolute;
-      top: 8px;
-      right: 10px;
+      top: 6px;
+      right: 8px;
       z-index: 4;
-      width: calc(50% - 10px);
-      height: calc(100% - 18px);
-      border-radius: 0;
+      width: calc(50% - 8px);
+      height: calc(100% - 14px);
       transform-origin: left center;
       transform-style: preserve-3d;
-      animation: softPageFlip 1.5s cubic-bezier(0.42, 0.08, 0.58, 0.92) infinite;
+      animation: softPageFlip 2.1s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
       transition: transform 0.65s ease;
     }
 
@@ -408,29 +407,29 @@
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
       background-color: var(--c-cream);
-      border-radius: 0;
     }
     .flip-front {
+      border-radius: 2px 6px 6px 2px;
       background: linear-gradient(90deg, #D5C8A3 0%, var(--paper-light) 14%, var(--c-cream) 86%, #EDE3C3 100%);
-      box-shadow: -3px 3px 12px rgba(42, 60, 82, 0.16);
+      box-shadow: -3px 3px 14px rgba(42, 60, 82, 0.14);
     }
     .flip-back {
+      border-radius: 6px 2px 2px 6px;
       transform: rotateY(180deg);
       background: linear-gradient(270deg, #D5C8A3 0%, var(--paper-light) 14%, var(--c-cream) 86%, #EDE3C3 100%);
-      box-shadow: 3px 3px 12px rgba(42, 60, 82, 0.16);
+      box-shadow: 3px 3px 14px rgba(42, 60, 82, 0.14);
     }
 
     .sheet-1 { animation-delay: 0s; }
-    .sheet-2 { animation-delay: -0.5s; }
-    .sheet-3 { animation-delay: -1.0s; }
+    .sheet-2 { animation-delay: -1.05s; }
 
     @keyframes softPageFlip {
-      0%   { transform: translateZ(2px)  rotateY(-2deg)   rotateX(0deg) skewY(0deg)    scaleX(1); }
-      18%  { transform: translateZ(10px) rotateY(-36deg)  rotateX(4deg) skewY(-5deg)   scaleX(0.95); }
-      48%  { transform: translateZ(22px) rotateY(-88deg)  rotateX(6deg) skewY(-1.5deg) scaleX(0.91); }
-      52%  { transform: translateZ(22px) rotateY(-98deg)  rotateX(6deg) skewY(1.5deg)  scaleX(0.91); }
-      82%  { transform: translateZ(10px) rotateY(-150deg) rotateX(4deg) skewY(5deg)    scaleX(0.95); }
-      100% { transform: translateZ(2px)  rotateY(-178deg) rotateX(0deg) skewY(0deg)    scaleX(1); }
+      0%   { transform: translateZ(2px)  rotateY(-2deg)   rotateX(0deg)   skewY(0deg)    scaleX(1); }
+      20%  { transform: translateZ(9px)  rotateY(-36deg)  rotateX(2.5deg) skewY(-3deg)   scaleX(0.96); }
+      48%  { transform: translateZ(18px) rotateY(-88deg)  rotateX(3.5deg) skewY(-1deg)   scaleX(0.93); }
+      52%  { transform: translateZ(18px) rotateY(-98deg)  rotateX(3.5deg) skewY(1deg)    scaleX(0.93); }
+      80%  { transform: translateZ(9px)  rotateY(-150deg) rotateX(2.5deg) skewY(3deg)    scaleX(0.96); }
+      100% { transform: translateZ(2px)  rotateY(-178deg) rotateX(0deg)   skewY(0deg)    scaleX(1); }
     }
 
     .center-stack.is-opening .flip-sheet {
@@ -497,24 +496,27 @@
       text-shadow: 0 1px 10px rgba(255, 253, 245, 0.95);
       margin-bottom: 20px;
     }
+
     .btn-enter-world {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 12px 28px;
-      border-radius: 0;
+      padding: 12px 30px;
+      border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.92);
-      background: var(--paper-light);
+      background: rgba(255, 253, 245, 0.88);
+      backdrop-filter: blur(8px);
       color: var(--ink-dark);
       font-size: 1.06rem;
       font-weight: 500;
       cursor: pointer;
       box-shadow: 0 10px 26px rgba(42, 60, 82, 0.16);
-      transition: transform 0.2s ease, background 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
     }
     .btn-enter-world:hover {
       background: var(--c-accent-1);
       transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(42, 60, 82, 0.22);
     }
     .touch-caption {
       margin-top: 14px;
@@ -526,7 +528,7 @@
     }
 
     /* =========================================================
-       GIAO DIỆN 2: KÍNH MỜ VUÔNG GÓC + SỔ TAY XỔ XUỐNG ẨN/HIỆN
+       GIAO DIỆN 2: BO GÓC MỀM MẠI + SỔ TAY XỔ XUỐNG ẨN/HIỆN
     ========================================================= */
     #world-page {
       display: none;
@@ -606,7 +608,7 @@
       align-items: center;
       gap: 10px;
       padding: 7px 18px;
-      border-radius: 0;
+      border-radius: 999px;
       background: rgba(0, 0, 0, 0.14);
       border: 1px solid rgba(255, 255, 255, 0.36);
       color: var(--gold-text);
@@ -622,7 +624,7 @@
     }
     .wave-bars span {
       width: 2.5px;
-      border-radius: 0;
+      border-radius: 2px;
       background: var(--gold-text);
       animation: wavePulse 1.1s ease-in-out infinite;
     }
@@ -674,7 +676,6 @@
       align-items: start;
     }
 
-    /* === SỔ TAY HỌC VIÊN: MẶC ĐỊNH CHỈ 1 DÒNG, ẤN MỚI TRƯỢT XUỐNG === */
     .handbook-nav {
       position: sticky;
       top: 72px;
@@ -683,7 +684,7 @@
     .handbook-stack {
       display: flex;
       flex-direction: column;
-      border-radius: 0;
+      border-radius: 0 16px 16px 0;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.36);
       border-left: 0;
@@ -869,7 +870,6 @@
       100% { opacity: 0; transform: translate3d(var(--sway-d, -16px), 102vh, 0) rotate(var(--r4, 14deg)) scale(0.80); }
     }
 
-    /* CỘT PHẢI 3/4: BỎ HẾT BO GÓC */
     .world-content {
       display: flex;
       flex-direction: column;
@@ -882,7 +882,7 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.36);
-      border-radius: 0;
+      border-radius: 16px;
       padding: 28px 30px;
       color: #FFFDF5;
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.16);
@@ -914,7 +914,7 @@
     .sub-card {
       background: var(--subcard-glass);
       border: 1px solid rgba(255, 255, 255, 0.22);
-      border-radius: 0;
+      border-radius: 12px;
       padding: 18px;
     }
     .sub-card h3 { margin: 0 0 8px; font-size: 1.22rem; color: var(--gold-text); }
@@ -924,7 +924,7 @@
     .glossary-item {
       background: var(--subcard-glass);
       border-left: 3px solid var(--gold-text);
-      border-radius: 0;
+      border-radius: 0 12px 12px 0;
       padding: 14px 18px;
     }
     .glossary-term { font-weight: 600; font-size: 1.18rem; color: var(--gold-text); margin-bottom: 4px; }
@@ -938,7 +938,7 @@
     .char-card {
       background: var(--subcard-glass);
       border: 1px solid rgba(255, 255, 255, 0.24);
-      border-radius: 0;
+      border-radius: 14px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -1037,16 +1037,12 @@
                 <div class="page-vignette"></div>
               </div>
 
-              <!-- 3 tờ sách 2 mặt có in ảnh lật nối tiếp nhau -->
+              <!-- 2 tờ sách mềm bo nhẹ lật êm nối tiếp -->
               <div class="flip-sheet sheet-1">
                 <div class="flip-face flip-front"><div class="page-photo"></div><div class="page-vignette"></div></div>
                 <div class="flip-face flip-back"><div class="page-photo"></div><div class="page-vignette"></div></div>
               </div>
               <div class="flip-sheet sheet-2">
-                <div class="flip-face flip-front"><div class="page-photo"></div><div class="page-vignette"></div></div>
-                <div class="flip-face flip-back"><div class="page-photo"></div><div class="page-vignette"></div></div>
-              </div>
-              <div class="flip-sheet sheet-3">
                 <div class="flip-face flip-front"><div class="page-photo"></div><div class="page-vignette"></div></div>
                 <div class="flip-face flip-back"><div class="page-photo"></div><div class="page-vignette"></div></div>
               </div>
