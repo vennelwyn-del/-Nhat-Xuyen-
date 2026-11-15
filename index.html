@@ -1410,6 +1410,327 @@
         min-height: 210px;
       }
     }  
+    /* =========================================================
+       DECOR CHO MỤC 1.3, 1.4, 1.5 (HIỆU ỨNG MỀM MẠI)
+    ========================================================= */
+    .ch1-tier-grid {
+      align-items: start;
+    }
+    .tier-left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* Tháp phân tầng tương tác */
+    .tier-pyramid {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .tier-step {
+      position: relative;
+      width: 100%;
+      text-align: left;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      background: rgba(255, 255, 255, 0.07);
+      color: #FFFDF5;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      transition: transform 0.28s ease, background 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+    }
+    .tier-step:hover {
+      transform: translateX(4px);
+      background: rgba(255, 255, 255, 0.14);
+      border-color: rgba(255, 255, 255, 0.48);
+    }
+    .tier-step.is-selected {
+      background: var(--block-hover-bg);
+      border-color: var(--gold-text);
+      box-shadow: 0 0 18px var(--glow-color);
+      transform: translateX(6px);
+    }
+    .tier-rank {
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+    }
+    .tier-name {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .tier-en {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(255, 253, 245, 0.75);
+    }
+
+    .tier-toolbar {
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .soft-action-btn,
+    .soft-pill-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      background: rgba(255, 255, 255, 0.10);
+      color: #FFFDF5;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.22s ease, box-shadow 0.25s ease;
+    }
+    .soft-action-btn:hover,
+    .soft-pill-tab:hover {
+      background: rgba(255, 255, 255, 0.20);
+      transform: translateY(-1px);
+    }
+    .soft-action-btn.is-active,
+    .soft-pill-tab.is-active {
+      background: var(--block-hover-bg);
+      border-color: var(--gold-text);
+      color: var(--gold-text);
+      box-shadow: 0 0 14px var(--glow-color);
+      font-weight: 600;
+    }
+
+    .tier-details-col {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tier-detail-card {
+      display: none;
+      animation: softFadeIn 0.38s ease;
+    }
+    .tier-detail-card.is-visible {
+      display: block;
+    }
+    @keyframes softFadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .tier-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+    .tier-mood-badge {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: rgba(255, 253, 245, 0.78);
+    }
+
+    .tier-bullet-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+      font-size: 1.02rem;
+      line-height: 1.62;
+      color: rgba(255, 253, 245, 0.90);
+    }
+
+    /* 1.4 Vanguard */
+    .vanguard-laurel-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      margin-bottom: 18px;
+    }
+    .laurel-emblem {
+      font-size: 1.05rem;
+      color: var(--gold-text);
+      letter-spacing: 0.04em;
+    }
+    .laurel-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .vanguard-card {
+      animation: softFadeIn 0.35s ease;
+    }
+    .vanguard-card.is-hidden-card {
+      display: none;
+    }
+
+    .silver-laurel-chip {
+      display: inline-block;
+      padding: 1px 10px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, rgba(220, 228, 238, 0.22), rgba(255, 255, 255, 0.40), rgba(220, 228, 238, 0.22));
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      color: #FFFFFF;
+      font-weight: 600;
+    }
+
+    .rank-sim-box {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.22);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .rank-status-msg {
+      width: 100%;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 0.96rem;
+      line-height: 1.5;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+    .rank-status-msg.is-safe {
+      background: rgba(157, 191, 124, 0.22);
+      border-color: rgba(199, 221, 170, 0.55);
+      color: #FFFDF5;
+    }
+    .rank-status-msg.is-warn {
+      background: rgba(255, 224, 138, 0.22);
+      border-color: rgba(255, 242, 178, 0.65);
+      color: var(--gold-text);
+    }
+    .rank-status-msg.is-danger {
+      background: rgba(185, 74, 72, 0.28);
+      border-color: rgba(255, 170, 170, 0.55);
+      color: #FFE4E4;
+    }
+
+    /* 1.5 Đồng phục & Lá chắn sinh học */
+    .bio-shield-card {
+      position: relative;
+      overflow: hidden;
+      border-color: rgba(255, 255, 255, 0.38);
+    }
+    .bio-shield-sheen {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 20%, rgba(255, 255, 255, 0.14) 48%, transparent 76%);
+      background-size: 200% 100%;
+      animation: silkGlide 5.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    @keyframes silkGlide {
+      0%, 100% { background-position: -80% 0; }
+      50%      { background-position: 180% 0; }
+    }
+
+    .uniform-head-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .uniform-gender-switch {
+      display: flex;
+      gap: 6px;
+    }
+    .gender-panel {
+      display: none;
+      animation: softFadeIn 0.32s ease;
+    }
+    .gender-panel.is-visible {
+      display: block;
+    }
+
+    .trim-selector {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+    .trim-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFDF5;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+    }
+    .trim-btn:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-1px);
+    }
+    .trim-btn.is-active {
+      background: var(--block-hover-bg);
+      border-color: var(--gold-text);
+      color: var(--gold-text);
+      font-weight: 600;
+    }
+    .trim-swatch {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      display: inline-block;
+    }
+
+    /* Thanh xem thử ve áo Midnight Navy & đường chỉ viền khối */
+    .lapel-preview {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(0, 0, 0, 0.18);
+    }
+    .lapel-fabric {
+      position: relative;
+      padding: 12px 16px;
+      background: linear-gradient(135deg, #131E33 0%, #1C2B47 65%, #111A2C 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 3px solid #1F8A5B;
+      transition: border-color 0.35s ease;
+    }
+    .lapel-piping {
+      width: 44px;
+      height: 4px;
+      border-radius: 999px;
+      background: #1F8A5B;
+      box-shadow: 0 0 10px rgba(31, 138, 91, 0.7);
+      transition: background 0.35s ease, box-shadow 0.35s ease;
+    }
+    .lapel-badge {
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      color: #DCE5F2;
+    }
+    .lapel-info {
+      padding: 12px 16px;
+      font-size: 0.98rem;
+      line-height: 1.6;
+      color: rgba(255, 253, 245, 0.90);
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -1779,6 +2100,262 @@
               </div>
             </div>
           </div>
+          <!-- CHƯƠNG 1.3: THÁP PHÂN TẦNG 5 LỚP HỌC -->
+          <div class="ch1-section-block" id="ch1-3">
+            <div class="ch1-tag">1.3 · Tháp phân tầng 5 lớp học · The 5-Tier Classroom Hierarchy</div>
+            <p class="ch1-body-p" style="margin-bottom:18px;">
+              Tại Học viện Nhất Xuyên, lớp học được phân bổ không phải ngẫu nhiên mà phản ánh trực tiếp vị thế xã hội và giá trị học thuật của từng học sinh đối với nhà trường.
+            </p>
+
+            <div class="ch1-split ch1-tier-grid">
+              <!-- CỘT TRÁI: THÁP TƯƠNG TÁC + KHUNG ẢNH 05 -->
+              <div class="tier-left-col">
+                <div class="tier-pyramid" role="tablist" aria-label="Chọn tầng lớp học">
+                  <button type="button" class="tier-step is-selected" data-tier="tier-1">
+                    <span class="tier-rank">Bậc I · Lớp 1</span>
+                    <span class="tier-name">Lớp Chọn Tinh Anh</span>
+                    <span class="tier-en">The Academic Zenith</span>
+                  </button>
+                  <button type="button" class="tier-step" data-tier="tier-2">
+                    <span class="tier-rank">Bậc II · Lớp 2</span>
+                    <span class="tier-name">Lớp Chuyên Quốc Tế &amp; Song Ngữ</span>
+                    <span class="tier-en">The Diplomatic Track</span>
+                  </button>
+                  <button type="button" class="tier-step" data-tier="tier-34">
+                    <span class="tier-rank">Bậc III · Lớp 3 &amp; Lớp 4</span>
+                    <span class="tier-name">Lớp Nền Tảng Con Em Tài Phiệt</span>
+                    <span class="tier-en">The Legacy Foundation</span>
+                  </button>
+                  <button type="button" class="tier-step" data-tier="tier-5">
+                    <span class="tier-rank">Bậc IV · Lớp 5</span>
+                    <span class="tier-name">Lớp Đặc Tài &amp; Thể Thao</span>
+                    <span class="tier-en">The Unbalanced Talents</span>
+                  </button>
+                </div>
+
+                <div class="tier-toolbar">
+                  <button type="button" class="soft-action-btn" id="btnShowAllTiers">✦ Xem đồng thời cả 5 lớp</button>
+                </div>
+
+                <!-- KHUNG ẢNH 05 -->
+                <div class="photo-slot interactive-photo" style="min-height:205px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+                  <img src="" alt="Hồng Bảng và Khu giảng đường lớp chọn" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 05</span>
+                    <span class="ph-icon">❀</span>
+                    <span class="ph-title">Hồng Bảng &amp; Hành lang các khối lớp</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 05 — Bảng xếp hạng Nguyệt Khảo &amp; không khí từng tầng lớp</div>
+                </div>
+              </div>
+
+              <!-- CỘT PHẢI: CHI TIẾT TỪNG TẦNG LỚP -->
+              <div class="tier-details-col" id="tierDetailsContainer">
+                <div class="sub-card tier-detail-card is-visible" data-tier-panel="tier-1">
+                  <div class="tier-card-top">
+                    <span class="ch1-grade-pill">Lớp 1 · The Academic Zenith</span>
+                    <span class="tier-mood-badge">Tỉnh lặng · Băng giá</span>
+                  </div>
+                  <h3>“Lớp Chọn Tinh Anh”</h3>
+                  <ul class="tier-bullet-list">
+                    <li><strong>Hồ sơ học thuật:</strong> Đỉnh cao tuyệt đối của khối. Điểm số các môn Khoa học Tự nhiên (Toán - Lý - Hóa) luôn tiệm cận mức tuyệt đối.</li>
+                    <li><strong>Thành phần:</strong> Tập hợp các “Học thần” khối Tự nhiên, thành viên đội tuyển Olympic quốc gia, Ban Học thuật và học sinh nhận học bổng Vanguard. <em>(Các vị trí Thường trực Hội Học Sinh có thể phân bổ ở cả Lớp 1 và Lớp 2).</em></li>
+                    <li><strong>Bầu không khí:</strong> Lạnh lùng như băng đá, ngập tràn sự kiêu ngạo trí tuệ và tiếng ngòi bút ma sát điên cuồng trên giấy nháp. Áp lực cạnh tranh thứ hạng diễn ra nghẹt thở từng phút.</li>
+                  </ul>
+                </div>
+
+                <div class="sub-card tier-detail-card" data-tier-panel="tier-2">
+                  <div class="tier-card-top">
+                    <span class="ch1-grade-pill">Lớp 2 · The Diplomatic Track</span>
+                    <span class="tier-mood-badge">Phóng khoáng · Quốc tế</span>
+                  </div>
+                  <h3>“Lớp Chuyên Quốc Tế &amp; Song Ngữ”</h3>
+                  <ul class="tier-bullet-list">
+                    <li><strong>Hồ sơ học thuật:</strong> Xuất sắc toàn diện, hướng tới các kỳ thi chuẩn hóa quốc tế (AP/IB/SAT) và hồ sơ du học phương Tây.</li>
+                    <li><strong>Thành phần:</strong> Con em các nhà ngoại giao, đại tài phiệt đa quốc gia có tư duy phóng khoáng và kỹ năng tranh biện quốc tế (MUN) sắc bén.</li>
+                  </ul>
+                </div>
+
+                <div class="sub-card tier-detail-card" data-tier-panel="tier-34">
+                  <div class="tier-card-top">
+                    <span class="ch1-grade-pill">Lớp 3 &amp; Lớp 4 · The Legacy Foundation</span>
+                    <span class="tier-mood-badge">Thanh lịch · Kín đáo</span>
+                  </div>
+                  <h3>“Lớp Nền Tảng Con Em Tài Phiệt”</h3>
+                  <ul class="tier-bullet-list">
+                    <li><strong>Hồ sơ học thuật:</strong> Học lực mức Khá và duy trì ổn định.</li>
+                    <li><strong>Thành phần:</strong> Con em các tập đoàn gia tộc có đóng góp tài chính lớn cho ngân sách xây dựng trường.</li>
+                    <li><strong>Bầu không khí:</strong> Xa hoa kín đáo, duy trì sự thanh lịch quý tộc. Dù không chịu áp lực sinh tử về học bổng, học sinh tại đây vẫn phải giữ điểm số ở ngưỡng an toàn để tránh bị gia tộc trừng phạt.</li>
+                  </ul>
+                </div>
+
+                <div class="sub-card tier-detail-card" data-tier-panel="tier-5">
+                  <div class="tier-card-top">
+                    <span class="ch1-grade-pill">Lớp 5 · The Unbalanced Talents</span>
+                    <span class="tier-mood-badge">Tự do · Hoang dã</span>
+                  </div>
+                  <h3>“Lớp Đặc Tài &amp; Thể Thao”</h3>
+                  <ul class="tier-bullet-list">
+                    <li><strong>Đặc tính cốt lõi:</strong> <strong>Tuyệt đối không phải lớp học sinh kém</strong>, mà là <strong>lớp học lệch cực đoan</strong>.</li>
+                    <li><strong>Thành phần:</strong> Những thiếu niên có thiên phú dị biệt (thiên tài Ngữ văn, Hội họa, Âm nhạc nhưng điểm Toán chạm đáy; hoặc các hạt giống thể thao cấp quốc gia như đội trưởng bóng rổ, kình ngư bơi lội, điền kinh) cùng các học sinh cá biệt.</li>
+                    <li><strong>Nguyên tắc không đặc cách:</strong> Việc học lệch tủ là vấn đề tự thân của học sinh Lớp 5, hoàn toàn không có bất kỳ sự ưu tiên hay đặc cách nào trên bảng điểm văn hóa 750 điểm. Không khí lớp hoang dã, tự do, tập trung nhiều Alpha có thể chất vượt trội và giàu sức sống cơ bắp nhất trường.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 1.4: GIAO THỨC HỌC BỔNG VANGUARD -->
+          <div class="ch1-section-block" id="ch1-4">
+            <div class="ch1-tag">1.4 · Giao thức Học bổng Vanguard · The 6 Merit Scholars</div>
+            <p class="ch1-body-p" style="margin-bottom:16px;">
+              Để giữ vững danh tiếng học thuật Top 1 thành phố, Nhất Xuyên duy trì một hạn ngạch nhân tài cố định và tàn khốc: <strong>Toàn trường chỉ có đúng 06 suất Học bổng Toàn phần Vanguard (cố định đúng 02 học sinh mỗi khối)</strong>.
+            </p>
+
+            <div class="vanguard-laurel-bar">
+              <div class="laurel-emblem" title="Ghim Cành Nguyệt Quế Bạc">❧ <strong>06</strong> Suất Toàn Phần · <strong>02</strong> / Khối</div>
+              <div class="laurel-tabs" role="tablist">
+                <button type="button" class="soft-pill-tab is-active" data-vtab="v-all">Xem cả A &amp; B</button>
+                <button type="button" class="soft-pill-tab" data-vtab="v-priv">A · Đặc quyền</button>
+                <button type="button" class="soft-pill-tab" data-vtab="v-rule">B · Đào thải</button>
+              </div>
+            </div>
+
+            <div class="ch1-two-cols vanguard-cards-wrap">
+              <div class="sub-card vanguard-card" id="vCardPriv">
+                <div class="ch1-side-label">A · Full-Ride Privileges</div>
+                <h3>Đặc quyền toàn diện</h3>
+                <ul class="tier-bullet-list">
+                  <li><strong>Bao trọn 100% tài chính:</strong> Miễn toàn bộ học phí đắt đỏ bậc nhất thành phố (hàng trăm nghìn tệ mỗi học kỳ), cấp phát miễn phí toàn bộ giáo trình quốc tế và đồng phục, lễ phục may đo riêng.</li>
+                  <li><strong>Thẻ ăn VIP không giới hạn:</strong> Toàn quyền sử dụng tại Đại sảnh Ẩm thực Tòa D (từ quầy bếp nóng Á - Âu đến đảo tráng miệng Pháp và quầy nước ép bù khoáng điện giải).</li>
+                  <li><strong>Đặc quyền nội trú:</strong> Được cấp miễn phí <strong>Phòng đôi cao cấp (30m²)</strong> tại Ký túc xá Tòa F trong suốt 3 năm học.</li>
+                  <li><strong>Đào tạo kỹ năng quý tộc:</strong> Đài thọ 100% chi phí học các môn bổ trợ thượng lưu (đấu kiếm, cưỡi ngựa, phòng thí nghiệm nghiên cứu chuyên biệt).</li>
+                  <li><strong>Dấu ấn nhận diện:</strong> Trên ve áo blazer bên phải được cài một <span class="silver-laurel-chip">✦ Ghim cài áo hình Cành Nguyệt Quế Bạc</span>.</li>
+                </ul>
+              </div>
+
+              <div class="sub-card vanguard-card" id="vCardRule">
+                <div class="ch1-side-label">B · Class Friction &amp; Elimination</div>
+                <h3>Ma sát giai cấp &amp; Bản án đào thải</h3>
+                <ul class="tier-bullet-list">
+                  <li><strong>Định kiến xã hội (“Dân thường lọt vào ổ quý tộc”):</strong> 6 học sinh này xuất thân từ tầng lớp lao động bình dân, bước vào trường nhờ điểm số thủ khoa đầu vào hoặc tài năng xuất chúng. Họ luôn bị hội học sinh con nhà tài phiệt ngầm coi là <em>“kẻ sống nhờ tiền từ thiện”</em>, <em>“mọt sách không cùng đẳng cấp”</em>, bị săm soi và cô lập từ thói quen sinh hoạt nhỏ nhất.</li>
+                  <li><strong>Thuật toán duy trì thứ hạng sinh tử:</strong> Học bổng được xét duyệt lại vào <strong>Thứ Hai cuối cùng của mỗi tháng</strong>, ngay sau khi công bố bảng điểm Nguyệt Khảo. <strong>Không có bất kỳ sự đặc cách nào:</strong> Nếu trượt khỏi <strong>TOP 3 TOÀN KHỐI</strong>, học bổng lập tức bị đình chỉ cảnh cáo. Nếu kỳ thi tháng tiếp theo không quay trở lại Top 3, <strong>học bổng bị hủy bỏ vĩnh viễn ngay trong ngày</strong> — thu hồi thẻ ăn VIP, trục xuất khỏi Ký túc xá Tòa F và đuổi học ngay lập tức.</li>
+                </ul>
+
+                <div class="rank-sim-box">
+                  <button type="button" class="soft-action-btn" id="btnRankCycle">↻ Thử xem trạng thái xét duyệt Nguyệt Khảo</button>
+                  <div class="rank-status-msg is-safe" id="rankStatusMsg">
+                    <strong>Hạng 1 – 3 Toàn Khối:</strong> Duy trì Ghim Nguyệt Quế Bạc · Toàn bộ đặc quyền còn hiệu lực.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- KHUNG ẢNH 06 -->
+            <div class="photo-slot interactive-photo" style="margin-top:18px; min-height:200px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+              <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+              <img src="" alt="Đại sảnh ẩm thực Tòa D hoặc Ghim Nguyệt Quế Bạc" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+              <div class="photo-placeholder">
+                <span class="ph-badge">Ảnh 06</span>
+                <span class="ph-icon">❦</span>
+                <span class="ph-title">Ghim Cành Nguyệt Quế Bạc · Tòa D &amp; Ký túc xá Tòa F</span>
+                <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+              </div>
+              <div class="photo-caption">Fig. 06 — Đặc quyền dành riêng cho 06 học giả Vanguard</div>
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 1.5: QUY CHUẨN ĐỒNG PHỤC ĐẶC CHẾ & LÁ CHẮN SINH HỌC -->
+          <div class="ch1-section-block" id="ch1-5">
+            <div class="ch1-tag">1.5 · Quy chuẩn đồng phục đặc chế &amp; Lá chắn sinh học · Bespoke Uniform Code</div>
+            <p class="ch1-body-p" style="margin-bottom:18px;">
+              Đồng phục của Học viện Nhất Xuyên được may đo riêng theo phong cách trường dự bị tinh hoa Anh Quốc (British Elite Prep School) với bảng màu chủ đạo <strong>Xanh Midnight Navy &amp; Trắng Tinh Khiết</strong>.
+            </p>
+
+            <div class="ch1-split" style="margin-bottom:20px;">
+              <div class="ch1-info-stack">
+                <div class="sub-card">
+                  <div class="ch1-side-label">A · Kiến trúc trang phục</div>
+                  <h3>Áo khoác ngoài &amp; Sơ mi</h3>
+                  <ul class="tier-bullet-list">
+                    <li><strong>Áo khoác ngoài (Outer Blazer):</strong> Dáng ôm vừa vặn (slim-fit), chất liệu dạ len pha cashmere đứng phom màu xanh Midnight Navy. Ngực trái thêu huy hiệu trường Nhất Xuyên bằng chỉ bạc/chỉ kim loại; khuy áo kim loại dập nổi biểu tượng chim ưng tiên phong.</li>
+                    <li><strong>Áo sơ mi &amp; Lớp len thu - đông:</strong> Sơ mi trắng chất liệu cotton Ai Cập dệt mật độ cao, cổ bẻ cứng cáp; mùa thu - đông mặc kèm áo gile dệt kim hoặc áo len cổ chữ V mỏng màu xám khói hoặc navy nhạt.</li>
+                  </ul>
+                </div>
+
+                <div class="sub-card bio-shield-card">
+                  <div class="bio-shield-sheen" aria-hidden="true"></div>
+                  <div class="ch1-side-label">🛡️ Cấu trúc Lá chắn Tuyến thể</div>
+                  <h3>Gland Bio-Shield Architecture</h3>
+                  <p>Mặt trong chân cổ áo sơ mi và ve áo blazer được may lót một lớp <strong>lụa tơ tằm siêu mềm (anti-friction silk lining)</strong> nhằm bảo vệ vùng da nhạy cảm sau gáy, <strong>ngăn chặn tuyệt đối việc cổ áo cọ xát làm rách hoặc bong mép miếng dán cách ly</strong>.</p>
+                </div>
+              </div>
+
+              <!-- KHUNG ẢNH 07 -->
+              <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+                <img src="" alt="Đồng phục Midnight Navy Học viện Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                <div class="photo-placeholder">
+                  <span class="ph-badge">Ảnh 07</span>
+                  <span class="ph-icon">✦</span>
+                  <span class="ph-title">Thiết kế đồng phục Midnight Navy · 3 Khối</span>
+                  <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                </div>
+                <div class="photo-caption">Fig. 07 — Blazer Midnight Navy, lớp lót lụa sau gáy &amp; mã màu theo khối</div>
+              </div>
+            </div>
+
+            <div class="ch1-two-cols">
+              <div class="sub-card">
+                <div class="uniform-head-row">
+                  <div>
+                    <div class="ch1-side-label">B · Quy chuẩn trang phục</div>
+                    <h3>Nam sinh &amp; Nữ sinh</h3>
+                  </div>
+                  <div class="uniform-gender-switch">
+                    <button type="button" class="soft-pill-tab is-active" data-gender="male">Nam sinh</button>
+                    <button type="button" class="soft-pill-tab" data-gender="female">Nữ sinh</button>
+                  </div>
+                </div>
+
+                <div class="gender-panel is-visible" id="gender-male">
+                  <p><strong>Nam sinh:</strong> Quần âu may đo ống đứng bằng len xước màu xám tro đậm (charcoal grey), xếp ly đôi thanh lịch, gấu quần chạm nhẹ thân giày da; thắt lưng da đen khóa bạc. Cà vạt bản vừa thắt nút Windsor kép kèm kẹp cà vạt mạ bạc đính logo trường. Giày da Oxford/Derby đen buộc dây.</p>
+                </div>
+                <div class="gender-panel" id="gender-female">
+                  <p><strong>Nữ sinh:</strong> Chân váy xếp ly chữ A cùng tông xám tro đậm, xếp ly sắc nét, độ dài chuẩn mực chạm ngay trên đầu gối 3cm, khóa kéo giấu hông. Nơ bướm bằng lụa satin xếp lớp cố định bằng chốt kim loại dưới cổ bẻ (hoặc cà vạt theo khối). Giày Loafer/Mary Jane đen bóng đi kèm tất len cao cổ.</p>
+                </div>
+              </div>
+
+              <div class="sub-card">
+                <div class="ch1-side-label">C · Color-Coded Trim</div>
+                <h3>Mã màu phân cấp theo Khối học</h3>
+
+                <div class="trim-selector">
+                  <button type="button" class="trim-btn is-active" data-trim="g10">
+                    <span class="trim-swatch" style="background:#1F8A5B;"></span> Khối 10
+                  </button>
+                  <button type="button" class="trim-btn" data-trim="g11">
+                    <span class="trim-swatch" style="background:#8D2638;"></span> Khối 11
+                  </button>
+                  <button type="button" class="trim-btn" data-trim="g12">
+                    <span class="trim-swatch" style="background:linear-gradient(135deg,#1B3C73 50%,#E5C158 50%);"></span> Khối 12
+                  </button>
+                </div>
+
+                <div class="lapel-preview" id="lapelPreview">
+                  <div class="lapel-fabric" id="lapelFabric">
+                    <span class="lapel-piping" id="lapelPiping"></span>
+                    <span class="lapel-badge">✦ Huy hiệu Tiên Phong</span>
+                  </div>
+                  <div class="lapel-info" id="lapelInfo">
+                    <strong>Khối 10 (Cao Nhất) ➔ XANH NGỌC LỤC BẢO (Emerald Green):</strong> Viền ve áo blazer bằng chỉ xanh ngọc lục bảo mảnh 2mm; cà vạt/nơ xanh ngọc dệt vân chìm — tượng trưng cho sự khởi đầu và quá trình vừa phân hóa ABO.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </main>
@@ -2084,6 +2661,121 @@
           e.preventDefault();
           triggerPhoto();
         }
+      });
+    });
+    /* === TƯƠNG TÁC MỀM MẠI CHO 1.3, 1.4, 1.5 === */
+    // 1.3 Tháp phân tầng 5 lớp
+    const tierSteps    = document.querySelectorAll('.tier-step');
+    const tierPanels   = document.querySelectorAll('.tier-detail-card');
+    const btnShowAll   = document.getElementById('btnShowAllTiers');
+    let showAllTiers   = false;
+
+    tierSteps.forEach((step) => {
+      step.addEventListener('click', () => {
+        showAllTiers = false;
+        btnShowAll.classList.remove('is-active');
+        btnShowAll.textContent = '✦ Xem đồng thời cả 5 lớp';
+
+        const target = step.getAttribute('data-tier');
+        tierSteps.forEach((s) => s.classList.toggle('is-selected', s === step));
+        tierPanels.forEach((p) => p.classList.toggle('is-visible', p.getAttribute('data-tier-panel') === target));
+      });
+    });
+
+    btnShowAll.addEventListener('click', () => {
+      showAllTiers = !showAllTiers;
+      btnShowAll.classList.toggle('is-active', showAllTiers);
+      btnShowAll.textContent = showAllTiers ? '✦ Thu gọn theo từng bậc' : '✦ Xem đồng thời cả 5 lớp';
+
+      if (showAllTiers) {
+        tierSteps.forEach((s) => s.classList.add('is-selected'));
+        tierPanels.forEach((p) => p.classList.add('is-visible'));
+      } else {
+        tierSteps.forEach((s, idx) => s.classList.toggle('is-selected', idx === 0));
+        tierPanels.forEach((p, idx) => p.classList.toggle('is-visible', idx === 0));
+      }
+    });
+
+    // 1.4 Lọc A/B & Mô phỏng trạng thái xét duyệt Nguyệt Khảo
+    const vTabs     = document.querySelectorAll('[data-vtab]');
+    const vCardPriv = document.getElementById('vCardPriv');
+    const vCardRule = document.getElementById('vCardRule');
+
+    vTabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        vTabs.forEach((t) => t.classList.toggle('is-active', t === tab));
+        const mode = tab.getAttribute('data-vtab');
+        vCardPriv.classList.toggle('is-hidden-card', mode === 'v-rule');
+        vCardRule.classList.toggle('is-hidden-card', mode === 'v-priv');
+      });
+    });
+
+    const rankStates = [
+      {
+        cls: 'is-safe',
+        html: '<strong>Hạng 1 – 3 Toàn Khối:</strong> Duy trì Ghim Nguyệt Quế Bạc · Toàn bộ đặc quyền còn hiệu lực.'
+      },
+      {
+        cls: 'is-warn',
+        html: '<strong>Trượt khỏi Top 3 (Tháng thứ 1):</strong> Lập tức bị <em>Đình chỉ cảnh cáo</em> — buộc quay lại Top 3 ở kỳ Nguyệt Khảo kế tiếp.'
+      },
+      {
+        cls: 'is-danger',
+        html: '<strong>Tháng thứ 2 không vào Top 3:</strong> <em>Hủy học bổng vĩnh viễn ngay trong ngày</em> — thu hồi thẻ ăn VIP, trục xuất khỏi Tòa F &amp; đuổi học ngay lập tức.'
+      }
+    ];
+    let rankIdx = 0;
+    const btnRankCycle  = document.getElementById('btnRankCycle');
+    const rankStatusMsg = document.getElementById('rankStatusMsg');
+    btnRankCycle.addEventListener('click', () => {
+      rankIdx = (rankIdx + 1) % rankStates.length;
+      const st = rankStates[rankIdx];
+      rankStatusMsg.className = 'rank-status-msg ' + st.cls;
+      rankStatusMsg.innerHTML = st.html;
+    });
+
+    // 1.5 Chuyển đổi Nam/Nữ & Mã màu theo Khối
+    const genderTabs = document.querySelectorAll('[data-gender]');
+    genderTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const g = btn.getAttribute('data-gender');
+        genderTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        document.getElementById('gender-male').classList.toggle('is-visible', g === 'male');
+        document.getElementById('gender-female').classList.toggle('is-visible', g === 'female');
+      });
+    });
+
+    const trimData = {
+      g10: {
+        color: '#1F8A5B',
+        glow: 'rgba(31, 138, 91, 0.75)',
+        text: '<strong>Khối 10 (Cao Nhất) ➔ XANH NGỌC LỤC BẢO (Emerald Green):</strong> Viền ve áo blazer bằng chỉ xanh ngọc lục bảo mảnh 2mm; cà vạt/nơ xanh ngọc dệt vân chìm — tượng trưng cho sự khởi đầu và quá trình vừa phân hóa ABO.'
+      },
+      g11: {
+        color: '#8D2638',
+        glow: 'rgba(141, 38, 56, 0.75)',
+        text: '<strong>Khối 11 (Cao Nhị) ➔ ĐỎ RƯỢU VANG (Burgundy):</strong> Viền ve áo màu đỏ rượu vang trầm ấm; cà vạt/nơ màu đỏ bordeaux sọc chéo navy — tượng trưng cho sự tăng tốc của tài năng và ma sát học đường.'
+      },
+      g12: {
+        color: '#E5C158',
+        glow: 'rgba(229, 193, 88, 0.85)',
+        text: '<strong>Khối 12 (Cao Tam) ➔ XANH HOÀNG GIA &amp; VÀNG KIM (Royal Navy &amp; Gold):</strong> Đường viền ve áo thêu bằng chỉ vàng kim lấp lánh (Gold piping); cà vạt/nơ xanh hoàng gia phối kẻ vàng kim — tượng trưng cho tinh anh tối cao sắp bước vào kỳ thi Cao Khảo sinh tử.'
+      }
+    };
+    const trimBtns    = document.querySelectorAll('[data-trim]');
+    const lapelFabric = document.getElementById('lapelFabric');
+    const lapelPiping = document.getElementById('lapelPiping');
+    const lapelInfo   = document.getElementById('lapelInfo');
+
+    trimBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-trim');
+        const d   = trimData[key];
+        trimBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+        lapelFabric.style.borderBottomColor = d.color;
+        lapelPiping.style.background = d.color;
+        lapelPiping.style.boxShadow  = '0 0 10px ' + d.glow;
+        lapelInfo.innerHTML = d.text;
       });
     });
   </script>
