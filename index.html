@@ -1228,6 +1228,58 @@
         openBookSequence();
       }
     });
+
+    // 6. Đóng/mở danh sách block trên điện thoại khi ấn "✎ᝰ. Sổ tay học viên"
+    hbHeaderBtn.addEventListener('click', () => {
+      if (window.innerWidth > 820) return;
+      const opened = handbookStack.classList.toggle('mobile-open');
+      hbHeaderBtn.setAttribute('aria-expanded', String(opened));
+    });
+
+    // 7. Ấn vào 1 block -> phát sáng + rung nhẹ -> cuộn đến phần đó
+    hbItems.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const targetSec = document.getElementById(targetId);
+        if (!targetSec) return;
+
+        // Kích hoạt rung nhẹ & phát sáng ngay lập tức
+        btn.classList.remove('is-pulsing');
+        void btn.offsetWidth;
+        btn.classList.add('is-pulsing');
+
+        hbItems.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        setTimeout(() => btn.classList.remove('is-pulsing'), 420);
+
+        // Cuộn tới phần thông tin tương ứng
+        targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        targetSec.classList.add('is-highlighted');
+        setTimeout(() => targetSec.classList.remove('is-highlighted'), 900);
+
+        // Trên điện thoại: thu gọn list sau khi chọn để dễ đọc nội dung
+        if (window.innerWidth <= 820) {
+          setTimeout(() => {
+            handbookStack.classList.remove('mobile-open');
+            hbHeaderBtn.setAttribute('aria-expanded', 'false');
+          }, 260);
+        }
+      });
+    });
+
+    // 8. Tự động sáng block tương ứng khi cuộn đọc trang
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        const id = entry.target.id;
+        hbItems.forEach((btn) => {
+          btn.classList.toggle('is-active', btn.getAttribute('data-target') === id);
+        });
+      });
+    }, { rootMargin: '-25% 0px -55% 0px' });
+
+    sections.forEach((sec) => observer.observe(sec));
   </script>
 </body>
 </html>
