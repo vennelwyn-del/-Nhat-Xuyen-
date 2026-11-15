@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
-
   <style>
     :root {
       /* === LINK ẢNH CỦA BẠN === */
@@ -342,77 +341,95 @@
       opacity: 0;
       transform: translateY(8px);
     }
-
-    .open-book {
+   .open-book {
       position: relative;
       width: min(84vw, 440px);
       height: min(54vw, 285px);
       display: flex;
       transform-style: preserve-3d;
-      background: linear-gradient(90deg, var(--c-deep) 0%, var(--c-sky) 49%, rgba(42, 60, 82, 0.35) 50%, var(--c-sky) 51%, var(--c-deep) 100%);
+      background: linear-gradient(90deg, var(--c-deep) 0%, var(--c-sky) 48%, rgba(42, 60, 82, 0.36) 50%, var(--c-sky) 52%, var(--c-deep) 100%);
       padding: 8px 10px 10px;
-      border-radius: 9px;
-      box-shadow: 0 20px 42px rgba(42, 60, 82, 0.24), inset 0 2px 4px rgba(255, 255, 255, 0.55);
+      border-radius: 0;
+      box-shadow:
+        0 22px 44px rgba(42, 60, 82, 0.24),
+        inset 0 1px 0 rgba(255, 255, 255, 0.55);
     }
+
     .book-half {
       position: relative;
       flex: 1;
       height: 100%;
       background: var(--c-cream);
-      border-radius: 4px;
+      border-radius: 0;
       overflow: hidden;
     }
+
+    /* Rãnh gáy sách cong mềm + viền xấp giấy 2 bên */
     .book-left {
-      background: linear-gradient(90deg, #F6EED0 0%, var(--paper-light) 14%, var(--c-cream) 88%, #E7DEC0 100%);
-      border-left: 3px solid #EDE3C3;
+      background: linear-gradient(
+        90deg,
+        #EDE3C3 0%,
+        #F7EFD4 4%,
+        var(--paper-light) 16%,
+        var(--c-cream) 82%,
+        #E2D7B5 96%,
+        #C7BA96 100%
+      );
+      border-left: 3px solid #E8DEC0;
     }
     .book-right {
-      background: linear-gradient(270deg, #F6EED0 0%, var(--paper-light) 14%, var(--c-cream) 88%, #E7DEC0 100%);
-      border-right: 3px solid #EDE3C3;
+      background: linear-gradient(
+        270deg,
+        #EDE3C3 0%,
+        #F7EFD4 4%,
+        var(--paper-light) 16%,
+        var(--c-cream) 82%,
+        #E2D7B5 96%,
+        #C7BA96 100%
+      );
+      border-right: 3px solid #E8DEC0;
     }
-    .flutter-page {
+
+    /* Các trang giấy mềm lật nhanh & liên tục */
+    .flip-sheet {
       position: absolute;
       top: 8px;
       right: 10px;
-      z-index: 2;
+      z-index: 3;
       width: calc(50% - 10px);
       height: calc(100% - 18px);
+      border-radius: 0;
       overflow: hidden;
       transform-origin: left center;
-      background: linear-gradient(270deg, #F8F0D4 0%, var(--paper-light) 25%, var(--c-cream) 92%, #EAE0C2 100%);
-      border-radius: 2px 4px 4px 2px;
-      box-shadow: -4px 4px 14px rgba(42, 60, 82, 0.14);
-      animation: pageBreeze 3.6s ease-in-out infinite;
-      transition: transform 0.78s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+      transform-style: preserve-3d;
+      background: linear-gradient(
+        90deg,
+        rgba(214, 203, 170, 0.85) 0%,
+        rgba(255, 253, 245, 0.90) 14%,
+        rgba(255, 247, 214, 0.86) 72%,
+        rgba(244, 234, 200, 0.92) 100%
+      );
+      box-shadow: -2px 3px 12px rgba(42, 60, 82, 0.12);
+      animation: softPageFlip 1.36s cubic-bezier(0.42, 0.08, 0.58, 0.92) infinite;
+      transition: transform 0.65s ease;
     }
-    @keyframes pageBreeze {
-      0%, 100% { transform: translateZ(2px) rotateY(-5deg); }
-      50%      { transform: translateZ(2px) rotateY(-22deg); }
-    }
-    .center-stack.is-opening .flutter-page {
-      animation: none;
-      transform: translateZ(2px) rotateY(-168deg);
-    }
-    .page-photo {
-      position: absolute;
-      top: 0;
-      width: 200%;
-      height: 100%;
-      background-image: var(--book-page-image);
-      background-size: cover;
-      background-position: center;
-      opacity: 0.45;
-      filter: blur(1.4px) saturate(0.95);
-      pointer-events: none;
-    }
-    .book-left .page-photo { left: 0; }
-    .book-right .page-photo,
-    .flutter-page .page-photo { left: -100%; }
-    .page-vignette {
+
+    /* Ánh sáng & độ cong mềm lướt trên mặt giấy khi đang lật */
+    .flip-sheet::after {
+      content: "";
       position: absolute;
       inset: 0;
-      box-shadow: inset 0 0 24px 10px var(--paper-light);
+      background: linear-gradient(
+        105deg,
+        rgba(42, 60, 82, 0.10) 0%,
+        rgba(255, 255, 255, 0.48) 42%,
+        rgba(255, 247, 214, 0.12) 70%,
+        rgba(42, 60, 82, 0.12) 100%
+      );
+      opacity: 0.45;
       pointer-events: none;
+      animation: softSheen 1.36s ease-in-out infinite;
+      animation-delay: inherit;
     }
 
     .hero-text-group {
