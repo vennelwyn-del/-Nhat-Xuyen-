@@ -2180,6 +2180,71 @@
         justify-content: center;
       }
     }
+    /* === KÉO KIM ĐỒNG HỒ & NHẤP NHÁY DÒNG GIỜ === */
+    .clock-dial {
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+    }
+    .clock-dial.is-dragging {
+      cursor: grabbing;
+      box-shadow: 0 0 32px var(--glow-color), inset 0 0 22px rgba(0, 0, 0, 0.40);
+    }
+    .clock-dial.is-dragging .clock-hand {
+      transition: none !important;
+    }
+
+    .clock-slider-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 2px 0 4px;
+    }
+    .clock-range {
+      flex: 1;
+      accent-color: var(--gold-text);
+      cursor: pointer;
+      height: 6px;
+    }
+    .clock-drag-hint {
+      font-size: 0.82rem;
+      font-style: italic;
+      color: rgba(255, 253, 245, 0.78);
+    }
+
+    .sub-time-line {
+      display: inline-block;
+      padding: 2px 6px;
+      margin: 2px -6px;
+      border-radius: 8px;
+      transition: background 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Sáng nhấp nháy khi kéo đồng hồ tới đúng mốc giờ */
+    .is-slot-blink {
+      animation: timeSlotFlash 0.65s ease-in-out 4;
+      border-color: var(--gold-text) !important;
+    }
+    .sub-time-line.is-slot-blink {
+      background: var(--block-pulse-bg);
+      box-shadow: 0 0 18px var(--glow-color);
+      color: #FFFFFF;
+    }
+    .mini-slot.is-slot-blink .mini-time,
+    .sub-time-line.is-slot-blink strong {
+      color: #FFFFFF;
+      text-shadow: 0 0 12px var(--glow-color), 0 0 22px var(--glow-color);
+    }
+    @keyframes timeSlotFlash {
+      0%, 100% {
+        background-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 0 10px var(--glow-color);
+      }
+      50% {
+        background-color: var(--block-pulse-bg);
+        box-shadow: 0 0 26px var(--glow-color), inset 0 0 14px var(--glow-color);
+      }
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -2330,14 +2395,6 @@
             <button type="button" class="hb-item hb-sub" data-view="chap-5">
               <span>↳ Chương 5 · Lịch trình 24h &amp; Nội quy</span>
               <span class="hb-bow">౨ৎ</span>
-            </button>  
-              <span>↳ Chương 4 · Đồng phục &amp; Huy hiệu</span>
-              <span class="hb-bow">౨ৎ</span>
-            </button>
-            <button type="button" class="hb-item hb-sub" data-view="chap-5">
-              <span>↳ Chương 5 · Lịch trình 24h &amp; Nội quy</span>
-              <span class="hb-bow">౨ৎ</span>
-            </button>  
             </button>
             <button type="button" class="hb-item" data-view="sec-2">
               <span>Phần 2 ౨ৎ Thuật ngữ</span>
@@ -2358,12 +2415,13 @@
               <div class="sec-kicker">Phần 1 ౨ৎ</div>
               <h2>Thông tin cần biết</h2>
             </div>
-            <div class="chapter-quick-bar">
+           <div class="chapter-quick-bar">
               <button type="button" class="soft-pill-tab" data-quick-view="sec-1-all">Hiện hết Phần 1</button>
               <button type="button" class="soft-pill-tab is-active" data-quick-view="chap-1">Chương 1</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-2">Chương 2</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-3">Chương 3</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-4">Chương 4</button>
+              <button type="button" class="soft-pill-tab" data-quick-view="chap-5">Chương 5</button>
             </div>
           </div>
 
@@ -3404,17 +3462,16 @@
               <span class="ch1-quote-bar"></span>
               <p><em>“Kỷ luật chuẩn từng giây, Thể chất vững, Trí tuệ tối đa, Bản năng kiểm soát.”</em> — Học sinh nội trú 100% từ sáng Thứ Hai đến chiều Thứ Sáu, sinh hoạt theo kỷ luật bán quân sự chuẩn xác đến từng phút.</p>
             </div>
-
-            <!-- ĐỒNG HỒ QUẢ LẮC TƯƠNG TÁC -->
+           <!-- ĐỒNG HỒ QUẢ LẮC KÉO TAY TƯƠNG TÁC -->
             <div class="clock-console">
               <div class="clock-tower-wrap">
-                <div class="clock-dial" aria-label="Đồng hồ tháp Nhất Xuyên">
+                <div class="clock-dial" id="clockDial" aria-label="Kéo xoay kim đồng hồ 24H" title="Giữ và xoay kim quanh mặt đồng hồ">
                   <span class="clock-mark" style="transform:rotate(0deg);"></span>
                   <span class="clock-mark" style="transform:rotate(90deg);"></span>
                   <span class="clock-mark" style="transform:rotate(180deg);"></span>
                   <span class="clock-mark" style="transform:rotate(270deg);"></span>
                   <div class="clock-hand hand-hour" id="clockHour" style="transform:rotate(180deg);"></div>
-                  <div class="clock-hand hand-min" id="clockMin" style="transform:rotate(0deg);"></div>
+                  <div class="clock-hand hand-min" id="clockMin" style="transform:rotate(2160deg);"></div>
                   <div class="clock-pin"></div>
                 </div>
                 <div class="pendulum-pit" aria-hidden="true">
@@ -3426,17 +3483,25 @@
               </div>
 
               <div class="clock-info-col">
-                <div class="ch1-side-label">⏱ Đồng hồ Tháp Nhất Xuyên · Bấm mốc giờ để xoay kim &amp; xem khung giờ</div>
+                <div class="ch1-side-label">⏱ Đồng hồ Tháp Nhất Xuyên · Giữ &amp; xoay kim đồng hồ hoặc kéo thanh 24H</div>
                 <div class="clock-readout-row">
                   <span class="clock-digital" id="clockDigital">06:00</span>
                   <span class="temp-pill" id="clockPhaseTag">Tòa F · Báo thức &amp; Thay miếng dán 100%</span>
                 </div>
+
+                <div class="clock-slider-wrap">
+                  <span style="font-size:0.84rem; color:var(--gold-text);">06:00</span>
+                  <input type="range" class="clock-range" id="clockSlider" min="360" max="1380" step="5" value="360" aria-label="Kéo chọn giờ từ 06:00 đến 23:00" />
+                  <span style="font-size:0.84rem; color:var(--gold-text);">23:00</span>
+                </div>
+                <div class="clock-drag-hint">✦ Kéo kim đồng hồ hoặc thanh trượt rồi thả tay để cuộn đến lịch trình và nhấp nháy dòng giờ đó.</div>
+
                 <div class="clock-btn-grid">
-                  <button type="button" class="soft-pill-tab is-active" data-clock="06:00" data-target-phase="tphase-1">06:00 Bình minh</button>
-                  <button type="button" class="soft-pill-tab" data-clock="07:50" data-target-phase="tphase-2">07:50 Tảo tự tập</button>
-                  <button type="button" class="soft-pill-tab" data-clock="13:00" data-target-phase="tphase-3">13:00 Ngủ trưa</button>
-                  <button type="button" class="soft-pill-tab" data-clock="18:30" data-target-phase="tphase-4">18:30 Vãn tự tập</button>
-                  <button type="button" class="soft-pill-tab" data-clock="22:30" data-target-phase="tphase-5">22:30 Giới nghiêm</button>
+                  <button type="button" class="soft-pill-tab is-active" data-clock="06:00">06:00 Bình minh</button>
+                  <button type="button" class="soft-pill-tab" data-clock="07:50">07:50 Tảo tự tập</button>
+                  <button type="button" class="soft-pill-tab" data-clock="13:00">13:00 Ngủ trưa</button>
+                  <button type="button" class="soft-pill-tab" data-clock="18:30">18:30 Vãn tự tập</button>
+                  <button type="button" class="soft-pill-tab" data-clock="22:30">22:30 Giới nghiêm</button>
                   <button type="button" class="soft-action-btn" id="btnAutoClock">▶ Tua nhanh 24H</button>
                 </div>
               </div>
@@ -3459,15 +3524,15 @@
                 </div>
                 <div class="ch1-split">
                   <div class="mini-timeline">
-                    <div class="mini-slot">
+                    <div class="mini-slot" id="tslot-0600">
                       <div class="mini-time">06:00 · Báo thức KTX (Tòa F)</div>
                       <p>Hệ thống loa KTX phát nhạc cổ điển nhẹ. <strong>Bắt buộc:</strong> Vệ sinh cá nhân, <strong>thay miếng dán cách ly mới 100%</strong>, uống thuốc ức chế định kỳ theo đơn y tế.</p>
                     </div>
-                    <div class="mini-slot">
+                    <div class="mini-slot" id="tslot-0630">
                       <div class="mini-time">06:30 – 07:00 · Chạy thể dục sáng bắt buộc (Sân Điền Kinh Tòa C)</div>
                       <p>Toàn bộ 450 học sinh tập trung theo đội hình lớp, chạy 2 vòng sân tiêu chuẩn (<strong>800m</strong>) rèn luyện thể lực đón bình minh.</p>
                     </div>
-                    <div class="mini-slot">
+                    <div class="mini-slot" id="tslot-0700">
                       <div class="mini-time">07:00 – 07:40 · Bữa sáng (Đại Sảnh Ẩm Thực Tòa D)</div>
                       <p>Quầy cháo nóng, bếp Á - Âu và tráng miệng mở cửa. Học sinh học bổng Vanguard quẹt thẻ VIP nhận suất ăn tiêu chuẩn cao cấp.</p>
                     </div>
@@ -3507,21 +3572,23 @@
                   </div>
 
                   <div class="mini-timeline">
-                    <div class="mini-slot">
+                    <div class="mini-slot" id="tslot-0740">
                       <div class="mini-time">07:40 · Di chuyển lên Giảng đường Tòa A</div>
                       <p>Quẹt thẻ từ sinh trắc học vào lớp. Máy cảm biến <strong>Model T-80</strong> góc lớp tự khởi động và cân bằng về chỉ số <code>0.0 ppm</code>.</p>
                     </div>
-                    <div class="mini-slot">
+                    <div class="mini-slot" id="tslot-0750">
                       <div class="mini-time">07:50 – 08:20 · TẢO TỰ TẬP (Tự học sáng)</div>
                       <p>Cả lớp đồng thanh đọc cổ thi Ngữ văn hoặc từ vựng tiếng Anh học thuật. Ủy viên Học tập đi dọc các dãy bàn kiểm tra bài tập về nhà.</p>
                     </div>
                     <div class="mini-slot">
                       <div class="mini-time">08:30 – 12:10 · CHÍNH KHÓA BUỔI SÁNG (Tiết 1 đến Tiết 4)</div>
-                      <p><strong>Tiết 1 &amp; 2 (08:30–10:10):</strong> Khoa học Tự nhiên nặng (Toán / Lý / Hóa).<br />
-                      <strong>10:10 – 10:35 (Giải Lao Lớn):</strong> Tập thể dục giãn cơ cổ - gáy. Thầy Giám thị cầm máy đo T-80 đi tuần hành lang, kiểm tra gắt gao độ phẳng của miếng dán sau gáy.<br />
-                      <strong>Tiết 3 &amp; 4 (10:35–12:10):</strong> Ngoại ngữ học thuật / Thực hành bộ môn.</p>
+                      <p>
+                        <span class="sub-time-line" id="tslot-0830"><strong>Tiết 1 &amp; 2 (08:30–10:10):</strong> Khoa học Tự nhiên nặng (Toán / Lý / Hóa).</span><br />
+                        <span class="sub-time-line" id="tslot-1010"><strong>10:10 – 10:35 (Giải Lao Lớn):</strong> Tập thể dục giãn cơ cổ - gáy. Thầy Giám thị cầm máy đo T-80 đi tuần hành lang, kiểm tra gắt gao độ phẳng của miếng dán sau gáy.</span><br />
+                        <span class="sub-time-line" id="tslot-1035"><strong>Tiết 3 &amp; 4 (10:35–12:10):</strong> Ngoại ngữ học thuật / Thực hành bộ môn.</span>
+                      </p>
                     </div>
-                    <div class="mini-slot">
+                    <div class="mini-slot" id="tslot-1210">
                       <div class="mini-time">12:10 – 13:00 · Bữa trưa (Đại Sảnh Ẩm Thực Tòa D)</div>
                       <p>Dùng bữa trưa tại Quầy bếp nóng, Đảo tráng miệng trung tâm và Quầy bù khoáng điện giải.</p>
                     </div>
@@ -3537,16 +3604,18 @@
                 </div>
                 <div class="ch1-split">
                   <div class="mini-timeline">
-                    <div class="mini-slot">
+                    <div class="mini-slot" id="tslot-1300">
                       <div class="mini-time">13:00 – 13:50 · NGỦ TRƯA BẮT BUỘC TẠI KTX (Tòa F)</div>
                       <p>Đèn hành lang chuyển ánh sáng mờ. Ngủ 40 phút để hồi phục thần kinh và ổn định nhiệt độ tuyến thể. <strong>Nghiêm cấm tuyệt đối việc đi lại giữa các phòng.</strong></p>
                     </div>
                     <div class="mini-slot">
                       <div class="mini-time">14:00 – 17:30 · CHÍNH KHÓA BUỔI CHIỀU (Tiết 5 đến Tiết 8)</div>
-                      <p><strong>Tiết 5 – 7 (14:00–16:45):</strong> Chuyên đề nâng cao, thực hành Phòng Lab (Tòa C - Tầng 2), Nghệ thuật &amp; Tranh biện.<br />
-                      <strong>Tiết 8 (16:45–17:30):</strong> Huấn luyện thể chất &amp; Tập luyện đội tuyển thể thao tại Tổ hợp Thể chất (Tòa D) và Nhà thi đấu đa năng (Tòa E).</p>
+                      <p>
+                        <span class="sub-time-line" id="tslot-1400"><strong>Tiết 5 – 7 (14:00–16:45):</strong> Chuyên đề nâng cao, thực hành Phòng Lab (Tòa C - Tầng 2), Nghệ thuật &amp; Tranh biện.</span><br />
+                        <span class="sub-time-line" id="tslot-1645"><strong>Tiết 8 (16:45–17:30):</strong> Huấn luyện thể chất &amp; Tập luyện đội tuyển thể thao tại Tổ hợp Thể chất (Tòa D) và Nhà thi đấu đa năng (Tòa E).</span>
+                      </p>
                     </div>
-                    <div class="mini-slot">
+                    <div class="mini-slot" id="tslot-1730">
                       <div class="mini-time">17:30 – 18:30 · Sinh hoạt CLB &amp; Ăn tối</div>
                       <p>Tự do sinh hoạt các Câu lạc bộ (tại Tầng 4 Tòa A và Tầng 3–4 Tòa C), tắm rửa tại KTX Tòa F hoặc ăn tối tại Nhà ăn Tòa D.</p>
                     </div>
@@ -3611,15 +3680,15 @@
                 <div class="ch1-split">
                   <div>
                     <div class="mini-timeline" style="margin-bottom:14px;">
-                      <div class="mini-slot">
+                      <div class="mini-slot" id="tslot-2140">
                         <div class="mini-time">21:40 – 22:05 · Dạ Tiêu (Bữa phụ đêm)</div>
                         <p>Căn-tin Tòa D phục vụ súp/cháo nóng, sữa tươi và bánh mì dinh dưỡng. Ban Thường trực Hội Học Sinh và Ban Kỷ Luật hoàn tất ca trực dữ liệu tại Tầng 5 Tòa A.</p>
                       </div>
-                      <div class="mini-slot">
+                      <div class="mini-slot" id="tslot-2205">
                         <div class="mini-time">22:05 · Điểm danh sinh trắc học KTX (Tòa F)</div>
                         <p>Quẹt thẻ từ và quét thân nhiệt tại sảnh <strong>F1 (Omega)</strong>, <strong>F2 (Alpha)</strong> và <strong>F3 (Beta)</strong>.</p>
                       </div>
-                      <div class="mini-slot">
+                      <div class="mini-slot" id="tslot-2230">
                         <div class="mini-time">22:30 · LỆNH GIỚI NGHIÊM TUYỆT ĐỐI (ABSOLUTE CURFEW LOCKDOWN)</div>
                         <p>Chốt cửa điện từ tự động sập chặt tại cả 3 tòa KTX, ngắt toàn bộ cầu thang liên tòa và tắt đèn trần. Chỉ được dùng đèn bàn cá nhân; Giám thị giám sát qua camera hồng ngoại hành lang 24/7.</p>
                       </div>
@@ -3645,7 +3714,6 @@
                 </div>
               </div>
             </div>
-
             <!-- 5.2 NỘI QUY THÉP -->
             <div class="ch2-subblock" id="ch5-2">
               <div class="ch1-tag">5.2 · Nội quy thép &amp; Chế tài tuần tra · Disciplinary Enforcement</div>
@@ -4399,59 +4467,190 @@
         box.innerHTML = d.html;
       });
     });
-    /* === TƯƠNG TÁC CHƯƠNG 5 (ĐỒNG HỒ QUẢ LẮC & NỘI QUY 24H) === */
-    const clockInfoMap = {
-      '06:00': { h: 180, m: 0,   tag: 'Tòa F · Báo thức & Thay miếng dán 100%' },
-      '07:50': { h: 235, m: 300, tag: 'Tòa A · Tảo Tự Tập & Chính khóa sáng' },
-      '13:00': { h: 390, m: 0,   tag: 'Tòa F · Ngủ trưa bắt buộc 40 phút (Đèn mờ)' },
-      '18:30': { h: 555, m: 180, tag: 'Tòa A · Vãn Tự Tập 24°C (Cảnh báo rò rỉ cao)' },
-      '22:30': { h: 675, m: 180, tag: 'LOCKDOWN · Sập chốt cửa điện từ KTX!' }
-    };
-    const clockBtns = document.querySelectorAll('[data-clock]');
-    const clockHour = document.getElementById('clockHour');
-    const clockMin  = document.getElementById('clockMin');
-    const clockDig  = document.getElementById('clockDigital');
-    const clockTag  = document.getElementById('clockPhaseTag');
+   /* === TƯƠNG TÁC CHƯƠNG 5 (KÉO KIM ĐỒNG HỒ 24H -> DẪN TỚI LỊCH TRÌNH & NHẤP NHÁY) === */
+    const clockDial   = document.getElementById('clockDial');
+    const clockHour   = document.getElementById('clockHour');
+    const clockMin    = document.getElementById('clockMin');
+    const clockDig    = document.getElementById('clockDigital');
+    const clockTag    = document.getElementById('clockPhaseTag');
+    const clockSlider = document.getElementById('clockSlider');
+    const clockBtns   = document.querySelectorAll('[data-clock]');
+    const autoClockBtn = document.getElementById('btnAutoClock');
+
+    const scheduleMap = [
+      { start: 360,  end: 389,  phase: 'tphase-1', slot: 'tslot-0600', tag: '06:00 · Tòa F · Báo thức & Thay miếng dán 100%' },
+      { start: 390,  end: 419,  phase: 'tphase-1', slot: 'tslot-0630', tag: '06:30 · Sân Điền Kinh Tòa C · Chạy sáng 800m' },
+      { start: 420,  end: 459,  phase: 'tphase-1', slot: 'tslot-0700', tag: '07:00 · Đại Sảnh Tòa D · Bữa sáng & Thẻ VIP' },
+      { start: 460,  end: 469,  phase: 'tphase-2', slot: 'tslot-0740', tag: '07:40 · Tòa A · Quẹt thẻ sinh trắc & T-80 0.0 ppm' },
+      { start: 470,  end: 509,  phase: 'tphase-2', slot: 'tslot-0750', tag: '07:50 · Tảo Tự Tập · Đọc cổ thi & Kiểm tra bài' },
+      { start: 510,  end: 609,  phase: 'tphase-2', slot: 'tslot-0830', tag: '08:30 · Tiết 1 & 2 · Toán / Lý / Hóa' },
+      { start: 610,  end: 634,  phase: 'tphase-2', slot: 'tslot-1010', tag: '10:10 · Giải Lao Lớn · Giãn cơ cổ-gáy & Tuần T-80' },
+      { start: 635,  end: 729,  phase: 'tphase-2', slot: 'tslot-1035', tag: '10:35 · Tiết 3 & 4 · Ngoại ngữ & Thực hành' },
+      { start: 730,  end: 779,  phase: 'tphase-2', slot: 'tslot-1210', tag: '12:10 · Đại Sảnh Tòa D · Bữa trưa & Điện giải' },
+      { start: 780,  end: 839,  phase: 'tphase-3', slot: 'tslot-1300', tag: '13:00 · Tòa F · Ngủ trưa bắt buộc 40 phút (Đèn mờ)' },
+      { start: 840,  end: 1004, phase: 'tphase-3', slot: 'tslot-1400', tag: '14:00 · Tiết 5–7 · Lab Tòa C, Nghệ thuật & Tranh biện' },
+      { start: 1005, end: 1049, phase: 'tphase-3', slot: 'tslot-1645', tag: '16:45 · Tiết 8 · Thể chất Tòa D & Nhà thi đấu Tòa E' },
+      { start: 1050, end: 1109, phase: 'tphase-3', slot: 'tslot-1730', tag: '17:30 · Sinh hoạt CLB, Tắm rửa & Ăn tối' },
+      { start: 1110, end: 1179, phase: 'tphase-4', slot: 'nightDetailBox', night: 'ca1', tag: '18:30 · Vãn Tự Tập Ca 1 · Hoàn thành bài tập 24°C' },
+      { start: 1180, end: 1249, phase: 'tphase-4', slot: 'nightDetailBox', night: 'ca2', tag: '19:40 · Vãn Tự Tập Ca 2 · Đề bấm giờ 60 phút!' },
+      { start: 1250, end: 1299, phase: 'tphase-4', slot: 'nightDetailBox', night: 'ca3', tag: '20:50 · Ca 3 · Sổ Tay Câu Sai (Nguy cơ rò rỉ cao!)' },
+      { start: 1300, end: 1324, phase: 'tphase-5', slot: 'tslot-2140', tag: '21:40 · Dạ Tiêu Tòa D & Trực dữ liệu Tầng 5 Tòa A' },
+      { start: 1325, end: 1349, phase: 'tphase-5', slot: 'tslot-2205', tag: '22:05 · Điểm danh sinh trắc KTX F1 / F2 / F3' },
+      { start: 1350, end: 1380, phase: 'tphase-5', slot: 'tslot-2230', curfew: true, tag: '22:30 · LOCKDOWN · Sập cửa điện từ & Hồng ngoại 24/7!' }
+    ];
+
+    let currentTotalMins = 360; // 06:00
     let autoClockTimer = null;
 
-    function setSchoolClock(timeStr, shouldHighlightPhase) {
-      const info = clockInfoMap[timeStr];
-      if (!info) return;
-      clockHour.style.transform = 'rotate(' + info.h + 'deg)';
-      clockMin.style.transform  = 'rotate(' + info.m + 'deg)';
-      clockDig.textContent = timeStr;
-      clockTag.textContent = info.tag;
+    function formatMins(mins) {
+      const h = Math.floor(mins / 60);
+      const m = mins % 60;
+      return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0');
+    }
 
-      let targetPhaseId = '';
-      clockBtns.forEach((b) => {
-        const match = b.getAttribute('data-clock') === timeStr;
-        b.classList.toggle('is-active', match);
-        if (match) targetPhaseId = b.getAttribute('data-target-phase');
-      });
+    function findScheduleEntry(mins) {
+      for (let i = 0; i < scheduleMap.length; i++) {
+        if (mins >= scheduleMap[i].start && mins <= scheduleMap[i].end) {
+          return scheduleMap[i];
+        }
+      }
+      return scheduleMap[scheduleMap.length - 1];
+    }
 
+    function flashScheduleTarget(entry, shouldScroll) {
       document.querySelectorAll('.phase-card').forEach((c) => c.classList.remove('is-time-focus'));
-      if (targetPhaseId) {
-        const phaseEl = document.getElementById(targetPhaseId);
-        if (phaseEl) {
-          phaseEl.classList.add('is-time-focus');
-          if (shouldHighlightPhase) {
-            phaseEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          }
+      document.querySelectorAll('.is-slot-blink').forEach((el) => el.classList.remove('is-slot-blink'));
+
+      const phaseEl = document.getElementById(entry.phase);
+      if (phaseEl) phaseEl.classList.add('is-time-focus');
+
+      if (entry.night) {
+        document.querySelectorAll('[data-night]').forEach((b) => {
+          b.classList.toggle('is-active', b.getAttribute('data-night') === entry.night);
+        });
+        document.getElementById('nightDetailBox').innerHTML = nightData[entry.night];
+      }
+
+      if (typeof entry.curfew === 'boolean') {
+        const badge = document.getElementById('curfewStatusBadge');
+        badge.classList.toggle('is-locked', entry.curfew);
+        badge.textContent = entry.curfew
+          ? '22:30 · LOCKDOWN: Chốt cửa điện từ sập chặt · Hồng ngoại hành lang 24/7!'
+          : '22:05 · Đang quét thẻ & thân nhiệt sảnh F1 / F2 / F3';
+      }
+
+      const slotEl = document.getElementById(entry.slot);
+      if (slotEl) {
+        void slotEl.offsetWidth;
+        slotEl.classList.add('is-slot-blink');
+        if (shouldScroll) {
+          slotEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       }
     }
 
+    function updateClockToMinutes(mins, shouldScrollAndBlink) {
+      mins = Math.max(360, Math.min(1380, Math.round(mins)));
+      currentTotalMins = mins;
+
+      const hourDeg = mins * 0.5; // 360 mins = 180deg (06:00), 1350 mins = 675deg (22:30)
+      const minDeg  = mins * 6;   // xoay mượt theo kim giờ
+      clockHour.style.transform = 'rotate(' + hourDeg + 'deg)';
+      clockMin.style.transform  = 'rotate(' + minDeg + 'deg)';
+
+      const timeStr = formatMins(mins);
+      clockDig.textContent = timeStr;
+      clockSlider.value = mins;
+
+      const entry = findScheduleEntry(mins);
+      clockTag.textContent = entry.tag;
+
+      clockBtns.forEach((b) => {
+        b.classList.toggle('is-active', b.getAttribute('data-clock') === timeStr);
+      });
+
+      if (shouldScrollAndBlink) {
+        flashScheduleTarget(entry, true);
+      }
+    }
+
+    // Kéo trực tiếp quanh mặt đồng hồ (chuột & cảm ứng)
+    let isDraggingClock = false;
+    let prevPointerClockDeg = 0;
+
+    function getPointerClockDeg(e) {
+      const rect = clockDial.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const rad = Math.atan2(e.clientY - cy, e.clientX - cx);
+      return (rad * 180 / Math.PI + 90 + 360) % 360;
+    }
+
+    clockDial.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      clearInterval(autoClockTimer);
+      autoClockTimer = null;
+      autoClockBtn.classList.remove('is-active');
+      autoClockBtn.textContent = '▶ Tua nhanh 24H';
+
+      isDraggingClock = true;
+      clockDial.classList.add('is-dragging');
+      clockDial.setPointerCapture(e.pointerId);
+      prevPointerClockDeg = getPointerClockDeg(e);
+    });
+
+    clockDial.addEventListener('pointermove', (e) => {
+      if (!isDraggingClock) return;
+      const curDeg = getPointerClockDeg(e);
+      let delta = curDeg - prevPointerClockDeg;
+      if (delta > 180) delta -= 360;
+      if (delta < -180) delta += 360;
+      prevPointerClockDeg = curDeg;
+
+      // 1 độ xoay kim giờ = 2 phút
+      updateClockToMinutes(currentTotalMins + delta * 2, false);
+    });
+
+    function finishClockDrag(e) {
+      if (!isDraggingClock) return;
+      isDraggingClock = false;
+      clockDial.classList.remove('is-dragging');
+      if (e && clockDial.hasPointerCapture && clockDial.hasPointerCapture(e.pointerId)) {
+        clockDial.releasePointerCapture(e.pointerId);
+      }
+      updateClockToMinutes(currentTotalMins, true);
+    }
+    clockDial.addEventListener('pointerup', finishClockDrag);
+    clockDial.addEventListener('pointercancel', finishClockDrag);
+
+    // Kéo thanh trượt 24H đồng bộ cùng kim đồng hồ
+    clockSlider.addEventListener('input', () => {
+      clearInterval(autoClockTimer);
+      autoClockTimer = null;
+      autoClockBtn.classList.remove('is-active');
+      autoClockBtn.textContent = '▶ Tua nhanh 24H';
+      clockDial.classList.add('is-dragging');
+      updateClockToMinutes(Number(clockSlider.value), false);
+    });
+    clockSlider.addEventListener('change', () => {
+      clockDial.classList.remove('is-dragging');
+      updateClockToMinutes(Number(clockSlider.value), true);
+    });
+
+    // Bấm các nút mốc giờ nhanh
     clockBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
         clearInterval(autoClockTimer);
-        document.getElementById('btnAutoClock').classList.remove('is-active');
-        document.getElementById('btnAutoClock').textContent = '▶ Tua nhanh 24H';
-        setSchoolClock(btn.getAttribute('data-clock'), true);
+        autoClockTimer = null;
+        autoClockBtn.classList.remove('is-active');
+        autoClockBtn.textContent = '▶ Tua nhanh 24H';
+        const parts = btn.getAttribute('data-clock').split(':');
+        const mins = Number(parts[0]) * 60 + Number(parts[1]);
+        updateClockToMinutes(mins, true);
       });
     });
 
-    const autoClockBtn = document.getElementById('btnAutoClock');
-    const timeKeys = ['06:00', '07:50', '13:00', '18:30', '22:30'];
+    const timeKeyMins = [360, 470, 780, 1110, 1350];
     let autoClockIdx = 0;
     autoClockBtn.addEventListener('click', () => {
       if (autoClockTimer) {
@@ -4463,9 +4662,10 @@
         autoClockBtn.classList.add('is-active');
         autoClockBtn.textContent = '⏸ Dừng đồng hồ';
         autoClockTimer = setInterval(() => {
-          autoClockIdx = (autoClockIdx + 1) % timeKeys.length;
-          setSchoolClock(timeKeys[autoClockIdx], false);
-        }, 1600);
+          autoClockIdx = (autoClockIdx + 1) % timeKeyMins.length;
+          updateClockToMinutes(timeKeyMins[autoClockIdx], false);
+          flashScheduleTarget(findScheduleEntry(timeKeyMins[autoClockIdx]), false);
+        }, 1800);
       }
     });
 
