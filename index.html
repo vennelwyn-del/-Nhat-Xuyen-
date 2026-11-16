@@ -5,58 +5,74 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Trường Trung Học Nhất Xuyên · Worldbuild</title>
 
-  <!-- Font mặc định: EB Garamond -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet" />
 
   <style>
     :root {
-      /* === 1. LINK ẢNH NỀN & ẢNH MỜ TRONG SÁCH === */
-      --intro-bg-image: url('./assets/nhatxuyen1.png');
-      --book-page-image: url('./assets/nhatxuyen1.png');
-      --world-bg-image: url('./assets/nhatxuyen1.png');
+      /* === GIỮ / DÁN LINK ẢNH CỦA BẠN VÀO 4 DÒNG NÀY === */
+      --intro-bg-image:   url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen1.png');
+      --book-page-image:  url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen2.png');
+      --world-bg-image:   url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen1.png');
+      --top-banner-image: url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen2.png');
 
-      /* === 2. BẢNG MÀU BÌNH MINH === */
-      --c-accent-1: #FFF2B2; /* Buttercup Sky */
-      --c-sky:      #A8C6E7; /* Dewy Blue */
-      --c-sun:      #FFE08A; /* Sunwashed */
-      --c-cream:    #FFF7D6; /* Cloud Puff */
-      --c-deep:     #7FA8D6; /* Morning Breeze */
+      /* === BẢNG MÀU BÌNH MINH === */
+      --c-accent-1: #FFF2B2;
+      --c-sky:      #A8C6E7;
+      --c-sun:      #FFE08A;
+      --c-cream:    #FFF7D6;
+      --c-deep:     #7FA8D6;
 
       --bg-grad:       linear-gradient(155deg, #9AC0E8 0%, #A8C6E7 42%, #FFF2B2 82%, #FFF7D6 100%);
       --veil-grad:     linear-gradient(135deg, rgba(255, 242, 178, 0.34) 0%, rgba(168, 198, 231, 0.22) 55%, rgba(127, 168, 214, 0.26) 100%);
-      --world-veil:    linear-gradient(180deg, rgba(255, 247, 214, 0.78) 0%, rgba(255, 253, 245, 0.72) 50%, rgba(168, 198, 231, 0.58) 100%);
+      --world-veil:    linear-gradient(180deg, rgba(255, 247, 214, 0.65) 0%, rgba(255, 253, 245, 0.60) 50%, rgba(168, 198, 231, 0.50) 100%);
       --pill-bg:       rgba(54, 78, 106, 0.54);
       --pill-hover:    rgba(54, 78, 106, 0.76);
-      --card-bg:       rgba(255, 253, 245, 0.84);
-      --block-bg:      rgba(255, 253, 245, 0.86);
-      --block-head-bg: rgba(168, 198, 231, 0.88);
-      --glow-color:    rgba(255, 224, 138, 0.85);
-      --border-soft:   rgba(127, 168, 214, 0.45);
+      --card-bg:       rgba(255, 253, 245, 0.78);
+
+      /* Block gần như trong suốt, hơi mờ */
+      --block-bg:      rgba(255, 253, 245, 0.14);
+      --block-head-bg: rgba(255, 253, 245, 0.22);
+      --block-hover-bg:rgba(255, 242, 178, 0.28);
+      --block-pulse-bg:rgba(255, 242, 178, 0.45);
+      --glow-color:    rgba(255, 224, 138, 0.90);
+      --border-soft:   rgba(127, 168, 214, 0.42);
+      --leaf-color-1:  #FFE08A;
+      --leaf-color-2:  #FFF2B2;
+      --leaf-color-3:  #A8C6E7;
+
       --ink-dark:      #2A3C52;
       --ink-muted:     #526982;
       --paper-light:   #FFFDF5;
     }
 
-    /* === 3. BẢNG MÀU CHIỀU MUỘN === */
+    /* === BẢNG MÀU CHIỀU MUỘN === */
     body.afternoon-mode {
-      --c-accent-1: #FFF2A6; /* Sunny Citron */
-      --c-sky:      #C7DDAA; /* Linden Leaf */
-      --c-sun:      #FFF2A6; /* Sunny Citron */
-      --c-cream:    #E6F0C3; /* Kiwi Cream */
-      --c-deep:     #9DBF7C; /* Matcha Mist */
+      --c-accent-1: #FFF2A6;
+      --c-sky:      #C7DDAA;
+      --c-sun:      #FFF2A6;
+      --c-cream:    #E6F0C3;
+      --c-deep:     #9DBF7C;
 
       --bg-grad:       linear-gradient(155deg, #9DBF7C 0%, #A7BC9A 38%, #C7DDAA 68%, #E6F0C3 100%);
       --veil-grad:     linear-gradient(135deg, rgba(255, 242, 166, 0.34) 0%, rgba(199, 221, 170, 0.28) 55%, rgba(157, 191, 124, 0.30) 100%);
-      --world-veil:    linear-gradient(180deg, rgba(230, 240, 195, 0.76) 0%, rgba(249, 252, 235, 0.72) 50%, rgba(157, 191, 124, 0.62) 100%);
+      --world-veil:    linear-gradient(180deg, rgba(230, 240, 195, 0.65) 0%, rgba(249, 252, 235, 0.60) 50%, rgba(157, 191, 124, 0.52) 100%);
       --pill-bg:       rgba(72, 94, 62, 0.58);
       --pill-hover:    rgba(72, 94, 62, 0.80);
-      --card-bg:       rgba(249, 252, 235, 0.85);
-      --block-bg:      rgba(249, 252, 235, 0.88);
-      --block-head-bg: rgba(167, 188, 154, 0.90);
-      --glow-color:    rgba(255, 242, 166, 0.90);
-      --border-soft:   rgba(157, 191, 124, 0.55);
+      --card-bg:       rgba(249, 252, 235, 0.78);
+
+      /* Block gần như trong suốt, hơi mờ */
+      --block-bg:      rgba(249, 252, 235, 0.14);
+      --block-head-bg: rgba(249, 252, 235, 0.22);
+      --block-hover-bg:rgba(255, 242, 166, 0.26);
+      --block-pulse-bg:rgba(255, 242, 166, 0.44);
+      --glow-color:    rgba(255, 242, 166, 0.92);
+      --border-soft:   rgba(157, 191, 124, 0.50);
+      --leaf-color-1:  #9DBF7C;
+      --leaf-color-2:  #C7DDAA;
+      --leaf-color-3:  #FFF2A6;
+
       --ink-dark:      #2B3B28;
       --ink-muted:     #4F6348;
       --paper-light:   #F9FCEB;
@@ -84,7 +100,7 @@
     }
 
     /* =========================================================
-       GIAO DIỆN 1: BÌA MỞ ĐẦU
+       GIAO DIỆN 1
     ========================================================= */
     #intro-stage {
       position: fixed;
@@ -100,9 +116,8 @@
       background-image: var(--intro-bg-image), var(--bg-grad);
       background-size: cover;
       background-position: center;
-      transition: opacity 0.85s ease, visibility 0.85s ease, background 0.6s ease;
+      transition: opacity 0.85s ease, visibility 0.85s ease;
     }
-
     #intro-stage.is-hidden {
       opacity: 0;
       visibility: hidden;
@@ -114,7 +129,6 @@
       inset: 0;
       background: var(--veil-grad);
       pointer-events: none;
-      transition: background 0.5s ease;
     }
 
     .sunbeam-left {
@@ -125,14 +139,7 @@
       height: 120vh;
       background:
         radial-gradient(circle at 8% 8%, rgba(255, 247, 214, 0.92) 0%, rgba(255, 224, 138, 0.44) 24%, transparent 58%),
-        conic-gradient(
-          from 118deg at 0% 0%,
-          transparent 0deg,
-          rgba(255, 247, 214, 0.38) 10deg,
-          rgba(255, 242, 178, 0.12) 22deg,
-          rgba(255, 247, 214, 0.34) 34deg,
-          transparent 54deg
-        );
+        conic-gradient(from 118deg at 0% 0%, transparent 0deg, rgba(255, 247, 214, 0.38) 10deg, rgba(255, 242, 178, 0.12) 22deg, rgba(255, 247, 214, 0.34) 34deg, transparent 54deg);
       filter: blur(6px);
       mix-blend-mode: screen;
       pointer-events: none;
@@ -163,7 +170,6 @@
       100% { transform: translate(35px, -70px) scale(1.1); opacity: 0; }
     }
 
-    /* Thanh góc trên Giao diện 1 */
     .corner-bar {
       position: absolute;
       top: 16px;
@@ -206,7 +212,6 @@
       background: var(--pill-hover);
       transform: translateY(-1px);
     }
-
     .pill-badge-icon {
       display: inline-flex;
       align-items: center;
@@ -229,13 +234,8 @@
       display: inline-block;
       flex-shrink: 0;
     }
-    .radio-disc.spinning {
-      animation: discSpin 3.6s linear infinite;
-    }
-    @keyframes discSpin {
-      from { transform: rotate(0deg); }
-      to   { transform: rotate(360deg); }
-    }
+    .radio-disc.spinning { animation: discSpin 3.6s linear infinite; }
+    @keyframes discSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
     .radio-popover {
       position: absolute;
@@ -259,7 +259,6 @@
       align-items: center;
       margin-bottom: 10px;
       font-size: 0.9rem;
-      letter-spacing: 0.05em;
     }
     .radio-close {
       background: transparent;
@@ -267,7 +266,6 @@
       color: #FFFDF5;
       font-size: 1.2rem;
       cursor: pointer;
-      line-height: 1;
     }
     .radio-embed-wrap iframe {
       width: 100%;
@@ -277,7 +275,6 @@
       display: block;
     }
 
-    /* Cụm trung tâm Giao diện 1 */
     .center-stack {
       position: relative;
       z-index: 5;
@@ -314,25 +311,21 @@
       height: 20px;
       margin-top: 16px;
       border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.25) 0%, rgba(127, 168, 214, 0.1) 55%, transparent 75%);
+      background: radial-gradient(ellipse at center, rgba(42, 60, 82, 0.25) 0%, transparent 75%);
       filter: blur(5px);
       animation: shadowFloat 4.2s ease-in-out infinite;
-      transition: opacity 0.4s ease;
     }
     @keyframes shadowFloat {
       0%, 100% { transform: scale(1); opacity: 0.85; }
       50%      { transform: scale(0.88); opacity: 0.52; }
     }
 
-    .center-stack.is-shaking .book-float {
-      animation: bookShake 0.38s ease-in-out;
-    }
+    .center-stack.is-shaking .book-float { animation: bookShake 0.38s ease-in-out; }
     @keyframes bookShake {
       0%, 100% { transform: translateY(-4px) rotateX(9deg) rotateZ(0deg); }
-      20%      { transform: translate(-5px, -7px) rotateX(9deg) rotateZ(-2.4deg); }
-      40%      { transform: translate(5px, -4px) rotateX(9deg) rotateZ(2.2deg); }
-      60%      { transform: translate(-4px, -6px) rotateX(9deg) rotateZ(-1.5deg); }
-      80%      { transform: translate(3px, -5px) rotateX(9deg) rotateZ(1.1deg); }
+      25%      { transform: translate(-5px, -7px) rotateX(9deg) rotateZ(-2.4deg); }
+      50%      { transform: translate(5px, -4px) rotateX(9deg) rotateZ(2.2deg); }
+      75%      { transform: translate(-4px, -6px) rotateX(9deg) rotateZ(-1.5deg); }
     }
     .center-stack.is-opening .book-float {
       animation: none;
@@ -355,7 +348,6 @@
       padding: 8px 10px 10px;
       border-radius: 9px;
       box-shadow: 0 20px 42px rgba(42, 60, 82, 0.24), inset 0 2px 4px rgba(255, 255, 255, 0.55);
-      transition: background 0.5s ease;
     }
     .book-half {
       position: relative;
@@ -366,14 +358,10 @@
       overflow: hidden;
     }
     .book-left {
-      border-top-right-radius: 2px;
-      border-bottom-right-radius: 2px;
       background: linear-gradient(90deg, #F6EED0 0%, var(--paper-light) 14%, var(--c-cream) 88%, #E7DEC0 100%);
       border-left: 3px solid #EDE3C3;
     }
     .book-right {
-      border-top-left-radius: 2px;
-      border-bottom-left-radius: 2px;
       background: linear-gradient(270deg, #F6EED0 0%, var(--paper-light) 14%, var(--c-cream) 88%, #E7DEC0 100%);
       border-right: 3px solid #EDE3C3;
     }
@@ -401,7 +389,6 @@
       animation: none;
       transform: rotateY(-168deg);
     }
-
     .page-photo {
       position: absolute;
       top: 0;
@@ -470,12 +457,11 @@
       font-weight: 500;
       cursor: pointer;
       box-shadow: 0 10px 26px rgba(42, 60, 82, 0.16);
-      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+      transition: transform 0.2s ease, background 0.2s ease;
     }
     .btn-enter-world:hover {
       background: var(--c-accent-1);
       transform: translateY(-2px);
-      box-shadow: 0 14px 30px rgba(42, 60, 82, 0.22);
     }
     .touch-caption {
       margin-top: 14px;
@@ -483,11 +469,10 @@
       letter-spacing: 0.16em;
       color: var(--ink-muted);
       cursor: pointer;
-      user-select: none;
     }
 
     /* =========================================================
-       GIAO DIỆN 2: SỔ TAY HỌC VIÊN (1/4 TRÁI - 3/4 PHẢI)
+       GIAO DIỆN 2: BLOCK ĐẦU TIÊN + BLOCK TRONG SUỐT SÁT LỀ TRÁI
     ========================================================= */
     #world-page {
       position: relative;
@@ -501,7 +486,6 @@
       pointer-events: auto;
     }
 
-    /* Ảnh nền mờ phía sau Giao diện 2 */
     .world-bg-layer {
       position: fixed;
       inset: 0;
@@ -519,10 +503,8 @@
       z-index: -1;
       background: var(--world-veil);
       pointer-events: none;
-      transition: background 0.5s ease;
     }
 
-    /* Thanh trên cùng Giao diện 2 */
     .world-topbar {
       position: sticky;
       top: 0;
@@ -533,9 +515,9 @@
       flex-wrap: wrap;
       gap: 10px;
       padding: 12px 24px;
-      background: rgba(255, 253, 245, 0.45);
+      background: rgba(255, 253, 245, 0.35);
       backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-soft);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
     }
     .world-topbar-group {
       display: flex;
@@ -544,48 +526,106 @@
       gap: 10px;
     }
 
-    /* Lưới 1/4 Trái - 3/4 Phải trên máy tính */
-    .world-layout {
-      max-width: 1240px;
+    /* Wrapper chừa padding trái = 0 để block bám sát lề trái */
+    .world-wrapper {
+      width: 100%;
+      max-width: 1320px;
       margin: 0 auto;
-      padding: 28px 24px 96px;
+      padding: 22px 28px 96px 0;
+    }
+
+    /* BLOCK ĐẦU TIÊN (BÊN TRÊN ĐẦU) */
+    .world-top-block {
+      position: relative;
+      overflow: hidden;
+      margin-left: 28px;
+      margin-bottom: 26px;
+      border-radius: 18px;
+      min-height: 235px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background-color: var(--c-sky);
+      background-image:
+        linear-gradient(180deg, rgba(255, 253, 245, 0.14) 0%, rgba(255, 253, 245, 0.78) 72%, var(--card-bg) 100%),
+        var(--top-banner-image),
+        var(--bg-grad);
+      background-size: cover;
+      background-position: center;
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 12px 32px rgba(42, 60, 82, 0.10);
+    }
+    .banner-badge {
+      display: inline-block;
+      align-self: flex-start;
+      padding: 4px 14px;
+      border-radius: 999px;
+      background: var(--c-accent-1);
+      color: var(--ink-dark);
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 10px;
+    }
+    .world-top-block h1 {
+      margin: 0 0 4px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.15;
+    }
+    .world-top-block .sub-en {
+      font-size: 0.9rem;
+      letter-spacing: 0.28em;
+      color: var(--ink-muted);
+      margin-bottom: 10px;
+    }
+    .world-top-block p {
+      margin: 0;
+      max-width: 720px;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--ink-dark);
+    }
+
+    /* PHẦN BÊN DƯỚI BLOCK ĐẦU TIÊN: 1/4 SÁT LỀ TRÁI - 3/4 PHẢI */
+    .world-layout {
       display: grid;
-      grid-template-columns: 1fr 3fr; /* 1/4 và 3/4 */
+      grid-template-columns: 1fr 3fr;
       gap: 28px;
       align-items: start;
     }
 
-    /* CỘT TRÁI (1/4): CÁC BLOCK NỐI LIỀN NHAU XUỐNG */
+    /* CỘT TRÁI 1/4: BLOCK HƠI MỜ, GẦN NHƯ TRONG SUỐT, SÁT LỀ */
     .handbook-nav {
       position: sticky;
       top: 76px;
       z-index: 35;
     }
-
     .handbook-stack {
       display: flex;
       flex-direction: column;
-      border-radius: 14px;
+      border-radius: 0 16px 16px 0;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-left: 0;
       background: var(--block-bg);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 12px 30px rgba(42, 60, 82, 0.14);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 8px 26px rgba(42, 60, 82, 0.08);
     }
 
-    /* Block tiêu đề ✎ᝰ. Sổ tay học viên */
     .hb-header {
       width: 100%;
       border: 0;
-      border-bottom: 1px solid var(--border-soft);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.28);
       background: var(--block-head-bg);
       color: var(--ink-dark);
+      text-shadow: 0 1px 8px rgba(255, 253, 245, 0.75);
       padding: 16px 18px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      font-size: 1.15rem;
+      font-size: 1.14rem;
       font-weight: 600;
       text-align: left;
       cursor: default;
@@ -597,19 +637,18 @@
       transition: transform 0.25s ease;
     }
 
-    /* Danh sách các block nối liền bên dưới */
     .hb-list {
       display: flex;
       flex-direction: column;
     }
-
     .hb-item {
       position: relative;
       width: 100%;
       border: 0;
-      border-bottom: 1px solid var(--border-soft);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.24);
       background: transparent;
       color: var(--ink-dark);
+      text-shadow: 0 1px 8px rgba(255, 253, 245, 0.78);
       padding: 15px 18px;
       text-align: left;
       font-size: 1.04rem;
@@ -619,124 +658,127 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      transition: background 0.25s ease, box-shadow 0.25s ease, color 0.25s ease, padding-left 0.22s ease;
+      transition: background 0.28s ease, box-shadow 0.28s ease, padding-left 0.22s ease;
     }
-    .hb-item:last-child {
-      border-bottom: 0;
-    }
+    .hb-item:last-child { border-bottom: 0; }
     .hb-item::before {
       content: "";
       position: absolute;
       left: 0;
       top: 0;
       bottom: 0;
-      width: 4px;
-      background: var(--c-deep);
+      width: 3px;
+      background: #FFFDF5;
+      box-shadow: 0 0 10px var(--glow-color);
       opacity: 0;
       transition: opacity 0.22s ease;
     }
 
-    /* Đưa chuột hoặc kích hoạt -> Phát sáng + rung nhẹ */
-    .hb-item:hover,
-    .hb-item.is-pulsing {
-      background: linear-gradient(90deg, var(--c-accent-1) 0%, rgba(255, 253, 245, 0.95) 100%);
-      box-shadow: inset 0 0 18px var(--glow-color), 0 0 14px var(--glow-color);
-      padding-left: 22px;
+    /* Đưa chuột vào -> hơi sáng & rung nhẹ */
+    .hb-item:hover {
+      background: var(--block-hover-bg);
+      box-shadow: inset 0 0 22px var(--glow-color), 0 0 16px var(--glow-color);
+      padding-left: 24px;
       animation: blockShake 0.36s ease-in-out;
     }
 
+    /* Ấn vào -> phát sáng rực hơn + rung nhẹ + lá rơi */
+    .hb-item.is-pulsing {
+      background: var(--block-pulse-bg);
+      box-shadow: inset 0 0 28px var(--glow-color), 0 0 24px var(--glow-color), 0 0 42px var(--glow-color);
+      animation: blockShake 0.4s ease-in-out;
+    }
+
     .hb-item.is-active {
-      background: linear-gradient(90deg, var(--c-accent-1) 0%, rgba(255, 253, 245, 0.92) 100%);
+      background: var(--block-hover-bg);
       font-weight: 600;
     }
     .hb-item.is-active::before,
-    .hb-item:hover::before {
-      opacity: 1;
-    }
+    .hb-item:hover::before,
+    .hb-item.is-pulsing::before { opacity: 1; }
 
-    .hb-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--c-deep);
-      opacity: 0.45;
-      flex-shrink: 0;
-      transition: transform 0.2s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+    .hb-bow {
+      font-size: 0.92rem;
+      opacity: 0.55;
+      transition: opacity 0.22s ease, transform 0.22s ease, text-shadow 0.22s ease;
     }
-    .hb-item:hover .hb-dot,
-    .hb-item.is-active .hb-dot {
+    .hb-item:hover .hb-bow,
+    .hb-item.is-active .hb-bow,
+    .hb-item.is-pulsing .hb-bow {
       opacity: 1;
-      transform: scale(1.25);
-      box-shadow: 0 0 8px var(--c-sun);
+      transform: scale(1.18);
+      text-shadow: 0 0 10px var(--glow-color);
     }
 
     @keyframes blockShake {
       0%, 100% { transform: translateX(0); }
-      20%      { transform: translateX(-3px) rotate(-0.4deg); }
-      45%      { transform: translateX(3px) rotate(0.4deg); }
+      20%      { transform: translateX(-3px) rotate(-0.35deg); }
+      45%      { transform: translateX(3px) rotate(0.35deg); }
       70%      { transform: translateX(-2px) rotate(-0.2deg); }
       88%      { transform: translateX(2px) rotate(0.2deg); }
     }
 
-    /* CỘT PHẢI (3/4): NỘI DUNG CHI TIẾT */
+    /* === HIỆU ỨNG DAO ĐỘNG LÁ RƠI KHI ẤN VÀO BLOCK === */
+    #leaf-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 95;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .falling-leaf {
+      position: absolute;
+      width: var(--leaf-size, 20px);
+      height: var(--leaf-size, 20px);
+      opacity: 0;
+      will-change: transform, opacity;
+      filter: drop-shadow(0 2px 6px rgba(255, 224, 138, 0.55));
+      animation: leafSwayFall var(--fall-dur, 2.8s) cubic-bezier(0.37, 0, 0.63, 1) forwards;
+    }
+    @keyframes leafSwayFall {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 0, 0) rotate(var(--r0, 0deg)) scale(0.72);
+      }
+      12% {
+        opacity: 0.94;
+      }
+      30% {
+        transform: translate3d(var(--sway-a, 28px), 24vh, 0) rotate(var(--r1, 36deg)) scale(1);
+      }
+      55% {
+        transform: translate3d(var(--sway-b, -26px), 50vh, 0) rotate(var(--r2, -28deg)) scale(0.95);
+      }
+      80% {
+        opacity: 0.78;
+        transform: translate3d(var(--sway-c, 22px), 76vh, 0) rotate(var(--r3, 44deg)) scale(0.88);
+      }
+      100% {
+        opacity: 0;
+        transform: translate3d(var(--sway-d, -16px), 102vh, 0) rotate(var(--r4, 14deg)) scale(0.80);
+      }
+    }
+
+    /* Cột phải 3/4: Nội dung */
     .world-content {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 26px;
       min-width: 0;
     }
-
-    .world-hero-banner {
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.85);
-      border-radius: 16px;
-      padding: 28px 30px;
-      box-shadow: 0 12px 30px rgba(42, 60, 82, 0.10);
-    }
-    .banner-badge {
-      display: inline-block;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: var(--c-accent-1);
-      color: var(--ink-dark);
-      font-size: 0.88rem;
-      letter-spacing: 0.06em;
-      margin-bottom: 10px;
-    }
-    .world-hero-banner h1 {
-      margin: 0 0 6px;
-      font-size: clamp(1.9rem, 3.6vw, 2.7rem);
-      line-height: 1.2;
-    }
-    .world-hero-banner .sub-en {
-      font-size: 0.9rem;
-      letter-spacing: 0.26em;
-      color: var(--ink-muted);
-      margin-bottom: 12px;
-    }
-    .world-hero-banner p {
-      margin: 0;
-      font-size: 1.12rem;
-      line-height: 1.65;
-      color: var(--ink-muted);
-    }
-
-    /* Từng phần nội dung */
     .content-section {
       scroll-margin-top: 84px;
       background: var(--card-bg);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.72);
       border-radius: 16px;
       padding: 28px 30px;
       box-shadow: 0 12px 30px rgba(42, 60, 82, 0.10);
       transition: box-shadow 0.45s ease;
     }
     .content-section.is-highlighted {
-      box-shadow: 0 0 28px var(--glow-color), 0 12px 32px rgba(42, 60, 82, 0.14);
+      box-shadow: 0 0 30px var(--glow-color), 0 12px 32px rgba(42, 60, 82, 0.14);
     }
-
     .sec-kicker {
       font-size: 0.88rem;
       letter-spacing: 0.14em;
@@ -751,60 +793,37 @@
       padding-bottom: 10px;
     }
 
-    /* Khung thẻ bên trong mỗi phần */
     .info-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 16px;
     }
     .sub-card {
-      background: rgba(255, 255, 255, 0.62);
+      background: rgba(255, 255, 255, 0.56);
       border: 1px solid var(--border-soft);
       border-radius: 12px;
       padding: 18px;
     }
-    .sub-card h3 {
-      margin: 0 0 8px;
-      font-size: 1.2rem;
-    }
-    .sub-card p {
-      margin: 0;
-      font-size: 1.04rem;
-      line-height: 1.6;
-      color: var(--ink-muted);
-    }
+    .sub-card h3 { margin: 0 0 8px; font-size: 1.2rem; }
+    .sub-card p { margin: 0; font-size: 1.04rem; line-height: 1.6; color: var(--ink-muted); }
 
-    /* Danh sách thuật ngữ */
-    .glossary-list {
-      display: grid;
-      gap: 14px;
-    }
+    .glossary-list { display: grid; gap: 14px; }
     .glossary-item {
-      background: rgba(255, 255, 255, 0.62);
+      background: rgba(255, 255, 255, 0.56);
       border-left: 3px solid var(--c-deep);
       border-radius: 0 12px 12px 0;
       padding: 14px 18px;
     }
-    .glossary-term {
-      font-weight: 600;
-      font-size: 1.18rem;
-      margin-bottom: 4px;
-    }
-    .glossary-desc {
-      margin: 0;
-      font-size: 1.04rem;
-      line-height: 1.6;
-      color: var(--ink-muted);
-    }
+    .glossary-term { font-weight: 600; font-size: 1.18rem; margin-bottom: 4px; }
+    .glossary-desc { margin: 0; font-size: 1.04rem; line-height: 1.6; color: var(--ink-muted); }
 
-    /* Lưới hồ sơ nhân vật */
     .char-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
       gap: 16px;
     }
     .char-card {
-      background: rgba(255, 255, 255, 0.68);
+      background: rgba(255, 255, 255, 0.60);
       border: 1px solid var(--border-soft);
       border-radius: 14px;
       overflow: hidden;
@@ -820,66 +839,35 @@
       justify-content: center;
       color: var(--ink-muted);
       font-style: italic;
-      font-size: 0.95rem;
     }
-    .char-avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .char-body {
-      padding: 14px 16px;
-    }
-    .char-role {
-      font-size: 0.82rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-muted);
-    }
-    .char-name {
-      margin: 2px 0 6px;
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
-    .char-note {
-      margin: 0;
-      font-size: 1rem;
-      line-height: 1.55;
-      color: var(--ink-muted);
-    }
+    .char-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .char-body { padding: 14px 16px; }
+    .char-role { font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); }
+    .char-name { margin: 2px 0 6px; font-size: 1.25rem; font-weight: 600; }
+    .char-note { margin: 0; font-size: 1rem; line-height: 1.55; color: var(--ink-muted); }
 
     /* =========================================================
-       ĐIỆN THOẠI (<= 820px): ẨN LIST BLOCK, BẤM TIÊU ĐỀ MỚI HIỆN
+       ĐIỆN THOẠI (<= 820px)
     ========================================================= */
     @media (max-width: 820px) {
-      .world-topbar {
-        padding: 10px 14px;
-      }
-      .world-layout {
-        grid-template-columns: 1fr;
-        padding: 16px 14px 72px;
-        gap: 18px;
-      }
-      .handbook-nav {
-        top: 64px;
-      }
-      .hb-header {
-        cursor: pointer;
-      }
-      .hb-header:hover {
-        background: var(--c-accent-1);
-        box-shadow: 0 0 14px var(--glow-color);
-        animation: blockShake 0.35s ease-in-out;
-      }
-      .hb-mobile-arrow {
-        display: inline-block;
-      }
-      .handbook-stack.mobile-open .hb-mobile-arrow {
-        transform: rotate(180deg);
-      }
+      .world-topbar { padding: 10px 14px; }
+      .world-wrapper { padding: 14px 14px 72px 0; }
+      .world-top-block { margin-left: 14px; padding: 24px 18px; min-height: 190px; margin-bottom: 18px; }
+      .world-layout { grid-template-columns: 1fr; gap: 18px; }
+      .world-content { padding-left: 14px; }
 
-      /* Ẩn list mặc định trên điện thoại */
+      /* Block sát lề trái trên điện thoại, ẩn list mặc định */
+      .handbook-nav { top: 64px; margin-right: 14px; }
+      .hb-header { cursor: pointer; }
+      .hb-header:hover,
+      .hb-header.is-pulsing {
+        background: var(--block-pulse-bg);
+        box-shadow: inset 0 0 22px var(--glow-color), 0 0 20px var(--glow-color);
+        animation: blockShake 0.36s ease-in-out;
+      }
+      .hb-mobile-arrow { display: inline-block; }
+      .handbook-stack.mobile-open .hb-mobile-arrow { transform: rotate(180deg); }
+
       .hb-list {
         max-height: 0;
         opacity: 0;
@@ -890,14 +878,7 @@
         max-height: 360px;
         opacity: 1;
       }
-
-      .content-section {
-        scroll-margin-top: 132px;
-        padding: 22px 18px;
-      }
-      .world-hero-banner {
-        padding: 22px 18px;
-      }
+      .content-section { scroll-margin-top: 132px; padding: 22px 18px; }
     }
 
     @media (max-width: 600px) {
@@ -909,9 +890,10 @@
 </head>
 <body class="intro-locked">
 
-  <!-- =======================================================
-       GIAO DIỆN 1: CUỐN SÁCH LƠ LỬNG
-  ======================================================== -->
+  <!-- Lớp lá rơi toàn màn hình -->
+  <div id="leaf-overlay" aria-hidden="true"></div>
+
+  <!-- GIAO DIỆN 1 -->
   <div id="intro-stage" aria-label="Bìa mở đầu">
     <div class="bg-soft-veil"></div>
     <div class="sunbeam-left"></div>
@@ -985,9 +967,7 @@
     </div>
   </div>
 
-  <!-- =======================================================
-       GIAO DIỆN 2: SỔ TAY HỌC VIÊN NHẤT XUYÊN
-  ======================================================== -->
+  <!-- GIAO DIỆN 2 -->
   <div id="world-page">
     <div class="world-bg-layer"></div>
     <div class="world-bg-veil"></div>
@@ -1010,125 +990,109 @@
       </div>
     </header>
 
-    <main class="world-layout">
-      <!-- BÊN TRÁI (1/4): CÁC BLOCK NỐI LIỀN NHAU -->
-      <aside class="handbook-nav" aria-label="Sổ tay học viên">
-        <div class="handbook-stack" id="handbookStack">
-          <button type="button" class="hb-header" id="hbHeaderBtn" aria-expanded="false">
-            <span>✎ᝰ. Sổ tay học viên</span>
-            <span class="hb-mobile-arrow">▾</span>
-          </button>
+    <div class="world-wrapper">
+      <!-- BLOCK ĐẦU TIÊN (TRÊN ĐẦU) -->
+      <section class="world-top-block">
+        <span class="banner-badge">Hồ sơ Học viện ౨ৎ Nhất Xuyên</span>
+        <h1>Trường Trung Học Nhất Xuyên</h1>
+        <div class="sub-en">ST. VANGUARD ACADEMY</div>
+        <p>“Tiên phong về Trí tuệ, Pháo đài của Kỷ luật.” — Cẩm nang tổng hợp thông tin, thuật ngữ và hồ sơ học viên của ngôi trường.</p>
+      </section>
 
-          <div class="hb-list" id="hbList">
-            <button type="button" class="hb-item is-active" data-target="sec-1">
-              <span>Phần 1. Thông tin cần biết.</span>
-              <span class="hb-dot"></span>
+      <!-- BÊN DƯỚI BLOCK ĐẦU TIÊN: 1/4 SÁT LỀ TRÁI - 3/4 PHẢI -->
+      <main class="world-layout">
+        <aside class="handbook-nav" aria-label="Sổ tay học viên">
+          <div class="handbook-stack" id="handbookStack">
+            <button type="button" class="hb-header" id="hbHeaderBtn" aria-expanded="false">
+              <span>✎ᝰ౨ৎ Sổ tay học viên</span>
+              <span class="hb-mobile-arrow">▾</span>
             </button>
-            <button type="button" class="hb-item" data-target="sec-2">
-              <span>Phần 2. Thuật ngữ.</span>
-              <span class="hb-dot"></span>
-            </button>
-            <button type="button" class="hb-item" data-target="sec-3">
-              <span>Phần 3. Hồ sơ nhân vật</span>
-              <span class="hb-dot"></span>
-            </button>
+
+            <div class="hb-list" id="hbList">
+              <button type="button" class="hb-item is-active" data-target="sec-1">
+                <span>Phần 1 ౨ৎ Thông tin cần biết</span>
+                <span class="hb-bow">౨ৎ</span>
+              </button>
+              <button type="button" class="hb-item" data-target="sec-2">
+                <span>Phần 2 ౨ৎ Thuật ngữ</span>
+                <span class="hb-bow">౨ৎ</span>
+              </button>
+              <button type="button" class="hb-item" data-target="sec-3">
+                <span>Phần 3 ౨ৎ Hồ sơ nhân vật</span>
+                <span class="hb-bow">౨ৎ</span>
+              </button>
+            </div>
           </div>
+        </aside>
+
+        <div class="world-content">
+          <section class="content-section" id="sec-1">
+            <div class="sec-kicker">Phần 1 ౨ৎ</div>
+            <h2>Thông tin cần biết</h2>
+            <div class="info-grid">
+              <div class="sub-card">
+                <h3>Tổng quan học viện</h3>
+                <p>Điền lịch sử thành lập, vị trí, kiến trúc khuôn viên và không khí chung của Trường Trung Học Nhất Xuyên.</p>
+              </div>
+              <div class="sub-card">
+                <h3>Kỷ luật & Nội quy</h3>
+                <p>Điền các quy định đặc trưng của St. Vanguard Academy, giờ giấc, đồng phục hoặc hệ thống ban cán sự.</p>
+              </div>
+              <div class="sub-card">
+                <h3>Cơ cấu lớp & Câu lạc bộ</h3>
+                <p>Điền phân chia các khối lớp, hệ chuyên, hội học sinh và các hoạt động thường niên trong năm học.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-section" id="sec-2">
+            <div class="sec-kicker">Phần 2 ౨ৎ</div>
+            <h2>Thuật ngữ</h2>
+            <div class="glossary-list">
+              <div class="glossary-item">
+                <div class="glossary-term">Thuật ngữ 01 ౨ৎ (Tên khái niệm)</div>
+                <p class="glossary-desc">Giải thích ngắn gọn ý nghĩa, nguồn gốc hoặc cách sử dụng thuật ngữ này.</p>
+              </div>
+              <div class="glossary-item">
+                <div class="glossary-term">Thuật ngữ 02 ౨ৎ (Tên khái niệm)</div>
+                <p class="glossary-desc">Giải thích quy ước riêng giữa các học viên, ký hiệu nội bộ hoặc địa điểm đặc biệt.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="content-section" id="sec-3">
+            <div class="sec-kicker">Phần 3 ౨ৎ</div>
+            <h2>Hồ sơ nhân vật</h2>
+            <div class="char-grid">
+              <div class="char-card">
+                <div class="char-avatar"><span>Ảnh nhân vật 01</span></div>
+                <div class="char-body">
+                  <div class="char-role">Lớp · Vai trò</div>
+                  <div class="char-name">Tên Nhân Vật 1</div>
+                  <p class="char-note">Đôi dòng giới thiệu tính cách, biệt danh hoặc dấu ấn nổi bật.</p>
+                </div>
+              </div>
+              <div class="char-card">
+                <div class="char-avatar"><span>Ảnh nhân vật 02</span></div>
+                <div class="char-body">
+                  <div class="char-role">Lớp · Vai trò</div>
+                  <div class="char-name">Tên Nhân Vật 2</div>
+                  <p class="char-note">Đôi dòng giới thiệu tính cách, mối quan hệ hoặc câu chuyện riêng.</p>
+                </div>
+              </div>
+              <div class="char-card">
+                <div class="char-avatar"><span>Ảnh nhân vật 03</span></div>
+                <div class="char-body">
+                  <div class="char-role">Lớp · Vai trò</div>
+                  <div class="char-name">Tên Nhân Vật 3</div>
+                  <p class="char-note">Gắn thêm thông tin chi tiết nhân vật tại đây.</p>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-      </aside>
-
-      <!-- BÊN PHẢI (3/4): NỘI DUNG -->
-      <div class="world-content">
-        <div class="world-hero-banner">
-          <span class="banner-badge">Hồ sơ Học viện · Nhất Xuyên</span>
-          <h1>Trường Trung Học Nhất Xuyên</h1>
-          <div class="sub-en">ST. VANGUARD ACADEMY</div>
-          <p>
-            “Tiên phong về Trí tuệ, Pháo đài của Kỷ luật.” — Cẩm nang lưu trữ những quy tắc, thuật ngữ đặc thù và hồ sơ học viên của ngôi trường.
-          </p>
-        </div>
-
-        <!-- PHẦN 1 -->
-        <section class="content-section" id="sec-1">
-          <div class="sec-kicker">Phần 1</div>
-          <h2>Thông tin cần biết.</h2>
-          <div class="info-grid">
-            <div class="sub-card">
-              <h3>Tổng quan học viện</h3>
-              <p>Điền lịch sử thành lập, vị trí địa lý, kiến trúc khuôn viên và bầu không khí chung của Trường Trung Học Nhất Xuyên tại đây.</p>
-            </div>
-            <div class="sub-card">
-              <h3>Kỷ luật & Nội quy</h3>
-              <p>Điền các quy định đặc trưng của St. Vanguard Academy, giờ giới nghiêm, đồng phục, điểm rèn luyện hoặc hệ thống ban cán sự.</p>
-            </div>
-            <div class="sub-card">
-              <h3>Cơ cấu lớp & Câu lạc bộ</h3>
-              <p>Điền phân chia các khối lớp, hệ chuyên, hội học sinh và các hoạt động thường niên trong năm học.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- PHẦN 2 -->
-        <section class="content-section" id="sec-2">
-          <div class="sec-kicker">Phần 2</div>
-          <h2>Thuật ngữ.</h2>
-          <div class="glossary-list">
-            <div class="glossary-item">
-              <div class="glossary-term">Thuật ngữ 01 · (Tên khái niệm)</div>
-              <p class="glossary-desc">Giải thích ngắn gọn ý nghĩa, nguồn gốc hoặc cách sử dụng thuật ngữ này trong bối cảnh Nhất Xuyên.</p>
-            </div>
-            <div class="glossary-item">
-              <div class="glossary-term">Thuật ngữ 02 · (Tên khái niệm)</div>
-              <p class="glossary-desc">Giải thích quy ước riêng giữa các học viên, ký hiệu nội bộ, danh hiệu hoặc địa điểm đặc biệt.</p>
-            </div>
-            <div class="glossary-item">
-              <div class="glossary-term">Thuật ngữ 03 · (Tên khái niệm)</div>
-              <p class="glossary-desc">Thêm bao nhiêu thẻ `.glossary-item` tùy ý khi bạn bổ sung từ điển thế giới.</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- PHẦN 3 -->
-        <section class="content-section" id="sec-3">
-          <div class="sec-kicker">Phần 3</div>
-          <h2>Hồ sơ nhân vật</h2>
-          <div class="char-grid">
-            <div class="char-card">
-              <div class="char-avatar">
-                <!-- Có ảnh thì dùng: <img src="./assets/char1.png" alt="Nhân vật 1"> -->
-                <span>Ảnh nhân vật 01</span>
-              </div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 1</div>
-                <p class="char-note">Đôi dòng giới thiệu tính cách, biệt danh hoặc dấu ấn nổi bật tại Nhất Xuyên.</p>
-              </div>
-            </div>
-
-            <div class="char-card">
-              <div class="char-avatar">
-                <span>Ảnh nhân vật 02</span>
-              </div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 2</div>
-                <p class="char-note">Đôi dòng giới thiệu tính cách, mối quan hệ hoặc câu chuyện riêng.</p>
-              </div>
-            </div>
-
-            <div class="char-card">
-              <div class="char-avatar">
-                <span>Ảnh nhân vật 03</span>
-              </div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 3</div>
-                <p class="char-note">Gắn thêm link sang chi tiết nhân vật bên web tổng nếu muốn.</p>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-    </main>
+      </main>
+    </div>
   </div>
 
   <script>
@@ -1145,10 +1109,10 @@
     const hbHeaderBtn   = document.getElementById('hbHeaderBtn');
     const hbItems       = document.querySelectorAll('.hb-item');
     const sections      = document.querySelectorAll('.content-section');
+    const leafOverlay   = document.getElementById('leaf-overlay');
 
     let isTransitioning = false;
 
-    // 1. Tạo hạt nắng bay nhẹ
     (function createDust() {
       const layer = document.getElementById('dust-layer');
       for (let i = 0; i < 24; i++) {
@@ -1165,7 +1129,6 @@
       }
     })();
 
-    // 2. Nghiêng cuốn sách 3D theo chuột
     window.addEventListener('mousemove', (e) => {
       if (introStage.classList.contains('is-hidden')) return;
       const x = (e.clientX / window.innerWidth) * 2 - 1;
@@ -1173,7 +1136,6 @@
       bookTilt.style.transform = 'rotateY(' + (x * 8) + 'deg) rotateX(' + (-y * 8) + 'deg)';
     });
 
-    // 3. Đổi chế độ Bình minh / Chiều muộn (đồng bộ cả 2 giao diện)
     function toggleDayMode() {
       const isAfternoon = document.body.classList.toggle('afternoon-mode');
       document.querySelectorAll('.themeLabelText').forEach((el) => {
@@ -1183,7 +1145,6 @@
     document.getElementById('btnThemeToggle').addEventListener('click', toggleDayMode);
     document.getElementById('btnThemeToggleWorld').addEventListener('click', toggleDayMode);
 
-    // 4. Đài phát thanh
     document.getElementById('btnRadioToggle').addEventListener('click', () => {
       radioPopover.classList.toggle('open');
     });
@@ -1191,7 +1152,6 @@
       radioPopover.classList.remove('open');
     });
 
-    // 5. Mở sách chuyển vào Giao diện 2
     function openBookSequence() {
       if (isTransitioning) return;
       isTransitioning = true;
@@ -1229,36 +1189,83 @@
       }
     });
 
-    // 6. Đóng/mở danh sách block trên điện thoại khi ấn "✎ᝰ. Sổ tay học viên"
+    /* === TẠO DAO ĐỘNG LÁ RƠI TỪ BLOCK ĐƯỢC ẤN === */
+    function spawnLeavesFromBlock(el) {
+      const rect = el.getBoundingClientRect();
+      const colors = ['var(--leaf-color-1)', 'var(--leaf-color-2)', 'var(--leaf-color-3)'];
+      const leafCount = 12;
+
+      for (let i = 0; i < leafCount; i++) {
+        const leaf = document.createElement('div');
+        leaf.className = 'falling-leaf';
+
+        const startX = rect.left + Math.random() * Math.max(rect.width, 120);
+        const startY = rect.top + Math.random() * rect.height;
+        const size   = 14 + Math.random() * 12;
+        const dur    = 2.2 + Math.random() * 1.4;
+        const color  = colors[i % colors.length];
+
+        leaf.style.left = startX + 'px';
+        leaf.style.top  = startY + 'px';
+        leaf.style.setProperty('--leaf-size', size + 'px');
+        leaf.style.setProperty('--fall-dur', dur + 's');
+        leaf.style.animationDelay = (i * 0.045) + 's';
+
+        // Biên độ dao động đung đưa trái <-> phải
+        const dir = i % 2 === 0 ? 1 : -1;
+        leaf.style.setProperty('--sway-a', (dir * (24 + Math.random() * 34)) + 'px');
+        leaf.style.setProperty('--sway-b', (-dir * (20 + Math.random() * 36)) + 'px');
+        leaf.style.setProperty('--sway-c', (dir * (18 + Math.random() * 32)) + 'px');
+        leaf.style.setProperty('--sway-d', (-dir * (12 + Math.random() * 26)) + 'px');
+
+        leaf.style.setProperty('--r0', (Math.random() * 40 - 20) + 'deg');
+        leaf.style.setProperty('--r1', (dir * (35 + Math.random() * 35)) + 'deg');
+        leaf.style.setProperty('--r2', (-dir * (25 + Math.random() * 35)) + 'deg');
+        leaf.style.setProperty('--r3', (dir * (30 + Math.random() * 40)) + 'deg');
+        leaf.style.setProperty('--r4', (Math.random() * 40 - 20) + 'deg');
+
+        leaf.innerHTML =
+          '<svg viewBox="0 0 24 24" width="100%" height="100%" fill="none">' +
+            '<path d="M19.5 4.5C12.5 4.5 6.5 8.8 5 16.5C4.7 18 5.8 19.3 7.3 19C15 17.5 19.5 11.5 19.5 4.5Z" fill="' + color + '" fill-opacity="0.92"/>' +
+            '<path d="M5.5 18.5C9.5 14.5 13.5 10.5 18 6" stroke="rgba(255,255,255,0.75)" stroke-width="1.2" stroke-linecap="round"/>' +
+          '</svg>';
+
+        leafOverlay.appendChild(leaf);
+        setTimeout(() => leaf.remove(), (dur + 0.6) * 1000);
+      }
+    }
+
+    function triggerGlowAndSway(el) {
+      el.classList.remove('is-pulsing');
+      void el.offsetWidth;
+      el.classList.add('is-pulsing');
+      spawnLeavesFromBlock(el);
+      setTimeout(() => el.classList.remove('is-pulsing'), 550);
+    }
+
+    // Trên điện thoại: ấn vào '✎ᝰ౨ৎ Sổ tay học viên' để mở/đóng list + phát sáng + lá rơi
     hbHeaderBtn.addEventListener('click', () => {
       if (window.innerWidth > 820) return;
+      triggerGlowAndSway(hbHeaderBtn);
       const opened = handbookStack.classList.toggle('mobile-open');
       hbHeaderBtn.setAttribute('aria-expanded', String(opened));
     });
 
-    // 7. Ấn vào 1 block -> phát sáng + rung nhẹ -> cuộn đến phần đó
+    // Ấn vào block Phần 1, 2, 3 -> phát sáng + rung + lá rơi -> cuộn tới phần đó
     hbItems.forEach((btn) => {
       btn.addEventListener('click', () => {
         const targetId = btn.getAttribute('data-target');
         const targetSec = document.getElementById(targetId);
         if (!targetSec) return;
 
-        // Kích hoạt rung nhẹ & phát sáng ngay lập tức
-        btn.classList.remove('is-pulsing');
-        void btn.offsetWidth;
-        btn.classList.add('is-pulsing');
-
+        triggerGlowAndSway(btn);
         hbItems.forEach((b) => b.classList.remove('is-active'));
         btn.classList.add('is-active');
 
-        setTimeout(() => btn.classList.remove('is-pulsing'), 420);
-
-        // Cuộn tới phần thông tin tương ứng
         targetSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
         targetSec.classList.add('is-highlighted');
-        setTimeout(() => targetSec.classList.remove('is-highlighted'), 900);
+        setTimeout(() => targetSec.classList.remove('is-highlighted'), 950);
 
-        // Trên điện thoại: thu gọn list sau khi chọn để dễ đọc nội dung
         if (window.innerWidth <= 820) {
           setTimeout(() => {
             handbookStack.classList.remove('mobile-open');
@@ -1268,7 +1275,6 @@
       });
     });
 
-    // 8. Tự động sáng block tương ứng khi cuộn đọc trang
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
