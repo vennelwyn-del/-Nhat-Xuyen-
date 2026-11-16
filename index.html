@@ -9377,7 +9377,7 @@
         }
       });
     });
-   /* === TƯƠNG TÁC PHẦN 2: TÌM BẰNG TỪ (CẢ CÓ DẤU & KHÔNG DẤU) + CHỈ ĐIỂM === */
+   /* === TƯƠNG TÁC PHẦN 2: TÌM CHÍNH XÁC TÊN THUẬT NGỮ & THEO TỪ === */
     (function initLexiconSearchAndTabs() {
       const sec2El = document.getElementById('sec-2');
       if (!sec2El) return;
@@ -9389,7 +9389,6 @@
       const lexTabs     = sec2El.querySelectorAll('[data-lex-tab]');
       const btnExpand   = document.getElementById('btnLexExpandAll');
 
-      // Tạo dòng báo số kết quả & nút Xóa nhanh ngay dưới ô tìm kiếm
       let statusLine = document.getElementById('lexSearchStatus');
       if (!statusLine && searchInput && searchInput.parentElement) {
         statusLine = document.createElement('div');
@@ -9398,8 +9397,10 @@
         searchInput.parentElement.insertAdjacentElement('afterend', statusLine);
       }
 
-      // Chuẩn hóa bỏ dấu tiếng Việt để gõ có dấu hay không dấu đều tìm ra
-      function normVi(str) {
+      function lowerVi(str) {
+        return (str || '').toLowerCase().normalize('NFC').replace(/\s+/g, ' ').trim();
+      }
+      function stripVi(str) {
         return (str || '')
           .toLowerCase()
           .normalize('NFD')
@@ -9408,74 +9409,147 @@
           .replace(/\s+/g, ' ')
           .trim();
       }
+      function hasViAccent(str) {
+        const nfd = (str || '').normalize('NFD');
+        return /[\u0300-\u036f]/.test(nfd) || /đ/i.test(str || '');
+      }
+      function compactKey(str) {
+        return str.replace(/[-–—]/g, '');
+      }
 
+      // Tách riêng phần Tên thuật ngữ & phần Mô tả (bỏ qua nút bấm và khung ảnh)
       lexCards.forEach((card) => {
-        card.dataset.searchHaystack = normVi(card.textContent);
+        const titleEl = card.querySelector('.lex-title, h3, h4');
+        const titleText = titleEl ? titleEl.textContent : '';
+
+        const clone = card.cloneNode(true);
+        clone.querySelectorAll('.photo-slot, .lex-detail-btn, .lex-title, h3, h4').forEach((n) => n.remove());
+        const bodyText = clone.textContent || '';
+
+        card.dataset.titleExact = lowerVi(titleText);
+        card.dataset.titlePlain = stripVi(titleText);
+        card.dataset.bodyExact  = lowerVi(bodyText);
+        card.dataset.bodyPlain  = stripVi(bodyText);
       });
 
       let activeLexTab = 'all';
+      let includeBodyOnTitleMatch = false;
+
+      function matchWords(haystack, words) {
+        const hayCompact = compactKey(haystack);
+        return words.every((w) => haystack.includes(w) || hayCompact.includes(compactKey(w)));
+      }
 
       function applyLexFilter() {
         const rawQuery = searchInput ? searchInput.value : '';
-        const qNorm = normVi(rawQuery);
+        const trimmed  = rawQuery.trim();
+        const useAccent = hasViAccent(trimmed);
+        const qNorm = useAccent ? lowerVi(trimmed) : stripVi(trimmed);
         const words = qNorm ? qNorm.split(' ').filter(Boolean) : [];
-        let matchCount = 0;
 
-        chapBlocks.forEach((block) => {
-          const blockKey = block.getAttribute('data-lex-block');
-          const tabMatches = (words.length > 0) || (activeLexTab === 'all') || (blockKey === activeLexTab);
-
-          if (!tabMatches) {
-            block.style.display = 'none';
-            return;
-          }
-
-          let blockVisibleCount = 0;
-          block.querySelectorAll('.lex-card').forEach((card) => {
-            const hay = card.dataset.searchHaystack || normVi(card.textContent);
-            const ok = words.every((w) => hay.includes(w));
-            card.style.display = ok ? '' : 'none';
-            if (ok) {
-              blockVisibleCount++;
-              matchCount++;
-            }
+        // Nếu không gõ gì -> lọc theo Tab chương bình thường
+        if (words.length === 0) {
+          includeBodyOnTitleMatch = false;
+          chapBlocks.forEach((block) => {
+            const blockKey = block.getAttribute('data-lex-block');
+            const showBlock = (activeLexTab === 'all') || (blockKey === activeLexTab);
+            block.style.display = showBlock ? '' : 'none';
+            block.querySelectorAll('.lex-card').forEach((card) => {
+              card.style.display = '';
+              card.style.borderColor = '';
+            });
           });
+          if (statusLine) {
+            statusLine.style.display = 'none';
+            statusLine.innerHTML = '';
+          }
+          return;
+        }
 
-          block.style.display = (words.length > 0 && blockVisibleCount === 0) ? 'none' : '';
+        // Bước 1: Đếm thẻ khớp Tên thuật ngữ và thẻ chỉ khớp Mô tả
+        let titleMatches = 0;
+        let bodyOnlyMatches = 0;
+
+        lexCards.forEach((card) => {
+          const tHay = useAccent ? card.dataset.titleExact : card.dataset.titlePlain;
+          const bHay = useAccent ? card.dataset.bodyExact  : card.dataset.bodyPlain;
+          const tOk = matchWords(tHay, words);
+          const bOk = !tOk && matchWords(bHay, words);
+          card.dataset.mType = tOk ? 'title' : (bOk ? 'body' : 'none');
+          if (tOk) titleMatches++;
+          if (bOk) bodyOnlyMatches++;
         });
 
-        if (words.length > 0 && scrollBody && scrollBody.scrollTo) {
+        // Nếu có thẻ khớp Tên thuật ngữ: ưu tiên chỉ hiện thẻ khớp Tên (trừ khi người dùng bấm xem thêm)
+        const showBodyMatches = (titleMatches === 0) || includeBodyOnTitleMatch;
+        let visibleTotal = 0;
+
+        chapBlocks.forEach((block) => {
+          let blockVisible = 0;
+          block.querySelectorAll('.lex-card').forEach((card) => {
+            const m = card.dataset.mType;
+            const show = (m === 'title') || (showBodyMatches && m === 'body');
+            card.style.display = show ? '' : 'none';
+            card.style.borderColor = (m === 'title') ? 'var(--gold-text)' : '';
+            if (show) {
+              blockVisible++;
+              visibleTotal++;
+            }
+          });
+          block.style.display = blockVisible > 0 ? '' : 'none';
+        });
+
+        if (scrollBody && scrollBody.scrollTo) {
           scrollBody.scrollTop = 0;
         }
 
         if (statusLine) {
-          if (words.length > 0) {
-            const safeQuery = rawQuery.trim().replace(/</g, '&lt;');
-            statusLine.style.display = 'flex';
-            statusLine.innerHTML =
-              (matchCount > 0
-                ? '<span>🔍 Tìm thấy <strong>' + matchCount + '</strong> thuật ngữ khớp với “' + safeQuery + '”</span>'
-                : '<span style="color:#FFB4B4;">✕ Không tìm thấy thuật ngữ nào chứa “' + safeQuery + '”.</span>')
-              + '<button type="button" class="soft-pill-tab" id="btnClearLexSearch" style="padding:3px 10px; font-size:0.8rem;">✕ Xóa tìm kiếm</button>';
-
-            const clearBtn = document.getElementById('btnClearLexSearch');
-            if (clearBtn) {
-              clearBtn.addEventListener('click', () => {
-                searchInput.value = '';
-                applyLexFilter();
-                searchInput.focus();
-              });
-            }
+          const safeQ = trimmed.replace(/</g, '&lt;');
+          let msgHtml = '';
+          if (visibleTotal > 0) {
+            msgHtml = '<span>🔍 Tìm thấy <strong>' + visibleTotal + '</strong> thuật ngữ khớp với “' + safeQ + '”</span>';
           } else {
-            statusLine.style.display = 'none';
-            statusLine.innerHTML = '';
+            msgHtml = '<span style="color:#FFB4B4;">✕ Không có thuật ngữ nào chứa “' + safeQ + '”.</span>';
+          }
+
+          let extraBtnHtml = '';
+          if (titleMatches > 0 && bodyOnlyMatches > 0) {
+            extraBtnHtml = '<button type="button" class="soft-pill-tab" id="btnToggleBodyMatches" style="padding:3px 10px; font-size:0.8rem;">'
+              + (includeBodyOnTitleMatch ? 'Chỉ hiện tên khớp (' + titleMatches + ')' : '+ Xem thêm ' + bodyOnlyMatches + ' thẻ nhắc trong mô tả')
+              + '</button>';
+          }
+
+          statusLine.style.display = 'flex';
+          statusLine.innerHTML = msgHtml
+            + '<div style="display:flex; gap:6px; flex-wrap:wrap;">'
+            + extraBtnHtml
+            + '<button type="button" class="soft-pill-tab" id="btnClearLexSearch" style="padding:3px 10px; font-size:0.8rem;">✕ Xóa</button>'
+            + '</div>';
+
+          const toggleBodyBtn = document.getElementById('btnToggleBodyMatches');
+          if (toggleBodyBtn) {
+            toggleBodyBtn.addEventListener('click', () => {
+              includeBodyOnTitleMatch = !includeBodyOnTitleMatch;
+              applyLexFilter();
+            });
+          }
+
+          const clearBtn = document.getElementById('btnClearLexSearch');
+          if (clearBtn) {
+            clearBtn.addEventListener('click', () => {
+              searchInput.value = '';
+              applyLexFilter();
+              searchInput.focus();
+            });
           }
         }
       }
 
       if (searchInput) {
-        searchInput.addEventListener('input', applyLexFilter);
-        searchInput.addEventListener('keyup', applyLexFilter);
+        searchInput.addEventListener('input', () => {
+          includeBodyOnTitleMatch = false;
+          applyLexFilter();
+        });
         searchInput.addEventListener('search', applyLexFilter);
       }
 
@@ -9483,6 +9557,9 @@
         tab.addEventListener('click', () => {
           lexTabs.forEach((t) => t.classList.toggle('is-active', t === tab));
           activeLexTab = tab.getAttribute('data-lex-tab') || 'all';
+          if (searchInput && searchInput.value.trim()) {
+            searchInput.value = '';
+          }
           applyLexFilter();
           if (scrollBody && scrollBody.scrollTo) {
             scrollBody.scrollTo({ top: 0, behavior: 'smooth' });
@@ -9490,7 +9567,6 @@
         });
       });
 
-      // Bấm "Chỉ điểm chi tiết" trên từng thẻ
       sec2El.querySelectorAll('.lex-detail-btn').forEach((btn) => {
         btn.addEventListener('click', () => {
           const card = btn.closest('.lex-card');
@@ -9500,7 +9576,6 @@
         });
       });
 
-      // Nút "Mở hết chỉ điểm"
       if (btnExpand) {
         let allExpanded = false;
         btnExpand.addEventListener('click', () => {
