@@ -3423,6 +3423,109 @@
         max-height: 58vh;
       }
     }
+    /* =========================================================
+       DECOR RIÊNG CHO PHẦN 4 (LƯU Ý CHUNG & COMMANDS BOT)
+    ========================================================= */
+    .notice-stack {
+      display: grid;
+      gap: 14px;
+    }
+    .notice-card {
+      background: var(--subcard-glass);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-left: 3px solid var(--gold-text);
+      border-radius: 0 12px 12px 0;
+      padding: 16px 20px;
+    }
+    .notice-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.2rem;
+      color: var(--gold-text);
+    }
+    .notice-card p,
+    .notice-card li {
+      margin: 0;
+      font-size: 1.02rem;
+      line-height: 1.62;
+      color: rgba(255, 253, 245, 0.90);
+    }
+
+    .cmd-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .cmd-card {
+      background: rgba(16, 22, 20, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 14px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease;
+    }
+    .cmd-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--gold-text);
+      box-shadow: 0 0 18px var(--glow-color);
+    }
+    .cmd-card.is-hidden-cmd {
+      display: none;
+    }
+    .cmd-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .cmd-cat-tag {
+      font-size: 0.76rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+      opacity: 0.9;
+    }
+    .cmd-code-box {
+      padding: 9px 12px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.20);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92rem;
+      color: #FFF2B2;
+      word-break: break-word;
+    }
+    .cmd-desc {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      color: rgba(255, 253, 245, 0.88);
+    }
+    .cmd-copy-btn {
+      align-self: flex-start;
+      padding: 5px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.34);
+      background: rgba(255, 255, 255, 0.10);
+      color: #FFFDF5;
+      font-size: 0.86rem;
+      cursor: pointer;
+      transition: background 0.22s ease, border-color 0.22s ease, color 0.22s ease;
+    }
+    .cmd-copy-btn:hover {
+      background: var(--block-hover-bg);
+      border-color: var(--gold-text);
+      color: var(--gold-text);
+    }
+    .cmd-copy-btn.is-copied {
+      background: rgba(111, 207, 151, 0.28);
+      border-color: #6FCF97;
+      color: #C6F6D5;
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -3600,6 +3703,18 @@
             </button>
             <button type="button" class="hb-item" data-view="sec-3">
               <span>Phần 3 ౨ৎ Hồ sơ nhân vật</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
+            <button type="button" class="hb-item" data-view="sec-4-all">
+              <span>Phần 4 ౨ৎ Lưu ý và lệnh</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
+            <button type="button" class="hb-item hb-sub" data-view="sec4-chap-1">
+              <span>↳ Chương 1 · Lưu ý chung</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
+            <button type="button" class="hb-item hb-sub" data-view="sec4-chap-2">
+              <span>↳ Chương 2 · Commands</span>
               <span class="hb-bow">౨ৎ</span>
             </button>
           </div>
@@ -7380,6 +7495,132 @@
             </div>
           </div>
         </section>
+        <!-- PHẦN 4: LƯU Ý VÀ LỆNH -->
+        <section class="content-section is-hidden-sec" id="sec-4">
+          <div class="sec-header-row">
+            <div>
+              <div class="sec-kicker">Phần 4 ౨ৎ</div>
+              <h2>Lưu ý và lệnh</h2>
+            </div>
+            <div class="chapter-quick-bar">
+              <button type="button" class="soft-pill-tab" data-quick-view="sec-4-all">Hiện hết Phần 4</button>
+              <button type="button" class="soft-pill-tab is-active" data-quick-view="sec4-chap-1">Chương 1 · Lưu ý chung</button>
+              <button type="button" class="soft-pill-tab" data-quick-view="sec4-chap-2">Chương 2 · Commands Bot</button>
+            </div>
+          </div>
+
+          <!-- CHƯƠNG 1 CỦA PHẦN 4: LƯU Ý CHUNG -->
+          <div class="chapter-block" id="sec4-chap-1">
+            <div class="ch1-tag">Chương 1 ౨ৎ Lưu ý chung</div>
+            <h2 style="margin:0 0 8px; font-size:1.7rem; color:#FFFFFF;">Lưu ý chung khi tham gia Nhất Xuyên</h2>
+            <div class="ch1-subtitle-en">GENERAL GUIDELINES &amp; WORLD RULES</div>
+
+            <div class="notice-stack">
+              <div class="notice-card">
+                <h3>01 · Giới hạn sinh học &amp; Vật lý thực tế</h3>
+                <ul class="tier-bullet-list">
+                  <li>Tin tức tố tại Học viện Nhất Xuyên tuân theo quy luật vật lý thực thể (độ bám miếng dán, gió điều hòa 24°C, độ ẩm bể bơi 90%), hoàn toàn không phải phép thuật hay hào quang siêu nhiên.</li>
+                  <li>Áp bách tin tức tố chỉ gây tác động lên mặt thể xác (khó thở, nghẹt lồng ngực, run tay), không phải thao túng ý chí; học sinh Beta (`0.0 ppm`) miễn nhiễm 100%.</li>
+                </ul>
+              </div>
+
+              <div class="notice-card">
+                <h3>02 · Kỷ luật nội trú &amp; Hệ thống giám sát T-80</h3>
+                <ul class="tier-bullet-list">
+                  <li>Mọi hành vi rò rỉ mùi `≥ 30.0 ppm` đều kích hoạt Báo động Đỏ Mã 302 trong 60–90 giây và bị áp giải xuống Buồng Cách Ly Áp Suất Âm (Tòa B - Tầng 1).</li>
+                  <li>Không tự ý sử dụng tên/vai trò của các NPC cố định hoặc 2 OC của creator (`Thụy Tư Lục`, `Thượng Tư Úc`) trái với thiết lập gốc.</li>
+                </ul>
+              </div>
+
+              <div class="notice-card">
+                <h3>03 · Ghi chú bổ sung (Chỗ để bạn tự điền thêm)</h3>
+                <p>Điền thêm các quy định riêng của server / group RP, giờ chốt lượt, cách tính điểm Nguyệt Khảo hoặc lưu ý OOC tại đây.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="chapter-divider"></div>
+
+          <!-- CHƯƠNG 2 CỦA PHẦN 4: CÁC COMMANDS GỬI CHO BOT -->
+          <div class="chapter-block is-hidden-chap" id="sec4-chap-2">
+            <div class="ch1-tag">Chương 2 ౨ৎ Commands gửi cho Bot</div>
+            <h2 style="margin:0 0 8px; font-size:1.7rem; color:#FFFFFF;">Danh sách Commands gửi cho Bot</h2>
+            <div class="ch1-subtitle-en">BOT COMMANDS DIRECTORY · CLICK TO COPY</div>
+
+            <p class="ch1-body-p" style="margin-bottom:14px;">
+              Bấm nút <strong>📋 Copy lệnh</strong> bên dưới mỗi thẻ để sao chép nhanh cú pháp rồi dán gửi cho Bot (bạn thay tên lệnh mẫu bằng lệnh Bot thật của bạn trong code nhé).
+            </p>
+
+            <div class="scent-group-pills" id="cmdFilterBar">
+              <button type="button" class="soft-pill-tab is-active" data-cmd-cat="all">Tất cả lệnh</button>
+              <button type="button" class="soft-pill-tab" data-cmd-cat="bio">Sinh trắc &amp; T-80</button>
+              <button type="button" class="soft-pill-tab" data-cmd-cat="school">Khảo thí &amp; Nội quy</button>
+              <button type="button" class="soft-pill-tab" data-cmd-cat="dark">Tieba &amp; Tị Phong</button>
+            </div>
+
+            <div class="cmd-grid">
+              <!-- LỆNH MẪU 1 -->
+              <div class="cmd-card" data-cmd-group="bio">
+                <div>
+                  <div class="cmd-top"><span class="cmd-cat-tag">Sinh trắc · T-80</span></div>
+                  <div class="cmd-code-box">/t80 [khu_vực]</div>
+                </div>
+                <p class="cmd-desc">Quét nồng độ tin tức tố (`ppm`) tại lớp học hoặc hành lang chỉ định.</p>
+                <button type="button" class="cmd-copy-btn" data-cmd="/t80 ">📋 Copy lệnh</button>
+              </div>
+
+              <!-- LỆNH MẪU 2 -->
+              <div class="cmd-card" data-cmd-group="bio">
+                <div>
+                  <div class="cmd-top"><span class="cmd-cat-tag">Sinh trắc · Vật tư</span></div>
+                  <div class="cmd-code-box">/miengdan [loại]</div>
+                </div>
+                <p class="cmd-desc">Thay miếng dán cách ly mới (Tiêu chuẩn / Class-S / Chống nước) hoặc kiểm tra độ bám hiện tại.</p>
+                <button type="button" class="cmd-copy-btn" data-cmd="/miengdan ">📋 Copy lệnh</button>
+              </div>
+
+              <!-- LỆNH MẪU 3 -->
+              <div class="cmd-card" data-cmd-group="school">
+                <div>
+                  <div class="cmd-top"><span class="cmd-cat-tag">Khảo thí · 750đ</span></div>
+                  <div class="cmd-code-box">/hongbang [khối]</div>
+                </div>
+                <p class="cmd-desc">Tra cứu bảng xếp hạng Hồng Bảng và biến động thứ hạng Nguyệt Khảo.</p>
+                <button type="button" class="cmd-copy-btn" data-cmd="/hongbang ">📋 Copy lệnh</button>
+              </div>
+
+              <!-- LỆNH MẪU 4 -->
+              <div class="cmd-card" data-cmd-group="school">
+                <div>
+                  <div class="cmd-top"><span class="cmd-cat-tag">Nội quy · Hồ sơ</span></div>
+                  <div class="cmd-code-box">/hoso [tên_nhân_vật]</div>
+                </div>
+                <p class="cmd-desc">Xem thẻ căn cước học viên, lớp, bàn đơn và điểm rèn luyện hiện tại.</p>
+                <button type="button" class="cmd-copy-btn" data-cmd="/hoso ">📋 Copy lệnh</button>
+              </div>
+
+              <!-- LỆNH MẪU 5 -->
+              <div class="cmd-card" data-cmd-group="dark">
+                <div>
+                  <div class="cmd-top"><span class="cmd-cat-tag">Diễn đàn · Tieba</span></div>
+                  <div class="cmd-code-box">/tieba [chuyên_mục] [nội_dung]</div>
+                </div>
+                <p class="cmd-desc">Đăng bài ẩn danh lên Bát Quái Thị Phi, Bảng Phong Thần hoặc Cứu Trợ Học Tập.</p>
+                <button type="button" class="cmd-copy-btn" data-cmd="/tieba ">📋 Copy lệnh</button>
+              </div>
+
+              <!-- LỆNH MẪU 6 -->
+              <div class="cmd-card" data-cmd-group="dark">
+                <div>
+                  <div class="cmd-top"><span class="cmd-cat-tag">Web ngầm · Tị Phong Cảng</span></div>
+                  <div class="cmd-code-box">/tiphong [yêu_cầu]</div>
+                </div>
+                <p class="cmd-desc">Gửi tín hiệu cầu cứu khẩn cấp qua proxy Tòa F (miễn phí việc nhỏ / Luật Trả Giá việc lớn).</p>
+                <button type="button" class="cmd-copy-btn" data-cmd="/tiphong ">📋 Copy lệnh</button>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </main>
   </div>
@@ -7542,6 +7783,9 @@
     const sec1  = document.getElementById('sec-1');
     const sec2  = document.getElementById('sec-2');
     const sec3  = document.getElementById('sec-3');
+    const sec4  = document.getElementById('sec-4');
+    const sec4Chap1 = document.getElementById('sec4-chap-1');
+    const sec4Chap2 = document.getElementById('sec4-chap-2'); 
     const chap1 = document.getElementById('chap-1');
     const chap2 = document.getElementById('chap-2');
     const chap3 = document.getElementById('chap-3');
@@ -7579,6 +7823,9 @@
       if (sec1)  sec1.classList.add('is-hidden-sec');
       if (sec2)  sec2.classList.add('is-hidden-sec');
       if (sec3)  sec3.classList.add('is-hidden-sec');
+      if (sec4)  sec4.classList.add('is-hidden-sec');
+      if (sec4Chap1) sec4Chap1.classList.add('is-hidden-sec');
+      if (sec4Chap2) sec4Chap2.classList.add('is-hidden-sec');
       if (chap1) chap1.classList.add('is-hidden-chap');
       if (chap2) chap2.classList.add('is-hidden-chap');
       if (chap3) chap3.classList.add('is-hidden-chap');
@@ -7649,6 +7896,19 @@
       } else if (viewKey === 'sec-3') {
         if (sec3) sec3.classList.remove('is-hidden-sec');
         scrollTarget = sec3;
+        } else if (viewKey === 'sec-4-all') {
+        if (sec4)      sec4.classList.remove('is-hidden-sec');
+        if (sec4Chap1) sec4Chap1.classList.remove('is-hidden-chap');
+        if (sec4Chap2) sec4Chap2.classList.remove('is-hidden-chap');
+       scrollTarget = sec4;
+     } else if (viewKey === 'sec4-chap-1') {
+        if (sec4)      sec4.classList.remove('is-hidden-sec');
+        if (sec4Chap1) sec4Chap1.classList.remove('is-hidden-chap');
+        scrollTarget = sec4;
+     } else if (viewKey === 'sec4-chap-2') {
+        if (sec4)      sec4.classList.remove('is-hidden-sec');
+        if (sec4Chap2) sec4Chap2.classList.remove('is-hidden-chap');
+        scrollTarget = sec4;
       }
 
       quickViewBtns.forEach((b) => {
@@ -9117,81 +9377,185 @@
         }
       });
     });
-    /* === TƯƠNG TÁC PHẦN 2: TỪ ĐIỂN THUẬT NGỮ & NÚT CHỈ ĐIỂM CHI TIẾT === */
-    // Nút mở/đóng Chỉ điểm chi tiết trên từng thuật ngữ
-    document.querySelectorAll('.lex-detail-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.lex-card');
-        const drawer = card ? card.querySelector('.lex-detail-drawer') : null;
-        if (!drawer) return;
-        const opened = drawer.classList.toggle('is-open');
-        btn.classList.toggle('is-open', opened);
-        btn.textContent = opened ? '⌖ Thu gọn chỉ điểm' : '⌖ Chỉ điểm chi tiết';
+   /* === TƯƠNG TÁC PHẦN 2: TÌM BẰNG TỪ (CẢ CÓ DẤU & KHÔNG DẤU) + CHỈ ĐIỂM === */
+    (function initLexiconSearchAndTabs() {
+      const sec2El = document.getElementById('sec-2');
+      if (!sec2El) return;
 
-        // Làm sáng khung ảnh đi kèm nếu thuật ngữ có ảnh
-        const slot = card.querySelector('.photo-slot');
-        if (slot && opened) {
-          slot.classList.remove('is-leaf-flash');
-          void slot.offsetWidth;
-          slot.classList.add('is-leaf-flash');
-          setTimeout(() => slot.classList.remove('is-leaf-flash'), 650);
-        }
+      const searchInput = document.getElementById('lexSearchInput') || sec2El.querySelector('input[type="text"], input[type="search"]');
+      const scrollBody  = document.getElementById('lexScrollBody') || sec2El;
+      const chapBlocks  = sec2El.querySelectorAll('.lex-chap-block');
+      const lexCards    = sec2El.querySelectorAll('.lex-card');
+      const lexTabs     = sec2El.querySelectorAll('[data-lex-tab]');
+      const btnExpand   = document.getElementById('btnLexExpandAll');
+
+      // Tạo dòng báo số kết quả & nút Xóa nhanh ngay dưới ô tìm kiếm
+      let statusLine = document.getElementById('lexSearchStatus');
+      if (!statusLine && searchInput && searchInput.parentElement) {
+        statusLine = document.createElement('div');
+        statusLine.id = 'lexSearchStatus';
+        statusLine.style.cssText = 'margin:8px 4px 0; font-size:0.92rem; color:var(--gold-text); display:none; align-items:center; justify-content:space-between; gap:10px; flex-wrap:wrap;';
+        searchInput.parentElement.insertAdjacentElement('afterend', statusLine);
+      }
+
+      // Chuẩn hóa bỏ dấu tiếng Việt để gõ có dấu hay không dấu đều tìm ra
+      function normVi(str) {
+        return (str || '')
+          .toLowerCase()
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .replace(/đ/g, 'd')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      lexCards.forEach((card) => {
+        card.dataset.searchHaystack = normVi(card.textContent);
       });
-    });
 
-    // Nút mở tất cả / thu gọn tất cả chỉ điểm
-    const btnLexExpandAll = document.getElementById('btnLexExpandAll');
-    let lexAllOpen = false;
-    if (btnLexExpandAll) {
-      btnLexExpandAll.addEventListener('click', () => {
-        lexAllOpen = !lexAllOpen;
-        btnLexExpandAll.classList.toggle('is-active', lexAllOpen);
-        btnLexExpandAll.textContent = lexAllOpen ? '✦ Thu gọn chỉ điểm' : '✦ Mở hết chỉ điểm';
-        document.querySelectorAll('.lex-detail-drawer').forEach((d) => d.classList.toggle('is-open', lexAllOpen));
-        document.querySelectorAll('.lex-detail-btn').forEach((b) => {
-          b.classList.toggle('is-open', lexAllOpen);
-          b.textContent = lexAllOpen ? '⌖ Thu gọn chỉ điểm' : '⌖ Chỉ điểm chi tiết';
-        });
-      });
-    }
+      let activeLexTab = 'all';
 
-    // Lọc theo 5 chương trong Từ điển
-    const lexChapTabs   = document.querySelectorAll('[data-lex-chap]');
-    const lexChapBlocks = document.querySelectorAll('[data-lex-block]');
-    lexChapTabs.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        lexChapTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
-        const target = btn.getAttribute('data-lex-chap');
-        lexChapBlocks.forEach((blk) => {
-          blk.classList.toggle('is-hidden-lex', target !== 'all' && blk.getAttribute('data-lex-block') !== target);
-        });
-      });
-    });
+      function applyLexFilter() {
+        const rawQuery = searchInput ? searchInput.value : '';
+        const qNorm = normVi(rawQuery);
+        const words = qNorm ? qNorm.split(' ').filter(Boolean) : [];
+        let matchCount = 0;
 
-    // Tìm kiếm nhanh thuật ngữ
-    const lexSearchInput = document.getElementById('lexSearchInput');
-    if (lexSearchInput) {
-      lexSearchInput.addEventListener('input', () => {
-        const q = lexSearchInput.value.trim().toLowerCase();
-        if (q) {
-          lexChapBlocks.forEach((blk) => blk.classList.remove('is-hidden-lex'));
-        }
-        document.querySelectorAll('.lex-card').forEach((card) => {
-          const hay = (card.getAttribute('data-lex-text') + ' ' + card.textContent).toLowerCase();
-          card.classList.toggle('is-hidden-term', q !== '' && !hay.includes(q));
-        });
-      });
-    }
+        chapBlocks.forEach((block) => {
+          const blockKey = block.getAttribute('data-lex-block');
+          const tabMatches = (words.length > 0) || (activeLexTab === 'all') || (blockKey === activeLexTab);
 
-    // Bấm nút liên kết bên trong chỉ điểm để nhảy thẳng sang Chương tương ứng ở Phần 1
-    document.querySelectorAll('[data-jump-chap]').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const chapKey = btn.getAttribute('data-jump-chap');
-        if (typeof switchContentView === 'function') {
-          switchContentView(chapKey, true);
-          if (typeof pinHandbookItem === 'function') {
-            pinHandbookItem(chapKey);
+          if (!tabMatches) {
+            block.style.display = 'none';
+            return;
           }
+
+          let blockVisibleCount = 0;
+          block.querySelectorAll('.lex-card').forEach((card) => {
+            const hay = card.dataset.searchHaystack || normVi(card.textContent);
+            const ok = words.every((w) => hay.includes(w));
+            card.style.display = ok ? '' : 'none';
+            if (ok) {
+              blockVisibleCount++;
+              matchCount++;
+            }
+          });
+
+          block.style.display = (words.length > 0 && blockVisibleCount === 0) ? 'none' : '';
+        });
+
+        if (words.length > 0 && scrollBody && scrollBody.scrollTo) {
+          scrollBody.scrollTop = 0;
+        }
+
+        if (statusLine) {
+          if (words.length > 0) {
+            const safeQuery = rawQuery.trim().replace(/</g, '&lt;');
+            statusLine.style.display = 'flex';
+            statusLine.innerHTML =
+              (matchCount > 0
+                ? '<span>🔍 Tìm thấy <strong>' + matchCount + '</strong> thuật ngữ khớp với “' + safeQuery + '”</span>'
+                : '<span style="color:#FFB4B4;">✕ Không tìm thấy thuật ngữ nào chứa “' + safeQuery + '”.</span>')
+              + '<button type="button" class="soft-pill-tab" id="btnClearLexSearch" style="padding:3px 10px; font-size:0.8rem;">✕ Xóa tìm kiếm</button>';
+
+            const clearBtn = document.getElementById('btnClearLexSearch');
+            if (clearBtn) {
+              clearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                applyLexFilter();
+                searchInput.focus();
+              });
+            }
+          } else {
+            statusLine.style.display = 'none';
+            statusLine.innerHTML = '';
+          }
+        }
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', applyLexFilter);
+        searchInput.addEventListener('keyup', applyLexFilter);
+        searchInput.addEventListener('search', applyLexFilter);
+      }
+
+      lexTabs.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          lexTabs.forEach((t) => t.classList.toggle('is-active', t === tab));
+          activeLexTab = tab.getAttribute('data-lex-tab') || 'all';
+          applyLexFilter();
+          if (scrollBody && scrollBody.scrollTo) {
+            scrollBody.scrollTo({ top: 0, behavior: 'smooth' });
+          }
+        });
+      });
+
+      // Bấm "Chỉ điểm chi tiết" trên từng thẻ
+      sec2El.querySelectorAll('.lex-detail-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const card = btn.closest('.lex-card');
+          if (!card) return;
+          const opened = card.classList.toggle('is-detail-open');
+          btn.textContent = opened ? '⌖ Thu gọn chỉ điểm' : '⌖ Chỉ điểm chi tiết';
+        });
+      });
+
+      // Nút "Mở hết chỉ điểm"
+      if (btnExpand) {
+        let allExpanded = false;
+        btnExpand.addEventListener('click', () => {
+          allExpanded = !allExpanded;
+          btnExpand.classList.toggle('is-active', allExpanded);
+          btnExpand.textContent = allExpanded ? '✦ Thu gọn chỉ điểm' : '✦ Mở hết chỉ điểm';
+          sec2El.querySelectorAll('.lex-card').forEach((card) => {
+            card.classList.toggle('is-detail-open', allExpanded);
+            const b = card.querySelector('.lex-detail-btn');
+            if (b) b.textContent = allExpanded ? '⌖ Thu gọn chỉ điểm' : '⌖ Chỉ điểm chi tiết';
+          });
+        });
+      }
+    })();
+    /* === TƯƠNG TÁC PHẦN 4 (LỌC & COPY COMMANDS BOT) === */
+    const cmdFilterBtns = document.querySelectorAll('[data-cmd-cat]');
+    const cmdCards      = document.querySelectorAll('.cmd-card');
+    cmdFilterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        cmdFilterBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const cat = btn.getAttribute('data-cmd-cat');
+        cmdCards.forEach((c) => {
+          c.classList.toggle('is-hidden-cmd', cat !== 'all' && c.getAttribute('data-cmd-group') !== cat);
+        });
+      });
+    });
+
+    function fallbackCopyCmd(text, done) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      done();
+    }
+
+    document.querySelectorAll('.cmd-copy-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const text = btn.getAttribute('data-cmd') || '';
+        const markCopied = () => {
+          const old = btn.textContent;
+          btn.classList.add('is-copied');
+          btn.textContent = '✓ Đã copy!';
+          setTimeout(() => {
+            btn.classList.remove('is-copied');
+            btn.textContent = old;
+          }, 1500);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(markCopied).catch(() => fallbackCopyCmd(text, markCopied));
+        } else {
+          fallbackCopyCmd(text, markCopied);
         }
       });
     });
