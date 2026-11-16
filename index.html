@@ -2585,6 +2585,105 @@
         min-height: 230px;
       }
     }
+    /* =========================================================
+       DECOR RIÊNG CHO CHƯƠNG 8 (KTX TÒA F CHỮ V & AN NINH)
+    ========================================================= */
+    .v-diagram-box {
+      padding: 20px 18px;
+      border-radius: 16px;
+      background: rgba(16, 22, 18, 0.36);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    .v-node {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFFDF5;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.24s ease, border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+    }
+    .v-node:hover,
+    .v-node.is-selected {
+      background: var(--block-hover-bg);
+      border-color: var(--gold-text);
+      box-shadow: 0 0 18px var(--glow-color);
+      transform: translateY(-2px);
+    }
+    .v-node strong {
+      display: block;
+      color: var(--gold-text);
+      font-size: 1rem;
+    }
+    .v-node span {
+      font-size: 0.86rem;
+      color: rgba(255, 253, 245, 0.86);
+    }
+    .v-connector {
+      font-size: 0.9rem;
+      color: var(--gold-text);
+      opacity: 0.85;
+      letter-spacing: 0.08em;
+    }
+    .v-wings-row {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .v-windbreak-pill {
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(157, 191, 124, 0.22);
+      border: 1px dashed rgba(255, 255, 255, 0.34);
+      font-size: 0.8rem;
+      color: var(--gold-text);
+    }
+
+    .room-panel {
+      animation: softFadeIn 0.35s ease;
+    }
+    .room-panel.is-hidden-room {
+      display: none;
+    }
+
+    /* Nút bấm cấp cứu đỏ đầu giường Tòa F1 */
+    .red-alarm-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 160, 160, 0.78);
+      background: radial-gradient(circle at 30% 30%, #FF6B6B, #B82525);
+      color: #FFFFFF;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(235, 87, 87, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.25s ease;
+    }
+    .red-alarm-btn:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 24px rgba(255, 107, 107, 0.75);
+    }
+    .red-alarm-btn.is-ringing {
+      animation: alarmPulse 0.65s ease-in-out infinite;
+    }
+    @keyframes alarmPulse {
+      0%, 100% { box-shadow: 0 0 14px rgba(255, 80, 80, 0.65); }
+      50%      { box-shadow: 0 0 32px rgba(255, 90, 90, 0.95), 0 0 50px rgba(255, 60, 60, 0.6); }
+    }
+
+    @media (max-width: 600px) {
+      .v-wings-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -2744,6 +2843,10 @@
               <span>↳ Chương 7 · Bản đồ &amp; 4 Góc chết</span>
               <span class="hb-bow">౨ৎ</span>
             </button>
+            <button type="button" class="hb-item hb-sub" data-view="chap-8">
+              <span>↳ Chương 8 · Ký túc xá Tòa F &amp; Phòng ở</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
             <button type="button" class="hb-item" data-view="sec-2">
               <span>Phần 2 ౨ৎ Thuật ngữ</span>
               <span class="hb-bow">౨ৎ</span>
@@ -2772,6 +2875,7 @@
               <button type="button" class="soft-pill-tab" data-quick-view="chap-5">Chương 5</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-6">Chương 6</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-7">Chương 7</button>
+              <button type="button" class="soft-pill-tab" data-quick-view="chap-8">Chương 8</button>          
             </div>
           </div>
 
@@ -4925,6 +5029,251 @@
               </div>
             </div>
           </div>
+          <div class="chapter-divider"></div>
+
+          <!-- ==================== CHƯƠNG 8 ==================== -->
+          <div class="chapter-block is-hidden-chap" id="chap-8">
+            <div class="ch1-tag">Chương 8 ౨ৎ Cụm Ký túc xá Tòa F &amp; Phân tầng phòng ở</div>
+            <h2 style="margin:0 0 8px; font-size:1.75rem; color:#FFFFFF;">Cụm Ký túc xá Tòa F &amp; Phân Tầng Phòng Ở</h2>
+            <div class="ch1-subtitle-en">BIOMETRIC V-SHAPED DORMITORY COMPLEX &amp; ROOM TIERS</div>
+
+            <p class="ch1-body-p" style="margin-bottom:18px;">
+              Khu nội trú Nhất Xuyên (Tòa F) áp dụng mô hình <strong>kiến trúc chữ V sinh học</strong>: lấy <strong>Tòa F3 (Beta)</strong> đặt ngay phía trước làm “bức tường cản mùi trung lập”, ngăn cách tuyệt đối giữa hai cánh <strong>Tòa F1 (Omega)</strong> và <strong>Tòa F2 (Alpha)</strong> ở phía sau. <em>(Tổng quy mô toàn khu KTX: <strong>240 phòng tiêu chuẩn</strong>, đã bao gồm các phòng trống dự phòng cách ly khẩn cấp ở mỗi cánh và phòng diện bảo trợ đặc biệt cuối hành lang).</em>
+            </p>
+
+            <!-- SƠ ĐỒ CHỮ V TƯƠNG TÁC + ẢNH 62 MINH HỌA ĐẦU TIÊN -->
+            <div class="ch1-split" style="margin-bottom:24px;">
+              <div class="v-diagram-box">
+                <button type="button" class="v-node is-selected" data-vwing="gate">
+                  <strong>⛩ CỔNG VÀO KÝ TÚC XÁ &amp; TRẠM BẢO VỆ CHÍNH</strong>
+                  <span>Kiểm soát thẻ từ sinh trắc &amp; chốt giới nghiêm 22:30</span>
+                </button>
+                <div class="v-connector">▼</div>
+                <button type="button" class="v-node" data-vwing="f3">
+                  <strong>TÒA F3 · KHU VỰC BETA (2 Tầng lầu · 135 học sinh)</strong>
+                  <span>[Vùng đệm không mùi] · F3a (Nam Beta: 20P) | F3b (Nữ Beta: 20P)</span>
+                </button>
+                <div class="v-connector">↙ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ↘</div>
+                <div class="v-wings-row">
+                  <button type="button" class="v-node" data-vwing="f1">
+                    <strong>TÒA F1 · OMEGA (3 Tầng · 135 HS)</strong>
+                    <span>F1a (Nam O): 44 Phòng<br />F1b (Nữ O): 44 Phòng</span>
+                  </button>
+                  <button type="button" class="v-node" data-vwing="f2">
+                    <strong>TÒA F2 · ALPHA (3 Tầng · 180 HS)</strong>
+                    <span>F2a (Nam A): 56 Phòng<br />F2b (Nữ A): 56 Phòng</span>
+                  </button>
+                </div>
+                <div class="v-windbreak-pill">🍁 Cách biệt 150 mét · Ngăn bằng hàng cây phong chắn gió</div>
+                <div class="rut-detail-box" id="vWingDetailBox" style="width:100%; text-align:left;">
+                  <strong>Cổng vào &amp; Trạm Bảo vệ chính:</strong> Điểm kiểm soát duy nhất nối khu KTX Tòa F với giảng đường. Quẹt thẻ và đo thân nhiệt tự động trước khi sập chốt điện từ 22:30.
+                </div>
+              </div>
+
+              <!-- ẢNH 62: MINH HỌA SƠ ĐỒ KHU KTX TÒA F CHỮ V -->
+              <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+                <img src="" alt="Toàn cảnh Cụm Ký túc xá Tòa F kiến trúc chữ V" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                <div class="photo-placeholder">
+                  <span class="ph-badge">Ảnh 62 · Tổng thể Tòa F</span>
+                  <span class="ph-icon">🏢</span>
+                  <span class="ph-title">Kiến trúc Chữ V Sinh học · Cụm Tòa F1–F2–F3</span>
+                  <span class="ph-sub">F3 (Beta) chắn trước · F1 (Omega) &amp; F2 (Alpha) cách 150m</span>
+                </div>
+                <div class="anno-layer">
+                  <div class="anno-pin" style="top:24%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↑</span><span class="anno-label">Tòa F3 (Vùng đệm Beta)</span></div>
+                  <div class="anno-pin" style="top:64%; left:24%;"><span class="anno-dot"></span><span class="anno-arrow">↙</span><span class="anno-label">F1 Omega (Rào 10m)</span></div>
+                  <div class="anno-pin dir-left" style="top:64%; left:76%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">F2 Alpha (Cách 150m)</span></div>
+                </div>
+                <div class="photo-caption">Fig. 62 — Hàng cây phong chắn gió ngăn cách 150m giữa F1 và F2</div>
+              </div>
+            </div>
+
+            <nav class="ch2-jump-nav" aria-label="Mục lục Chương 8">
+              <a href="#ch8-1" class="ch2-jump-pill">8.1 Phân tầng 3 Loại phòng KTX</a>
+              <a href="#ch8-2" class="ch2-jump-pill">8.2 An ninh Sinh học &amp; Báo động</a>
+            </nav>
+
+            <!-- 8.1 PHÂN TẦNG 3 LOẠI PHÒNG KÝ TÚC XÁ -->
+            <div class="ch2-subblock" id="ch8-1">
+              <div class="ch1-tag">8.1 · Phân tầng 3 loại phòng Ký túc xá theo xuất thân &amp; sinh học</div>
+
+              <div class="scent-group-pills" style="margin-bottom:16px;">
+                <button type="button" class="soft-pill-tab is-active" data-room-tier="all">Xem cả 3 Loại phòng</button>
+                <button type="button" class="soft-pill-tab" data-room-tier="rt-1">Loại 1 · Đơn 45m² (2 ảnh)</button>
+                <button type="button" class="soft-pill-tab" data-room-tier="rt-2">Loại 2 · Đôi 30m² (1 ảnh)</button>
+                <button type="button" class="soft-pill-tab" data-room-tier="rt-3">Loại 3 · 4 Người 35m² (2 ảnh)</button>
+              </div>
+
+              <!-- LOẠI 1: PHÒNG ĐƠN ĐẶC QUYỀN (2 ẢNH NAM NỮ) -->
+              <div class="phase-card room-panel" data-room-panel="rt-1">
+                <div class="phase-head">
+                  <h3>Loại 1 · Phòng Đơn Đặc Quyền (Executive Single Suite — 1 Người)</h3>
+                  <span class="temp-pill">Tầng 3 · 45m² · 2 Ảnh (Nam &amp; Nữ)</span>
+                </div>
+                <ul class="tier-bullet-list" style="margin-bottom:16px;">
+                  <li><strong>Mã định danh:</strong> <code>F1a-3xx</code>, <code>F1b-3xx</code>, <code>F2a-3xx</code>, <code>F2b-3xx</code>.</li>
+                  <li><strong>Đối tượng:</strong> Dành riêng cho con em đại gia tộc tài phiệt cổ đông lớn của trường, Hội Trưởng Hội Học Sinh, hoặc học sinh có bệnh lý tuyến thể đặc biệt cần cách ly sinh học riêng tư.</li>
+                  <li><strong>Tiện nghi:</strong> Phòng khép kín rộng <strong>45m²</strong>, có ban công riêng, giường đôi lớn, bàn làm việc riêng, tủ lạnh bảo quản thuốc ức chế y tế chuyên dụng và hệ thống lọc khử mùi ion âm độc lập. Hoàn toàn không có bạn cùng phòng.</li>
+                </ul>
+
+                <div class="ch1-two-cols">
+                  <!-- ẢNH 63: PHÒNG ĐƠN NAM -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Phòng Đơn Đặc Quyền Cánh Nam 45m2" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 63 · Loại 1 (Nam)</span>
+                      <span class="ph-icon">🛌</span>
+                      <span class="ph-title">Phòng Đơn Đặc Quyền · Cánh Nam (F1a / F2a-3xx)</span>
+                      <span class="ph-sub">45m² · Ban công riêng &amp; Tủ lạnh thuốc ức chế</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:28%; left:28%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Máy lọc ion âm độc lập</span></div>
+                      <div class="anno-pin dir-left" style="top:62%; left:74%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Tủ lạnh thuốc ức chế</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 63 — Phòng đơn Tầng 3 cánh Nam (45m²)</div>
+                  </div>
+
+                  <!-- ẢNH 64: PHÒNG ĐƠN NỮ -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Phòng Đơn Đặc Quyền Cánh Nữ 45m2" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 64 · Loại 1 (Nữ)</span>
+                      <span class="ph-icon">🌸</span>
+                      <span class="ph-title">Phòng Đơn Đặc Quyền · Cánh Nữ (F1b / F2b-3xx)</span>
+                      <span class="ph-sub">45m² · Giường đôi lớn &amp; Bàn làm việc riêng</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:26%; left:30%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Ban công cách ly riêng</span></div>
+                      <div class="anno-pin dir-left" style="top:60%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">Giường đôi &amp; Bàn riêng</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 64 — Phòng đơn Tầng 3 cánh Nữ (45m²)</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LOẠI 2: PHÒNG ĐÔI CAO CẤP (1 ẢNH NAM NỮ) -->
+              <div class="phase-card room-panel" data-room-panel="rt-2">
+                <div class="phase-head">
+                  <h3>Loại 2 · Phòng Đôi Cao Cấp (Standard Double Room — 2 Người)</h3>
+                  <span class="temp-pill">Tầng 1 &amp; 2 · 30m² · 1 Ảnh (Nam / Nữ)</span>
+                </div>
+                <div class="ch1-split">
+                  <ul class="tier-bullet-list">
+                    <li><strong>Mã định danh:</strong> <code>F1a/b-1xx, 2xx</code> và <code>F2a/b-1xx, 2xx</code> <em>(06 học sinh Học bổng Vanguard được xếp cố định tại Tầng 2)</em>.</li>
+                    <li><strong>Đối tượng:</strong> Toàn bộ 06 học sinh nhận <strong>Học bổng Toàn phần Vanguard</strong> (cấp miễn phí theo quy chế) cùng các học sinh Alpha (Tòa F2) và Omega (Tòa F1) thuộc tầng lớp khá giả hoặc tài phiệt tầm trung.</li>
+                    <li><strong>Tiện nghi:</strong> Diện tích <strong>30m²</strong>, bố trí 2 giường đơn đặt cách nhau 2 mét có <strong>rèm lụa cách ly ở giữa</strong>, 2 bàn học đơn độc lập, nhà vệ sinh khép kín có buồng tắm kính riêng. Ở ghép cùng 01 học sinh cùng giới tính.</li>
+                  </ul>
+
+                  <!-- ẢNH 65: PHÒNG ĐÔI CAO CẤP (1 ẢNH NAM/NỮ) -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Phòng Đôi Cao Cấp 30m2 Nam và Nữ" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 65 · Loại 2 (Nam / Nữ)</span>
+                      <span class="ph-icon">🪟</span>
+                      <span class="ph-title">Phòng Đôi Cao Cấp (30m²) · Tầng 1 &amp; Tầng 2</span>
+                      <span class="ph-sub">2 giường cách 2m · Rèm lụa cách ly &amp; 2 bàn đơn</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:34%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↑</span><span class="anno-label">Rèm lụa cách ly ở giữa</span></div>
+                      <div class="anno-pin dir-left" style="top:64%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">2 giường cách nhau 2m</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 65 — Khu phòng đôi Tầng 2 dành cho 06 học giả Vanguard</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- LOẠI 3: PHÒNG 4 NGƯỜI TIÊU CHUẨN (2 ẢNH NAM NỮ) -->
+              <div class="phase-card room-panel" data-room-panel="rt-3" style="margin-bottom:0;">
+                <div class="phase-head">
+                  <h3>Loại 3 · Phòng 4 Người Tiêu Chuẩn (Quad Community Room — 4 Người)</h3>
+                  <span class="temp-pill">Tòa F3 (Beta) · 35m² · 2 Ảnh (Nam &amp; Nữ)</span>
+                </div>
+                <ul class="tier-bullet-list" style="margin-bottom:16px;">
+                  <li><strong>Mã định danh:</strong> <code>F3a-xxx</code> (Nam Beta) và <code>F3b-xxx</code> (Nữ Beta).</li>
+                  <li><strong>Đối tượng:</strong> Học sinh <strong>Beta</strong> thuộc diện phổ thông bình dân, không có học bổng toàn phần và không thuộc diện tài phiệt tài trợ.</li>
+                  <li><strong>Tiện nghi:</strong> Diện tích <strong>35m²</strong>, thiết kế dạng giường tầng kết hợp bàn học bên dưới, tủ đồ cá nhân bằng thép có khóa mã số. Không lắp đặt hệ thống khử mùi tin tức tố (do Beta hoàn toàn vô hương).</li>
+                </ul>
+
+                <div class="ch1-two-cols">
+                  <!-- ẢNH 66: PHÒNG 4 NGƯỜI NAM BETA -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Phòng 4 Người Nam Beta F3a" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 66 · Loại 3 (Nam Beta)</span>
+                      <span class="ph-icon">🛏️</span>
+                      <span class="ph-title">Phòng 4 Người · Cánh Nam Beta (F3a-xxx)</span>
+                      <span class="ph-sub">35m² · Giường tầng bàn học dưới &amp; Tủ thép khóa mã số</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:28%; left:30%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Giường tầng + Bàn học dưới</span></div>
+                      <div class="anno-pin dir-left" style="top:62%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">Tủ thép khóa mã số</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 66 — Phòng tập thể F3a (không cần máy khử mùi)</div>
+                  </div>
+
+                  <!-- ẢNH 67: PHÒNG 4 NGƯỜI NỮ BETA -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Phòng 4 Người Nữ Beta F3b" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 67 · Loại 3 (Nữ Beta)</span>
+                      <span class="ph-icon">🌿</span>
+                      <span class="ph-title">Phòng 4 Người · Cánh Nữ Beta (F3b-xxx)</span>
+                      <span class="ph-sub">35m² · Không gian sinh hoạt vùng đệm F3b</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:30%; left:30%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Góc bàn học 4 người</span></div>
+                      <div class="anno-pin dir-left" style="top:58%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Cánh F3b (0.0 ppm)</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 67 — Phòng tập thể F3b của học sinh Beta</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 8.2 HẠ TẦNG AN NINH SINH HỌC & BÁO ĐỘNG NỘI TRÚ -->
+            <div class="ch2-subblock" id="ch8-2" style="margin-top:30px;">
+              <div class="ch1-tag">8.2 · Hạ tầng an ninh sinh học &amp; Báo động nội trú</div>
+
+              <div class="ch1-two-cols">
+                <!-- MÔ PHỎNG QUẸT THẺ TỪ MỘT CHIỀU -->
+                <div class="sub-card">
+                  <div class="ch1-side-label">Mô phỏng Phân quyền Thẻ từ 1 chiều</div>
+                  <h3>Thử Quẹt Thẻ Sảnh F1 / F2 / F3</h3>
+                  <p style="margin-bottom:10px;">Thẻ Alpha chỉ mở được <strong>F2 &amp; F3</strong>; thẻ Omega chỉ mở được <strong>F1 &amp; F3</strong>. Nếu Alpha áp sát bán kính <strong>10 mét</strong> cổng F1, còi an ninh sẽ hú vang!</p>
+
+                  <div class="scent-group-pills" style="margin-bottom:8px;">
+                    <button type="button" class="soft-pill-tab is-active" data-card-type="alpha">Thẻ Alpha</button>
+                    <button type="button" class="soft-pill-tab" data-card-type="omega">Thẻ Omega</button>
+                    <button type="button" class="soft-pill-tab" data-card-type="beta">Thẻ Beta</button>
+                  </div>
+                  <div class="patch-steps" style="margin-bottom:10px;">
+                    <button type="button" class="soft-action-btn" data-gate-try="f1">Quẹt cổng F1 (Omega)</button>
+                    <button type="button" class="soft-action-btn" data-gate-try="f2">Quẹt cổng F2 (Alpha)</button>
+                    <button type="button" class="soft-action-btn" data-gate-try="f3">Quẹt cổng F3 (Beta)</button>
+                  </div>
+                  <div class="rank-status-msg is-safe" id="gateResultBox">
+                    Chọn loại thẻ rồi bấm thử quẹt ở cổng F1 / F2 / F3.
+                  </div>
+                </div>
+
+                <!-- NÚT BẤM CẤP CỨU ĐỎ ĐẦU GIƯỜNG & GIỚI NGHIÊM -->
+                <div class="sub-card">
+                  <div class="ch1-side-label">Nút báo động y tế &amp; Chốt giới nghiêm</div>
+                  <h3>Nút Bấm Đỏ Đầu Giường (Tòa F1) &amp; 22:30</h3>
+                  <ul class="tier-bullet-list" style="margin-bottom:14px;">
+                    <li><strong>Nút bấm cấp cứu đỏ đầu giường:</strong> Gắn cố định ngay đầu giường mỗi phòng Omega tại Tòa F1, kết nối trực tiếp xuống bàn trực đêm của <strong>Bác sĩ Trưởng (Trạm Y tế Tòa B)</strong>.</li>
+                    <li><strong>Khóa giới nghiêm 22:30:</strong> Đúng 22:30 mỗi đêm, cửa sảnh F1, F2, F3 tự sập chốt điện từ và ngắt cầu thang liên tòa tới <strong>06:00 sáng hôm sau</strong>.</li>
+                  </ul>
+
+                  <button type="button" class="red-alarm-btn" id="btnRedBedAlarm">🚨 Bấm Nút Cấp Cứu Đỏ (Phòng Tòa F1)</button>
+                  <div class="rank-status-msg is-safe" id="redBedStatus" style="margin-top:10px;">
+                    Trạng thái đầu giường F1: Đường dây trực đêm Trạm Y tế Tòa B đang chờ.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
         <!-- PHẦN 2 -->
         <section class="content-section is-hidden-sec" id="sec-2">
@@ -5141,6 +5490,7 @@
     const chap5 = document.getElementById('chap-5');
     const chap6 = document.getElementById('chap-6');
     const chap7 = document.getElementById('chap-7');
+    const chap8 = document.getElementById('chap-8');
 
     function openHandbookMenu() {
       clearTimeout(closeHoverTimer);
@@ -5175,6 +5525,7 @@
       if (chap5) chap5.classList.add('is-hidden-chap');
       if (chap6) chap6.classList.add('is-hidden-chap');
       if (chap7) chap7.classList.add('is-hidden-chap');
+      if (chap8) chap8.classList.add('is-hidden-chap');
       let scrollTarget = document.getElementById('worldContentTop');
       if (viewKey === 'sec-1-all') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -5185,6 +5536,7 @@
         if (chap5) chap5.classList.remove('is-hidden-chap');
         if (chap6) chap6.classList.remove('is-hidden-chap');
         if (chap7) chap7.classList.remove('is-hidden-chap');
+        if (chap8) chap8.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'chap-1') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -5213,6 +5565,10 @@
         } else if (viewKey === 'chap-7') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
         if (chap7) chap7.classList.remove('is-hidden-chap');
+        scrollTarget = sec1;
+        } else if (viewKey === 'chap-8') {
+        if (sec1)  sec1.classList.remove('is-hidden-sec');
+        if (chap8) chap8.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'sec-2') {
         if (sec2) sec2.classList.remove('is-hidden-sec');
@@ -6193,6 +6549,81 @@
           p.classList.toggle('is-hidden-bldg', key !== 'all' && p.getAttribute('data-bldg-panel') !== key);
         });
       });
+    });
+    /* === TƯƠNG TÁC CHƯƠNG 8 (SƠ ĐỒ CHỮ V, 3 LOẠI PHÒNG & AN NINH TÒA F) === */
+    const vWingInfo = {
+      gate: '<strong>Cổng vào &amp; Trạm Bảo vệ chính:</strong> Điểm kiểm soát duy nhất nối khu KTX Tòa F với giảng đường. Quẹt thẻ và đo thân nhiệt tự động trước khi sập chốt điện từ 22:30.',
+      f3:   '<strong>Tòa F3 · Khu vực Beta (2 tầng · 135 học sinh):</strong> Đặt ngay phía trước làm vùng đệm trung lập không mùi. Gồm <strong>F3a (Nam Beta: 20 phòng)</strong> và <strong>F3b (Nữ Beta: 20 phòng)</strong>, phòng 4 người 35m².',
+      f1:   '<strong>Tòa F1 · Khu vực Omega (3 tầng · 135 học sinh):</strong> Nằm cánh trái phía sau, có <strong>F1a (Nam O: 44 phòng)</strong> và <strong>F1b (Nữ O: 44 phòng)</strong> gồm phòng đơn T3 &amp; phòng đôi T1–T2. Bao quanh bởi vành đai báo động bán kính 10 mét.',
+      f2:   '<strong>Tòa F2 · Khu vực Alpha (3 tầng · 180 học sinh):</strong> Nằm cánh phải phía sau, cách Tòa F1 đúng 150 mét qua hàng cây phong chắn gió. Gồm <strong>F2a (Nam A: 56 phòng)</strong> và <strong>F2b (Nữ A: 56 phòng)</strong>.'
+    };
+    const vNodes = document.querySelectorAll('[data-vwing]');
+    vNodes.forEach((node) => {
+      node.addEventListener('click', () => {
+        vNodes.forEach((n) => n.classList.toggle('is-selected', n === node));
+        document.getElementById('vWingDetailBox').innerHTML = vWingInfo[node.getAttribute('data-vwing')];
+      });
+    });
+
+    const roomTierTabs   = document.querySelectorAll('[data-room-tier]');
+    const roomTierPanels = document.querySelectorAll('[data-room-panel]');
+    roomTierTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        roomTierTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const rt = btn.getAttribute('data-room-tier');
+        roomTierPanels.forEach((p) => {
+          p.classList.toggle('is-hidden-room', rt !== 'all' && p.getAttribute('data-room-panel') !== rt);
+        });
+      });
+    });
+
+    let activeCardType = 'alpha';
+    const cardTypeBtns = document.querySelectorAll('[data-card-type]');
+    cardTypeBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        cardTypeBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+        activeCardType = btn.getAttribute('data-card-type');
+      });
+    });
+
+    const gateResultBox = document.getElementById('gateResultBox');
+    document.querySelectorAll('[data-gate-try]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const gate = btn.getAttribute('data-gate-try');
+        if (gate === 'f3') {
+          gateResultBox.className = 'rank-status-msg is-safe';
+          gateResultBox.innerHTML = '✓ <strong>Cổng mở (Tòa F3):</strong> Vùng đệm trung lập — Thẻ ' + activeCardType.toUpperCase() + ' được phép đi qua.';
+        } else if (gate === 'f1' && activeCardType === 'omega') {
+          gateResultBox.className = 'rank-status-msg is-safe';
+          gateResultBox.innerHTML = '✓ <strong>Cổng mở (Tòa F1):</strong> Xác thực thẻ Omega thành công.';
+        } else if (gate === 'f2' && activeCardType === 'alpha') {
+          gateResultBox.className = 'rank-status-msg is-safe';
+          gateResultBox.innerHTML = '✓ <strong>Cổng mở (Tòa F2):</strong> Xác thực thẻ Alpha thành công.';
+        } else if (gate === 'f1' && activeCardType === 'alpha') {
+          gateResultBox.className = 'rank-status-msg is-danger';
+          gateResultBox.innerHTML = '🚨 <strong>CÒI BÁO ĐỘNG HÚ VANG!</strong> Thẻ Alpha vi phạm vành đai 10 mét cổng Tòa F1 — Truyền cảnh báo khẩn cấp tới Thầy Giám thị!';
+        } else {
+          gateResultBox.className = 'rank-status-msg is-warn';
+          gateResultBox.innerHTML = '✕ <strong>Từ chối truy cập:</strong> Thẻ ' + activeCardType.toUpperCase() + ' không có quyền mở cổng Tòa ' + gate.toUpperCase() + '.';
+        }
+      });
+    });
+
+    const btnRedBed = document.getElementById('btnRedBedAlarm');
+    const redBedStatus = document.getElementById('redBedStatus');
+    let redAlarmOn = false;
+    btnRedBed.addEventListener('click', () => {
+      redAlarmOn = !redAlarmOn;
+      btnRedBed.classList.toggle('is-ringing', redAlarmOn);
+      if (redAlarmOn) {
+        btnRedBed.textContent = '🔕 Tắt tín hiệu báo động';
+        redBedStatus.className = 'rank-status-msg is-danger';
+        redBedStatus.innerHTML = '🚨 <strong>KHẨN CẤP Y TẾ (F1):</strong> Tín hiệu đỏ đã truyền thẳng xuống bàn trực đêm Bác sĩ Trưởng (Trạm Y tế Tòa B)!';
+      } else {
+        btnRedBed.textContent = '🚨 Bấm Nút Cấp Cứu Đỏ (Phòng Tòa F1)';
+        redBedStatus.className = 'rank-status-msg is-safe';
+        redBedStatus.innerHTML = 'Trạng thái đầu giường F1: Đường dây trực đêm Trạm Y tế Tòa B đang chờ.';
+      }
     });
   </script>
 </body>
