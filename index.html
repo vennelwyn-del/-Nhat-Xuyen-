@@ -2464,6 +2464,127 @@
       opacity: 0.85;
       pointer-events: none;
     } 
+    /* =========================================================
+       DECOR RIÊNG CHO CHƯƠNG 7 (BẢN ĐỒ, MŨI TÊN CHÚ THÍCH & 29 ẢNH)
+    ========================================================= */
+    .map-hero-slot {
+      min-height: 310px;
+      margin-bottom: 18px;
+    }
+
+    /* Hệ thống mũi tên chỉ chú thích trực tiếp trên ảnh */
+    .anno-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .chap7-hide-annos .anno-layer {
+      opacity: 0;
+    }
+    .anno-pin {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transform: translate(-50%, -50%);
+      pointer-events: auto;
+    }
+    .anno-pin.dir-left {
+      flex-direction: row-reverse;
+    }
+    .anno-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold-text);
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 0 10px var(--glow-color), 0 0 0 3px rgba(0, 0, 0, 0.28);
+      flex-shrink: 0;
+      animation: annoPulse 2.3s ease-in-out infinite;
+    }
+    @keyframes annoPulse {
+      0%, 100% { transform: scale(1); }
+      50%      { transform: scale(1.24); }
+    }
+    .anno-arrow {
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--gold-text);
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.9);
+      line-height: 1;
+    }
+    .anno-label {
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(16, 24, 20, 0.80);
+      border: 1px solid rgba(255, 242, 178, 0.58);
+      backdrop-filter: blur(6px);
+      color: #FFFDF5;
+      font-size: 0.75rem;
+      line-height: 1.25;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+      transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    }
+    .anno-pin:hover .anno-label {
+      background: rgba(16, 24, 20, 0.96);
+      border-color: var(--gold-text);
+      color: var(--gold-text);
+      transform: scale(1.04);
+    }
+
+    .ch7-toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .bldg-panel {
+      animation: softFadeIn 0.35s ease;
+    }
+    .bldg-panel.is-hidden-bldg {
+      display: none;
+    }
+
+    .dining-five-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin: 14px 0 18px;
+    }
+    .dining-five-grid .photo-slot {
+      min-height: 185px;
+    }
+
+    .deadcorner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .deadcorner-card {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .deadcorner-card .photo-slot {
+      min-height: 195px;
+    }
+
+    @media (max-width: 600px) {
+      .anno-label {
+        font-size: 0.68rem;
+        padding: 2px 7px;
+      }
+      .map-hero-slot {
+        min-height: 230px;
+      }
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -2619,6 +2740,10 @@
               <span>↳ Chương 6 · Khảo thí 750đ &amp; Hồng Bảng</span>
               <span class="hb-bow">౨ৎ</span>
             </button>
+            <button type="button" class="hb-item hb-sub" data-view="chap-7">
+              <span>↳ Chương 7 · Bản đồ &amp; 4 Góc chết</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
             <button type="button" class="hb-item" data-view="sec-2">
               <span>Phần 2 ౨ৎ Thuật ngữ</span>
               <span class="hb-bow">౨ৎ</span>
@@ -2646,6 +2771,7 @@
               <button type="button" class="soft-pill-tab" data-quick-view="chap-4">Chương 4</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-5">Chương 5</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-6">Chương 6</button>
+              <button type="button" class="soft-pill-tab" data-quick-view="chap-7">Chương 7</button>
             </div>
           </div>
 
@@ -4223,6 +4349,582 @@
               </div>
             </div>
           </div>
+          <div class="chapter-divider"></div>
+
+          <!-- ==================== CHƯƠNG 7 ==================== -->
+          <div class="chapter-block is-hidden-chap" id="chap-7">
+            <div class="ch1-tag">Chương 7 ౨ৎ Bản đồ toàn cảnh &amp; 4 “Góc chết” học đường</div>
+            <h2 style="margin:0 0 8px; font-size:1.75rem; color:#FFFFFF;">Bản đồ Toàn cảnh &amp; 4 “Góc Chết” Học đường</h2>
+            <div class="ch1-subtitle-en">CAMPUS ARCHITECTURE ATLAS &amp; 4 SURVEILLANCE BLIND SPOTS</div>
+
+            <p class="ch1-body-p" style="margin-bottom:16px;">
+              Tổng thể kiến trúc Học viện Nhất Xuyên được chia làm 2 phân khu: <strong>Khối Chữ U Mặt Trước</strong> (Tòa A, B, C bao quanh Công viên đài phun nước và vườn ngân hạnh, nối liền bằng cầu kính trên không ở Tầng 2–3) và <strong>Tổ Hợp Phía Sau</strong> (Tòa D, Nhà thi đấu Tòa E, Sân vận động tiêu chuẩn 400m và Cụm Ký túc xá Tòa F).
+            </p>
+
+            <!-- ẢNH 33: BẢN ĐỒ NHÌN TỪ TRÊN NGAY DƯỚI TIÊU ĐỀ -->
+            <div class="photo-slot interactive-photo map-hero-slot" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+              <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+              <img src="" alt="Toàn cảnh Học viện Nhất Xuyên nhìn từ trên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+              <div class="photo-placeholder">
+                <span class="ph-badge">Ảnh 33 · Toàn cảnh từ trên cao</span>
+                <span class="ph-icon">🗺️</span>
+                <span class="ph-title">Bản đồ Toàn cảnh Học viện Nhất Xuyên (Top-Down View)</span>
+                <span class="ph-sub">Khối Chữ U A–B–C · Cầu kính T2–T3 · Tổ hợp D–E–Sân 400m &amp; KTX F</span>
+              </div>
+              <div class="anno-layer">
+                <div class="anno-pin" style="top:24%; left:22%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Khối Chữ U (Tòa A–B–C)</span></div>
+                <div class="anno-pin dir-left" style="top:34%; left:74%;"><span class="anno-dot"></span><span class="anno-arrow">↗</span><span class="anno-label">Cầu kính Tầng 2–3</span></div>
+                <div class="anno-pin" style="top:64%; left:26%;"><span class="anno-dot"></span><span class="anno-arrow">↙</span><span class="anno-label">Sân 400m &amp; Tòa D–E</span></div>
+                <div class="anno-pin dir-left" style="top:68%; left:76%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Cụm KTX Tòa F1–F3</span></div>
+              </div>
+              <div class="photo-caption">Fig. 33 — Sơ đồ tổng thể 2 phân khu nhìn từ trên cao</div>
+            </div>
+
+            <div class="ch7-toolbar">
+              <nav class="ch2-jump-nav" style="margin:0;" aria-label="Mục lục Chương 7">
+                <a href="#ch7-1" class="ch2-jump-pill">7.1 Tòa A</a>
+                <a href="#ch7-2" class="ch2-jump-pill">7.2 Phòng học 60cm</a>
+                <a href="#ch7-3" class="ch2-jump-pill">7.3 Tòa B &amp; Y tế</a>
+                <a href="#ch7-4" class="ch2-jump-pill">7.4 Tòa C · D · E</a>
+                <a href="#ch7-5" class="ch2-jump-pill">7.5 Vệ sinh &amp; 4 Góc chết</a>
+              </nav>
+              <button type="button" class="soft-action-btn is-active" id="btnToggleAnnos">📍 Ẩn / Hiện mũi tên chú thích</button>
+            </div>
+
+            <!-- 7.1 TÒA A -->
+            <div class="ch2-subblock" id="ch7-1">
+              <div class="ch1-tag">7.1 · Chi tiết Tòa A · Pháo đài Học thuật &amp; Trung tâm Quyền lực (5 Tầng)</div>
+
+              <div class="ch1-split" style="margin-bottom:18px;">
+                <div class="sub-card">
+                  <h3>Phân tầng Tòa A (Tầng 1 → Tầng 4)</h3>
+                  <ul class="tier-bullet-list">
+                    <li><strong>Tầng 1 (Khối 10 - Cao Nhất):</strong> Khu vực học sinh vừa phân hóa; máy đo T-80 được hiệu chuẩn và kiểm tra thường xuyên nhất.</li>
+                    <li><strong>Tầng 2 (Khối 11 - Cao Nhị):</strong> Khu vực phân ban chuyên sâu, áp lực học thuật bắt đầu tăng tốc.</li>
+                    <li><strong>Tầng 3 (Khối 12 - Cao Tam):</strong> Không gian ngột ngạt nhất trường. Đề thi thử Ngũ Tam chất cao ngang đầu, cửa kính đóng kín, quạt thông gió chạy hết công suất.</li>
+                    <li><strong>Tầng 4 (Khu Câu Lạc Bộ Học Thuật):</strong> Phòng sinh hoạt của các CLB Nhiếp ảnh, Thiên văn, Tranh biện Quốc tế (MUN).</li>
+                  </ul>
+                </div>
+
+                <!-- ẢNH 34: TÒA A -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Kiến trúc Tòa A 5 tầng" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 34</span>
+                    <span class="ph-icon">🏛️</span>
+                    <span class="ph-title">Tòa A · Pháo đài Học thuật (5 Tầng)</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="anno-layer">
+                    <div class="anno-pin" style="top:22%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">T5: Đỉnh tháp quyền lực</span></div>
+                    <div class="anno-pin dir-left" style="top:54%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">T3: Khối 12 (Ngũ Tam)</span></div>
+                  </div>
+                  <div class="photo-caption">Fig. 34 — Mặt cắt 5 tầng Tòa A &amp; lối cầu kính</div>
+                </div>
+              </div>
+
+              <!-- TẦNG 5 ĐỈNH THÁP QUYỀN LỰC: HỘI HỌC SINH & BAN KỶ LUẬT -->
+              <div class="ch1-two-cols">
+                <div class="deadcorner-card">
+                  <div class="sub-card">
+                    <div class="ch1-side-label">Tầng 5 · Cánh trái</div>
+                    <h3>Penthouse Hội Học Sinh (The Grand Executive Suite)</h3>
+                    <p>Thiết kế thông tầng cao 6 mét với vách kính cong nhìn bao quát toàn bộ sân vận động và quảng trường chữ U. Gồm bàn làm việc Hội Trưởng bằng đá cẩm thạch đen nguyên khối kết hợp gỗ óc chó; bàn hội nghị 14 chỗ bọc da có micro âm bàn; khu tiếp khách sofa da Chesterfield nâu cognac, bàn trà đá onyx và bộ tách trà sứ xương hoàng gia.</p>
+                  </div>
+                  <!-- ẢNH 35: HỘI HỌC SINH -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Penthouse Hội Học Sinh Tầng 5 Tòa A" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 35</span>
+                      <span class="ph-icon">♛</span>
+                      <span class="ph-title">Cánh trái T5 · Penthouse Hội Học Sinh</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:24%; left:28%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Vách kính cong 6m</span></div>
+                      <div class="anno-pin dir-left" style="top:58%; left:74%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Bàn đá đen &amp; Sofa da</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 35 — Bàn hội nghị 14 chỗ &amp; bộ tách trà sứ xương</div>
+                  </div>
+                </div>
+
+                <div class="deadcorner-card">
+                  <div class="sub-card">
+                    <div class="ch1-side-label">Tầng 5 · Cánh phải</div>
+                    <h3>Tòa Án Học Đường (Ban Thanh Tra Kỷ Luật)</h3>
+                    <p>Phong cách <em>Dark Brutalism &amp; High-tech Industrial</em> (bê tông mài xám than, thép đen phay xước, LED trắng lạnh): <strong>Màn hình LED CCTV ma trận</strong> nhảy số tin tức tố thời gian thực; <strong>Bàn thẩm vấn đá đen</strong> dưới 1 spotlight duy nhất; <strong>Tủ kính chống đạn</strong> chứa tang vật &amp; hồ sơ đen; <strong>Trạm Kiểm Định Sinh Học</strong> (T-80 độ nhạy cao, que thử, vòng cổ điện tử).</p>
+                  </div>
+                  <!-- ẢNH 36: BAN KỶ LUẬT -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Tòa Án Học Đường Ban Kỷ Luật Tầng 5 Tòa A" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 36</span>
+                      <span class="ph-icon">⚖️</span>
+                      <span class="ph-title">Cánh phải T5 · Tòa Án Học Đường (Ban Kỷ Luật)</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:24%; left:30%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">LED CCTV Ma trận</span></div>
+                      <div class="anno-pin dir-left" style="top:52%; left:74%;"><span class="anno-dot"></span><span class="anno-arrow">↗</span><span class="anno-label">Tủ kính chống đạn</span></div>
+                      <div class="anno-pin" style="top:72%; left:38%;"><span class="anno-dot"></span><span class="anno-arrow">↙</span><span class="anno-label">Bàn thẩm vấn Spotlight</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 36 — Dark Brutalism, trạm kiểm định &amp; hộp vòng cổ điện tử</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7.2 PHÒNG HỌC TIÊU CHUẨN & VÉC-TƠ GÁY 60CM -->
+            <div class="ch2-subblock" id="ch7-2">
+              <div class="ch1-tag">7.2 · Thiết kế phòng học tiêu chuẩn &amp; Véc-tơ gáy 60cm</div>
+
+              <div class="sub-card" style="margin-bottom:16px;">
+                <ul class="tier-bullet-list">
+                  <li><strong>Bố cục không gian:</strong> 30 bàn đơn phủ melamine trắng chống lóa xếp <strong>3 dãy dọc x 10 bàn</strong> (Dãy 1: Cửa sổ | Dãy 2: Giữa | Dãy 3: Hành lang). Lối đi giữa 3 dãy rộng đúng <strong>80cm</strong> — vừa đủ vạt áo blazer sượt nhẹ qua mép bàn.</li>
+                  <li><strong>Động lực học Véc-tơ 60cm:</strong> Người bàn sau nhìn thẳng ở cự ly chưa đầy <strong>60cm</strong> vào gáy và miếng dán cách ly của người bàn trước.</li>
+                  <li><strong>Thiết bị giám sát &amp; Cứu hộ:</strong> Màn hình tương tác 86 inch, bảng trượt từ tính; <strong>4 họng điều hòa âm trần 24°C</strong>; <strong>Máy đo Model T-80</strong> mép bảng bên trái; <strong>Tủ thuốc cấp cứu khóa vân tay</strong> góc cửa sau (mở bằng vân tay Lớp trưởng &amp; Ủy viên Kỷ luật, chứa 5 miếng dán + 2 bình xịt trung hòa nhẹ).</li>
+                </ul>
+              </div>
+
+              <!-- 2 ẢNH MINH HỌA PHÒNG HỌC -->
+              <div class="ch1-two-cols">
+                <!-- ẢNH 37 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Bố cục phòng học 30 bàn đơn Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 37 · Phòng học 1/2</span>
+                    <span class="ph-icon">🪑</span>
+                    <span class="ph-title">Bố cục 30 bàn đơn (3 dãy × 10) &amp; Điều hòa 24°C</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="anno-layer">
+                    <div class="anno-pin" style="top:22%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↑</span><span class="anno-label">4 họng điều hòa 24°C</span></div>
+                    <div class="anno-pin dir-left" style="top:62%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Lối đi rộng 80cm</span></div>
+                  </div>
+                  <div class="photo-caption">Fig. 37 — Mặt bàn melamine trắng chống lóa &amp; bảng 86 inch</div>
+                </div>
+
+                <!-- ẢNH 38 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Véc-tơ gáy 60cm và Tủ thuốc vân tay cuối lớp" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 38 · Phòng học 2/2</span>
+                    <span class="ph-icon">📐</span>
+                    <span class="ph-title">Véc-tơ gáy 60cm · T-80 mép bảng &amp; Tủ thuốc vân tay</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="anno-layer">
+                    <div class="anno-pin" style="top:28%; left:24%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">T-80 mép bảng trái</span></div>
+                    <div class="anno-pin dir-left" style="top:54%; left:76%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">Cự ly 60cm sau gáy</span></div>
+                    <div class="anno-pin" style="top:72%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↙</span><span class="anno-label">Tủ thuốc vân tay cuối lớp</span></div>
+                  </div>
+                  <div class="photo-caption">Fig. 38 — Tầm nhìn trực diện vào miếng dán &amp; hộp cấp cứu</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7.3 TÒA B & TRẠM Y TẾ ABO -->
+            <div class="ch2-subblock" id="ch7-3">
+              <div class="ch1-tag">7.3 · Tòa B · Trung tâm Hành chính &amp; Trạm Y tế ABO (5 Tầng)</div>
+
+              <div class="ch1-split" style="margin-bottom:18px;">
+                <div class="ch1-info-stack">
+                  <div class="sub-card">
+                    <h3>Tầng 2 đến Tầng 5 · Hành chính &amp; Tổ bộ môn</h3>
+                    <p>Tầng 2 (Tổ bộ môn Xã hội), Tầng 3 (Tổ bộ môn Tự nhiên), Tầng 4 (Phòng họp giao ban &amp; Hội thảo), Tầng 5 (Văn phòng Hiệu trưởng &amp; Ban Cố vấn Học viện).</p>
+                  </div>
+                  <div class="sub-card">
+                    <div class="ch1-side-label">Tầng 1 · Nồng nặc thuốc sát trùng 84 &amp; Cồn y tế</div>
+                    <h3>Trạm Y Tế &amp; Cấp cứu Sinh học ABO</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>1. Khu Bàn trực:</strong> Bàn Bác sĩ Trưởng gắn máy đo T-80 để bàn và cảm biến thân nhiệt từ xa.</li>
+                      <li><strong>2. Khu Giường nghỉ:</strong> 6 giường ga trắng ngăn cách bằng <strong>rèm vải xanh bạc mỏng manh</strong>.</li>
+                      <li><strong>3. Tủ Dược Phẩm Khóa Vân Tay (Class-S Vault):</strong> Chỉ mở bằng vân tay Bác sĩ Trưởng, chứa thuốc ức chế cưỡng chế liều cao &amp; miếng dán Class-S.</li>
+                      <li><strong>4. 2 Buồng Cách Ly Áp Suất Âm:</strong> Kính cách âm 1 chiều chống đập, cửa gioăng cao su khóa điện tử, quạt hút duy trì áp suất âm liên tục khóa chặt 100% mùi bên trong.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- ẢNH 39: TÒA B -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Toàn cảnh Tòa B Hành chính và Trạm Y tế" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 39</span>
+                    <span class="ph-icon">🏥</span>
+                    <span class="ph-title">Tòa B · Hành chính &amp; Trạm Y tế (5 Tầng)</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="anno-layer">
+                    <div class="anno-pin" style="top:24%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">T5: Phòng Hiệu trưởng</span></div>
+                    <div class="anno-pin dir-left" style="top:70%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">T1: Cửa kính thẻ từ Y tế</span></div>
+                  </div>
+                  <div class="photo-caption">Fig. 39 — Khối Tòa B &amp; sảnh Hồng Bảng 10m ở Tầng 1</div>
+                </div>
+              </div>
+
+              <!-- 2 ẢNH MINH HỌA PHÒNG Y TẾ -->
+              <div class="ch1-two-cols">
+                <!-- ẢNH 40 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Phòng Y tế 6 giường rèm xanh bạc và Tủ Class-S" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 40 · Phòng Y tế 1/2</span>
+                    <span class="ph-icon">🩺</span>
+                    <span class="ph-title">Bàn trực Bác sĩ · 6 giường rèm xanh bạc &amp; Tủ Class-S</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="anno-layer">
+                    <div class="anno-pin" style="top:28%; left:26%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Tủ Class-S Vault</span></div>
+                    <div class="anno-pin dir-left" style="top:58%; left:74%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">6 giường rèm xanh bạc</span></div>
+                  </div>
+                  <div class="photo-caption">Fig. 40 — Khu khám tuyến thể &amp; tủ thuốc khóa vân tay</div>
+                </div>
+
+                <!-- ẢNH 41 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="2 Buồng Cách Ly Áp Suất Âm Tòa B" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 41 · Phòng Y tế 2/2</span>
+                    <span class="ph-icon">🔒</span>
+                    <span class="ph-title">2 Buồng Cách Ly Áp Suất Âm (Kính 1 chiều)</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="anno-layer">
+                    <div class="anno-pin" style="top:24%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↑</span><span class="anno-label">Quạt hút áp suất âm</span></div>
+                    <div class="anno-pin dir-left" style="top:58%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">Kính cách âm 1 chiều</span></div>
+                  </div>
+                  <div class="photo-caption">Fig. 41 — Cửa gioăng cao su khóa điện tử chống rò rỉ 100%</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7.4 TÒA C, D, E & KHU LIÊN HỢP THỂ THAO -->
+            <div class="ch2-subblock" id="ch7-4">
+              <div class="ch1-tag">7.4 · Tòa C, Tòa D, Tòa E &amp; Khu Liên Hợp Thể Thao</div>
+
+              <div class="scent-group-pills" style="margin-bottom:18px;">
+                <button type="button" class="soft-pill-tab is-active" data-bldg="all">Xem cả Tòa C · D · E</button>
+                <button type="button" class="soft-pill-tab" data-bldg="bldg-c">🎭 Tòa C (3 ảnh)</button>
+                <button type="button" class="soft-pill-tab" data-bldg="bldg-d">🍽 Tòa D (8 ảnh)</button>
+                <button type="button" class="soft-pill-tab" data-bldg="bldg-e">🏟 Tòa E &amp; Sân (4 ảnh)</button>
+              </div>
+
+              <!-- TÒA C -->
+              <div class="phase-card bldg-panel" data-bldg-panel="bldg-c">
+                <div class="phase-head">
+                  <h3>Tòa C · Khối Thực Nghiệm &amp; Nghệ Thuật (5 Tầng)</h3>
+                  <span class="temp-pill">3 Ảnh minh họa</span>
+                </div>
+                <p class="ch1-body-p" style="margin-bottom:14px;">
+                  <strong>Tầng 1:</strong> Đại hội trường 1.200 chỗ rèm nhung đỏ dày cách âm 100% · <strong>Tầng 2:</strong> Chuỗi phòng thí nghiệm Hóa-Sinh-Lý có máy hút mùi · <strong>Tầng 3:</strong> Phòng Âm nhạc, khiêu vũ &amp; thu âm cách âm · <strong>Tầng 4:</strong> Xưởng Mỹ thuật mùi sơn dầu &amp; toan vẽ · <strong>Tầng 5:</strong> Chuỗi phòng đa năng bỏ trống lờ mờ xa tầm kiểm soát.
+                </p>
+
+                <div class="ch1-three-cols">
+                  <!-- ẢNH 42 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Tòa C Khối Thực Nghiệm và Nghệ Thuật" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 42</span>
+                      <span class="ph-icon">🎨</span>
+                      <span class="ph-title">Tòa C · Lab T2, Nhạc T3 &amp; Mỹ thuật T4</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:28%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">T4: Xưởng sơn dầu</span></div>
+                      <div class="anno-pin dir-left" style="top:60%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">T2: Lab hút mùi</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 42 — Tòa nhà Thực nghiệm &amp; Nghệ thuật 5 tầng</div>
+                  </div>
+
+                  <!-- ẢNH 43 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Đại hội trường 1200 chỗ Tầng 1 Tòa C" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 43</span>
+                      <span class="ph-icon">🎭</span>
+                      <span class="ph-title">Đại Hội Trường 1.200 chỗ (Tầng 1)</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:30%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Rèm nhung đỏ cách âm</span></div>
+                      <div class="anno-pin dir-left" style="top:64%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Ghế bậc thang 1.200 chỗ</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 43 — Sân khấu bậc thang &amp; nơi học môn Đạo đức Tuyến thể</div>
+                  </div>
+
+                  <!-- ẢNH 44 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Phòng đa năng bỏ trống Tầng 5 Tòa C" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 44</span>
+                      <span class="ph-icon">🕯️</span>
+                      <span class="ph-title">Phòng Đa Năng Bỏ Trống (Tầng 5)</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:28%; left:38%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Đèn lờ mờ khuất T-80</span></div>
+                      <div class="anno-pin dir-left" style="top:62%; left:68%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Hiện trường Lab cũ</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 44 — Chuỗi phòng bỏ trống xa tầm kiểm soát giáo viên</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TÒA D (8 ẢNH: 1 TÒA D + 5 ẢNH TẦNG 1-2 + 1 ẢNH TẦNG 4 + 1 ẢNH TẦNG 5) -->
+              <div class="phase-card bldg-panel" data-bldg-panel="bldg-d">
+                <div class="phase-head">
+                  <h3>Tòa D · Tổ Hợp Ẩm Thực &amp; Thể Chất (5 Tầng)</h3>
+                  <span class="temp-pill">8 Ảnh minh họa</span>
+                </div>
+
+                <!-- ẢNH 45: TỔNG THỂ TÒA D -->
+                <div class="ch1-split" style="margin-bottom:18px;">
+                  <div class="sub-card">
+                    <h3>Cấu trúc 5 tầng Tòa D</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Tầng 1 &amp; Tầng 2 — Đại Sảnh Ẩm Thực:</strong> Thông tầng trần cao vách kính với 5 khu vực đặc trưng (Bếp Mở, Đảo Tráng Miệng xanh ngọc, Quầy Điện Giải &amp; Gác lửng booth riêng tư).</li>
+                      <li><strong>Tầng 3 — Bể Bơi Bốn Mùa (VÙNG BÁO ĐỘNG ĐỎ):</strong> Nước ấm &amp; <strong>độ ẩm 90%</strong> làm rã keo miếng dán cực nhanh, tỷ lệ rò rỉ cao nhất trường.</li>
+                      <li><strong>Tầng 4 &amp; Tầng 5:</strong> Phòng Gym/Yoga/vòi sen riêng (T4) và Đài Thiên Văn Vòm Kính (T5).</li>
+                    </ul>
+                  </div>
+
+                  <!-- ẢNH 45 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Tổng thể Tòa D 5 tầng" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 45 · Tòa D</span>
+                      <span class="ph-icon">🏢</span>
+                      <span class="ph-title">Tổng thể Tòa D (5 Tầng) &amp; Cảnh báo Tầng 3</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:20%; left:38%;"><span class="anno-dot"></span><span class="anno-arrow">↑</span><span class="anno-label">T5: Vòm kính thiên văn</span></div>
+                      <div class="anno-pin dir-left" style="top:48%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">T3: Bể bơi ẩm 90% (ĐỎ)</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 45 — Tổ hợp Ẩm thực, Bể bơi &amp; Thiên văn Tòa D</div>
+                  </div>
+                </div>
+
+                <!-- 5 ẢNH TẦNG 1 - 2 ĐẠI SẢNH ẨM THỰC -->
+                <div class="ch1-side-label">Tầng 1 &amp; Tầng 2 · 05 Ảnh khu vực Đại Sảnh Ẩm Thực (The Grand Dining Hall)</div>
+                <div class="dining-five-grid">
+                  <!-- ẢNH 46 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Toàn cảnh Đại Sảnh Ẩm Thực thông tầng" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 46 · T1–2 (1/5)</span><span class="ph-icon">🍽️</span><span class="ph-title">Đại Sảnh Thông Tầng</span><span class="ph-sub">Trần cao vách kính</span></div>
+                    <div class="anno-layer"><div class="anno-pin" style="top:26%; left:36%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Vách kính thông 2 tầng</span></div></div>
+                    <div class="photo-caption">Fig. 46 — Không gian chung Đại Sảnh Ẩm Thực</div>
+                  </div>
+
+                  <!-- ẢNH 47 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Quầy Bếp Mở báo chỉ số calo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 47 · T1–2 (2/5)</span><span class="ph-icon">🔥</span><span class="ph-title">Quầy Bếp Mở Á – Âu</span><span class="ph-sub">Báo chỉ số calo</span></div>
+                    <div class="anno-layer"><div class="anno-pin dir-left" style="top:32%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">↗</span><span class="anno-label">Bảng điện tử Calo</span></div></div>
+                    <div class="photo-caption">Fig. 47 — Khu bếp nóng Á – Âu tự chọn</div>
+                  </div>
+
+                  <!-- ẢNH 48 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Đảo Tráng Miệng Trung Tâm đá cẩm thạch xanh ngọc" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 48 · T1–2 (3/5)</span><span class="ph-icon">🍰</span><span class="ph-title">Đảo Tráng Miệng Ngọc Bích</span><span class="ph-sub">Ngã tư chạm mặt</span></div>
+                    <div class="anno-layer"><div class="anno-pin" style="top:54%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↙</span><span class="anno-label">Đá xanh ngọc bích</span></div></div>
+                    <div class="photo-caption">Fig. 48 — Điểm chạm mặt đông đúc nhất trường</div>
+                  </div>
+
+                  <!-- ẢNH 49 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Quầy Bù Khoáng Điện Giải cho A/O" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 49 · T1–2 (4/5)</span><span class="ph-icon">🥤</span><span class="ph-title">Quầy Bù Khoáng Điện Giải</span><span class="ph-sub">Dành riêng cho A/O</span></div>
+                    <div class="anno-layer"><div class="anno-pin dir-left" style="top:34%; left:70%;"><span class="anno-dot"></span><span class="anno-arrow">↗</span><span class="anno-label">Nước điện giải A/O</span></div></div>
+                    <div class="photo-caption">Fig. 49 — Quầy phục hồi thể lực &amp; điện giải</div>
+                  </div>
+
+                  <!-- ẢNH 50 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Gác lửng Tầng 2 sofa booth riêng tư" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 50 · T1–2 (5/5)</span><span class="ph-icon">🛋️</span><span class="ph-title">Gác Lửng Tầng 2 (Booth)</span><span class="ph-sub">Sofa bán khép kín</span></div>
+                    <div class="anno-layer"><div class="anno-pin" style="top:42%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↙</span><span class="anno-label">Booth sofa riêng tư</span></div></div>
+                    <div class="photo-caption">Fig. 50 — Khu gác lửng bàn chuyện kín</div>
+                  </div>
+                </div>
+
+                <!-- 1 ẢNH TẦNG 4 + 1 ẢNH TẦNG 5 -->
+                <div class="ch1-two-cols">
+                  <!-- ẢNH 51 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Tầng 4 Phòng Gym Yoga và Buồng tắm riêng" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 51 · Tầng 4</span><span class="ph-icon">🏋️</span><span class="ph-title">Tầng 4 · Phòng Gym, Yoga &amp; Vòi sen riêng</span><span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span></div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:30%; left:30%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Khu máy tập &amp; Yoga</span></div>
+                      <div class="anno-pin dir-left" style="top:60%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">Buồng tắm vòi sen riêng</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 51 — Khu rèn luyện thể lực &amp; vệ sinh cá nhân sau giờ tập</div>
+                  </div>
+
+                  <!-- ẢNH 52 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Tầng 5 Đài Thiên Văn Học Vòm Kính" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 52 · Tầng 5</span><span class="ph-icon">🔭</span><span class="ph-title">Tầng 5 · Đài Thiên Văn Học Vòm Kính</span><span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span></div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:24%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↑</span><span class="anno-label">Vòm kính ngắm sao</span></div>
+                      <div class="anno-pin dir-left" style="top:58%; left:70%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Kính thiên văn tĩnh lặng</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 52 — Nơi tĩnh lặng nhất ngắm bầu trời đêm</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TÒA E & KHU THỂ THAO NGOÀI TRỜI (4 ẢNH) -->
+              <div class="phase-card bldg-panel" data-bldg-panel="bldg-e">
+                <div class="phase-head">
+                  <h3>Tòa E &amp; Sân Thể Thao Ngoài Trời</h3>
+                  <span class="temp-pill">4 Ảnh minh họa</span>
+                </div>
+                <p class="ch1-body-p" style="margin-bottom:14px;">
+                  Phía sau Tòa B và C là Sân bóng đá cỏ nhân tạo, 2 sân bóng chuyền và Sân vận động đường chạy Pit-tơ 400m. Nối liền phía nam là <strong>Nhà Đa Năng Hình Tròn Elip (Tòa E)</strong> chứa sân bóng rổ, cầu lông tiêu chuẩn thi đấu với 3 tầng khán đài vòm dốc đứng.
+                </p>
+
+                <div class="ch1-two-cols">
+                  <!-- ẢNH 53 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Toàn cảnh Tòa E Elip" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 53 · Tòa E</span><span class="ph-icon">🏟️</span><span class="ph-title">Toàn cảnh Tòa E (Hình Tròn Elip)</span><span class="ph-sub">Nối liền phía nam khu thể thao</span></div>
+                    <div class="anno-layer"><div class="anno-pin" style="top:32%; left:36%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Mái vòm Elip phía nam</span></div></div>
+                    <div class="photo-caption">Fig. 53 — Ngoại thất Nhà thi đấu đa năng Tòa E</div>
+                  </div>
+
+                  <!-- ẢNH 54 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Sân bóng đá cỏ nhân tạo và 2 sân bóng chuyền" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 54 · Sân bóng</span><span class="ph-icon">⚽</span><span class="ph-title">Sân Bóng Đá &amp; 2 Sân Bóng Chuyền</span><span class="ph-sub">Cỏ nhân tạo phía sau Tòa B–C</span></div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:34%; left:30%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Sân cỏ nhân tạo</span></div>
+                      <div class="anno-pin dir-left" style="top:58%; left:74%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">2 sân bóng chuyền</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 54 — Khu sân tập thể thao ngoài trời</div>
+                  </div>
+
+                  <!-- ẢNH 55 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Đường chạy Pit-tơ 400m" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 55 · Đường chạy</span><span class="ph-icon">🏃</span><span class="ph-title">Sân Vận Động Đường Chạy Pit-tơ 400m</span><span class="ph-sub">Đường chạy buổi sáng 06:30</span></div>
+                    <div class="anno-layer"><div class="anno-pin" style="top:46%; left:36%;"><span class="anno-dot"></span><span class="anno-arrow">↙</span><span class="anno-label">Làn chạy Pit-tơ 400m</span></div></div>
+                    <div class="photo-caption">Fig. 55 — Đường chạy tiêu chuẩn thi đấu</div>
+                  </div>
+
+                  <!-- ẢNH 56 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Bên trong Nhà Đa Năng Tòa E" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 56 · Nhà đa năng</span><span class="ph-icon">🏀</span><span class="ph-title">Bên trong Nhà Đa Năng (Bóng rổ &amp; Cầu lông)</span><span class="ph-sub">3 tầng khán đài vòm dốc đứng</span></div>
+                    <div class="anno-layer">
+                      <div class="anno-pin" style="top:26%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">3 tầng khán đài dốc đứng</span></div>
+                      <div class="anno-pin dir-left" style="top:62%; left:70%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Sân gỗ bóng rổ &amp; cầu lông</span></div>
+                    </div>
+                    <div class="photo-caption">Fig. 56 — Sân thi đấu Lớp 5 &amp; đội tuyển trường</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 7.5 BUỒNG VỆ SINH 5 SAO & 4 GÓC CHẾT -->
+            <div class="ch2-subblock" id="ch7-5">
+              <div class="ch1-tag">7.5 · Buồng vệ sinh 5 sao &amp; 4 “Góc chết” không Camera / không T-80</div>
+
+              <!-- KHU VỆ SINH 5 SAO -->
+              <div class="ch1-split" style="margin-bottom:22px;">
+                <div class="sub-card">
+                  <div class="ch1-side-label">Zero-Gap Privacy Stalls</div>
+                  <h3>Khu Vệ Sinh Học Đường 5 Sao</h3>
+                  <p>Các buồng vệ sinh cá nhân có cửa gỗ sồi đen chống nước <strong>chạy kịch từ sàn lên sát trần nhà, hoàn toàn không có khe hở trên - dưới</strong>, cách âm tuyệt đối và có đèn LED báo khóa. Bên trong trang bị máy khử mùi ion âm và <strong>hộp kim loại gắn tường chuyên dụng</strong> để vứt vỏ ống tiêm thuốc ức chế cùng giấy gói miếng dán kín đáo.</p>
+                </div>
+
+                <!-- ẢNH 57 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Buồng vệ sinh 5 sao Zero-Gap" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 57 · Khu vệ sinh</span>
+                    <span class="ph-icon">🚪</span>
+                    <span class="ph-title">Buồng Vệ Sinh 5 Sao (Zero-Gap)</span>
+                    <span class="ph-sub">Cửa gỗ sồi đen kịch trần · Khử mùi ion âm</span>
+                  </div>
+                  <div class="anno-layer">
+                    <div class="anno-pin" style="top:24%; left:30%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Cửa gỗ sồi kịch trần</span></div>
+                    <div class="anno-pin dir-left" style="top:54%; left:74%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">Hộp vứt ống tiêm &amp; dán</span></div>
+                  </div>
+                  <div class="photo-caption">Fig. 57 — Đèn LED báo khóa &amp; máy khử mùi ion âm</div>
+                </div>
+              </div>
+
+              <!-- 4 GÓC CHẾT -->
+              <div class="ch1-side-label">Bản đồ 4 “Góc Chết” thoát khỏi lưới giám sát CCTV &amp; T-80</div>
+              <div class="deadcorner-grid">
+                <!-- GÓC CHẾT 1 -->
+                <div class="sub-card deadcorner-card">
+                  <div>
+                    <div class="ch1-grade-pill">Góc chết 01 · No CCTV / No T-80</div>
+                    <h3>1. Sân Thượng Tòa A (The Rooftop Sanctuary)</h3>
+                    <p>Nằm ngay trên đầu tầng Hội Học Sinh. Cửa thoát hiểm bằng sắt luôn bị học sinh lén chèn một mẩu gỗ nhỏ để khóa không sập. Nơi lộng gió ngắm trọn hoàng hôn, lãnh địa trốn tiết tự học hoặc hút thuốc lá nhạt của các Alpha.</p>
+                  </div>
+                  <!-- ẢNH 58 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Sân Thượng Tòa A" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 58 · Góc chết 1</span><span class="ph-icon">🌬️</span><span class="ph-title">Sân Thượng Tòa A</span></div>
+                    <div class="anno-layer"><div class="anno-pin" style="top:56%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↙</span><span class="anno-label">Mẩu gỗ chèn cửa sắt</span></div></div>
+                    <div class="photo-caption">Fig. 58 — Lộng gió hoàng hôn ngay trên đầu Hội Học Sinh</div>
+                  </div>
+                </div>
+
+                <!-- GÓC CHẾT 2 -->
+                <div class="sub-card deadcorner-card">
+                  <div>
+                    <div class="ch1-grade-pill">Góc chết 02 · Cách âm 100%</div>
+                    <h3>2. Cánh Gà &amp; Kho Đạo Cụ Hội Trường Tòa C</h3>
+                    <p>Nằm khuất sau bức rèm nhung đỏ dày của sân khấu 1.200 chỗ. Tối mờ, nồng mùi gỗ thông và sơn vẽ, <strong>cách âm hoàn hảo 100%</strong> — điểm trú ẩn nguy hiểm nhất cho những va chạm thể xác lén lút hoặc cơn sốt Heat bất ngờ mà không sợ máy T-80 rú còi.</p>
+                  </div>
+                  <!-- ẢNH 59 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Cánh Gà và Kho Đạo Cụ Hội Trường Tòa C" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 59 · Góc chết 2</span><span class="ph-icon">🎭</span><span class="ph-title">Cánh Gà &amp; Kho Đạo Cụ Tòa C</span></div>
+                    <div class="anno-layer"><div class="anno-pin dir-left" style="top:34%; left:70%;"><span class="anno-dot"></span><span class="anno-arrow">↗</span><span class="anno-label">Sau rèm nhung đỏ dày</span></div></div>
+                    <div class="photo-caption">Fig. 59 — Tối mờ, mùi gỗ thông &amp; cách âm tuyệt đối</div>
+                  </div>
+                </div>
+
+                <!-- GÓC CHẾT 3 -->
+                <div class="sub-card deadcorner-card">
+                  <div>
+                    <div class="ch1-grade-pill">Góc chết 03 · Giao dịch bí mật</div>
+                    <h3>3. Cầu Thang Thoát Hiểm Khối Thực Nghiệm (Tòa C)</h3>
+                    <p>Cầu thang bộ bằng sắt cũ kỹ nối thẳng lên các phòng bỏ trống ở Tầng 5 Tòa C. Đèn huỳnh quang chập chờn, không khí lạnh lẽo, góc khuất sau cánh cửa chống cháy là nơi lý tưởng để giao dịch bí mật.</p>
+                  </div>
+                  <!-- ẢNH 60 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Cầu Thang Thoát Hiểm Tòa C" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 60 · Góc chết 3</span><span class="ph-icon">🪜</span><span class="ph-title">Cầu Thang Thoát Hiểm Tòa C</span></div>
+                    <div class="anno-layer"><div class="anno-pin" style="top:42%; left:34%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Sau cửa chống cháy lên T5</span></div></div>
+                    <div class="photo-caption">Fig. 60 — Đèn huỳnh quang chập chờn nối thẳng lên Tầng 5</div>
+                  </div>
+                </div>
+
+                <!-- GÓC CHẾT 4 -->
+                <div class="sub-card deadcorner-card">
+                  <div>
+                    <div class="ch1-grade-pill">Góc chết 04 · Hộp thư chết</div>
+                    <h3>4. Dãy Tủ Đồ Cá Nhân Hành Lang (Student Lockers)</h3>
+                    <p>Nằm ở khúc cua hành lang nối Tòa A và Tòa B. Khe hẹp của cánh cửa tủ sắt đóng vai trò là <strong>“hộp thư chết”</strong> — nơi học sinh lén nhét cho nhau mẩu giấy hẹn gặp, kẹo ngậm hoặc ống thuốc ức chế bọc trong khăn tay.</p>
+                  </div>
+                  <!-- ẢNH 61 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Dãy Tủ Đồ Cá Nhân Hành Lang nối Tòa A-B" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 61 · Góc chết 4</span><span class="ph-icon">🗄️</span><span class="ph-title">Dãy Tủ Đồ Hành Lang A – B</span></div>
+                    <div class="anno-layer"><div class="anno-pin dir-left" style="top:52%; left:70%;"><span class="anno-dot"></span><span class="anno-arrow">→</span><span class="anno-label">Khe cửa “Hộp thư chết”</span></div></div>
+                    <div class="photo-caption">Fig. 61 — Khúc cua hành lang nối Tòa A và Tòa B</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
         <!-- PHẦN 2 -->
         <section class="content-section is-hidden-sec" id="sec-2">
@@ -4438,6 +5140,7 @@
     const chap4 = document.getElementById('chap-4');
     const chap5 = document.getElementById('chap-5');
     const chap6 = document.getElementById('chap-6');
+    const chap7 = document.getElementById('chap-7');
 
     function openHandbookMenu() {
       clearTimeout(closeHoverTimer);
@@ -4471,7 +5174,7 @@
       if (chap4) chap4.classList.add('is-hidden-chap');
       if (chap5) chap5.classList.add('is-hidden-chap');
       if (chap6) chap6.classList.add('is-hidden-chap');
-
+      if (chap7) chap7.classList.add('is-hidden-chap');
       let scrollTarget = document.getElementById('worldContentTop');
       if (viewKey === 'sec-1-all') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -4481,6 +5184,7 @@
         if (chap4) chap4.classList.remove('is-hidden-chap');
         if (chap5) chap5.classList.remove('is-hidden-chap');
         if (chap6) chap6.classList.remove('is-hidden-chap');
+        if (chap7) chap7.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'chap-1') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -4505,6 +5209,10 @@
         } else if (viewKey === 'chap-6') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
         if (chap6) chap6.classList.remove('is-hidden-chap');
+        scrollTarget = sec1;
+        } else if (viewKey === 'chap-7') {
+        if (sec1)  sec1.classList.remove('is-hidden-sec');
+        if (chap7) chap7.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'sec-2') {
         if (sec2) sec2.classList.remove('is-hidden-sec');
@@ -5463,6 +6171,26 @@
         const f = btn.getAttribute('data-hb-filter');
         hbBoards.forEach((bd) => {
           bd.classList.toggle('is-hidden-board', f !== 'all' && bd.getAttribute('data-board') !== f);
+        });
+      });
+    });
+    /* === TƯƠNG TÁC CHƯƠNG 7 (ẨN/HIỆN MŨI TÊN & LỌC TÒA C-D-E) === */
+    const btnToggleAnnos = document.getElementById('btnToggleAnnos');
+    if (btnToggleAnnos && chap7) {
+      btnToggleAnnos.addEventListener('click', () => {
+        const hidden = chap7.classList.toggle('chap7-hide-annos');
+        btnToggleAnnos.classList.toggle('is-active', !hidden);
+        btnToggleAnnos.textContent = hidden ? '📍 Hiện mũi tên chú thích' : '📍 Ẩn / Hiện mũi tên chú thích';
+      });
+    }
+    const bldgTabs   = document.querySelectorAll('[data-bldg]');
+    const bldgPanels = document.querySelectorAll('[data-bldg-panel]');
+    bldgTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        bldgTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const key = btn.getAttribute('data-bldg');
+        bldgPanels.forEach((p) => {
+          p.classList.toggle('is-hidden-bldg', key !== 'all' && p.getAttribute('data-bldg-panel') !== key);
         });
       });
     });
