@@ -1837,6 +1837,21 @@
     @media (max-width: 820px) {
       .diffusion-panel { grid-template-columns: 1fr; }
     }
+    /* === DECOR RIÊNG CHO CHƯƠNG 3 (KIM TỰ THÁP & VANGUARD) === */
+    .tier-pyramid.is-pyramid-shape .tier-step:nth-child(1) { width: 84%; }
+    .tier-pyramid.is-pyramid-shape .tier-step:nth-child(2) { width: 90%; }
+    .tier-pyramid.is-pyramid-shape .tier-step:nth-child(3) { width: 95%; }
+    .tier-pyramid.is-pyramid-shape .tier-step:nth-child(4) { width: 100%; }
+
+    .vanguard-cards-wrap .vanguard-card.is-hidden-card {
+      display: none;
+    }
+
+    @media (max-width: 820px) {
+      .tier-pyramid.is-pyramid-shape .tier-step {
+        width: 100% !important;
+      }
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -1976,6 +1991,10 @@
               <span>↳ Chương 2 · Sinh học ABO &amp; T-80</span>
               <span class="hb-bow">౨ৎ</span>
             </button>
+            <button type="button" class="hb-item hb-sub" data-view="chap-3">
+              <span>↳ Chương 3 · Kim tự tháp &amp; Học bổng</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
             <button type="button" class="hb-item" data-view="sec-2">
               <span>Phần 2 ౨ৎ Thuật ngữ</span>
               <span class="hb-bow">౨ৎ</span>
@@ -1988,7 +2007,7 @@
         </div>
       </aside>
 
-      <div class="world-content">
+      <div class="world-content" id="worldContentTop">
        <section class="content-section" id="sec-1" data-view="sec-1-all">
           <div class="sec-header-row">
             <div>
@@ -1999,6 +2018,7 @@
               <button type="button" class="soft-pill-tab" data-quick-view="sec-1-all">Hiện hết Phần 1</button>
               <button type="button" class="soft-pill-tab is-active" data-quick-view="chap-1">Chương 1</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-2">Chương 2</button>
+              <button type="button" class="soft-pill-tab" data-quick-view="chap-3">Chương 3</button>
             </div>
           </div>
 
@@ -2226,176 +2246,7 @@
               </div>
             </div>
           </div>
-          <!-- CHƯƠNG 1.3: THÁP PHÂN TẦNG 5 LỚP HỌC -->
-          <div class="ch1-section-block" id="ch1-3">
-            <div class="ch1-tag">1.3 · Tháp phân tầng 5 lớp học · The 5-Tier Classroom Hierarchy</div>
-            <p class="ch1-body-p" style="margin-bottom:18px;">
-              Tại Học viện Nhất Xuyên, lớp học được phân bổ không phải ngẫu nhiên mà phản ánh trực tiếp vị thế xã hội và giá trị học thuật của từng học sinh đối với nhà trường.
-            </p>
-
-            <div class="ch1-split ch1-tier-grid">
-              <!-- CỘT TRÁI: THÁP TƯƠNG TÁC + KHUNG ẢNH 05 -->
-              <div class="tier-left-col">
-                <div class="tier-pyramid" role="tablist" aria-label="Chọn tầng lớp học">
-                  <button type="button" class="tier-step is-selected" data-tier="tier-1">
-                    <span class="tier-rank">Bậc I · Lớp 1</span>
-                    <span class="tier-name">Lớp Chọn Tinh Anh</span>
-                    <span class="tier-en">The Academic Zenith</span>
-                  </button>
-                  <button type="button" class="tier-step" data-tier="tier-2">
-                    <span class="tier-rank">Bậc II · Lớp 2</span>
-                    <span class="tier-name">Lớp Chuyên Quốc Tế &amp; Song Ngữ</span>
-                    <span class="tier-en">The Diplomatic Track</span>
-                  </button>
-                  <button type="button" class="tier-step" data-tier="tier-34">
-                    <span class="tier-rank">Bậc III · Lớp 3 &amp; Lớp 4</span>
-                    <span class="tier-name">Lớp Nền Tảng Con Em Tài Phiệt</span>
-                    <span class="tier-en">The Legacy Foundation</span>
-                  </button>
-                  <button type="button" class="tier-step" data-tier="tier-5">
-                    <span class="tier-rank">Bậc IV · Lớp 5</span>
-                    <span class="tier-name">Lớp Đặc Tài &amp; Thể Thao</span>
-                    <span class="tier-en">The Unbalanced Talents</span>
-                  </button>
-                </div>
-
-                <div class="tier-toolbar">
-                  <button type="button" class="soft-action-btn" id="btnShowAllTiers">✦ Xem đồng thời cả 5 lớp</button>
-                </div>
-
-                <!-- KHUNG ẢNH 05 -->
-                <div class="photo-slot interactive-photo" style="min-height:205px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
-                  <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
-                  <img src="" alt="Hồng Bảng và Khu giảng đường lớp chọn" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
-                  <div class="photo-placeholder">
-                    <span class="ph-badge">Ảnh 05</span>
-                    <span class="ph-icon">❀</span>
-                    <span class="ph-title">Hồng Bảng &amp; Hành lang các khối lớp</span>
-                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
-                  </div>
-                  <div class="photo-caption">Fig. 05 — Bảng xếp hạng Nguyệt Khảo &amp; không khí từng tầng lớp</div>
-                </div>
-              </div>
-
-              <!-- CỘT PHẢI: CHI TIẾT TỪNG TẦNG LỚP -->
-              <div class="tier-details-col" id="tierDetailsContainer">
-                <div class="sub-card tier-detail-card is-visible" data-tier-panel="tier-1">
-                  <div class="tier-card-top">
-                    <span class="ch1-grade-pill">Lớp 1 · The Academic Zenith</span>
-                    <span class="tier-mood-badge">Tỉnh lặng · Băng giá</span>
-                  </div>
-                  <h3>“Lớp Chọn Tinh Anh”</h3>
-                  <ul class="tier-bullet-list">
-                    <li><strong>Hồ sơ học thuật:</strong> Đỉnh cao tuyệt đối của khối. Điểm số các môn Khoa học Tự nhiên (Toán - Lý - Hóa) luôn tiệm cận mức tuyệt đối.</li>
-                    <li><strong>Thành phần:</strong> Tập hợp các “Học thần” khối Tự nhiên, thành viên đội tuyển Olympic quốc gia, Ban Học thuật và học sinh nhận học bổng Vanguard. <em>(Các vị trí Thường trực Hội Học Sinh có thể phân bổ ở cả Lớp 1 và Lớp 2).</em></li>
-                    <li><strong>Bầu không khí:</strong> Lạnh lùng như băng đá, ngập tràn sự kiêu ngạo trí tuệ và tiếng ngòi bút ma sát điên cuồng trên giấy nháp. Áp lực cạnh tranh thứ hạng diễn ra nghẹt thở từng phút.</li>
-                  </ul>
-                </div>
-
-                <div class="sub-card tier-detail-card" data-tier-panel="tier-2">
-                  <div class="tier-card-top">
-                    <span class="ch1-grade-pill">Lớp 2 · The Diplomatic Track</span>
-                    <span class="tier-mood-badge">Phóng khoáng · Quốc tế</span>
-                  </div>
-                  <h3>“Lớp Chuyên Quốc Tế &amp; Song Ngữ”</h3>
-                  <ul class="tier-bullet-list">
-                    <li><strong>Hồ sơ học thuật:</strong> Xuất sắc toàn diện, hướng tới các kỳ thi chuẩn hóa quốc tế (AP/IB/SAT) và hồ sơ du học phương Tây.</li>
-                    <li><strong>Thành phần:</strong> Con em các nhà ngoại giao, đại tài phiệt đa quốc gia có tư duy phóng khoáng và kỹ năng tranh biện quốc tế (MUN) sắc bén.</li>
-                  </ul>
-                </div>
-
-                <div class="sub-card tier-detail-card" data-tier-panel="tier-34">
-                  <div class="tier-card-top">
-                    <span class="ch1-grade-pill">Lớp 3 &amp; Lớp 4 · The Legacy Foundation</span>
-                    <span class="tier-mood-badge">Thanh lịch · Kín đáo</span>
-                  </div>
-                  <h3>“Lớp Nền Tảng Con Em Tài Phiệt”</h3>
-                  <ul class="tier-bullet-list">
-                    <li><strong>Hồ sơ học thuật:</strong> Học lực mức Khá và duy trì ổn định.</li>
-                    <li><strong>Thành phần:</strong> Con em các tập đoàn gia tộc có đóng góp tài chính lớn cho ngân sách xây dựng trường.</li>
-                    <li><strong>Bầu không khí:</strong> Xa hoa kín đáo, duy trì sự thanh lịch quý tộc. Dù không chịu áp lực sinh tử về học bổng, học sinh tại đây vẫn phải giữ điểm số ở ngưỡng an toàn để tránh bị gia tộc trừng phạt.</li>
-                  </ul>
-                </div>
-
-                <div class="sub-card tier-detail-card" data-tier-panel="tier-5">
-                  <div class="tier-card-top">
-                    <span class="ch1-grade-pill">Lớp 5 · The Unbalanced Talents</span>
-                    <span class="tier-mood-badge">Tự do · Hoang dã</span>
-                  </div>
-                  <h3>“Lớp Đặc Tài &amp; Thể Thao”</h3>
-                  <ul class="tier-bullet-list">
-                    <li><strong>Đặc tính cốt lõi:</strong> <strong>Tuyệt đối không phải lớp học sinh kém</strong>, mà là <strong>lớp học lệch cực đoan</strong>.</li>
-                    <li><strong>Thành phần:</strong> Những thiếu niên có thiên phú dị biệt (thiên tài Ngữ văn, Hội họa, Âm nhạc nhưng điểm Toán chạm đáy; hoặc các hạt giống thể thao cấp quốc gia như đội trưởng bóng rổ, kình ngư bơi lội, điền kinh) cùng các học sinh cá biệt.</li>
-                    <li><strong>Nguyên tắc không đặc cách:</strong> Việc học lệch tủ là vấn đề tự thân của học sinh Lớp 5, hoàn toàn không có bất kỳ sự ưu tiên hay đặc cách nào trên bảng điểm văn hóa 750 điểm. Không khí lớp hoang dã, tự do, tập trung nhiều Alpha có thể chất vượt trội và giàu sức sống cơ bắp nhất trường.</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- CHƯƠNG 1.4: GIAO THỨC HỌC BỔNG VANGUARD -->
-          <div class="ch1-section-block" id="ch1-4">
-            <div class="ch1-tag">1.4 · Giao thức Học bổng Vanguard · The 6 Merit Scholars</div>
-            <p class="ch1-body-p" style="margin-bottom:16px;">
-              Để giữ vững danh tiếng học thuật Top 1 thành phố, Nhất Xuyên duy trì một hạn ngạch nhân tài cố định và tàn khốc: <strong>Toàn trường chỉ có đúng 06 suất Học bổng Toàn phần Vanguard (cố định đúng 02 học sinh mỗi khối)</strong>.
-            </p>
-
-            <div class="vanguard-laurel-bar">
-              <div class="laurel-emblem" title="Ghim Cành Nguyệt Quế Bạc">❧ <strong>06</strong> Suất Toàn Phần · <strong>02</strong> / Khối</div>
-              <div class="laurel-tabs" role="tablist">
-                <button type="button" class="soft-pill-tab is-active" data-vtab="v-all">Xem cả A &amp; B</button>
-                <button type="button" class="soft-pill-tab" data-vtab="v-priv">A · Đặc quyền</button>
-                <button type="button" class="soft-pill-tab" data-vtab="v-rule">B · Đào thải</button>
-              </div>
-            </div>
-
-            <div class="ch1-two-cols vanguard-cards-wrap">
-              <div class="sub-card vanguard-card" id="vCardPriv">
-                <div class="ch1-side-label">A · Full-Ride Privileges</div>
-                <h3>Đặc quyền toàn diện</h3>
-                <ul class="tier-bullet-list">
-                  <li><strong>Bao trọn 100% tài chính:</strong> Miễn toàn bộ học phí đắt đỏ bậc nhất thành phố (hàng trăm nghìn tệ mỗi học kỳ), cấp phát miễn phí toàn bộ giáo trình quốc tế và đồng phục, lễ phục may đo riêng.</li>
-                  <li><strong>Thẻ ăn VIP không giới hạn:</strong> Toàn quyền sử dụng tại Đại sảnh Ẩm thực Tòa D (từ quầy bếp nóng Á - Âu đến đảo tráng miệng Pháp và quầy nước ép bù khoáng điện giải).</li>
-                  <li><strong>Đặc quyền nội trú:</strong> Được cấp miễn phí <strong>Phòng đôi cao cấp (30m²)</strong> tại Ký túc xá Tòa F trong suốt 3 năm học.</li>
-                  <li><strong>Đào tạo kỹ năng quý tộc:</strong> Đài thọ 100% chi phí học các môn bổ trợ thượng lưu (đấu kiếm, cưỡi ngựa, phòng thí nghiệm nghiên cứu chuyên biệt).</li>
-                  <li><strong>Dấu ấn nhận diện:</strong> Trên ve áo blazer bên phải được cài một <span class="silver-laurel-chip">✦ Ghim cài áo hình Cành Nguyệt Quế Bạc</span>.</li>
-                </ul>
-              </div>
-
-              <div class="sub-card vanguard-card" id="vCardRule">
-                <div class="ch1-side-label">B · Class Friction &amp; Elimination</div>
-                <h3>Ma sát giai cấp &amp; Bản án đào thải</h3>
-                <ul class="tier-bullet-list">
-                  <li><strong>Định kiến xã hội (“Dân thường lọt vào ổ quý tộc”):</strong> 6 học sinh này xuất thân từ tầng lớp lao động bình dân, bước vào trường nhờ điểm số thủ khoa đầu vào hoặc tài năng xuất chúng. Họ luôn bị hội học sinh con nhà tài phiệt ngầm coi là <em>“kẻ sống nhờ tiền từ thiện”</em>, <em>“mọt sách không cùng đẳng cấp”</em>, bị săm soi và cô lập từ thói quen sinh hoạt nhỏ nhất.</li>
-                  <li><strong>Thuật toán duy trì thứ hạng sinh tử:</strong> Học bổng được xét duyệt lại vào <strong>Thứ Hai cuối cùng của mỗi tháng</strong>, ngay sau khi công bố bảng điểm Nguyệt Khảo. <strong>Không có bất kỳ sự đặc cách nào:</strong> Nếu trượt khỏi <strong>TOP 3 TOÀN KHỐI</strong>, học bổng lập tức bị đình chỉ cảnh cáo. Nếu kỳ thi tháng tiếp theo không quay trở lại Top 3, <strong>học bổng bị hủy bỏ vĩnh viễn ngay trong ngày</strong> — thu hồi thẻ ăn VIP, trục xuất khỏi Ký túc xá Tòa F và đuổi học ngay lập tức.</li>
-                </ul>
-
-                <div class="rank-sim-box">
-                  <button type="button" class="soft-action-btn" id="btnRankCycle">↻ Thử xem trạng thái xét duyệt Nguyệt Khảo</button>
-                  <div class="rank-status-msg is-safe" id="rankStatusMsg">
-                    <strong>Hạng 1 – 3 Toàn Khối:</strong> Duy trì Ghim Nguyệt Quế Bạc · Toàn bộ đặc quyền còn hiệu lực.
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- KHUNG ẢNH 06 -->
-            <div class="photo-slot interactive-photo" style="margin-top:18px; min-height:200px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
-              <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
-              <img src="" alt="Đại sảnh ẩm thực Tòa D hoặc Ghim Nguyệt Quế Bạc" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
-              <div class="photo-placeholder">
-                <span class="ph-badge">Ảnh 06</span>
-                <span class="ph-icon">❦</span>
-                <span class="ph-title">Ghim Cành Nguyệt Quế Bạc · Tòa D &amp; Ký túc xá Tòa F</span>
-                <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
-              </div>
-              <div class="photo-caption">Fig. 06 — Đặc quyền dành riêng cho 06 học giả Vanguard</div>
-            </div>
-          </div>
-
-          <!-- CHƯƠNG 1.5: QUY CHUẨN ĐỒNG PHỤC ĐẶC CHẾ & LÁ CHẮN SINH HỌC -->
-          <div class="ch1-section-block" id="ch1-5">
-            <div class="ch1-tag">1.5 · Quy chuẩn đồng phục đặc chế &amp; Lá chắn sinh học · Bespoke Uniform Code</div>
+          <div class="ch1-tag">1.3 · Quy chuẩn đồng phục đặc chế &amp; Lá chắn sinh học · Bespoke Uniform Code</div>          <div class="ch1-section-block" id="ch1-5">
             <p class="ch1-body-p" style="margin-bottom:18px;">
               Đồng phục của Học viện Nhất Xuyên được may đo riêng theo phong cách trường dự bị tinh hoa Anh Quốc (British Elite Prep School) với bảng màu chủ đạo <strong>Xanh Midnight Navy &amp; Trắng Tinh Khiết</strong>.
             </p>
@@ -2860,6 +2711,215 @@
               </div>
             </div>
           </div>
+          <div class="chapter-divider"></div>
+
+          <!-- ==================== CHƯƠNG 3 ==================== -->
+          <div class="chapter-block is-hidden-chap" id="chap-3">
+            <div class="ch1-tag">Chương 3 ౨ৎ Kim tự tháp 5 tầng lớp học &amp; Học bổng Vanguard</div>
+            <h2 style="margin:0 0 8px; font-size:1.75rem; color:#FFFFFF;">Kim tự tháp 5 tầng lớp học &amp; Học bổng Vanguard</h2>
+            <div class="ch1-subtitle-en">THE 5-TIER CLASSROOM HIERARCHY &amp; VANGUARD SCHOLARSHIP</div>
+
+            <nav class="ch2-jump-nav" aria-label="Mục lục Chương 3">
+              <a href="#ch3-1" class="ch2-jump-pill">3.1 Kim tự tháp Tòa A</a>
+              <a href="#ch3-2" class="ch2-jump-pill">3.2 Học bổng Vanguard (06 suất)</a>
+            </nav>
+
+            <!-- 3.1 KIM TỰ THÁP 5 TẦNG LỚP HỌC -->
+            <div class="ch2-subblock" id="ch3-1">
+              <div class="ch1-tag">3.1 · Kim tự tháp 5 tầng lớp học tại Tòa A</div>
+              <p class="ch1-body-p" style="margin-bottom:18px;">
+                Vị trí lớp học tại <strong>Tòa A</strong> phản ánh trực tiếp nguồn gốc giai cấp, định hướng chuyên môn và giá trị học thuật của từng học sinh đối với học viện:
+              </p>
+
+              <div class="ch1-split ch1-tier-grid">
+                <div class="tier-left-col">
+                  <div class="tier-pyramid is-pyramid-shape" role="tablist" aria-label="Chọn tầng lớp học Tòa A">
+                    <button type="button" class="tier-step is-selected" data-tier="tier-1">
+                      <span class="tier-rank">Tầng I · Lớp 1</span>
+                      <span class="tier-name">Lớp Chọn Tinh Anh</span>
+                      <span class="tier-en">The Academic Zenith</span>
+                    </button>
+                    <button type="button" class="tier-step" data-tier="tier-2">
+                      <span class="tier-rank">Tầng II · Lớp 2</span>
+                      <span class="tier-name">Lớp Chuyên Quốc Tế &amp; Song Ngữ</span>
+                      <span class="tier-en">The Diplomatic Track</span>
+                    </button>
+                    <button type="button" class="tier-step" data-tier="tier-34">
+                      <span class="tier-rank">Tầng III · Lớp 3 &amp; Lớp 4</span>
+                      <span class="tier-name">Lớp Nền Tảng Con Em Tài Phiệt</span>
+                      <span class="tier-en">The Legacy Foundation</span>
+                    </button>
+                    <button type="button" class="tier-step" data-tier="tier-5">
+                      <span class="tier-rank">Tầng IV · Lớp 5</span>
+                      <span class="tier-name">Lớp Đặc Tài &amp; Thể Thao</span>
+                      <span class="tier-en">The Unbalanced Talents</span>
+                    </button>
+                  </div>
+
+                  <div class="tier-toolbar">
+                    <button type="button" class="soft-action-btn" id="btnShowAllTiers">✦ Xem đồng thời cả 5 lớp</button>
+                  </div>
+
+                  <!-- KHUNG ẢNH 15 -->
+                  <div class="photo-slot interactive-photo" style="min-height:200px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
+                    <img src="" alt="Sơ đồ phân tầng lớp học Tòa A" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 15</span>
+                      <span class="ph-icon">🏛</span>
+                      <span class="ph-title">Tòa A · Bảng tổng sắp 750 điểm</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="photo-caption">Fig. 15 — Phân tầng vị thế &amp; hành lang các lớp học Tòa A</div>
+                  </div>
+                </div>
+
+                <div class="tier-details-col" id="tierDetailsContainer">
+                  <div class="sub-card tier-detail-card is-visible" data-tier-panel="tier-1">
+                    <div class="tier-card-top">
+                      <span class="ch1-grade-pill">Lớp 1 · The Academic Zenith</span>
+                      <span class="tier-mood-badge">Tỉnh lặng · Băng giá</span>
+                    </div>
+                    <h3>“Lớp Chọn Tinh Anh”</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Học lực:</strong> Đỉnh cao học thuật tuyệt đối của toàn khối. Điểm số tổ hợp Khoa học Tự nhiên (Toán - Lý - Hóa) luôn tiệm cận mức tuyệt đối.</li>
+                      <li><strong>Thành phần:</strong> Tập trung các “Học thần” khối Tự nhiên, thành viên đội tuyển Olympic quốc gia, Ban Học thuật và <strong>02 học sinh nhận học bổng Vanguard</strong> của khối. <em>(Các vị trí Thường trực Hội Học Sinh phân bổ ở cả Lớp 1 và Lớp 2).</em></li>
+                      <li><strong>Bầu không khí:</strong> Lạnh lùng như băng đá, ngập tràn sự kiêu ngạo trí tuệ và tiếng ngòi bút ma sát điên cuồng trên giấy nháp. Áp lực cạnh tranh thứ hạng nghẹt thở từng giây.</li>
+                    </ul>
+                  </div>
+
+                  <div class="sub-card tier-detail-card" data-tier-panel="tier-2">
+                    <div class="tier-card-top">
+                      <span class="ch1-grade-pill">Lớp 2 · The Diplomatic Track</span>
+                      <span class="tier-mood-badge">Chiến lược · Phóng khoáng</span>
+                    </div>
+                    <h3>“Lớp Chuyên Quốc Tế &amp; Song Ngữ”</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Học lực:</strong> Xuất sắc toàn diện về <strong>Ngoại ngữ học thuật và Khoa học Xã hội</strong>, hướng tới các kỳ thi chuẩn hóa quốc tế (AP/IB/SAT) và hồ sơ du học phương Tây.</li>
+                      <li><strong>Thành phần:</strong> Con em các nhà ngoại giao, đại tài phiệt đa quốc gia và các nhân vật quyền lực đứng đầu Thường trực Hội Học Sinh. Sở hữu kỹ năng tranh biện quốc tế (MUN) sắc bén, tư duy chiến lược và phong thái phóng khoáng.</li>
+                    </ul>
+                  </div>
+
+                  <div class="sub-card tier-detail-card" data-tier-panel="tier-34">
+                    <div class="tier-card-top">
+                      <span class="ch1-grade-pill">Lớp 3 &amp; Lớp 4 · The Legacy Foundation</span>
+                      <span class="tier-mood-badge">Xa hoa · Thanh lịch</span>
+                    </div>
+                    <h3>“Lớp Nền Tảng Con Em Tài Phiệt”</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Học lực:</strong> Học lực mức <strong>Khá - Giỏi</strong> và duy trì ổn định.</li>
+                      <li><strong>Thành phần &amp; Bầu không khí:</strong> Quy tụ con em các tập đoàn gia tộc có đóng góp tài chính lớn cho trường. Không gian xa hoa kín đáo, duy trì sự thanh lịch quý tộc; dù không chịu áp lực sinh tử vì học bổng, họ vẫn phải giữ điểm số ở ngưỡng an toàn để tránh bị gia tộc trừng phạt.</li>
+                    </ul>
+                  </div>
+
+                  <div class="sub-card tier-detail-card" data-tier-panel="tier-5">
+                    <div class="tier-card-top">
+                      <span class="ch1-grade-pill">Lớp 5 · The Unbalanced Talents</span>
+                      <span class="tier-mood-badge">Hoang dã · Tự do</span>
+                    </div>
+                    <h3>“Lớp Đặc Tài &amp; Thể Thao”</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Đặc tính cốt lõi:</strong> Lớp học lệch cực đoan (<strong>tuyệt đối không phải lớp học sinh kém đơn thuần</strong>): Quy tụ các thiên tài Ngữ văn/Mỹ thuật/Âm nhạc nhưng điểm Toán chạm đáy, các hạt giống thể thao cấp quốc gia (đội trưởng bóng rổ, kình ngư bơi lội, điền kinh) hoặc các học sinh cá biệt.</li>
+                      <li><strong>Nguyên tắc vận hành:</strong> Bầu không khí hoang dã, tự do, tập trung nhiều Alpha có thể chất cơ bắp vượt trội nhất trường. Tuy nhiên, việc học lệch tủ là vấn đề tự thân của học sinh Lớp 5 — <strong>nhà trường hoàn toàn không có chế độ đặc cách điểm số văn hóa</strong>, họ vẫn bị xếp hạng chung không khoan nhượng trên <strong>bảng tổng sắp 750 điểm</strong> mỗi tháng.</li>
+                    </ul>
+                  </div>
+
+                  <!-- KHUNG ẢNH 16 -->
+                  <div class="photo-slot interactive-photo" style="min-height:195px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Không gian Lớp 1 và Lớp 5" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 16</span>
+                      <span class="ph-icon">❀</span>
+                      <span class="ph-title">Đối lập Lớp 1 băng giá &amp; Sân tập Lớp 5</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="photo-caption">Fig. 16 — Giữa tiếng ngòi bút ma sát điên cuồng và sân bóng rổ ngập nắng</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3.2 CHÍNH SÁCH HỌC BỔNG VANGUARD -->
+            <div class="ch2-subblock" id="ch3-2" style="margin-top:32px;">
+              <div class="ch1-tag">3.2 · Chính sách Học bổng Vanguard (06 suất cố định toàn trường)</div>
+              <p class="ch1-body-p" style="margin-bottom:16px;">
+                Toàn trường chỉ duy trì cố định đúng <strong>06 suất Học bổng Toàn phần Vanguard</strong> (chia đều mỗi khối đúng <strong>02 học sinh</strong>), dành cho những thủ khoa đầu vào xuất thân từ tầng lớp lao động bình dân.
+              </p>
+
+              <div class="vanguard-laurel-bar">
+                <div class="laurel-emblem" title="Ghim Cành Nguyệt Quế Bạc">❧ <strong>06</strong> Suất Toàn Phần · <strong>02</strong> / Khối · <strong>Top 3</strong> Sinh Tử</div>
+                <div class="laurel-tabs" role="tablist">
+                  <button type="button" class="soft-pill-tab is-active" data-vtab="v-all">Xem cả 3 mục</button>
+                  <button type="button" class="soft-pill-tab" data-vtab="v-priv">✦ Đặc quyền</button>
+                  <button type="button" class="soft-pill-tab" data-vtab="v-stigma">👁 Kỳ thị ngầm</button>
+                  <button type="button" class="soft-pill-tab" data-vtab="v-rule">⚠ Đào thải</button>
+                </div>
+              </div>
+
+              <div class="ch1-three-cols vanguard-cards-wrap">
+                <div class="sub-card vanguard-card" id="vCardPriv">
+                  <div class="ch1-side-label">Full-Ride Privileges</div>
+                  <h3>Đặc quyền toàn diện</h3>
+                  <ul class="tier-bullet-list">
+                    <li>Miễn 100% học phí đắt đỏ bậc nhất thành phố, cấp phát miễn phí toàn bộ giáo trình quốc tế, đồng phục và <strong>lễ phục dạ hội may đo riêng</strong>.</li>
+                    <li>Cấp <strong>Thẻ ăn VIP không giới hạn</strong> tại Đại sảnh Ẩm thực Tòa D (từ quầy bếp nóng Á - Âu đến đảo tráng miệng và quầy bù khoáng điện giải).</li>
+                    <li>Cấp miễn phí <strong>Phòng đôi cao cấp (30m²)</strong> tại Ký túc xá Tòa F suốt 3 năm học.</li>
+                    <li>Đài thọ 100% chi phí đào tạo kỹ năng bổ trợ quý tộc (đấu kiếm, cưỡi ngựa, phòng thí nghiệm nghiên cứu chuyên biệt).</li>
+                    <li><strong>Dấu hiệu nhận diện:</strong> Ve áo blazer bên phải luôn được cài <span class="silver-laurel-chip">✦ Ghim Cành Nguyệt Quế Bạc</span>.</li>
+                  </ul>
+                </div>
+
+                <div class="sub-card vanguard-card" id="vCardStigma">
+                  <div class="ch1-side-label">Class Friction</div>
+                  <h3>Sự kỳ thị ngầm</h3>
+                  <p style="margin-bottom:10px;"><strong>“Dân thường lọt vào ổ quý tộc”:</strong></p>
+                  <p>Luôn bị hội học sinh con nhà tài phiệt ngầm khinh miệt là <em>“kẻ sống nhờ tiền từ thiện”</em>, <em>“mọt sách không cùng đẳng cấp”</em>, bị săm soi và cô lập từ những thói quen sinh hoạt nhỏ nhất.</p>
+                </div>
+
+                <div class="sub-card vanguard-card" id="vCardRule">
+                  <div class="ch1-side-label">Zero-Exception Elimination</div>
+                  <h3>Bản án đào thải tàn khốc</h3>
+                  <ul class="tier-bullet-list">
+                    <li>Xét duyệt lại vào <strong>Thứ Hai cuối cùng của mỗi tháng</strong> ngay sau kỳ thi Nguyệt Khảo.</li>
+                    <li><strong>Điều kiện sinh tử:</strong> Bắt buộc giữ vững vị trí trong <strong>TOP 3 TOÀN KHỐI</strong>. Trượt Top 3 $\rightarrow$ lập tức bị đình chỉ cảnh cáo. Nếu tháng tiếp theo không quay lại Top 3, <strong>học bổng bị hủy bỏ vĩnh viễn ngay trong ngày</strong>: thu hồi thẻ ăn VIP, trục xuất khỏi Ký túc xá Tòa F và đuổi học ngay lập tức.</li>
+                  </ul>
+
+                  <div class="rank-sim-box">
+                    <button type="button" class="soft-action-btn" id="btnRankCycle">↻ Thử xem trạng thái Nguyệt Khảo</button>
+                    <div class="rank-status-msg is-safe" id="rankStatusMsg">
+                      <strong>Hạng 1 – 3 Toàn Khối:</strong> Duy trì Ghim Nguyệt Quế Bạc · Toàn bộ đặc quyền còn hiệu lực.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="ch1-two-cols" style="margin-top:18px;">
+                <!-- KHUNG ẢNH 17 -->
+                <div class="photo-slot interactive-photo" style="min-height:195px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Ghim Cành Nguyệt Quế Bạc và Lễ phục Vanguard" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 17</span>
+                    <span class="ph-icon">❦</span>
+                    <span class="ph-title">Ghim Cành Nguyệt Quế Bạc &amp; Lễ phục dạ hội</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 17 — Huy hiệu cài ve áo blazer bên phải của 06 học giả</div>
+                </div>
+
+                <!-- KHUNG ẢNH 18 -->
+                <div class="photo-slot interactive-photo" style="min-height:195px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Đại sảnh Tòa D và Ký túc xá Tòa F 30m2" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 18</span>
+                    <span class="ph-icon">✦</span>
+                    <span class="ph-title">Đại sảnh Ẩm thực Tòa D &amp; Phòng đôi Tòa F (30m²)</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 18 — Đặc quyền sinh hoạt đi kèm áp lực Top 3 mỗi tháng</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </main>
@@ -3024,6 +3084,7 @@
     const sec3  = document.getElementById('sec-3');
     const chap1 = document.getElementById('chap-1');
     const chap2 = document.getElementById('chap-2');
+    const chap3 = document.getElementById('chap-3');
 
     function openHandbookMenu() {
       clearTimeout(closeHoverTimer);
@@ -3047,19 +3108,20 @@
       });
       handbookStack.classList.toggle('has-pinned', hasPinned);
     }
-
     function switchContentView(viewKey, shouldScroll) {
       if (sec1)  sec1.classList.add('is-hidden-sec');
       if (sec2)  sec2.classList.add('is-hidden-sec');
       if (sec3)  sec3.classList.add('is-hidden-sec');
       if (chap1) chap1.classList.add('is-hidden-chap');
       if (chap2) chap2.classList.add('is-hidden-chap');
+      if (chap3) chap3.classList.add('is-hidden-chap');
 
       let scrollTarget = document.getElementById('worldContentTop');
       if (viewKey === 'sec-1-all') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
         if (chap1) chap1.classList.remove('is-hidden-chap');
         if (chap2) chap2.classList.remove('is-hidden-chap');
+        if (chap3) chap3.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'chap-1') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -3068,6 +3130,10 @@
       } else if (viewKey === 'chap-2') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
         if (chap2) chap2.classList.remove('is-hidden-chap');
+        scrollTarget = sec1;
+      } else if (viewKey === 'chap-3') {
+        if (sec1)  sec1.classList.remove('is-hidden-sec');
+        if (chap3) chap3.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'sec-2') {
         if (sec2) sec2.classList.remove('is-hidden-sec');
@@ -3085,7 +3151,6 @@
         scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     }
-
     hbHeaderBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       triggerGlowAndSway(hbHeaderBtn);
@@ -3352,17 +3417,19 @@
       }
     });
 
-    // 1.4 Lọc A/B & Mô phỏng trạng thái xét duyệt Nguyệt Khảo
-    const vTabs     = document.querySelectorAll('[data-vtab]');
-    const vCardPriv = document.getElementById('vCardPriv');
-    const vCardRule = document.getElementById('vCardRule');
+    // 3.2 Lọc 3 thẻ Học bổng Vanguard (Đặc quyền / Kỳ thị ngầm / Đào thải)
+    const vTabs       = document.querySelectorAll('[data-vtab]');
+    const vCardPriv   = document.getElementById('vCardPriv');
+    const vCardStigma = document.getElementById('vCardStigma');
+    const vCardRule   = document.getElementById('vCardRule');
 
     vTabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         vTabs.forEach((t) => t.classList.toggle('is-active', t === tab));
         const mode = tab.getAttribute('data-vtab');
-        vCardPriv.classList.toggle('is-hidden-card', mode === 'v-rule');
-        vCardRule.classList.toggle('is-hidden-card', mode === 'v-priv');
+        if (vCardPriv)   vCardPriv.classList.toggle('is-hidden-card', mode !== 'v-all' && mode !== 'v-priv');
+        if (vCardStigma) vCardStigma.classList.toggle('is-hidden-card', mode !== 'v-all' && mode !== 'v-stigma');
+        if (vCardRule)   vCardRule.classList.toggle('is-hidden-card', mode !== 'v-all' && mode !== 'v-rule');
       });
     });
 
