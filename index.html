@@ -10005,7 +10005,16 @@
       const btnToggle   = document.getElementById('btnToggleCharSecret');
       const secBox      = document.getElementById('spSecretBox');
 
-      if (!gridEl || list.length === 0) return;
+      if (!gridEl) return;
+   if (list.length === 0) {
+     if (countEl) countEl.textContent = '⚠ Không đọc được dữ liệu từ characters.js';
+     gridEl.innerHTML =
+       '<div class="sub-card" style="grid-column:1/-1; border-color:#FF8A8A;">' +
+         '<h3>⚠ Chưa tải được file <code>characters.js</code></h3>' +
+         '<p>Kiểm tra lại xem file <strong>characters.js</strong> đã nằm cùng thư mục với <code>index.html</code> (viết thường) và không bị lỗi cú pháp chưa nhé.</p>' +
+       '</div>';
+     return;
+   }
 
       let activeGrade     = 'all';
       let currentFiltered = list.slice();
