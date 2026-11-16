@@ -2245,6 +2245,208 @@
         box-shadow: 0 0 26px var(--glow-color), inset 0 0 14px var(--glow-color);
       }
     }
+    /* =========================================================
+       DECOR RIÊNG CHO CHƯƠNG 6 (KHẢO THÍ 750Đ & HỒNG BẢNG LIVE)
+    ========================================================= */
+    .exam-timer-box {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 12px;
+    }
+    .timer-readout {
+      padding: 6px 14px;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--gold-text);
+    }
+
+    .exam-pyramid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .exam-tier-card {
+      width: 100%;
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+    .exam-tier-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 20px var(--glow-color);
+    }
+    @media (min-width: 821px) {
+      .exam-tier-1 { width: 76%; }
+      .exam-tier-2 { width: 88%; }
+      .exam-tier-3 { width: 100%; }
+    }
+
+    /* Sơ đồ Beta Ngăn Mùi */
+    .beta-demo-stage {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 16px;
+      margin-top: 12px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.20);
+      border: 1px dashed rgba(255, 255, 255, 0.28);
+    }
+    .desk-chip {
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 0.96rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+    .desk-alpha { background: rgba(127, 168, 214, 0.32); color: #FFFFFF; }
+    .desk-omega { background: rgba(255, 224, 138, 0.28); color: var(--gold-text); }
+    .desk-beta {
+      background: rgba(255, 255, 255, 0.24);
+      color: #FFFFFF;
+      border-color: #6FCF97;
+      box-shadow: 0 0 18px rgba(111, 207, 151, 0.45);
+      display: none;
+      animation: softFadeIn 0.35s ease;
+    }
+    .desk-beta.is-inserted { display: inline-flex; }
+
+    /* HỒNG BẢNG 3 KHỐI CHẠY ĐẨY TÊN LÊN XUỐNG */
+    .hongbang-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 14px;
+      background: rgba(115, 24, 28, 0.36);
+      border: 1px solid rgba(255, 190, 140, 0.42);
+      margin-bottom: 16px;
+    }
+
+    .hongbang-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+      gap: 16px;
+    }
+    .hb-grade-board {
+      border-radius: 14px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(118, 24, 28, 0.56) 0%, rgba(46, 16, 18, 0.54) 100%);
+      border: 1px solid rgba(255, 210, 150, 0.42);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
+    }
+    .hb-grade-board.is-hidden-board {
+      display: none;
+    }
+    .hb-board-head {
+      padding: 12px 16px;
+      background: rgba(150, 28, 32, 0.52);
+      border-bottom: 1px solid rgba(255, 210, 150, 0.35);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .hb-board-head h4 {
+      margin: 0;
+      font-size: 1.12rem;
+      color: var(--gold-text);
+      letter-spacing: 0.04em;
+    }
+    .hb-board-head span {
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      color: rgba(255, 245, 230, 0.85);
+    }
+
+    .hb-board-viewport {
+      position: relative;
+      height: 416px;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 8px;
+    }
+    .hb-board-track {
+      position: relative;
+      width: 100%;
+    }
+
+    .hb-rank-row {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 42px;
+      padding: 0 10px;
+      border-radius: 9px;
+      display: grid;
+      grid-template-columns: 36px 1fr auto auto;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      font-size: 0.92rem;
+      color: #FFFDF5;
+      transition: transform 0.78s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease, border-color 0.35s ease;
+    }
+    .hb-rank-row.is-npc {
+      background: rgba(255, 242, 178, 0.14);
+      border-color: rgba(255, 242, 178, 0.38);
+    }
+    .hb-rank-row.flash-up {
+      background: rgba(111, 207, 151, 0.30);
+      border-color: #6FCF97;
+      box-shadow: 0 0 14px rgba(111, 207, 151, 0.45);
+    }
+    .hb-rank-row.flash-down {
+      background: rgba(235, 87, 87, 0.28);
+      border-color: #FF8A8A;
+    }
+
+    .hb-pos {
+      font-weight: 700;
+      color: var(--gold-text);
+      text-align: center;
+    }
+    .hb-stu-main {
+      min-width: 0;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .hb-stu-main strong {
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .hb-stu-class {
+      font-size: 0.8rem;
+      color: rgba(255, 245, 230, 0.76);
+      margin-left: 4px;
+    }
+    .hb-score {
+      font-size: 0.84rem;
+      color: var(--gold-text);
+      font-weight: 600;
+    }
+    .hb-delta {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 999px;
+      min-width: 44px;
+      text-align: center;
+    }
+    .hb-delta.up   { background: rgba(111, 207, 151, 0.24); color: #9AE6B4; }
+    .hb-delta.down { background: rgba(235, 87, 87, 0.26); color: #FFB4B4; }
+    .hb-delta.same { background: rgba(255, 255, 255, 0.10); color: rgba(255, 255, 255, 0.75); }
   </style>
 </head>
 <body class="intro-locked">
@@ -2395,6 +2597,10 @@
             <button type="button" class="hb-item hb-sub" data-view="chap-5">
               <span>↳ Chương 5 · Lịch trình 24h &amp; Nội quy</span>
               <span class="hb-bow">౨ৎ</span>
+            </button>  
+            <button type="button" class="hb-item hb-sub" data-view="chap-6">
+              <span>↳ Chương 6 · Khảo thí 750đ &amp; Hồng Bảng</span>
+              <span class="hb-bow">౨ৎ</span>
             </button>
             <button type="button" class="hb-item" data-view="sec-2">
               <span>Phần 2 ౨ৎ Thuật ngữ</span>
@@ -2422,6 +2628,7 @@
               <button type="button" class="soft-pill-tab" data-quick-view="chap-3">Chương 3</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-4">Chương 4</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-5">Chương 5</button>
+              <button type="button" class="soft-pill-tab" data-quick-view="chap-6">Chương 6</button>
             </div>
           </div>
 
@@ -3763,6 +3970,241 @@
                 <div class="photo-caption">Fig. 28 — Giày đế cao su không tiếng động &amp; còi báo động bán kính 10m</div>
               </div>
             </div>
+            <div class="chapter-divider"></div>
+
+          <!-- ==================== CHƯƠNG 6 ==================== -->
+          <div class="chapter-block is-hidden-chap" id="chap-6">
+            <div class="ch1-tag">Chương 6 ౨ৎ Cỗ máy khảo thí &amp; Kỳ thi Cao Khảo (Thang 750)</div>
+            <h2 style="margin:0 0 8px; font-size:1.75rem; color:#FFFFFF;">Cỗ máy Khảo thí &amp; Kỳ thi Cao Khảo (Thang điểm 750)</h2>
+            <div class="ch1-subtitle-en">THE 750-POINT GAOKAO MACHINE &amp; RED HONOR BOARD</div>
+
+            <div class="ch1-quote-strip" style="margin-top:12px;">
+              <span class="ch1-quote-bar"></span>
+              <p><em>“Điểm số là tôn nghiêm, Thứ hạng là địa vị. Sai một nét bút, tụt một ngàn sinh mệnh.”</em></p>
+            </div>
+
+            <nav class="ch2-jump-nav" aria-label="Mục lục Chương 6">
+              <a href="#ch6-1" class="ch2-jump-pill">6.1 Khung điểm 750</a>
+              <a href="#ch6-2" class="ch2-jump-pill">6.2 Tháp 3 kỳ thi</a>
+              <a href="#ch6-3" class="ch2-jump-pill">6.3 Phòng thi &amp; Hồng Bảng</a>
+            </nav>
+
+            <!-- 6.1 KHUNG ĐÀO TẠO 750 ĐIỂM -->
+            <div class="ch2-subblock" id="ch6-1">
+              <div class="ch1-tag">6.1 · Khung đào tạo chuẩn Cao Khảo Quốc Gia (750 điểm)</div>
+
+              <div class="ch1-split">
+                <div class="ch1-info-stack">
+                  <div class="sub-card">
+                    <div class="ch1-side-label">450 Điểm · 3 Môn Bắt Buộc Cốt Lõi</div>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Toán Học (150 điểm):</strong> Cỗ máy nghiền nát lòng tự trọng của Nhất Xuyên. Đại số nâng cao, hình học không gian đa chiều và tích phân phức tạp.</li>
+                      <li><strong>Ngữ Văn (150 điểm):</strong> Cổ thi Tiên Tần, Hán Đường, đọc hiểu văn học cổ - kim và Bài luận nghị luận xã hội 800 chữ mang tính triết học sâu sắc.</li>
+                      <li><strong>Tiếng Anh Học Thuật (150 điểm):</strong> Độ khó chuẩn C1–C2 quốc tế, đọc hiểu học thuật và viết luận nghiên cứu chuyên đề.</li>
+                    </ul>
+                  </div>
+
+                  <div class="sub-card">
+                    <div class="ch1-side-label">300 Điểm · Tổ Hợp Phân Ban</div>
+                    <div class="scent-group-pills" style="margin-top:6px;">
+                      <button type="button" class="soft-pill-tab is-active" data-track="tr-sci">Tổ hợp Tự nhiên (Lý-Hóa-Sinh)</button>
+                      <button type="button" class="soft-pill-tab" data-track="tr-soc">Tổ hợp Xã hội (Sử-Địa-CTPL)</button>
+                    </div>
+                    <div class="rut-detail-box" id="trackDetailBox">
+                      <strong>Tổ hợp Khoa học Tự nhiên (300đ):</strong> Vật lý (<strong>110đ</strong>), Hóa học (<strong>100đ</strong>), Sinh học (<strong>90đ</strong>) ➔ <em>Bắt buộc đối với Lớp 1 (Lớp chọn Tinh anh); tự chọn đối với Lớp 4 và Lớp 5.</em>
+                    </div>
+                  </div>
+
+                  <div class="sub-card">
+                    <div class="ch1-side-label">Môn học đặc thù bắt buộc · Đại Hội Trường Tòa C (Tầng 1)</div>
+                    <h3>Khoa Học Sinh Học &amp; Đạo Đức Tuyến Thể</h3>
+                    <p>Do <strong>Bác sĩ Trưởng Trạm Y tế</strong> trực tiếp giảng dạy: cơ chế tin tức tố, luật bảo vệ tuyến thể, tác hại thần kinh của thuốc ức chế liều cao; thi thực hành <strong>xử lý miếng dán cách ly bị rách trong vòng 30 giây</strong> và sơ cứu sốc tin tức tố tại chỗ.</p>
+                    <div class="exam-timer-box">
+                      <button type="button" class="soft-action-btn" id="btnPatch30s">⏱ Thử đếm 30s xử lý miếng dán rách</button>
+                      <span class="timer-readout" id="patch30sTimer">Sẵn sàng: 30.0s</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- KHUNG ẢNH 29 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Đại Hội Trường Tòa C và Đề thi 750 điểm" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 29</span>
+                    <span class="ph-icon">📝</span>
+                    <span class="ph-title">Khảo thí 750đ &amp; Giờ thực hành Đại Hội Trường Tòa C</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 29 — Bài luận 800 chữ &amp; bài thi thực hành 30 giây thay miếng dán</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6.2 KIM TỰ THÁP CÁC KỲ THI -->
+            <div class="ch2-subblock" id="ch6-2">
+              <div class="ch1-tag">6.2 · Kim tự tháp các kỳ thi · The Examination Pyramid</div>
+
+              <div class="ch1-split">
+                <div class="exam-pyramid">
+                  <div class="sub-card exam-tier-card exam-tier-1">
+                    <div class="ch1-side-label">Đỉnh tháp · Liên trường toàn thành phố</div>
+                    <h3>Tam Mô (City-Wide Joint Mock Gaokao)</h3>
+                    <p>3 đợt thi thử mô phỏng liên trường gồm <strong>Nhất Mô (Tháng 1)</strong>, <strong>Nhị Mô (Tháng 3)</strong> và <strong>Tam Mô (Tháng 5)</strong> do hội đồng chuyên gia luyện thi hàng đầu ra đề.</p>
+                  </div>
+
+                  <div class="sub-card exam-tier-card exam-tier-2">
+                    <div class="ch1-side-label">Thứ Sáu &amp; Thứ Bảy tuần cuối tháng · Kỳ thi sinh tử</div>
+                    <h3>Nguyệt Khảo (Monthly Examination)</h3>
+                    <p>Thi 6 môn đúng format Cao Khảo liên tục trong 2 ngày. Quyết định trực tiếp số phận <strong>06 suất Học bổng Vanguard</strong>, vị trí chỗ ngồi trong lớp và phân bổ phòng thi tháng sau.</p>
+                  </div>
+
+                  <div class="sub-card exam-tier-card exam-tier-3">
+                    <div class="ch1-side-label">Sáng Thứ Hai hàng tuần · 45 phút</div>
+                    <h3>Chu Trắc (Weekly Speed Test)</h3>
+                    <p>Bài kiểm tra trắc nghiệm tốc độ 45 phút diễn ra ngay đầu giờ Tảo tự tập nhằm xốc lại tinh thần học sinh sau ngày nghỉ cuối tuần.</p>
+                  </div>
+                </div>
+
+                <!-- KHUNG ẢNH 30 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Kim tự tháp các kỳ thi Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 30</span>
+                    <span class="ph-icon">⏳</span>
+                    <span class="ph-title">Chu Trắc Thứ Hai · Nguyệt Khảo &amp; Tam Mô</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 30 — Hai ngày Nguyệt Khảo định đoạt chỗ ngồi &amp; học bổng</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 6.3 QUY CHẾ PHÒNG THI, HỒNG BẢNG & CHIA LẠI GIANG SƠN -->
+            <div class="ch2-subblock" id="ch6-3">
+              <div class="ch1-tag">6.3 · Quy chế phòng thi, Hồng Bảng &amp; Nghi thức “Chia lại giang sơn”</div>
+
+              <!-- A & B -->
+              <div class="ch1-split" style="margin-bottom:22px;">
+                <div class="ch1-info-stack">
+                  <div class="sub-card">
+                    <div class="ch1-side-label">A · Phân tầng 5 Phòng thi (150 Học sinh / 5 Phòng)</div>
+                    <div class="scent-group-pills" style="margin-top:6px;">
+                      <button type="button" class="soft-pill-tab is-active" data-room="r1">Phòng 1 (Hạng 1–30)</button>
+                      <button type="button" class="soft-pill-tab" data-room="r24">Phòng 2–4 (Hạng 31–120)</button>
+                      <button type="button" class="soft-pill-tab" data-room="r5">Phòng 5 (Hạng 121–150)</button>
+                    </div>
+                    <div class="rut-detail-box" id="roomDetailBox">
+                      <strong>Phòng Thi Số 1 (Phòng Thần Thánh — Hạng 01 đến 30):</strong> Tập trung toàn bộ Học thần, Lớp trưởng, Thường trực Hội Học Sinh và học sinh học bổng Vanguard. Không khí lạnh như băng, chỉ có tiếng lật giấy thi nhanh thoăn thoắt.
+                    </div>
+                  </div>
+
+                  <div class="sub-card">
+                    <div class="ch1-side-label">B · An ninh Sinh trắc &amp; Buồng Thi Cách Ly</div>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Chốt kiểm dịch cửa phòng thi:</strong> Giám thị dùng que rà kim loại và máy quét T-80 cầm tay kiểm tra từng thí sinh; kiểm tra độ phẳng miếng dán sau gáy. <strong>Nếu rách mép, lập tức áp giải sang Trạm Y tế thay mới</strong> rồi mới được vào thi.</li>
+                      <li><strong>Buồng Thi Cách Ly Áp Suất Âm (Tòa B - Tầng 1):</strong> Dành cho học sinh sốt tiền Rut/Heat đột xuất nhưng <strong>kiên quyết không bỏ thi</strong>. Ngồi biệt lập sau lồng kính áp suất âm, có bác sĩ túc trực cùng ống tiêm hạ sốt khẩn cấp.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- KHUNG ẢNH 31 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Chốt kiểm dịch cửa phòng thi và Buồng thi cách ly" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 31</span>
+                    <span class="ph-icon">🛡</span>
+                    <span class="ph-title">Phòng Thi Số 1 · Chốt T-80 &amp; Lồng kính áp suất âm</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 31 — Que rà kim loại trước cửa &amp; bàn thi sau lồng kính Tòa B</div>
+                </div>
+              </div>
+
+              <!-- C: HỒNG BẢNG LIVE 3 KHỐI -->
+              <div class="sub-card" style="margin-bottom:20px;">
+                <div class="ch1-side-label">C · Bảng Đỏ Danh Dự (Hồng Bảng · 07:00 Sáng Thứ Hai tại Sảnh chính Tòa B)</div>
+                <p style="margin:4px 0 14px;">Bảng thông báo đỏ dài 10 mét niêm yết 150 học sinh mỗi khối kèm điểm và biến động thứ hạng <code>[▲ Tăng]</code> / <code>[▼ Tụt]</code>. *(13 vị trí <strong>NPC 1 → NPC 13</strong> cố định để điền tên, các hạng khác đẩy tên liên tục)*:</p>
+
+                <div class="hongbang-controls">
+                  <div class="laurel-tabs">
+                    <button type="button" class="soft-pill-tab is-active" data-hb-filter="all">Cả 3 Khối</button>
+                    <button type="button" class="soft-pill-tab" data-hb-filter="g10">Khối 10</button>
+                    <button type="button" class="soft-pill-tab" data-hb-filter="g11">Khối 11</button>
+                    <button type="button" class="soft-pill-tab" data-hb-filter="g12">Khối 12</button>
+                  </div>
+                  <div class="laurel-tabs">
+                    <button type="button" class="soft-action-btn is-active" id="btnToggleHongBang">⏸ Tạm dừng chạy</button>
+                    <button type="button" class="soft-action-btn" id="btnShuffleHongBang">⚡ Xáo trộn Nguyệt Khảo</button>
+                  </div>
+                </div>
+
+                <!-- 3 BẢNG 3 KHỐI -->
+                <div class="hongbang-grid">
+                  <div class="hb-grade-board" data-board="g10">
+                    <div class="hb-board-head">
+                      <h4>HỒNG BẢNG · KHỐI 10</h4>
+                      <span>Cao Nhất · 150 HS</span>
+                    </div>
+                    <div class="hb-board-viewport">
+                      <div class="hb-board-track" id="hbTrack10"></div>
+                    </div>
+                  </div>
+
+                  <div class="hb-grade-board" data-board="g11">
+                    <div class="hb-board-head">
+                      <h4>HỒNG BẢNG · KHỐI 11</h4>
+                      <span>Cao Nhị · 150 HS</span>
+                    </div>
+                    <div class="hb-board-viewport">
+                      <div class="hb-board-track" id="hbTrack11"></div>
+                    </div>
+                  </div>
+
+                  <div class="hb-grade-board" data-board="g12">
+                    <div class="hb-board-head">
+                      <h4>HỒNG BẢNG · KHỐI 12</h4>
+                      <span>Cao Tam · 150 HS</span>
+                    </div>
+                    <div class="hb-board-viewport">
+                      <div class="hb-board-track" id="hbTrack12"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- NGHI THỨC CHIA LẠI GIANG SƠN & KHUNG ẢNH 32 -->
+              <div class="ch1-split">
+                <div class="sub-card">
+                  <div class="ch1-side-label">Tiết Sinh hoạt đầu tuần</div>
+                  <h3>Nghi thức “Chia Lại Giang Sơn” &amp; Biện pháp “Beta Ngăn Mùi”</h3>
+                  <ul class="tier-bullet-list">
+                    <li><strong>Sắp xếp lại 30 bàn đơn:</strong> Lão Ban dùng thước thép vẽ lại sơ đồ lớp — học sinh thăng hạng vượt bậc được ưu tiên tự chọn bàn đơn (thường là góc cửa sổ Dãy 1); học sinh tụt dốc bị đày xuống ngồi bàn đầu ngay dưới mũi bục giảng để giám sát 24/7.</li>
+                    <li><strong>Biện pháp “Beta Ngăn Mùi”:</strong> Nếu phát hiện một Alpha và một Omega ngồi gần nhau lén lút nhìn nhau hoặc tụt điểm, Lão Ban lập tức đập bàn tách chỗ và <strong>nhét một học sinh Beta mọt sách (miễn nhiễm 100% tin tức tố) ngồi chắn vào giữa</strong>.</li>
+                  </ul>
+
+                  <div style="margin-top:14px;">
+                    <button type="button" class="soft-action-btn" id="btnBetaShield">🛡 Kích hoạt “Beta Ngăn Mùi”</button>
+                    <div class="beta-demo-stage">
+                      <span class="desk-chip desk-alpha">Alpha · Bàn đơn</span>
+                      <span class="desk-chip desk-beta" id="deskBetaMid">🛡 Beta Mọt Sách (0.0 ppm · Cách ly)</span>
+                      <span class="desk-chip desk-omega">Omega · Bàn đơn</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- KHUNG ẢNH 32 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Hồng Bảng 10m sảnh Tòa B và Chia lại giang sơn" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 32</span>
+                    <span class="ph-icon">📜</span>
+                    <span class="ph-title">Hồng Bảng Đỏ 10m Sảnh Tòa B &amp; Sơ đồ 30 bàn đơn</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 32 — Sáng Thứ Hai chen chân xem thứ hạng &amp; tách bàn bằng Beta</div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
         <!-- PHẦN 2 -->
@@ -3978,6 +4420,7 @@
     const chap3 = document.getElementById('chap-3');
     const chap4 = document.getElementById('chap-4');
     const chap5 = document.getElementById('chap-5');
+    const chap6 = document.getElementById('chap-6');
 
     function openHandbookMenu() {
       clearTimeout(closeHoverTimer);
@@ -4010,6 +4453,7 @@
       if (chap3) chap3.classList.add('is-hidden-chap');
       if (chap4) chap4.classList.add('is-hidden-chap');
       if (chap5) chap5.classList.add('is-hidden-chap');
+      if (chap6) chap6.classList.add('is-hidden-chap');
 
       let scrollTarget = document.getElementById('worldContentTop');
       if (viewKey === 'sec-1-all') {
@@ -4019,6 +4463,7 @@
         if (chap3) chap3.classList.remove('is-hidden-chap');
         if (chap4) chap4.classList.remove('is-hidden-chap');
         if (chap5) chap5.classList.remove('is-hidden-chap');
+        if (chap6) chap6.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'chap-1') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -4039,6 +4484,10 @@
       } else if (viewKey === 'chap-5') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
         if (chap5) chap5.classList.remove('is-hidden-chap');
+        scrollTarget = sec1;
+        } else if (viewKey === 'chap-6') {
+        if (sec1)  sec1.classList.remove('is-hidden-sec');
+        if (chap6) chap6.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'sec-2') {
         if (sec2) sec2.classList.remove('is-hidden-sec');
@@ -4720,6 +5169,224 @@
       const box = document.getElementById('f1PerimeterStatus');
       box.className = 'rank-status-msg ' + st.cls;
       box.innerHTML = st.html;
+    });
+    /* === TƯƠNG TÁC CHƯƠNG 6 & HỒNG BẢNG 3 KHỐI CHẠY ĐẨY TÊN LIÊN TỤC === */
+    // 6.1 Tổ hợp Tự nhiên vs Xã hội
+    const trackMap = {
+      'tr-sci': '<strong>Tổ hợp Khoa học Tự nhiên (300đ):</strong> Vật lý (<strong>110đ</strong>), Hóa học (<strong>100đ</strong>), Sinh học (<strong>90đ</strong>) ➔ <em>Bắt buộc đối với Lớp 1 (Lớp chọn Tinh anh); tự chọn đối với Lớp 4 và Lớp 5.</em>',
+      'tr-soc': '<strong>Tổ hợp Khoa học Xã hội (300đ):</strong> Lịch sử (<strong>100đ</strong>), Địa lý (<strong>100đ</strong>), Chính trị &amp; Pháp luật (<strong>100đ</strong>) ➔ <em>Chủ đạo đối với Lớp 2 và Lớp 3; tự chọn đối với Lớp 4 và Lớp 5.</em>'
+    };
+    const trackTabs = document.querySelectorAll('[data-track]');
+    trackTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        trackTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        document.getElementById('trackDetailBox').innerHTML = trackMap[btn.getAttribute('data-track')];
+      });
+    });
+
+    // 6.1 Đồng hồ đếm 30s xử lý miếng dán rách
+    let patchCountdown = null;
+    document.getElementById('btnPatch30s').addEventListener('click', () => {
+      const out = document.getElementById('patch30sTimer');
+      clearInterval(patchCountdown);
+      let left = 30.0;
+      out.textContent = 'Đang xử lý: 30.0s';
+      patchCountdown = setInterval(() => {
+        left = Math.max(0, left - 0.1);
+        out.textContent = left > 0 ? ('Đang xử lý: ' + left.toFixed(1) + 's') : '✓ Hoàn tất niêm phong tuyến thể!';
+        if (left <= 0) clearInterval(patchCountdown);
+      }, 100);
+    });
+
+    // 6.3A Phân tầng 5 Phòng thi
+    const roomMap = {
+      r1:  '<strong>Phòng Thi Số 1 (Phòng Thần Thánh — Hạng 01 đến 30):</strong> Tập trung toàn bộ Học thần, Lớp trưởng, Thường trực Hội Học Sinh và học sinh học bổng Vanguard. Không khí lạnh như băng, chỉ có tiếng lật giấy thi nhanh thoăn thoắt.',
+      r24: '<strong>Phòng Thi Số 2, Số 3 &amp; Số 4 (Hạng 31 đến 120):</strong> Dành cho nhóm học sinh Khá - Giỏi và Trung bình khá trong khối.',
+      r5:  '<strong>Phòng Thi Số 5 (Phòng “Dưới Đáy” — Hạng 121 đến 150):</strong> Không khí ngột ngạt, tập trung học sinh học lệch cực đoan, học sinh cá biệt và các Alpha thể thao.'
+    };
+    const roomTabs = document.querySelectorAll('[data-room]');
+    roomTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        roomTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        document.getElementById('roomDetailBox').innerHTML = roomMap[btn.getAttribute('data-room')];
+      });
+    });
+
+    // 6.3C Nút Beta Ngăn Mùi
+    document.getElementById('btnBetaShield').addEventListener('click', (e) => {
+      const mid = document.getElementById('deskBetaMid');
+      const active = mid.classList.toggle('is-inserted');
+      e.currentTarget.classList.toggle('is-active', active);
+      e.currentTarget.textContent = active ? '✓ Đã tách chỗ bằng Beta Mọt Sách' : '🛡 Kích hoạt “Beta Ngăn Mùi”';
+    });
+
+    // 6.3C HỒNG BẢNG 3 KHỐI (CHẠY ĐẨY TÊN LÊN XUỐNG LIÊN TỤC)
+    // Bạn chỉ cần thay 'NPC 1' ... 'NPC 13' bằng tên nhân vật thật khi muốn điền!
+    const hongBangData = {
+      g10: [
+        { uid: '10-a', npc: 'NPC 1',  cls: '10-1', rank: 1,   score: 738, delta: 1 },
+        { uid: '10-b', npc: 'NPC 2',  cls: '10-1', rank: 2,   score: 731, delta: -1 },
+        { uid: '10-c', npc: null,     cls: '10-2', rank: 3,   score: 724, delta: 2 },
+        { uid: '10-d', npc: 'NPC 3',  cls: '10-1', rank: 6,   score: 706, delta: 3 },
+        { uid: '10-e', npc: null,     cls: '10-2', rank: 15,  score: 684, delta: -2 },
+        { uid: '10-f', npc: null,     cls: '10-3', rank: 27,  score: 658, delta: 4 },
+        { uid: '10-g', npc: null,     cls: '10-4', rank: 54,  score: 615, delta: -3 },
+        { uid: '10-h', npc: null,     cls: '10-3', rank: 88,  score: 572, delta: 1 },
+        { uid: '10-i', npc: 'NPC 4',  cls: '10-5', rank: 124, score: 492, delta: 5 },
+        { uid: '10-j', npc: null,     cls: '10-5', rank: 141, score: 446, delta: -4 }
+      ],
+      g11: [
+        { uid: '11-a', npc: 'NPC 5',  cls: '11-1', rank: 1,   score: 742, delta: 0 },
+        { uid: '11-b', npc: null,     cls: '11-1', rank: 2,   score: 733, delta: 2 },
+        { uid: '11-c', npc: 'NPC 6',  cls: '11-2', rank: 4,   score: 719, delta: -1 },
+        { uid: '11-d', npc: null,     cls: '11-2', rank: 11,  score: 695, delta: 3 },
+        { uid: '11-e', npc: 'NPC 7',  cls: '11-3', rank: 18,  score: 676, delta: -2 },
+        { uid: '11-f', npc: null,     cls: '11-4', rank: 36,  score: 641, delta: 2 },
+        { uid: '11-g', npc: null,     cls: '11-3', rank: 64,  score: 602, delta: -1 },
+        { uid: '11-h', npc: null,     cls: '11-4', rank: 97,  score: 558, delta: 4 },
+        { uid: '11-i', npc: 'NPC 8',  cls: '11-5', rank: 129, score: 484, delta: -3 },
+        { uid: '11-j', npc: null,     cls: '11-5', rank: 146, score: 432, delta: 2 }
+      ],
+      g12: [
+        { uid: '12-a', npc: 'NPC 9',  cls: '12-1', rank: 1,   score: 746, delta: 1 },
+        { uid: '12-b', npc: 'NPC 10', cls: '12-1', rank: 2,   score: 741, delta: -1 },
+        { uid: '12-c', npc: 'NPC 11', cls: '12-2', rank: 3,   score: 732, delta: 2 },
+        { uid: '12-d', npc: null,     cls: '12-1', rank: 7,   score: 712, delta: -2 },
+        { uid: '12-e', npc: 'NPC 12', cls: '12-3', rank: 15,  score: 689, delta: 4 },
+        { uid: '12-f', npc: null,     cls: '12-4', rank: 32,  score: 650, delta: -3 },
+        { uid: '12-g', npc: null,     cls: '12-3', rank: 71,  score: 598, delta: 2 },
+        { uid: '12-h', npc: null,     cls: '12-4', rank: 109, score: 540, delta: -1 },
+        { uid: '12-i', npc: 'NPC 13', cls: '12-5', rank: 132, score: 478, delta: 6 },
+        { uid: '12-j', npc: null,     cls: '12-5', rank: 148, score: 425, delta: -5 }
+      ]
+    };
+
+    const boardTracks = {
+      g10: document.getElementById('hbTrack10'),
+      g11: document.getElementById('hbTrack11'),
+      g12: document.getElementById('hbTrack12')
+    };
+    const rowDomMap = {};
+    const ROW_H = 48;
+
+    function initHongBang() {
+      Object.keys(hongBangData).forEach((gKey) => {
+        const list = hongBangData[gKey];
+        const track = boardTracks[gKey];
+        if (!track) return;
+        track.style.height = (list.length * ROW_H) + 'px';
+
+        list.forEach((item, idx) => {
+          const row = document.createElement('div');
+          row.className = 'hb-rank-row' + (item.npc ? ' is-npc' : '');
+          row.style.transform = 'translateY(' + (idx * ROW_H) + 'px)';
+          row.innerHTML =
+            '<span class="hb-pos">#' + item.rank + '</span>' +
+            '<span class="hb-stu-main"><strong></strong><span class="hb-stu-class"></span></span>' +
+            '<span class="hb-score"></span>' +
+            '<span class="hb-delta"></span>';
+          track.appendChild(row);
+          rowDomMap[item.uid] = row;
+        });
+        syncHongBangBoard(gKey, null, null);
+      });
+    }
+
+    function syncHongBangBoard(gKey, upUid, downUid) {
+      const list = hongBangData[gKey];
+      list.forEach((item, idx) => {
+        const row = rowDomMap[item.uid];
+        if (!row) return;
+        row.style.transform = 'translateY(' + (idx * ROW_H) + 'px)';
+        row.querySelector('.hb-pos').textContent = '#' + item.rank;
+        row.querySelector('.hb-stu-main strong').textContent = item.npc ? item.npc : ('Hạng ' + item.rank + ' ...');
+        row.querySelector('.hb-stu-class').textContent = '· Lớp ' + item.cls;
+        row.querySelector('.hb-score').textContent = item.score + 'đ';
+
+        const dEl = row.querySelector('.hb-delta');
+        if (item.delta > 0) {
+          dEl.className = 'hb-delta up';
+          dEl.textContent = '▲ ' + item.delta;
+        } else if (item.delta < 0) {
+          dEl.className = 'hb-delta down';
+          dEl.textContent = '▼ ' + Math.abs(item.delta);
+        } else {
+          dEl.className = 'hb-delta same';
+          dEl.textContent = '— 0';
+        }
+
+        row.classList.remove('flash-up', 'flash-down');
+        if (item.uid === upUid) {
+          void row.offsetWidth;
+          row.classList.add('flash-up');
+        } else if (item.uid === downUid) {
+          void row.offsetWidth;
+          row.classList.add('flash-down');
+        }
+      });
+    }
+
+    function stepPushBoard(gKey) {
+      const list = hongBangData[gKey];
+      if (!list || list.length < 2) return;
+      const idxA = Math.floor(Math.random() * (list.length - 1));
+      const idxB = idxA + 1;
+
+      const upper = list[idxA]; // đang đứng trên
+      const lower = list[idxB]; // đang đứng dưới
+
+      // Đổi chỗ rank & đẩy dòng dưới vượt lên dòng trên
+      const tempRank = upper.rank;
+      upper.rank = lower.rank;
+      lower.rank = tempRank;
+
+      lower.score = Math.min(750, upper.score + Math.floor(1 + Math.random() * 4));
+      upper.score = Math.max(380, upper.score - Math.floor(1 + Math.random() * 3));
+
+      const jump = Math.max(1, Math.abs(upper.rank - lower.rank));
+      lower.delta = jump;
+      upper.delta = -jump;
+
+      list[idxA] = lower;
+      list[idxB] = upper;
+
+      syncHongBangBoard(gKey, lower.uid, upper.uid);
+    }
+
+    initHongBang();
+
+    let hbRunning = true;
+    let hbTimer = setInterval(() => {
+      if (!hbRunning) return;
+      stepPushBoard('g10');
+      setTimeout(() => hbRunning && stepPushBoard('g11'), 350);
+      setTimeout(() => hbRunning && stepPushBoard('g12'), 700);
+    }, 1800);
+
+    const btnToggleHB = document.getElementById('btnToggleHongBang');
+    btnToggleHB.addEventListener('click', () => {
+      hbRunning = !hbRunning;
+      btnToggleHB.classList.toggle('is-active', hbRunning);
+      btnToggleHB.textContent = hbRunning ? '⏸ Tạm dừng chạy' : '▶ Tiếp tục chạy';
+    });
+
+    document.getElementById('btnShuffleHongBang').addEventListener('click', () => {
+      ['g10', 'g11', 'g12'].forEach((gKey) => {
+        stepPushBoard(gKey);
+        setTimeout(() => stepPushBoard(gKey), 250);
+      });
+    });
+
+    const hbFilterBtns = document.querySelectorAll('[data-hb-filter]');
+    const hbBoards     = document.querySelectorAll('.hb-grade-board');
+    hbFilterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        hbFilterBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const f = btn.getAttribute('data-hb-filter');
+        hbBoards.forEach((bd) => {
+          bd.classList.toggle('is-hidden-board', f !== 'all' && bd.getAttribute('data-board') !== f);
+        });
+      });
     });
   </script>
 </body>
