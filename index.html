@@ -3361,14 +3361,13 @@
     .lex-scroll-body::-webkit-scrollbar-thumb:hover {
       background: var(--gold-text);
     }
-    /* === FIX HIỂN THỊ PHẦN 2, THANH CUỘN & SỔ TAY KHÔNG ĐÈ CHỮ === */
+    /* === BỎ THANH CUỘN PHẦN 2, CHO TRÀN TỰ NHIÊN THEO CUỘN WEB === */
     .lex-scroll-body {
-      max-height: 62vh;
-      overflow-y: scroll !important;
-      padding: 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      background: rgba(0, 0, 0, 0.14);
+      max-height: none !important;
+      overflow: visible !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
     }
 
     .anno-label {
@@ -3391,6 +3390,37 @@
       }
       .content-section {
         scroll-margin-top: 90px;
+      }
+    }
+    /* === THANH CUỘN VÀNG KIM CHO TAB SỔ TAY HỌC VIÊN (#hbList) === */
+    .hb-item {
+      flex-shrink: 0;
+    }
+
+    .handbook-stack.is-open .hb-list {
+      max-height: calc(100vh - 155px);
+      overflow-y: scroll;
+      overflow-x: hidden;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold-text) transparent;
+    }
+
+    .handbook-stack.is-open .hb-list::-webkit-scrollbar {
+      width: 6px;
+    }
+    .handbook-stack.is-open .hb-list::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.16);
+    }
+    .handbook-stack.is-open .hb-list::-webkit-scrollbar-thumb {
+      background: var(--gold-text);
+      border-radius: 999px;
+      box-shadow: 0 0 8px var(--glow-color);
+    }
+
+    @media (max-width: 820px) {
+      .handbook-stack.is-open .hb-list {
+        max-height: 58vh;
       }
     }
   </style>
