@@ -1952,6 +1952,234 @@
       background: rgba(0, 0, 0, 0.18);
       border: 1px solid rgba(255, 255, 255, 0.26);
     }
+    /* =========================================================
+       DECOR RIÊNG CHO CHƯƠNG 5 (ĐỒNG HỒ QUẢ LẮC & LỊCH 24H)
+    ========================================================= */
+    .clock-console {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 22px;
+      align-items: center;
+      padding: 22px;
+      border-radius: 16px;
+      background: rgba(16, 24, 20, 0.38);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.20);
+      margin-bottom: 26px;
+    }
+
+    .clock-tower-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .clock-dial {
+      position: relative;
+      width: 146px;
+      height: 146px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 253, 245, 0.14) 0%, rgba(16, 22, 18, 0.55) 100%);
+      border: 2px solid var(--gold-text);
+      box-shadow: 0 0 22px var(--glow-color), inset 0 0 18px rgba(0, 0, 0, 0.35);
+      z-index: 2;
+    }
+    .clock-mark {
+      position: absolute;
+      left: 50%;
+      top: 6px;
+      width: 2px;
+      height: 8px;
+      background: var(--gold-text);
+      transform-origin: 50% 65px;
+      opacity: 0.75;
+    }
+    .clock-hand {
+      position: absolute;
+      left: 50%;
+      bottom: 50%;
+      transform-origin: 50% 100%;
+      border-radius: 999px;
+      transition: transform 0.75s cubic-bezier(0.34, 1.35, 0.64, 1);
+    }
+    .hand-hour {
+      width: 4px;
+      height: 38px;
+      margin-left: -2px;
+      background: #FFFFFF;
+    }
+    .hand-min {
+      width: 2.5px;
+      height: 52px;
+      margin-left: -1.25px;
+      background: var(--gold-text);
+    }
+    .clock-pin {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 10px;
+      height: 10px;
+      margin: -5px 0 0 -5px;
+      border-radius: 50%;
+      background: var(--gold-text);
+      box-shadow: 0 0 8px var(--glow-color);
+    }
+
+    /* Quả lắc đồng hồ */
+    .pendulum-pit {
+      position: relative;
+      width: 110px;
+      height: 88px;
+      display: flex;
+      justify-content: center;
+      overflow: visible;
+      margin-top: -6px;
+    }
+    .pendulum-arm {
+      transform-origin: top center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: pendulumSwing 2.2s ease-in-out infinite;
+    }
+    .pendulum-rod {
+      width: 2px;
+      height: 58px;
+      background: linear-gradient(180deg, var(--gold-text), rgba(255, 255, 255, 0.55));
+    }
+    .pendulum-bob {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #FFFDF5, var(--gold-text) 55%, #8D7430 100%);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 14px var(--glow-color);
+    }
+    @keyframes pendulumSwing {
+      0%, 100% { transform: rotate(-16deg); }
+      50%      { transform: rotate(16deg); }
+    }
+
+    .clock-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .clock-readout-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .clock-digital {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold-text);
+      line-height: 1;
+    }
+    .clock-btn-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Khối các khung giờ lớn */
+    .phase-card {
+      padding: 22px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      margin-bottom: 22px;
+      transition: border-color 0.35s ease, box-shadow 0.35s ease;
+    }
+    .phase-card.is-time-focus {
+      border-color: var(--gold-text);
+      box-shadow: 0 0 26px var(--glow-color);
+    }
+    .phase-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.22);
+    }
+    .phase-head h3 {
+      margin: 0;
+      font-size: 1.38rem;
+      color: #FFFFFF;
+    }
+
+    .mini-timeline {
+      border-left: 2px solid rgba(255, 255, 255, 0.32);
+      padding-left: 16px;
+      display: grid;
+      gap: 12px;
+    }
+    .mini-slot {
+      position: relative;
+      padding: 10px 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+    .mini-slot::before {
+      content: "";
+      position: absolute;
+      left: -22px;
+      top: 16px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--gold-text);
+      box-shadow: 0 0 8px var(--glow-color);
+    }
+    .mini-time {
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      color: var(--gold-text);
+      margin-bottom: 3px;
+    }
+    .mini-slot p {
+      margin: 0;
+      font-size: 0.98rem;
+      line-height: 1.58;
+      color: rgba(255, 253, 245, 0.90);
+    }
+
+    .curfew-door-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      background: rgba(157, 191, 124, 0.20);
+      color: #FFFDF5;
+      transition: background 0.35s ease, border-color 0.35s ease;
+    }
+    .curfew-door-badge.is-locked {
+      background: rgba(185, 74, 72, 0.34);
+      border-color: rgba(255, 165, 165, 0.65);
+      color: #FFE4E4;
+      box-shadow: 0 0 18px rgba(235, 87, 87, 0.35);
+    }
+
+    @media (max-width: 820px) {
+      .clock-console {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .clock-readout-row,
+      .clock-btn-grid {
+        justify-content: center;
+      }
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -2098,6 +2326,18 @@
             <button type="button" class="hb-item hb-sub" data-view="chap-4">
               <span>↳ Chương 4 · Đồng phục &amp; Huy hiệu</span>
               <span class="hb-bow">౨ৎ</span>
+            </button>
+            <button type="button" class="hb-item hb-sub" data-view="chap-5">
+              <span>↳ Chương 5 · Lịch trình 24h &amp; Nội quy</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>  
+              <span>↳ Chương 4 · Đồng phục &amp; Huy hiệu</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
+            <button type="button" class="hb-item hb-sub" data-view="chap-5">
+              <span>↳ Chương 5 · Lịch trình 24h &amp; Nội quy</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>  
             </button>
             <button type="button" class="hb-item" data-view="sec-2">
               <span>Phần 2 ౨ৎ Thuật ngữ</span>
@@ -3152,6 +3392,310 @@
               </div>
             </div>
           </div>
+          <div class="chapter-divider"></div>
+
+          <!-- ==================== CHƯƠNG 5 ==================== -->
+          <div class="chapter-block is-hidden-chap" id="chap-5">
+            <div class="ch1-tag">Chương 5 ౨ৎ Lịch trình sinh hoạt 24H &amp; Nội quy thép</div>
+            <h2 style="margin:0 0 8px; font-size:1.75rem; color:#FFFFFF;">Lịch trình Sinh hoạt 24H &amp; Nội quy Thép</h2>
+            <div class="ch1-subtitle-en">24H PARAMILITARY SCHEDULE &amp; DISCIPLINARY ENFORCEMENT</div>
+
+            <div class="ch1-quote-strip" style="margin-top:12px;">
+              <span class="ch1-quote-bar"></span>
+              <p><em>“Kỷ luật chuẩn từng giây, Thể chất vững, Trí tuệ tối đa, Bản năng kiểm soát.”</em> — Học sinh nội trú 100% từ sáng Thứ Hai đến chiều Thứ Sáu, sinh hoạt theo kỷ luật bán quân sự chuẩn xác đến từng phút.</p>
+            </div>
+
+            <!-- ĐỒNG HỒ QUẢ LẮC TƯƠNG TÁC -->
+            <div class="clock-console">
+              <div class="clock-tower-wrap">
+                <div class="clock-dial" aria-label="Đồng hồ tháp Nhất Xuyên">
+                  <span class="clock-mark" style="transform:rotate(0deg);"></span>
+                  <span class="clock-mark" style="transform:rotate(90deg);"></span>
+                  <span class="clock-mark" style="transform:rotate(180deg);"></span>
+                  <span class="clock-mark" style="transform:rotate(270deg);"></span>
+                  <div class="clock-hand hand-hour" id="clockHour" style="transform:rotate(180deg);"></div>
+                  <div class="clock-hand hand-min" id="clockMin" style="transform:rotate(0deg);"></div>
+                  <div class="clock-pin"></div>
+                </div>
+                <div class="pendulum-pit" aria-hidden="true">
+                  <div class="pendulum-arm">
+                    <div class="pendulum-rod"></div>
+                    <div class="pendulum-bob"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="clock-info-col">
+                <div class="ch1-side-label">⏱ Đồng hồ Tháp Nhất Xuyên · Bấm mốc giờ để xoay kim &amp; xem khung giờ</div>
+                <div class="clock-readout-row">
+                  <span class="clock-digital" id="clockDigital">06:00</span>
+                  <span class="temp-pill" id="clockPhaseTag">Tòa F · Báo thức &amp; Thay miếng dán 100%</span>
+                </div>
+                <div class="clock-btn-grid">
+                  <button type="button" class="soft-pill-tab is-active" data-clock="06:00" data-target-phase="tphase-1">06:00 Bình minh</button>
+                  <button type="button" class="soft-pill-tab" data-clock="07:50" data-target-phase="tphase-2">07:50 Tảo tự tập</button>
+                  <button type="button" class="soft-pill-tab" data-clock="13:00" data-target-phase="tphase-3">13:00 Ngủ trưa</button>
+                  <button type="button" class="soft-pill-tab" data-clock="18:30" data-target-phase="tphase-4">18:30 Vãn tự tập</button>
+                  <button type="button" class="soft-pill-tab" data-clock="22:30" data-target-phase="tphase-5">22:30 Giới nghiêm</button>
+                  <button type="button" class="soft-action-btn" id="btnAutoClock">▶ Tua nhanh 24H</button>
+                </div>
+              </div>
+            </div>
+
+            <nav class="ch2-jump-nav" aria-label="Mục lục Chương 5">
+              <a href="#ch5-1" class="ch2-jump-pill">5.1 Thời khóa biểu (06:00 – 22:30)</a>
+              <a href="#ch5-2" class="ch2-jump-pill">5.2 Nội quy thép &amp; Chế tài tuần tra</a>
+            </nav>
+
+            <!-- 5.1 THỜI KHÓA BIỂU -->
+            <div class="ch2-subblock" id="ch5-1">
+              <div class="ch1-tag">5.1 · Thời khóa biểu kỷ luật bán quân sự (06:00 – 22:30)</div>
+
+              <!-- KHUNG GIỜ LỚN 1 -->
+              <div class="phase-card" id="tphase-1">
+                <div class="phase-head">
+                  <h3>Khung I · Bình Minh Kỷ Luật</h3>
+                  <span class="temp-pill">06:00 – 07:40</span>
+                </div>
+                <div class="ch1-split">
+                  <div class="mini-timeline">
+                    <div class="mini-slot">
+                      <div class="mini-time">06:00 · Báo thức KTX (Tòa F)</div>
+                      <p>Hệ thống loa KTX phát nhạc cổ điển nhẹ. <strong>Bắt buộc:</strong> Vệ sinh cá nhân, <strong>thay miếng dán cách ly mới 100%</strong>, uống thuốc ức chế định kỳ theo đơn y tế.</p>
+                    </div>
+                    <div class="mini-slot">
+                      <div class="mini-time">06:30 – 07:00 · Chạy thể dục sáng bắt buộc (Sân Điền Kinh Tòa C)</div>
+                      <p>Toàn bộ 450 học sinh tập trung theo đội hình lớp, chạy 2 vòng sân tiêu chuẩn (<strong>800m</strong>) rèn luyện thể lực đón bình minh.</p>
+                    </div>
+                    <div class="mini-slot">
+                      <div class="mini-time">07:00 – 07:40 · Bữa sáng (Đại Sảnh Ẩm Thực Tòa D)</div>
+                      <p>Quầy cháo nóng, bếp Á - Âu và tráng miệng mở cửa. Học sinh học bổng Vanguard quẹt thẻ VIP nhận suất ăn tiêu chuẩn cao cấp.</p>
+                    </div>
+                  </div>
+
+                  <!-- KHUNG ẢNH 23 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Chạy thể dục sáng tại Sân Điền Kinh Tòa C" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 23</span>
+                      <span class="ph-icon">☀</span>
+                      <span class="ph-title">06:30 · Sân Điền Kinh Tòa C đón bình minh</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="photo-caption">Fig. 23 — 450 học sinh chạy 800m &amp; thay miếng dán buổi sớm</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- KHUNG GIỜ LỚN 2 -->
+              <div class="phase-card" id="tphase-2">
+                <div class="phase-head">
+                  <h3>Khung II · Sáng Giảng Đường</h3>
+                  <span class="temp-pill">07:40 – 13:00</span>
+                </div>
+                <div class="ch1-split ch1-split-reverse">
+                  <!-- KHUNG ẢNH 24 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Tảo tự tập và Chính khóa sáng Tòa A" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 24</span>
+                      <span class="ph-icon">📖</span>
+                      <span class="ph-title">07:50 · Tảo Tự Tập &amp; Tiết 1–4 Tòa A</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="photo-caption">Fig. 24 — Quẹt thẻ sinh trắc, giãn cơ cổ gáy 10:10 &amp; tuần tra T-80</div>
+                  </div>
+
+                  <div class="mini-timeline">
+                    <div class="mini-slot">
+                      <div class="mini-time">07:40 · Di chuyển lên Giảng đường Tòa A</div>
+                      <p>Quẹt thẻ từ sinh trắc học vào lớp. Máy cảm biến <strong>Model T-80</strong> góc lớp tự khởi động và cân bằng về chỉ số <code>0.0 ppm</code>.</p>
+                    </div>
+                    <div class="mini-slot">
+                      <div class="mini-time">07:50 – 08:20 · TẢO TỰ TẬP (Tự học sáng)</div>
+                      <p>Cả lớp đồng thanh đọc cổ thi Ngữ văn hoặc từ vựng tiếng Anh học thuật. Ủy viên Học tập đi dọc các dãy bàn kiểm tra bài tập về nhà.</p>
+                    </div>
+                    <div class="mini-slot">
+                      <div class="mini-time">08:30 – 12:10 · CHÍNH KHÓA BUỔI SÁNG (Tiết 1 đến Tiết 4)</div>
+                      <p><strong>Tiết 1 &amp; 2 (08:30–10:10):</strong> Khoa học Tự nhiên nặng (Toán / Lý / Hóa).<br />
+                      <strong>10:10 – 10:35 (Giải Lao Lớn):</strong> Tập thể dục giãn cơ cổ - gáy. Thầy Giám thị cầm máy đo T-80 đi tuần hành lang, kiểm tra gắt gao độ phẳng của miếng dán sau gáy.<br />
+                      <strong>Tiết 3 &amp; 4 (10:35–12:10):</strong> Ngoại ngữ học thuật / Thực hành bộ môn.</p>
+                    </div>
+                    <div class="mini-slot">
+                      <div class="mini-time">12:10 – 13:00 · Bữa trưa (Đại Sảnh Ẩm Thực Tòa D)</div>
+                      <p>Dùng bữa trưa tại Quầy bếp nóng, Đảo tráng miệng trung tâm và Quầy bù khoáng điện giải.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- KHUNG GIỜ LỚN 3 -->
+              <div class="phase-card" id="tphase-3">
+                <div class="phase-head">
+                  <h3>Khung III · Nghỉ Trưa, Lab Chiều &amp; Câu Lạc Bộ</h3>
+                  <span class="temp-pill">13:00 – 18:30</span>
+                </div>
+                <div class="ch1-split">
+                  <div class="mini-timeline">
+                    <div class="mini-slot">
+                      <div class="mini-time">13:00 – 13:50 · NGỦ TRƯA BẮT BUỘC TẠI KTX (Tòa F)</div>
+                      <p>Đèn hành lang chuyển ánh sáng mờ. Ngủ 40 phút để hồi phục thần kinh và ổn định nhiệt độ tuyến thể. <strong>Nghiêm cấm tuyệt đối việc đi lại giữa các phòng.</strong></p>
+                    </div>
+                    <div class="mini-slot">
+                      <div class="mini-time">14:00 – 17:30 · CHÍNH KHÓA BUỔI CHIỀU (Tiết 5 đến Tiết 8)</div>
+                      <p><strong>Tiết 5 – 7 (14:00–16:45):</strong> Chuyên đề nâng cao, thực hành Phòng Lab (Tòa C - Tầng 2), Nghệ thuật &amp; Tranh biện.<br />
+                      <strong>Tiết 8 (16:45–17:30):</strong> Huấn luyện thể chất &amp; Tập luyện đội tuyển thể thao tại Tổ hợp Thể chất (Tòa D) và Nhà thi đấu đa năng (Tòa E).</p>
+                    </div>
+                    <div class="mini-slot">
+                      <div class="mini-time">17:30 – 18:30 · Sinh hoạt CLB &amp; Ăn tối</div>
+                      <p>Tự do sinh hoạt các Câu lạc bộ (tại Tầng 4 Tòa A và Tầng 3–4 Tòa C), tắm rửa tại KTX Tòa F hoặc ăn tối tại Nhà ăn Tòa D.</p>
+                    </div>
+                  </div>
+
+                  <!-- KHUNG ẢNH 25 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Phòng Lab Tòa C và Sinh hoạt CLB chiều" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 25</span>
+                      <span class="ph-icon">🍃</span>
+                      <span class="ph-title">13:00 – 18:30 · Giấc trưa Tòa F &amp; Nắng chiều CLB</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="photo-caption">Fig. 25 — Hành lang đèn mờ giấc ngủ trưa &amp; giờ thể chất Tòa E</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- KHUNG GIỜ LỚN 4 -->
+              <div class="phase-card" id="tphase-4">
+                <div class="phase-head">
+                  <h3>Khung IV · Vãn Tự Tập — Chiến Trường Đêm (24°C)</h3>
+                  <span class="temp-pill">18:30 – 21:40 · Bắt buộc Khối 12 &amp; Vanguard</span>
+                </div>
+                <p class="ch1-body-p" style="margin-bottom:14px;">
+                  Phòng học đóng kín cửa sổ, điều hòa trung tâm mở <strong>24°C</strong>, quạt thông gió chạy hết công suất. Bấm chọn từng Ca để xem nhịp độ chiến trường đêm:
+                </p>
+
+                <div class="ch1-split">
+                  <div>
+                    <div class="scent-group-pills">
+                      <button type="button" class="soft-pill-tab is-active" data-night="ca1">Ca 1 (18:30–19:30)</button>
+                      <button type="button" class="soft-pill-tab" data-night="ca2">Ca 2 (19:40–20:40)</button>
+                      <button type="button" class="soft-pill-tab" data-night="ca3">⚠ Ca 3 (20:50–21:40)</button>
+                    </div>
+                    <div class="rut-detail-box" id="nightDetailBox" style="min-height:110px;">
+                      <strong>Ca 1 (18:30 – 19:30):</strong> Hoàn thành bài tập trong ngày; giáo viên bộ môn ngồi trực trên bục giảng giải đáp thắc mắc.
+                    </div>
+                  </div>
+
+                  <!-- KHUNG ẢNH 26 -->
+                  <div class="photo-slot interactive-photo" style="min-height:200px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Vãn tự tập đêm và Sổ tay câu sai" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 26</span>
+                      <span class="ph-icon">🕯</span>
+                      <span class="ph-title">18:30 – 21:40 · Vãn Tự Tập &amp; Sổ Tay Câu Sai (错题本)</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="photo-caption">Fig. 26 — Khung giờ nguy cơ rò rỉ cao nhất sau 14 tiếng học liên tục</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- KHUNG GIỜ LỚN 5 -->
+              <div class="phase-card" id="tphase-5">
+                <div class="phase-head">
+                  <h3>Khung V · Dạ Tiêu, Điểm Danh &amp; Giới Nghiêm Tuyệt Đối</h3>
+                  <span class="temp-pill">21:40 – 22:30</span>
+                </div>
+                <div class="ch1-split">
+                  <div>
+                    <div class="mini-timeline" style="margin-bottom:14px;">
+                      <div class="mini-slot">
+                        <div class="mini-time">21:40 – 22:05 · Dạ Tiêu (Bữa phụ đêm)</div>
+                        <p>Căn-tin Tòa D phục vụ súp/cháo nóng, sữa tươi và bánh mì dinh dưỡng. Ban Thường trực Hội Học Sinh và Ban Kỷ Luật hoàn tất ca trực dữ liệu tại Tầng 5 Tòa A.</p>
+                      </div>
+                      <div class="mini-slot">
+                        <div class="mini-time">22:05 · Điểm danh sinh trắc học KTX (Tòa F)</div>
+                        <p>Quẹt thẻ từ và quét thân nhiệt tại sảnh <strong>F1 (Omega)</strong>, <strong>F2 (Alpha)</strong> và <strong>F3 (Beta)</strong>.</p>
+                      </div>
+                      <div class="mini-slot">
+                        <div class="mini-time">22:30 · LỆNH GIỚI NGHIÊM TUYỆT ĐỐI (ABSOLUTE CURFEW LOCKDOWN)</div>
+                        <p>Chốt cửa điện từ tự động sập chặt tại cả 3 tòa KTX, ngắt toàn bộ cầu thang liên tòa và tắt đèn trần. Chỉ được dùng đèn bàn cá nhân; Giám thị giám sát qua camera hồng ngoại hành lang 24/7.</p>
+                      </div>
+                    </div>
+
+                    <div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px;">
+                      <button type="button" class="soft-action-btn" id="btnToggleCurfew">🔒 Thử chuyển trạng thái 22:05 / 22:30</button>
+                      <span class="curfew-door-badge" id="curfewStatusBadge">22:05 · Đang quét thẻ &amp; thân nhiệt sảnh F1 / F2 / F3</span>
+                    </div>
+                  </div>
+
+                  <!-- KHUNG ẢNH 27 -->
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Giới nghiêm KTX Tòa F 22:30" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder">
+                      <span class="ph-badge">Ảnh 27</span>
+                      <span class="ph-icon">🌙</span>
+                      <span class="ph-title">22:30 · Tòa F Sập Cửa Điện Từ &amp; Camera Hồng Ngoại</span>
+                      <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                    </div>
+                    <div class="photo-caption">Fig. 27 — Ánh đèn bàn cá nhân &amp; hành lang hồng ngoại 24/7</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 5.2 NỘI QUY THÉP -->
+            <div class="ch2-subblock" id="ch5-2">
+              <div class="ch1-tag">5.2 · Nội quy thép &amp; Chế tài tuần tra · Disciplinary Enforcement</div>
+
+              <div class="ch1-three-cols" style="margin-bottom:18px;">
+                <div class="sub-card">
+                  <div class="ch1-side-label">Kiểm soát vật phẩm cấm</div>
+                  <h3>Tủ kính chống đạn Tầng 5 Tòa A</h3>
+                  <p style="margin-bottom:12px;">Nghiêm cấm mang thuốc lá, rượu bia, điện thoại dùng trong giờ học và <strong>thuốc ức chế chui không rõ nguồn gốc / không có đơn của Bác sĩ Tạ</strong>. Mọi tang vật phát hiện khi lục cặp đột xuất bị tịch thu vĩnh viễn.</p>
+                  <button type="button" class="soft-action-btn" id="btnBagInspect">🔍 Lục cặp đột xuất</button>
+                  <div class="rut-detail-box" id="bagInspectResult" style="margin-top:10px; font-size:0.92rem;">
+                    Trạng thái: Chưa phát hiện tang vật vi phạm.
+                  </div>
+                </div>
+
+                <div class="sub-card">
+                  <div class="ch1-side-label">Lưới tuần tra không tiếng động</div>
+                  <h3>Cờ Đỏ &amp; Thầy Giám thị</h3>
+                  <p>Trong giờ giải lao lớn, tự học tối và sau 22:30, Thầy Giám thị (đi <strong>giày đế cao su không tiếng động</strong>) cùng Đội Cờ đỏ liên tục rà soát bắt lỗi:</p>
+                  <ul class="tier-bullet-list">
+                    <li>Mở quá <strong>02 cúc cổ áo</strong> sơ mi.</li>
+                    <li>Miếng dán bong mép chưa thay mới.</li>
+                    <li>Tụ tập lén lút giữa Alpha và Omega.</li>
+                  </ul>
+                </div>
+
+                <div class="sub-card">
+                  <div class="ch1-side-label">Vành đai an ninh KTX</div>
+                  <h3>Cảnh báo Tòa F1 (Omega)</h3>
+                  <p style="margin-bottom:12px;">Thẻ từ chỉ mở được tòa KTX đúng giới tính (trừ <strong>F3 Beta</strong> vùng đệm trung lập). Nếu bất kỳ Alpha nào tiếp cận cổng <strong>Tòa F1 trong bán kính 10 mét</strong>, còi báo động hú vang gửi cảnh báo thẳng tới Thầy Giám thị.</p>
+                  <button type="button" class="soft-action-btn" id="btnF1Perimeter">🚨 Thử khoảng cách Alpha tới F1</button>
+                  <div class="rank-status-msg is-safe" id="f1PerimeterStatus" style="margin-top:10px; font-size:0.92rem;">
+                    <strong>15m (An toàn):</strong> Ngoài vành đai quét thẻ Tòa F1.
+                  </div>
+                </div>
+              </div>
+
+              <!-- KHUNG ẢNH 28 -->
+              <div class="photo-slot interactive-photo" style="min-height:200px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                <img src="" alt="Tuần tra Cờ đỏ và Vành đai an ninh Tòa F" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                <div class="photo-placeholder">
+                  <span class="ph-badge">Ảnh 28</span>
+                  <span class="ph-icon">⚖</span>
+                  <span class="ph-title">Tủ kính tang vật Tòa Án Học Đường &amp; Vành đai KTX F1</span>
+                  <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                </div>
+                <div class="photo-caption">Fig. 28 — Giày đế cao su không tiếng động &amp; còi báo động bán kính 10m</div>
+              </div>
+            </div>
+          </div>
         </section>
         <!-- PHẦN 2 -->
         <section class="content-section is-hidden-sec" id="sec-2">
@@ -3364,7 +3908,8 @@
     const chap1 = document.getElementById('chap-1');
     const chap2 = document.getElementById('chap-2');
     const chap3 = document.getElementById('chap-3');
-    const chap4 = document.getElementById('chap-4')
+    const chap4 = document.getElementById('chap-4');
+    const chap5 = document.getElementById('chap-5');
 
     function openHandbookMenu() {
       clearTimeout(closeHoverTimer);
@@ -3395,7 +3940,8 @@
       if (chap1) chap1.classList.add('is-hidden-chap');
       if (chap2) chap2.classList.add('is-hidden-chap');
       if (chap3) chap3.classList.add('is-hidden-chap');
-      if (chap4) chap4.classList.add('is-hidden-chap')
+      if (chap4) chap4.classList.add('is-hidden-chap');
+      if (chap5) chap5.classList.add('is-hidden-chap');
 
       let scrollTarget = document.getElementById('worldContentTop');
       if (viewKey === 'sec-1-all') {
@@ -3403,7 +3949,8 @@
         if (chap1) chap1.classList.remove('is-hidden-chap');
         if (chap2) chap2.classList.remove('is-hidden-chap');
         if (chap3) chap3.classList.remove('is-hidden-chap');
-        if (chap4) chap4.classList.remove('is-hidden-chap')
+        if (chap4) chap4.classList.remove('is-hidden-chap');
+        if (chap5) chap5.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'chap-1') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -3420,6 +3967,10 @@
       } else if (viewKey === 'chap-4') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
         if (chap4) chap4.classList.remove('is-hidden-chap');
+        scrollTarget = sec1;
+      } else if (viewKey === 'chap-5') {
+        if (sec1)  sec1.classList.remove('is-hidden-sec');
+        if (chap5) chap5.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'sec-2') {
         if (sec2) sec2.classList.remove('is-hidden-sec');
@@ -3847,6 +4398,128 @@
         box.className = 'rank-status-msg ' + d.cls;
         box.innerHTML = d.html;
       });
+    });
+    /* === TƯƠNG TÁC CHƯƠNG 5 (ĐỒNG HỒ QUẢ LẮC & NỘI QUY 24H) === */
+    const clockInfoMap = {
+      '06:00': { h: 180, m: 0,   tag: 'Tòa F · Báo thức & Thay miếng dán 100%' },
+      '07:50': { h: 235, m: 300, tag: 'Tòa A · Tảo Tự Tập & Chính khóa sáng' },
+      '13:00': { h: 390, m: 0,   tag: 'Tòa F · Ngủ trưa bắt buộc 40 phút (Đèn mờ)' },
+      '18:30': { h: 555, m: 180, tag: 'Tòa A · Vãn Tự Tập 24°C (Cảnh báo rò rỉ cao)' },
+      '22:30': { h: 675, m: 180, tag: 'LOCKDOWN · Sập chốt cửa điện từ KTX!' }
+    };
+    const clockBtns = document.querySelectorAll('[data-clock]');
+    const clockHour = document.getElementById('clockHour');
+    const clockMin  = document.getElementById('clockMin');
+    const clockDig  = document.getElementById('clockDigital');
+    const clockTag  = document.getElementById('clockPhaseTag');
+    let autoClockTimer = null;
+
+    function setSchoolClock(timeStr, shouldHighlightPhase) {
+      const info = clockInfoMap[timeStr];
+      if (!info) return;
+      clockHour.style.transform = 'rotate(' + info.h + 'deg)';
+      clockMin.style.transform  = 'rotate(' + info.m + 'deg)';
+      clockDig.textContent = timeStr;
+      clockTag.textContent = info.tag;
+
+      let targetPhaseId = '';
+      clockBtns.forEach((b) => {
+        const match = b.getAttribute('data-clock') === timeStr;
+        b.classList.toggle('is-active', match);
+        if (match) targetPhaseId = b.getAttribute('data-target-phase');
+      });
+
+      document.querySelectorAll('.phase-card').forEach((c) => c.classList.remove('is-time-focus'));
+      if (targetPhaseId) {
+        const phaseEl = document.getElementById(targetPhaseId);
+        if (phaseEl) {
+          phaseEl.classList.add('is-time-focus');
+          if (shouldHighlightPhase) {
+            phaseEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }
+    }
+
+    clockBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        clearInterval(autoClockTimer);
+        document.getElementById('btnAutoClock').classList.remove('is-active');
+        document.getElementById('btnAutoClock').textContent = '▶ Tua nhanh 24H';
+        setSchoolClock(btn.getAttribute('data-clock'), true);
+      });
+    });
+
+    const autoClockBtn = document.getElementById('btnAutoClock');
+    const timeKeys = ['06:00', '07:50', '13:00', '18:30', '22:30'];
+    let autoClockIdx = 0;
+    autoClockBtn.addEventListener('click', () => {
+      if (autoClockTimer) {
+        clearInterval(autoClockTimer);
+        autoClockTimer = null;
+        autoClockBtn.classList.remove('is-active');
+        autoClockBtn.textContent = '▶ Tua nhanh 24H';
+      } else {
+        autoClockBtn.classList.add('is-active');
+        autoClockBtn.textContent = '⏸ Dừng đồng hồ';
+        autoClockTimer = setInterval(() => {
+          autoClockIdx = (autoClockIdx + 1) % timeKeys.length;
+          setSchoolClock(timeKeys[autoClockIdx], false);
+        }, 1600);
+      }
+    });
+
+    // Vãn tự tập 3 ca
+    const nightData = {
+      ca1: '<strong>Ca 1 (18:30 – 19:30):</strong> Hoàn thành bài tập trong ngày; giáo viên bộ môn ngồi trực trên bục giảng giải đáp thắc mắc.',
+      ca2: '<strong>Ca 2 (19:40 – 20:40):</strong> Luyện đề thi giới hạn thời gian (<em>Đề bấm giờ 60 phút</em>). Không khí căng như dây đàn, chỉ có tiếng ngòi bút ma sát trên giấy.',
+      ca3: '<strong>Ca 3 (20:50 – 21:40):</strong> Chữa bài và tổng kết vào <strong>“Sổ Tay Câu Sai” (错题本)</strong>. <em>(Đây là khung giờ có nguy cơ rò rỉ mùi cao nhất do học sinh kiệt sức sau 14 tiếng học liên tục).</em>'
+    };
+    const nightTabs = document.querySelectorAll('[data-night]');
+    nightTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        nightTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        document.getElementById('nightDetailBox').innerHTML = nightData[btn.getAttribute('data-night')];
+      });
+    });
+
+    // Công tắc Giới nghiêm 22:30
+    let curfewLocked = false;
+    document.getElementById('btnToggleCurfew').addEventListener('click', () => {
+      curfewLocked = !curfewLocked;
+      const badge = document.getElementById('curfewStatusBadge');
+      badge.classList.toggle('is-locked', curfewLocked);
+      badge.textContent = curfewLocked
+        ? '22:30 · LOCKDOWN: Chốt cửa điện từ sập chặt · Hồng ngoại hành lang 24/7!'
+        : '22:05 · Đang quét thẻ & thân nhiệt sảnh F1 / F2 / F3';
+    });
+
+    // 5.2 Lục cặp đột xuất
+    const bagItems = [
+      '<strong>Phát hiện:</strong> Thuốc ức chế chui không có đơn của Bác sĩ Tạ ➔ Tịch thu vĩnh viễn vào tủ kính chống đạn Tầng 5 Tòa A!',
+      '<strong>Phát hiện:</strong> Điện thoại di động lén dùng trong giờ Vãn tự tập ➔ Tịch thu về Tòa Án Học Đường!',
+      '<strong>Phát hiện:</strong> Bao thuốc lá giấu trong ngăn phụ cặp ➔ Lập biên bản trừ điểm rèn luyện &amp; niêm phong tang vật!',
+      'Trạng thái: Không phát hiện tang vật vi phạm.'
+    ];
+    let bagIdx = 0;
+    document.getElementById('btnBagInspect').addEventListener('click', () => {
+      document.getElementById('bagInspectResult').innerHTML = bagItems[bagIdx];
+      bagIdx = (bagIdx + 1) % bagItems.length;
+    });
+
+    // 5.2 Vành đai Tòa F1 (10m)
+    const f1States = [
+      { cls: 'is-safe',   html: '<strong>15m (An toàn):</strong> Ngoài vành đai quét thẻ Tòa F1.' },
+      { cls: 'is-warn',   html: '<strong>11m (Cảnh giác):</strong> Ranh giới tiếp cận sảnh F1 (Khu Omega)!' },
+      { cls: 'is-danger', html: '<strong>≤ 10m (BÁO ĐỘNG!):</strong> Còi báo động Tòa F1 hú vang · Gửi cảnh báo khẩn cấp thẳng tới Thầy Giám thị!' }
+    ];
+    let f1Idx = 0;
+    document.getElementById('btnF1Perimeter').addEventListener('click', () => {
+      f1Idx = (f1Idx + 1) % f1States.length;
+      const st = f1States[f1Idx];
+      const box = document.getElementById('f1PerimeterStatus');
+      box.className = 'rank-status-msg ' + st.cls;
+      box.innerHTML = st.html;
     });
   </script>
 </body>
