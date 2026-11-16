@@ -6719,7 +6719,7 @@
                     <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
                       <!-- THAY LINK ẢNH VÀO src="" | THAY LINK HỒ SƠ VÀO href="" Ở THẺ <a> BÊN DƯỚI -->
                       <img src="" alt="Cố Khởi La" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
-                      <a href="#sec-3" class="npc-info-glass-link" data-jump-sec3="npc-1">✦ Thông tin ➔</a>
+                      <a href="#sec-3" class="npc-info-glass-link" data-open-char="co-khoi-la">✦ Thông tin ➔</a>
                       <div class="photo-placeholder"><span class="ph-badge">Ảnh 72 · NPC 01</span><span class="ph-icon">♛</span><span class="ph-title">Cố Khởi La</span></div>
                       <div class="photo-caption">Fig. 72 — Hội Trưởng Hội Học Sinh · Lớp 12-2</div>
                     </div>
@@ -9432,18 +9432,6 @@
         ? '● Đang đồng bộ Web Chung · Tự động cập nhật bài viết từ từ...'
         : '○ Đã tạm dừng luồng up bài tự động.';
     });
-
-    document.getElementById('btnSubmitTieba').addEventListener('click', () => {
-      const bk = document.getElementById('tiebaBoardSelect').value;
-      const titleEl = document.getElementById('tiebaPostTitle');
-      const bodyEl  = document.getElementById('tiebaPostBody');
-      const t = titleEl.value.trim() || 'Bài ẩn danh vừa gửi từ KTX';
-      const b = bodyEl.value.trim()  || 'Vừa cập nhật trạng thái mới lên St. Vanguard Tieba.';
-      pushTiebaPost(bk, { id: currentAnonId, title: t, body: b }, true);
-      titleEl.value = '';
-      bodyEl.value  = '';
-    });
-
     const tiebaTabs = document.querySelectorAll('[data-tieba-tab]');
     const tiebaBoxes = document.querySelectorAll('[data-board-box]');
     tiebaTabs.forEach((btn) => {
