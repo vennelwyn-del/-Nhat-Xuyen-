@@ -3526,6 +3526,234 @@
       border-color: #6FCF97;
       color: #C6F6D5;
     }
+    /* =========================================================
+       DECOR RIÊNG CHO PHẦN 3 (HỒ SƠ NHÂN VẬT TỪ CHARACTERS.JS)
+    ========================================================= */
+    .char-filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.24);
+    }
+    .char-filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* Khung Hồ sơ chi tiết mở ra khi ấn vào nhân vật hoặc từ Chương 10 */
+    .char-spotlight {
+      display: none;
+      margin-bottom: 24px;
+      padding: 24px;
+      border-radius: 16px;
+      background: rgba(16, 22, 20, 0.46);
+      border: 1px solid var(--gold-text);
+      box-shadow: 0 0 28px var(--glow-color), inset 0 0 32px rgba(0, 0, 0, 0.24);
+      animation: softFadeIn 0.35s ease;
+    }
+    .char-spotlight.is-open {
+      display: block;
+    }
+    .spotlight-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.24);
+    }
+    .spotlight-grid {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+    .spotlight-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.28));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 16px;
+      position: relative;
+    }
+    .spotlight-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .spotlight-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-bottom: 12px;
+    }
+    .spotlight-pill {
+      padding: 3px 11px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      font-size: 0.84rem;
+      color: var(--gold-text);
+    }
+    .spotlight-quote {
+      margin: 0 0 12px;
+      padding: 8px 14px;
+      border-left: 3px solid var(--gold-text);
+      font-style: italic;
+      color: var(--gold-text);
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 0 8px 8px 0;
+    }
+    .spotlight-rows {
+      display: grid;
+      gap: 10px;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: rgba(255, 253, 245, 0.92);
+    }
+    .spotlight-secret-box {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: rgba(165, 38, 42, 0.22);
+      border: 1px solid rgba(255, 165, 165, 0.45);
+      display: none;
+      animation: softFadeIn 0.3s ease;
+    }
+    .spotlight-secret-box.is-shown {
+      display: block;
+    }
+
+    /* Lưới thẻ nhân vật Phần 3 */
+    .char-grid-v3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .char-card-v3 {
+      background: var(--subcard-glass);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.26s ease, border-color 0.26s ease, box-shadow 0.26s ease;
+    }
+    .char-card-v3:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-text);
+      box-shadow: 0 0 22px var(--glow-color);
+    }
+    .char-card-v3.is-oc-card {
+      border-color: rgba(255, 242, 178, 0.65);
+      background: linear-gradient(160deg, rgba(255, 242, 178, 0.12), rgba(158, 232, 255, 0.08));
+    }
+    .char-card-v3.is-oc-card .char-v3-name {
+      animation: ocNameBlink 1.35s ease-in-out infinite;
+    }
+    .char-v3-thumb {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.24));
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 253, 245, 0.72);
+      font-style: italic;
+      overflow: hidden;
+    }
+    .char-v3-thumb img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .char-card-v3:hover .char-v3-thumb img {
+      transform: scale(1.04);
+    }
+    .char-v3-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 2;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: rgba(16, 22, 20, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      font-size: 0.76rem;
+      font-style: normal;
+      color: var(--gold-text);
+    }
+    .char-v3-body {
+      padding: 15px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      gap: 6px;
+    }
+    .char-v3-sub {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-text);
+    }
+    .char-v3-name {
+      margin: 0;
+      font-size: 1.28rem;
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+    .char-v3-abo {
+      font-size: 0.86rem;
+      color: rgba(255, 253, 245, 0.82);
+    }
+    .char-v3-role {
+      font-size: 0.94rem;
+      line-height: 1.48;
+      color: rgba(255, 253, 245, 0.86);
+      flex: 1;
+    }
+    .char-v3-btn {
+      margin-top: 6px;
+      align-self: flex-start;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      background: rgba(255, 255, 255, 0.10);
+      color: #FFFDF5;
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 820px) {
+      .spotlight-grid {
+        grid-template-columns: 1fr;
+      }
+      .spotlight-photo {
+        max-width: 260px;
+        margin: 0 auto;
+      }
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -7465,35 +7693,53 @@
           </div> <!-- hết .lex-scroll-body -->
           </section> <!-- hết #sec-2 -->
         <!-- PHẦN 3 -->
+        <!-- PHẦN 3: HỒ SƠ NHÂN VẬT (ĐỌC TỪ CHARACTERS.JS) -->
         <section class="content-section is-hidden-sec" id="sec-3">
           <div class="sec-kicker">Phần 3 ౨ৎ</div>
           <h2>Hồ sơ nhân vật</h2>
-          <div class="char-grid">
-            <div class="char-card">
-              <div class="char-avatar"><span>Ảnh nhân vật 01</span></div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 1</div>
-                <p class="char-note">Đôi dòng giới thiệu tính cách, biệt danh hoặc dấu ấn nổi bật.</p>
+          <div class="ch1-subtitle-en">ST. VANGUARD ACADEMY · CORE CHARACTER DOSSIERS</div>
+
+          <div class="char-filter-bar">
+            <div class="char-filter-tabs" role="tablist" aria-label="Lọc nhân vật theo khối">
+              <button type="button" class="soft-pill-tab is-active" data-char-grade="all">All</button>
+              <button type="button" class="soft-pill-tab" data-char-grade="10">Khối 10</button>
+              <button type="button" class="soft-pill-tab" data-char-grade="11">Khối 11</button>
+              <button type="button" class="soft-pill-tab" data-char-grade="12">Khối 12</button>
+            </div>
+            <span style="font-size:0.9rem; color:var(--gold-text);" id="charCountLabel">Đang hiển thị: 15 hồ sơ</span>
+          </div>
+
+          <!-- KHUNG MỞ HỒ SƠ CHI TIẾT TỪNG NHÂN VẬT -->
+          <div class="char-spotlight" id="charDossierSpotlight">
+            <div class="spotlight-top">
+              <div>
+                <div class="ch1-side-label" id="spSubLabel">Hồ sơ chi tiết</div>
+                <h3 style="margin:0; font-size:1.7rem; color:#FFFFFF;" id="spName">Tên Nhân Vật</h3>
+              </div>
+              <div class="laurel-tabs">
+                <button type="button" class="soft-action-btn" id="btnPrevChar">◀ Trước</button>
+                <button type="button" class="soft-action-btn" id="btnNextChar">Sau ▶</button>
+                <button type="button" class="soft-action-btn" id="btnCloseSpotlight">✕ Đóng hồ sơ</button>
               </div>
             </div>
-            <div class="char-card">
-              <div class="char-avatar"><span>Ảnh nhân vật 02</span></div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 2</div>
-                <p class="char-note">Đôi dòng giới thiệu tính cách, mối quan hệ hoặc câu chuyện riêng.</p>
-              </div>
-            </div>
-            <div class="char-card">
-              <div class="char-avatar"><span>Ảnh nhân vật 03</span></div>
-              <div class="char-body">
-                <div class="char-role">Lớp · Vai trò</div>
-                <div class="char-name">Tên Nhân Vật 3</div>
-                <p class="char-note">Gắn thêm thông tin chi tiết nhân vật tại đây.</p>
+
+            <div class="spotlight-grid">
+              <div class="spotlight-photo" id="spPhotoBox"></div>
+              <div>
+                <div class="spotlight-meta-pills" id="spMetaPills"></div>
+                <blockquote class="spotlight-quote" id="spQuote" style="display:none;"></blockquote>
+                <div class="spotlight-rows" id="spRows"></div>
+
+                <div style="margin-top:14px;">
+                  <button type="button" class="soft-action-btn" id="btnToggleCharSecret">🔓 Hiện Bí mật cốt lõi</button>
+                  <div class="spotlight-secret-box" id="spSecretBox"></div>
+                </div>
               </div>
             </div>
           </div>
+
+          <!-- LƯỚI THẺ NHÂN VẬT TỰ ĐỘNG RENDER TỪ CHARACTERS.JS -->
+          <div class="char-grid-v3" id="charGridV3"></div>
         </section>
         <!-- PHẦN 4: LƯU Ý VÀ LỆNH -->
         <section class="content-section is-hidden-sec" id="sec-4">
@@ -7626,6 +7872,7 @@
   </div>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
+  <script src="./characters.js"></script>
   <script>
     const introStage     = document.getElementById('intro-stage');
     const centerStack    = document.getElementById('center-stack');
@@ -9634,6 +9881,188 @@
         }
       });
     });
+    /* === PHẦN 3: RENDER & LỌC HỒ SƠ NHÂN VẬT TỪ CHARACTERS.JS === */
+    (function initPart3Characters() {
+      const list = window.NHAT_XUYEN_CHARS || [];
+      const gridEl = document.getElementById('charGridV3');
+      const countEl = document.getElementById('charCountLabel');
+      const spotlight = document.getElementById('charDossierSpotlight');
+      const gradeBtns = document.querySelectorAll('[data-char-grade]');
+      if (!gridEl || list.length === 0) return;
+
+      let activeGrade = 'all';
+      let currentFiltered = list.slice();
+      let activeCharId = null;
+      let secretOpened = false;
+
+      function escHtml(s) {
+        return String(s || '')
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;');
+      }
+
+      // Cập nhật số đếm trên 4 nút All / Khối 10 / 11 / 12
+      gradeBtns.forEach((btn) => {
+        const g = btn.getAttribute('data-char-grade');
+        const c = g === 'all' ? list.length : list.filter((ch) => ch.grade === g).length;
+        const base = g === 'all' ? 'All' : ('Khối ' + g);
+        btn.textContent = base + ' (' + c + ')';
+      });
+
+      function renderCharGrid() {
+        currentFiltered = activeGrade === 'all'
+          ? list.slice()
+          : list.filter((ch) => ch.grade === activeGrade);
+
+        if (countEl) {
+          countEl.textContent = 'Đang hiển thị: ' + currentFiltered.length + ' hồ sơ';
+        }
+
+        gridEl.innerHTML = '';
+        currentFiltered.forEach((ch) => {
+          const card = document.createElement('article');
+          card.className = 'char-card-v3' + (ch.isOc ? ' is-oc-card' : '');
+          card.setAttribute('tabindex', '0');
+
+          const thumbHtml = ch.img
+            ? '<img src="' + escHtml(ch.img) + '" alt="' + escHtml(ch.name) + '" />'
+            : '<span>Ảnh nhân vật</span>';
+
+          const badgeTxt = ch.isOc ? '★ OC của crt' : (ch.classRoom + ' · ' + ch.rank);
+
+          card.innerHTML =
+            '<div class="char-v3-thumb">' +
+              '<span class="char-v3-badge">' + escHtml(badgeTxt) + '</span>' +
+              thumbHtml +
+            '</div>' +
+            '<div class="char-v3-body">' +
+              '<div class="char-v3-sub">' + escHtml(ch.gradeLabel) + '</div>' +
+              '<h3 class="char-v3-name">' + escHtml(ch.name) + '</h3>' +
+              '<div class="char-v3-abo">' + escHtml(ch.abo) + ' · ' + escHtml(ch.age) + '</div>' +
+              '<div class="char-v3-role">' + escHtml(ch.role) + '</div>' +
+              '<span class="char-v3-btn">📖 Xem hồ sơ chi tiết</span>' +
+            '</div>';
+
+          card.addEventListener('click', () => openCharDossier(ch.id));
+          card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              openCharDossier(ch.id);
+            }
+          });
+          gridEl.appendChild(card);
+        });
+      }
+
+      window.openCharDossier = function (charId) {
+        const ch = list.find((item) => item.id === charId);
+        if (!ch || !spotlight) return;
+        activeCharId = ch.id;
+        secretOpened = false;
+
+        document.getElementById('spSubLabel').textContent = ch.gradeLabel + ' · ' + ch.classRoom + (ch.isOc ? ' · ★ OC của crt' : '');
+        const spName = document.getElementById('spName');
+        spName.textContent = ch.name;
+        spName.style.color = ch.isOc ? 'var(--gold-text)' : '#FFFFFF';
+
+        const photoBox = document.getElementById('spPhotoBox');
+        photoBox.innerHTML = ch.img
+          ? '<img src="' + escHtml(ch.img) + '" alt="' + escHtml(ch.name) + '" />'
+          : '<span style="color:var(--gold-text); font-size:1.5rem; margin-bottom:6px;">❀</span><strong style="color:#FFFFFF;">' + escHtml(ch.name) + '</strong><span style="font-size:0.86rem; color:rgba(255,253,245,0.72); margin-top:4px;">Điền link ảnh vào mục img trong characters.js</span>';
+
+        document.getElementById('spMetaPills').innerHTML =
+          '<span class="spotlight-pill">' + escHtml(ch.abo) + '</span>' +
+          '<span class="spotlight-pill">' + escHtml(ch.age) + '</span>' +
+          '<span class="spotlight-pill">' + escHtml(ch.rank) + '</span>' +
+          '<span class="spotlight-pill">' + escHtml(ch.desk) + '</span>';
+
+        const quoteEl = document.getElementById('spQuote');
+        if (ch.quote) {
+          quoteEl.style.display = 'block';
+          quoteEl.textContent = ch.quote;
+        } else {
+          quoteEl.style.display = 'none';
+        }
+
+        let rowsHtml =
+          '<div><strong style="color:var(--gold-text);">Vai trò &amp; Chức vụ:</strong> ' + escHtml(ch.role) + '</div>' +
+          '<div><strong style="color:var(--gold-text);">Căn cước &amp; Xuất thân:</strong> ' + escHtml(ch.origin) + '</div>' +
+          '<div><strong style="color:var(--gold-text);">Diện mạo &amp; Tác phong:</strong> ' + escHtml(ch.appearance) + '</div>' +
+          '<div><strong style="color:var(--gold-text);">Tin tức tố:</strong> <em>' + escHtml(ch.scent) + '</em></div>' +
+          '<div><strong style="color:var(--gold-text);">Miếng dán &amp; Độ bám:</strong> ' + escHtml(ch.patchInfo) + '</div>' +
+          '<div><strong style="color:var(--gold-text);">Tính cách:</strong> ' + escHtml(ch.personality) + '</div>';
+        if (ch.relationships) {
+          rowsHtml += '<div><strong style="color:var(--gold-text);">Mối quan hệ:</strong> ' + escHtml(ch.relationships) + '</div>';
+        }
+        if (ch.extraNotes) {
+          rowsHtml += '<div><strong style="color:var(--gold-text);">Ghi chú thêm:</strong> ' + escHtml(ch.extraNotes) + '</div>';
+        }
+        document.getElementById('spRows').innerHTML = rowsHtml;
+
+        const secBox = document.getElementById('spSecretBox');
+        const secBtn = document.getElementById('btnToggleCharSecret');
+        secBox.classList.remove('is-shown');
+        secBox.innerHTML = '<strong style="color:#FFB4B4;">🔒 Bí mật cốt lõi:</strong> ' + escHtml(ch.secret);
+        secBtn.classList.remove('is-active');
+        secBtn.textContent = '🔓 Hiện Bí mật cốt lõi';
+
+        spotlight.classList.add('is-open');
+        spotlight.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      };
+
+      document.getElementById('btnToggleCharSecret').addEventListener('click', (e) => {
+        secretOpened = !secretOpened;
+        document.getElementById('spSecretBox').classList.toggle('is-shown', secretOpened);
+        e.currentTarget.classList.toggle('is-active', secretOpened);
+        e.currentTarget.textContent = secretOpened ? '🔒 Ẩn Bí mật cốt lõi' : '🔓 Hiện Bí mật cốt lõi';
+      });
+
+      document.getElementById('btnCloseSpotlight').addEventListener('click', () => {
+        spotlight.classList.remove('is-open');
+      });
+
+      function stepSpotlight(delta) {
+        const pool = currentFiltered.length ? currentFiltered : list;
+        const idx = pool.findIndex((c) => c.id === activeCharId);
+        const nextIdx = idx < 0 ? 0 : (idx + delta + pool.length) % pool.length;
+        window.openCharDossier(pool[nextIdx].id);
+      }
+      document.getElementById('btnPrevChar').addEventListener('click', () => stepSpotlight(-1));
+      document.getElementById('btnNextChar').addEventListener('click', () => stepSpotlight(1));
+
+      gradeBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          gradeBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+          activeGrade = btn.getAttribute('data-char-grade');
+          renderCharGrid();
+        });
+      });
+
+      // Tự động nối nút "Thông tin" ở Chương 10 sang đúng hồ sơ chi tiết ở Phần 3
+      const chap10El = document.getElementById('chap-10');
+      if (chap10El) {
+        chap10El.addEventListener('click', (e) => {
+          const link = e.target.closest('a[href="#sec-3"], [data-open-char]');
+          if (!link) return;
+          e.preventDefault();
+          switchContentView('sec-3', true);
+          pinHandbookItem('sec-3');
+
+          let cid = link.getAttribute('data-open-char');
+          if (!cid) {
+            const card = link.closest('.npc-dossier-card, .sub-card, article');
+            const txt = card ? card.textContent.toLowerCase() : '';
+            const found = list.find((ch) => txt.includes(ch.name.toLowerCase()));
+            if (found) cid = found.id;
+          }
+          if (cid) {
+            setTimeout(() => window.openCharDossier(cid), 150);
+          }
+        });
+      }
+      renderCharGrid();
+    })();
   </script>
 </body>
 </html>
