@@ -2395,7 +2395,7 @@
       border: 1px solid rgba(255, 255, 255, 0.14);
       font-size: 0.92rem;
       color: #FFFDF5;
-      transition: transform 0.78s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease, border-color 0.35s ease;
+      transition: transform 1.25s cubic-bezier(0.22, 1, 0.36, 1), background 0.35s ease, border-color 0.35s ease;
     }
     .hb-rank-row.is-npc {
       background: rgba(255, 242, 178, 0.14);
@@ -2447,6 +2447,23 @@
     .hb-delta.up   { background: rgba(111, 207, 151, 0.24); color: #9AE6B4; }
     .hb-delta.down { background: rgba(235, 87, 87, 0.26); color: #FFB4B4; }
     .hb-delta.same { background: rgba(255, 255, 255, 0.10); color: rgba(255, 255, 255, 0.75); }
+    /* Dòng ngăn cách ... giữa Top 20 và 5 hạng cuối */
+    .hb-ellipsis-row {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      letter-spacing: 0.45em;
+      text-indent: 0.45em;
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--gold-text);
+      opacity: 0.85;
+      pointer-events: none;
+    } 
   </style>
 </head>
 <body class="intro-locked">
@@ -5222,43 +5239,87 @@
 
     // 6.3C HỒNG BẢNG 3 KHỐI (CHẠY ĐẨY TÊN LÊN XUỐNG LIÊN TỤC)
     // Bạn chỉ cần thay 'NPC 1' ... 'NPC 13' bằng tên nhân vật thật khi muốn điền!
+   // 6.3C HỒNG BẢNG 3 KHỐI: 20 HẠNG ĐẦU (#1..#20) + (...) + 5 HẠNG CUỐI (#146..#150)
+    // Bạn chỉ cần thay 'NPC 1' ... 'NPC 13' bằng tên nhân vật thật khi muốn điền!
+    const npcSlots = {
+      g10: {
+        num: 10,
+        top: {
+          1: { name: 'NPC 1', cls: '10-1' },
+          2: { name: 'NPC 2', cls: '10-1' },
+          5: { name: 'NPC 3', cls: '10-2' }
+        },
+        bot: {
+          147: { name: 'NPC 4', cls: '10-5' }
+        }
+      },
+      g11: {
+        num: 11,
+        top: {
+          1:  { name: 'NPC 5', cls: '11-1' },
+          4:  { name: 'NPC 6', cls: '11-2' },
+          15: { name: 'NPC 7', cls: '11-3' }
+        },
+        bot: {
+          148: { name: 'NPC 8', cls: '11-5' }
+        }
+      },
+      g12: {
+        num: 12,
+        top: {
+          1:  { name: 'NPC 9',  cls: '12-1' },
+          2:  { name: 'NPC 10', cls: '12-1' },
+          3:  { name: 'NPC 11', cls: '12-2' },
+          12: { name: 'NPC 12', cls: '12-3' }
+        },
+        bot: {
+          149: { name: 'NPC 13', cls: '12-5' }
+        }
+      }
+    };
+
+    function pickDefaultClass(gradeNum, rank) {
+      if (rank <= 6)  return gradeNum + '-1';
+      if (rank <= 13) return gradeNum + '-2';
+      if (rank <= 17) return gradeNum + '-3';
+      if (rank <= 20) return gradeNum + '-4';
+      return gradeNum + '-5';
+    }
+
+    function buildGradeBoardList(gKey) {
+      const cfg = npcSlots[gKey];
+      const arr = [];
+      // 20 hạng đầu (#1 -> #20)
+      for (let r = 1; r <= 20; r++) {
+        const npcInfo = cfg.top[r];
+        arr.push({
+          uid: gKey + '-' + r,
+          npc: npcInfo ? npcInfo.name : null,
+          cls: npcInfo ? npcInfo.cls : pickDefaultClass(cfg.num, r),
+          rank: r,
+          score: 748 - (r - 1) * 3,
+          delta: (r % 3 === 1) ? 1 : (r % 3 === 2 ? -1 : 0)
+        });
+      }
+      // 5 hạng cuối (#146 -> #150)
+      for (let r = 146; r <= 150; r++) {
+        const npcInfo = cfg.bot[r];
+        arr.push({
+          uid: gKey + '-' + r,
+          npc: npcInfo ? npcInfo.name : null,
+          cls: npcInfo ? npcInfo.cls : pickDefaultClass(cfg.num, r),
+          rank: r,
+          score: 428 - (r - 146) * 7,
+          delta: (r % 2 === 0) ? 1 : -1
+        });
+      }
+      return arr;
+    }
+
     const hongBangData = {
-      g10: [
-        { uid: '10-a', npc: 'NPC 1',  cls: '10-1', rank: 1,   score: 738, delta: 1 },
-        { uid: '10-b', npc: 'NPC 2',  cls: '10-1', rank: 2,   score: 731, delta: -1 },
-        { uid: '10-c', npc: null,     cls: '10-2', rank: 3,   score: 724, delta: 2 },
-        { uid: '10-d', npc: 'NPC 3',  cls: '10-1', rank: 6,   score: 706, delta: 3 },
-        { uid: '10-e', npc: null,     cls: '10-2', rank: 15,  score: 684, delta: -2 },
-        { uid: '10-f', npc: null,     cls: '10-3', rank: 27,  score: 658, delta: 4 },
-        { uid: '10-g', npc: null,     cls: '10-4', rank: 54,  score: 615, delta: -3 },
-        { uid: '10-h', npc: null,     cls: '10-3', rank: 88,  score: 572, delta: 1 },
-        { uid: '10-i', npc: 'NPC 4',  cls: '10-5', rank: 124, score: 492, delta: 5 },
-        { uid: '10-j', npc: null,     cls: '10-5', rank: 141, score: 446, delta: -4 }
-      ],
-      g11: [
-        { uid: '11-a', npc: 'NPC 5',  cls: '11-1', rank: 1,   score: 742, delta: 0 },
-        { uid: '11-b', npc: null,     cls: '11-1', rank: 2,   score: 733, delta: 2 },
-        { uid: '11-c', npc: 'NPC 6',  cls: '11-2', rank: 4,   score: 719, delta: -1 },
-        { uid: '11-d', npc: null,     cls: '11-2', rank: 11,  score: 695, delta: 3 },
-        { uid: '11-e', npc: 'NPC 7',  cls: '11-3', rank: 18,  score: 676, delta: -2 },
-        { uid: '11-f', npc: null,     cls: '11-4', rank: 36,  score: 641, delta: 2 },
-        { uid: '11-g', npc: null,     cls: '11-3', rank: 64,  score: 602, delta: -1 },
-        { uid: '11-h', npc: null,     cls: '11-4', rank: 97,  score: 558, delta: 4 },
-        { uid: '11-i', npc: 'NPC 8',  cls: '11-5', rank: 129, score: 484, delta: -3 },
-        { uid: '11-j', npc: null,     cls: '11-5', rank: 146, score: 432, delta: 2 }
-      ],
-      g12: [
-        { uid: '12-a', npc: 'NPC 9',  cls: '12-1', rank: 1,   score: 746, delta: 1 },
-        { uid: '12-b', npc: 'NPC 10', cls: '12-1', rank: 2,   score: 741, delta: -1 },
-        { uid: '12-c', npc: 'NPC 11', cls: '12-2', rank: 3,   score: 732, delta: 2 },
-        { uid: '12-d', npc: null,     cls: '12-1', rank: 7,   score: 712, delta: -2 },
-        { uid: '12-e', npc: 'NPC 12', cls: '12-3', rank: 15,  score: 689, delta: 4 },
-        { uid: '12-f', npc: null,     cls: '12-4', rank: 32,  score: 650, delta: -3 },
-        { uid: '12-g', npc: null,     cls: '12-3', rank: 71,  score: 598, delta: 2 },
-        { uid: '12-h', npc: null,     cls: '12-4', rank: 109, score: 540, delta: -1 },
-        { uid: '12-i', npc: 'NPC 13', cls: '12-5', rank: 132, score: 478, delta: 6 },
-        { uid: '12-j', npc: null,     cls: '12-5', rank: 148, score: 425, delta: -5 }
-      ]
+      g10: buildGradeBoardList('g10'),
+      g11: buildGradeBoardList('g11'),
+      g12: buildGradeBoardList('g12')
     };
 
     const boardTracks = {
@@ -5267,19 +5328,32 @@
       g12: document.getElementById('hbTrack12')
     };
     const rowDomMap = {};
-    const ROW_H = 48;
+    const ROW_H = 46;
+    const GAP_H = 34; // Chiều cao khoảng ngăn cách "..."
+
+    function getRowTop(idx) {
+      return idx < 20 ? idx * ROW_H : idx * ROW_H + GAP_H;
+    }
 
     function initHongBang() {
       Object.keys(hongBangData).forEach((gKey) => {
         const list = hongBangData[gKey];
         const track = boardTracks[gKey];
         if (!track) return;
-        track.style.height = (list.length * ROW_H) + 'px';
+        track.innerHTML = '';
+        track.style.height = (list.length * ROW_H + GAP_H) + 'px';
+
+        // Thêm khoảng ngăn cách "..." ngay sau #20
+        const sep = document.createElement('div');
+        sep.className = 'hb-ellipsis-row';
+        sep.style.top = (20 * ROW_H) + 'px';
+        sep.textContent = '• • •';
+        track.appendChild(sep);
 
         list.forEach((item, idx) => {
           const row = document.createElement('div');
           row.className = 'hb-rank-row' + (item.npc ? ' is-npc' : '');
-          row.style.transform = 'translateY(' + (idx * ROW_H) + 'px)';
+          row.style.transform = 'translateY(' + getRowTop(idx) + 'px)';
           row.innerHTML =
             '<span class="hb-pos">#' + item.rank + '</span>' +
             '<span class="hb-stu-main"><strong></strong><span class="hb-stu-class"></span></span>' +
@@ -5297,7 +5371,7 @@
       list.forEach((item, idx) => {
         const row = rowDomMap[item.uid];
         if (!row) return;
-        row.style.transform = 'translateY(' + (idx * ROW_H) + 'px)';
+        row.style.transform = 'translateY(' + getRowTop(idx) + 'px)';
         row.querySelector('.hb-pos').textContent = '#' + item.rank;
         row.querySelector('.hb-stu-main strong').textContent = item.npc ? item.npc : ('Hạng ' + item.rank + ' ...');
         row.querySelector('.hb-stu-class').textContent = '· Lớp ' + item.cls;
@@ -5328,24 +5402,27 @@
 
     function stepPushBoard(gKey) {
       const list = hongBangData[gKey];
-      if (!list || list.length < 2) return;
-      const idxA = Math.floor(Math.random() * (list.length - 1));
+      if (!list || list.length < 25) return;
+
+      // Chỉ đẩy nhau trong Top 20 (0..19) hoặc trong 5 hạng cuối (20..24), không nhảy qua dấu "..."
+      const inBottom = Math.random() < 0.25;
+      const idxA = inBottom
+        ? 20 + Math.floor(Math.random() * 4)  // 20..23
+        : Math.floor(Math.random() * 19);     // 0..18
       const idxB = idxA + 1;
 
-      const upper = list[idxA]; // đang đứng trên
-      const lower = list[idxB]; // đang đứng dưới
+      const upper = list[idxA];
+      const lower = list[idxB];
 
-      // Đổi chỗ rank & đẩy dòng dưới vượt lên dòng trên
       const tempRank = upper.rank;
       upper.rank = lower.rank;
       lower.rank = tempRank;
 
-      lower.score = Math.min(750, upper.score + Math.floor(1 + Math.random() * 4));
-      upper.score = Math.max(380, upper.score - Math.floor(1 + Math.random() * 3));
+      lower.score = Math.min(750, upper.score + Math.floor(1 + Math.random() * 3));
+      upper.score = Math.max(380, upper.score - Math.floor(1 + Math.random() * 2));
 
-      const jump = Math.max(1, Math.abs(upper.rank - lower.rank));
-      lower.delta = jump;
-      upper.delta = -jump;
+      lower.delta = 1;
+      upper.delta = -1;
 
       list[idxA] = lower;
       list[idxB] = upper;
@@ -5355,13 +5432,14 @@
 
     initHongBang();
 
+    // Tốc độ chậm rãi, dễ nhìn (3.4 giây / nhịp)
     let hbRunning = true;
     let hbTimer = setInterval(() => {
       if (!hbRunning) return;
       stepPushBoard('g10');
-      setTimeout(() => hbRunning && stepPushBoard('g11'), 350);
-      setTimeout(() => hbRunning && stepPushBoard('g12'), 700);
-    }, 1800);
+      setTimeout(() => hbRunning && stepPushBoard('g11'), 750);
+      setTimeout(() => hbRunning && stepPushBoard('g12'), 1500);
+    }, 3400);
 
     const btnToggleHB = document.getElementById('btnToggleHongBang');
     btnToggleHB.addEventListener('click', () => {
@@ -5373,7 +5451,7 @@
     document.getElementById('btnShuffleHongBang').addEventListener('click', () => {
       ['g10', 'g11', 'g12'].forEach((gKey) => {
         stepPushBoard(gKey);
-        setTimeout(() => stepPushBoard(gKey), 250);
+        setTimeout(() => stepPushBoard(gKey), 450);
       });
     });
 
