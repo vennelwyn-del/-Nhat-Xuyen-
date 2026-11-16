@@ -2684,6 +2684,294 @@
     @media (max-width: 600px) {
       .v-wings-row { grid-template-columns: 1fr; }
     }
+    /* =========================================================
+       DECOR RIÊNG CHO CHƯƠNG 9 (TIEBA 3 BẢNG, TỊ PHONG CẢNG & SỰ KIỆN)
+    ========================================================= */
+    .tieba-shell {
+      border-radius: 16px;
+      padding: 20px;
+      background: rgba(20, 28, 38, 0.44);
+      border: 1px solid rgba(255, 255, 255, 0.30);
+      margin-bottom: 24px;
+    }
+    .tieba-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.24);
+    }
+    .anon-id-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 999px;
+      background: rgba(255, 242, 178, 0.16);
+      border: 1px solid var(--gold-text);
+      color: var(--gold-text);
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    /* Form up bài mẫu */
+    .tieba-compose {
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      margin-bottom: 16px;
+      display: grid;
+      gap: 10px;
+    }
+    .tieba-compose-row {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 10px;
+    }
+    .forum-input,
+    .forum-select,
+    .forum-textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(12, 18, 24, 0.48);
+      color: #FFFDF5;
+      font-size: 0.96rem;
+      outline: none;
+    }
+    .forum-input:focus,
+    .forum-select:focus,
+    .forum-textarea:focus {
+      border-color: var(--gold-text);
+      box-shadow: 0 0 12px var(--glow-color);
+    }
+    .forum-textarea {
+      resize: vertical;
+      min-height: 62px;
+    }
+
+    /* 3 Bảng Diễn đàn riêng biệt */
+    .tieba-boards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+      gap: 16px;
+    }
+    .tieba-board {
+      border-radius: 14px;
+      background: rgba(14, 20, 28, 0.50);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .tieba-board.is-hidden-board { display: none; }
+    .tieba-board-head {
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.09);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.20);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .tieba-board-head h4 {
+      margin: 0;
+      font-size: 1.04rem;
+      color: var(--gold-text);
+    }
+    .tieba-board-head span {
+      font-size: 0.76rem;
+      color: rgba(255, 253, 245, 0.72);
+    }
+    .tieba-feed {
+      height: 360px;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      scroll-behavior: smooth;
+    }
+    .tieba-post {
+      padding: 11px 13px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .tieba-post.is-fresh {
+      animation: postDropIn 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      border-color: var(--gold-text);
+      background: rgba(255, 242, 178, 0.12);
+    }
+    @keyframes postDropIn {
+      from { opacity: 0; transform: translateY(-18px) scale(0.98); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .post-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: var(--gold-text);
+      margin-bottom: 4px;
+    }
+    .post-new-tag {
+      padding: 1px 7px;
+      border-radius: 999px;
+      background: var(--gold-text);
+      color: var(--ink-dark);
+      font-weight: 700;
+      font-size: 0.7rem;
+    }
+    .post-title {
+      font-weight: 600;
+      font-size: 0.98rem;
+      color: #FFFFFF;
+      margin: 0 0 4px;
+    }
+    .post-body {
+      margin: 0;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: rgba(255, 253, 245, 0.86);
+    }
+
+    /* === TỊ PHONG CẢNG (DARK PROXY + ERROR + CẢNH BÁO LỒNG LỘN) === */
+    .tiphong-shell {
+      position: relative;
+      overflow: hidden;
+      border-radius: 16px;
+      padding: 22px;
+      background: linear-gradient(160deg, rgba(16, 22, 20, 0.84) 0%, rgba(30, 20, 24, 0.78) 100%);
+      border: 1px solid rgba(255, 190, 130, 0.45);
+      box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.45), 0 12px 32px rgba(0, 0, 0, 0.30);
+      margin-bottom: 24px;
+    }
+    .tiphong-shell.is-glitching {
+      animation: tpGlitchShake 0.45s ease-in-out 2;
+      border-color: #FF6B6B;
+      box-shadow: 0 0 32px rgba(255, 82, 82, 0.55), inset 0 0 36px rgba(255, 60, 60, 0.25);
+    }
+    @keyframes tpGlitchShake {
+      0%, 100% { transform: translate(0, 0); filter: none; }
+      20%      { transform: translate(-4px, 2px); filter: hue-rotate(15deg) contrast(1.15); }
+      45%      { transform: translate(4px, -2px); filter: saturate(1.4); }
+      70%      { transform: translate(-3px, -1px); }
+    }
+
+    .tp-alert-marquee {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: rgba(185, 45, 45, 0.28);
+      border: 1px solid rgba(255, 135, 135, 0.55);
+      color: #FFD6D6;
+      font-size: 0.88rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+      animation: tpAlertPulse 1.8s ease-in-out infinite;
+    }
+    @keyframes tpAlertPulse {
+      0%, 100% { border-color: rgba(255, 135, 135, 0.45); }
+      50%      { border-color: rgba(255, 210, 120, 0.90); box-shadow: 0 0 14px rgba(255, 107, 107, 0.35); }
+    }
+
+    .tp-feed {
+      height: 290px;
+      overflow-y: auto;
+      padding: 10px;
+      border-radius: 12px;
+      background: rgba(0, 0, 0, 0.34);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      scroll-behavior: smooth;
+    }
+    .tp-msg {
+      padding: 10px 12px;
+      border-radius: 9px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      border-left: 3px solid var(--gold-text);
+      background: rgba(255, 255, 255, 0.05);
+      color: #FFFDF5;
+    }
+    .tp-msg.tp-err {
+      border-left-color: #FF6B6B;
+      background: rgba(190, 42, 42, 0.22);
+      color: #FFD8D8;
+    }
+    .tp-msg.tp-warn {
+      border-left-color: #F2C94C;
+      background: rgba(242, 201, 76, 0.14);
+      color: #FFF3BF;
+    }
+    .tp-msg.is-fresh {
+      animation: postDropIn 0.8s ease;
+    }
+
+    /* Màn hình giả Ngũ Tam / Error 503 khi bấm Panic */
+    .tp-panic-cover {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      background: rgba(16, 20, 26, 0.96);
+      backdrop-filter: blur(12px);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 28px;
+      color: #FFB4B4;
+    }
+    .tp-panic-cover.is-active { display: flex; }
+    .tp-panic-code {
+      font-size: 1.55rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #FF7B7B;
+      margin-bottom: 8px;
+    }
+
+    /* 9.3 Đồng hồ lật số 100 Ngày Bách Nhật Thệ Sư */
+    .flip-100-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 10px;
+      padding: 10px 16px;
+      border-radius: 12px;
+      background: rgba(145, 24, 28, 0.34);
+      border: 1px solid rgba(255, 205, 140, 0.45);
+    }
+    .flip-100-num {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: #FFE08A;
+      text-shadow: 0 0 14px rgba(255, 224, 138, 0.6);
+    }
+    .flip-100-box.is-oath {
+      animation: blockClickShake 0.45s ease-in-out 2;
+      box-shadow: 0 0 26px rgba(255, 110, 110, 0.55);
+    }
+
+    @media (max-width: 720px) {
+      .tieba-compose-row { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -2847,6 +3135,10 @@
               <span>↳ Chương 8 · Ký túc xá Tòa F &amp; Phòng ở</span>
               <span class="hb-bow">౨ৎ</span>
             </button>
+            <button type="button" class="hb-item hb-sub" data-view="chap-9">
+              <span>↳ Chương 9 · Diễn đàn ngầm &amp; Đại sự kiện</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
             <button type="button" class="hb-item" data-view="sec-2">
               <span>Phần 2 ౨ৎ Thuật ngữ</span>
               <span class="hb-bow">౨ৎ</span>
@@ -2876,6 +3168,7 @@
               <button type="button" class="soft-pill-tab" data-quick-view="chap-6">Chương 6</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-7">Chương 7</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-8">Chương 8</button>          
+              <button type="button" class="soft-pill-tab" data-quick-view="chap-9">Chương 9</button>
             </div>
           </div>
 
@@ -5274,6 +5567,235 @@
               </div>
             </div>
           </div>
+          <div class="chapter-divider"></div>
+
+          <!-- ==================== CHƯƠNG 9 ==================== -->
+          <div class="chapter-block is-hidden-chap" id="chap-9">
+            <div class="ch1-tag">Chương 9 ౨ৎ Văn hóa ngầm, Diễn đàn &amp; Niên lịch Đại sự kiện</div>
+            <h2 style="margin:0 0 8px; font-size:1.75rem; color:#FFFFFF;">Văn hóa Ngầm, Diễn đàn &amp; Niên lịch Đại Sự Kiện</h2>
+            <div class="ch1-subtitle-en">ST. VANGUARD TIEBA · TI PHONG HARBOR · 3 GRAND EVENTS</div>
+
+            <nav class="ch2-jump-nav" aria-label="Mục lục Chương 9">
+              <a href="#ch9-1" class="ch2-jump-pill">9.1 Diễn đàn Tieba (3 Bảng)</a>
+              <a href="#ch9-2" class="ch2-jump-pill">9.2 Hội Tị Phong &amp; Tị Phong Cảng</a>
+              <a href="#ch9-3" class="ch2-jump-pill">9.3 Niên lịch 3 Đại sự kiện</a>
+            </nav>
+
+            <!-- 9.1 DIỄN ĐÀN NẶC DANH NHẤT XUYÊN (ST. VANGUARD TIEBA) -->
+            <div class="ch2-subblock" id="ch9-1">
+              <div class="ch1-tag">9.1 · Diễn đàn nặc danh Nhất Xuyên (St. Vanguard Tieba — Công khai)</div>
+              <p class="ch1-body-p" style="margin-bottom:14px;">
+                Mạng nội bộ trường chỉ truy cập bằng Wi-Fi ký túc xá hoặc email học sinh chính thức. Mỗi tài khoản được cấp một <strong>mã ID ẩn danh ngẫu nhiên thay đổi mỗi ngày</strong> (ví dụ: <code>[ID: Hạt Bụi Tòa A]</code>, <code>[ID: Học Tra Khối 12]</code>).
+              </p>
+
+              <div class="tieba-shell">
+                <div class="tieba-topbar">
+                  <div class="laurel-tabs">
+                    <span class="anon-id-badge" id="tiebaCurrentId">[ID: Hạt Bụi Tòa A]</span>
+                    <button type="button" class="soft-action-btn" id="btnNewAnonId">🎲 Đổi ID hôm nay</button>
+                  </div>
+                  <div class="laurel-tabs">
+                    <button type="button" class="soft-pill-tab is-active" data-tieba-tab="all">Cả 3 Bảng</button>
+                    <button type="button" class="soft-pill-tab" data-tieba-tab="batquai">Bát Quái</button>
+                    <button type="button" class="soft-pill-tab" data-tieba-tab="phongthan">Phong Thần</button>
+                    <button type="button" class="soft-pill-tab" data-tieba-tab="cuutro">Cứu Trợ</button>
+                    <button type="button" class="soft-action-btn is-active" id="btnToggleAutoTieba">⏸ Tạm dừng tự up</button>
+                  </div>
+                </div>
+
+                <!-- FORM ĐĂNG BÀI NẶC DANH MẪU -->
+                <div class="tieba-compose">
+                  <div class="ch1-side-label">✍ Form Đăng Bài Nặc Danh (Mẫu tự động + Đăng thử bài của bạn)</div>
+                  <div class="tieba-compose-row">
+                    <select class="forum-select" id="tiebaBoardSelect" aria-label="Chọn chuyên mục">
+                      <option value="batquai">[Bát Quái Thị Phi]</option>
+                      <option value="phongthan">[Bảng Phong Thần Khứu Giác]</option>
+                      <option value="cuutro">[Cứu Trợ Học Tập]</option>
+                    </select>
+                    <input type="text" class="forum-input" id="tiebaPostTitle" placeholder="Nhập tiêu đề bài viết nặc danh..." />
+                  </div>
+                  <textarea class="forum-textarea" id="tiebaPostBody" placeholder="Nội dung bóc phốt, bình chọn mùi tin tức tố hoặc tìm tài liệu mật Lớp 1..."></textarea>
+                  <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+                    <span style="font-size:0.84rem; color:rgba(255,253,245,0.75);" id="tiebaStatusPill">● Hệ thống đang tự up bài random chậm rãi mỗi 4.8 giây...</span>
+                    <button type="button" class="soft-action-btn is-active" id="btnSubmitTieba">📤 Đăng bài nặc danh</button>
+                  </div>
+                </div>
+
+                <!-- 3 BẢNG DIỄN ĐÀN RIÊNG -->
+                <div class="tieba-boards-grid">
+                  <!-- BẢNG 1: BÁT QUÁI THỊ PHI -->
+                  <div class="tieba-board" data-board-box="batquai">
+                    <div class="tieba-board-head">
+                      <h4>[Bát Quái Thị Phi]</h4>
+                      <span>Tin đồn &amp; Ảnh góc khuất</span>
+                    </div>
+                    <div class="tieba-feed" id="feed-batquai"></div>
+                  </div>
+
+                  <!-- BẢNG 2: BẢNG PHONG THẦN KHỨU GIÁC -->
+                  <div class="tieba-board" data-board-box="phongthan">
+                    <div class="tieba-board-head">
+                      <h4>[Bảng Phong Thần Khứu Giác]</h4>
+                      <span>Xếp hạng Tin tức tố</span>
+                    </div>
+                    <div class="tieba-feed" id="feed-phongthan"></div>
+                  </div>
+
+                  <!-- BẢNG 3: CỨU TRỢ HỌC TẬP -->
+                  <div class="tieba-board" data-board-box="cuutro">
+                    <div class="tieba-board-head">
+                      <h4>[Cứu Trợ Học Tập]</h4>
+                      <span>Chợ đen đề cương Lớp 1</span>
+                    </div>
+                    <div class="tieba-feed" id="feed-cuutro"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9.2 HỘI TỊ PHONG & DIỄN ĐÀN NGẦM [TỊ PHONG CẢNG] -->
+            <div class="ch2-subblock" id="ch9-2">
+              <div class="ch1-tag">9.2 · Hội Tị Phong &amp; Diễn đàn ngầm [Tị Phong Cảng]</div>
+              <div class="ch1-quote-strip" style="margin-top:6px;">
+                <span class="ch1-quote-bar"></span>
+                <p>Khẩu hiệu ngầm: <em>“Đom đóm đêm đông, tự sưởi ấm cho nhau.”</em></p>
+              </div>
+
+              <div class="ch1-split" style="margin-bottom:20px;">
+                <div class="ch1-info-stack">
+                  <div class="sub-card">
+                    <h3>Nguồn gốc, Bản chất &amp; Quy tắc tiếp cận</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Nguồn gốc:</strong> Ra đời sau bi kịch bị ém nhẹm <strong>“Sự cố Phòng Lab Tòa C”</strong> (3 năm trước). Tổ chức tự phát bán công khai của nhóm yếu thế: dân thường, Học bổng Vanguard, Beta “vô hình”, Omega không gia thế và học sinh khá giả (<em>High-middle</em> trở xuống) bị tài phiệt Top đầu (họ Cố, họ Thẩm, họ Phó) chèn ép.</li>
+                      <li><strong>Nền tảng:</strong> Web ngầm qua máy chủ proxy lậu của Wi-Fi KTX Tòa F. Dùng cảnh báo khẩn cấp (Alpha sốt tiền Rut, vị trí Giám thị) &amp; cứu trợ y tế tại chỗ.</li>
+                    </ul>
+                  </div>
+
+                  <div class="sub-card">
+                    <h3>Mặt tối tha hóa — Luật Trả Giá &amp; Sự đàn áp</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Việc nhỏ (Miễn phí):</strong> Xin miếng dán cấp cứu ở nhà vệ sinh, mượn thuốc ức chế tạm, chia sẻ tài liệu cơ bản.</li>
+                      <li><strong>Việc lớn (Mặc cả tàn nhẫn):</strong> Xóa log rò rỉ mùi trên máy chủ T-80, che góc camera, bao che trốn cách ly sắp nổ Rut/Heat ➔ <strong>Bắt buộc trả giá tương đương</strong> (tiền mặt, làm bài tập hộ cả kỳ, hoặc trộm đề cương mật Lớp 1) — khiến nhiều nạn nhân sợ bị “tống tiền lần hai”.</li>
+                      <li><strong>Đàn áp:</strong> Đám Alpha cá biệt khinh miệt gọi là <em>“hội chuột bọ than vãn”</em>; hễ phát hiện ai mở <code>[Tị Phong Cảng]</code> sẽ giật điện thoại và nhắm vào kẻ đó để “dằn mặt”.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- ẢNH 68: MINH HỌA HỘI TỊ PHONG -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Hội Tị Phong và Diễn đàn Tị Phong Cảng" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 68 · Hội Tị Phong</span>
+                    <span class="ph-icon">🕯️</span>
+                    <span class="ph-title">Hội Tị Phong · “Đom đóm đêm đông”</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="anno-layer">
+                    <div class="anno-pin" style="top:26%; left:28%;"><span class="anno-dot"></span><span class="anno-arrow">↖</span><span class="anno-label">Proxy Wi-Fi KTX Tòa F</span></div>
+                    <div class="anno-pin dir-left" style="top:64%; left:72%;"><span class="anno-dot"></span><span class="anno-arrow">↘</span><span class="anno-label">Luật Trả Giá trong bóng tối</span></div>
+                  </div>
+                  <div class="photo-caption">Fig. 68 — Điểm tựa yếu thế &amp; cái bóng mặc cả tàn nhẫn</div>
+                </div>
+              </div>
+
+              <!-- DIỄN ĐÀN NGẦM RIÊNG [TỊ PHONG CẢNG] -->
+              <div class="tiphong-shell" id="tiphongConsole">
+                <div class="tp-panic-cover" id="tpPanicCover">
+                  <div class="tp-panic-code">[SYSTEM ERROR 503 // PROXY CONNECTION TERMINATED]</div>
+                  <p style="margin:0 0 16px; max-width:460px; color:rgba(255,253,245,0.85);">
+                    Không thể kết nối máy chủ nội bộ. Đã tự động xóa bộ nhớ đệm và ngụy trang thành trang lỗi mạng trường học để tránh bị Ban Kỷ Luật / Alpha kiểm tra điện thoại.
+                  </p>
+                  <button type="button" class="soft-action-btn is-active" id="btnTpRestore">🔓 Khôi phục Proxy [Tị Phong Cảng]</button>
+                </div>
+
+                <div class="tp-alert-marquee">
+                  <span id="tpLiveAlertText">⚠ [PROXY TÒA F // MÃ HÓA]: T-80 đang quét gói tin tầng 3 Tòa A — Cẩn thận khi mở màn hình!</span>
+                  <div class="laurel-tabs">
+                    <button type="button" class="soft-action-btn" id="btnTpGlitch">⚡ Giả lập Lỗi / Cảnh báo</button>
+                    <button type="button" class="red-alarm-btn" style="padding:5px 13px; font-size:0.84rem;" id="btnTpPanic">🚨 Giấu Màn Hình (Panic)</button>
+                  </div>
+                </div>
+
+                <div class="ch1-split">
+                  <div>
+                    <div class="ch1-side-label">📡 Gửi tín hiệu cầu cứu ngầm [TỊ PHONG CẢNG]</div>
+                    <div style="display:grid; gap:10px; margin-bottom:12px;">
+                      <select class="forum-select" id="tpModeSelect" aria-label="Chọn mức độ cầu cứu">
+                        <option value="small">Việc nhỏ (Miễn phí) — Xin miếng dán WC / Thuốc ức chế tạm</option>
+                        <option value="big">⚠ Việc lớn (Luật Trả Giá) — Xóa log T-80 / Che camera / Trốn cách ly</option>
+                      </select>
+                      <input type="text" class="forum-input" id="tpHelpInput" placeholder="Nhập tọa độ / yêu cầu khẩn (vd: Cần 1 miếng dán tại WC tầng 2 Tòa A)..." />
+                      <div class="rank-status-msg is-safe" id="tpPriceWarn">
+                        <strong>Mức Miễn phí:</strong> Hỗ trợ khẩn cấp tại điểm hẹn khuất camera (WC / Tủ đồ hành lang).
+                      </div>
+                      <button type="button" class="soft-action-btn is-active" id="btnSendTpHelp">🕯 Phát tín hiệu vào Tị Phong Cảng</button>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="ch1-side-label">🔴 Bảng tin Tín hiệu &amp; Lỗi Hệ thống (Tự cập nhật)</div>
+                    <div class="tp-feed" id="tpFeedList"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 9.3 NIÊN LỊCH 3 ĐẠI SỰ KIỆN -->
+            <div class="ch2-subblock" id="ch9-3">
+              <div class="ch1-tag">9.3 · Niên lịch 3 Đại sự kiện phá vỡ nhịp sinh hoạt</div>
+
+              <div class="ch1-three-cols">
+                <!-- SỰ KIỆN 1 -->
+                <div class="sub-card deadcorner-card">
+                  <div>
+                    <div class="ch1-grade-pill">Tháng 10 · 2 Ngày liên tục</div>
+                    <h3>1. Đại Hội Thể Thao Mùa Thu (Autumn Sports Festival)</h3>
+                    <p>Diễn ra tại Sân Điền Kinh Tòa C &amp; Nhà Thi Đấu Tòa E; toàn trường mặc đồng phục thể thao in số áo lớp.</p>
+                    <p style="margin-top:8px;"><strong>Chất xúc tác sinh học:</strong> Nắng gắt <strong>32°C</strong> + vận động cường độ cao làm mồ hôi rã keo dán sau gáy. Mùi tin tức tố Alpha bốc nồng nặc theo từng bước chạy 1.000m, châm ngòi đụng độ giữa Alpha tinh anh Lớp 1 và Alpha thể thao Lớp 5.</p>
+                  </div>
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Đại Hội Thể Thao Mùa Thu Tháng 10" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 69 · Tháng 10</span><span class="ph-icon">🏃</span><span class="ph-title">Đại Hội Thể Thao Mùa Thu (32°C)</span></div>
+                    <div class="photo-caption">Fig. 69 — Đường chạy 1.000m &amp; đụng độ Lớp 1 vs Lớp 5</div>
+                  </div>
+                </div>
+
+                <!-- SỰ KIỆN 2 -->
+                <div class="sub-card deadcorner-card">
+                  <div>
+                    <div class="ch1-grade-pill">Tháng 12 · Đại Hội Trường Tòa C</div>
+                    <h3>2. Dạ Hội Mùa Đông (Winter Gala)</h3>
+                    <p>Đêm tiệc duy nhất được thoát khỏi đồng phục để mặc <strong>âu phục và váy dạ hội tự chọn</strong> dưới ánh đèn chùm, nhạc cổ điển và rượu vang nhẹ.</p>
+                    <p style="margin-top:8px;"><strong>Ma sát &amp; Cự ly thể xác:</strong> Phơi bày khoảng cách giữa <em>Haute Couture</em> tiền tỷ và lễ phục thuê; đồng thời điệu khiêu vũ dưới ánh đèn mờ là cơ hội hợp pháp duy nhất chạm tay vào eo và áp sát gáy nhau mà không bị Ban Kỷ Luật can thiệp.</p>
+                  </div>
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Dạ Hội Mùa Đông Tháng 12" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 70 · Tháng 12</span><span class="ph-icon">🥂</span><span class="ph-title">Dạ Hội Mùa Đông (Winter Gala)</span></div>
+                    <div class="photo-caption">Fig. 70 — Đèn chùm Tòa C &amp; điệu khiêu vũ áp sát gáy</div>
+                  </div>
+                </div>
+
+                <!-- SỰ KIỆN 3 -->
+                <div class="sub-card deadcorner-card">
+                  <div>
+                    <div class="ch1-grade-pill">Tháng 2 · Khối 12 (Cao Tam)</div>
+                    <h3>3. Lễ Tuyên Thệ 100 Ngày (Bách Nhật Thệ Sư)</h3>
+                    <p>150 học sinh Khối 12 mặc đồng phục viền vàng kim, đeo băng đỏ trên trán đứng dưới cờ đỏ sân trung tâm. Đồng hồ khổng lồ trước sảnh Tòa B lật sang số <strong>100</strong>.</p>
+                    <p style="margin-top:8px;"><strong>Ngòi nổ Rut / Heat đầu đời:</strong> Tiếng hô <em>“Máu đổ trên đề thi, quyết không lùi một bước!”</em> cùng áp lực thức trắng khiến nội tiết tuổi 18 sụp đổ — bùng nổ hàng loạt cơn sốt Rut/Heat đầu đời.</p>
+                    <div class="flip-100-box" id="oath100Box">
+                      <span class="flip-100-num">100</span>
+                      <button type="button" class="soft-action-btn" id="btnOath100">📣 Hô lời thề</button>
+                    </div>
+                  </div>
+                  <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                    <img src="" alt="Lễ Tuyên Thệ 100 Ngày Bách Nhật Thệ Sư" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                    <div class="photo-placeholder"><span class="ph-badge">Ảnh 71 · Tháng 2</span><span class="ph-icon">🚩</span><span class="ph-title">Bách Nhật Thệ Sư · 100 Ngày</span></div>
+                    <div class="photo-caption">Fig. 71 — Băng đỏ trên trán &amp; đồng hồ đếm ngược sảnh Tòa B</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
         <!-- PHẦN 2 -->
         <section class="content-section is-hidden-sec" id="sec-2">
@@ -5491,6 +6013,7 @@
     const chap6 = document.getElementById('chap-6');
     const chap7 = document.getElementById('chap-7');
     const chap8 = document.getElementById('chap-8');
+    const chap9 = document.getElementById('chap-9');
 
     function openHandbookMenu() {
       clearTimeout(closeHoverTimer);
@@ -5526,6 +6049,7 @@
       if (chap6) chap6.classList.add('is-hidden-chap');
       if (chap7) chap7.classList.add('is-hidden-chap');
       if (chap8) chap8.classList.add('is-hidden-chap');
+      if (chap9) chap9.classList.add('is-hidden-chap');
       let scrollTarget = document.getElementById('worldContentTop');
       if (viewKey === 'sec-1-all') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -5537,6 +6061,7 @@
         if (chap6) chap6.classList.remove('is-hidden-chap');
         if (chap7) chap7.classList.remove('is-hidden-chap');
         if (chap8) chap8.classList.remove('is-hidden-chap');
+        if (chap9) chap9.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'chap-1') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -5569,6 +6094,10 @@
         } else if (viewKey === 'chap-8') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
         if (chap8) chap8.classList.remove('is-hidden-chap');
+        scrollTarget = sec1;
+        } else if (viewKey === 'chap-9') {
+        if (sec1)  sec1.classList.remove('is-hidden-sec');
+        if (chap9) chap9.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'sec-2') {
         if (sec2) sec2.classList.remove('is-hidden-sec');
@@ -6624,6 +7153,191 @@
         redBedStatus.className = 'rank-status-msg is-safe';
         redBedStatus.innerHTML = 'Trạng thái đầu giường F1: Đường dây trực đêm Trạm Y tế Tòa B đang chờ.';
       }
+    });
+    /* === TƯƠNG TÁC CHƯƠNG 9 (TIEBA TỰ UP CHẬM, TỊ PHONG CẢNG & ĐẠI SỰ KIỆN) === */
+    const anonPool = [
+      '[ID: Hạt Bụi Tòa A]', '[ID: Học Tra Khối 12]', '[ID: Bóng Ma Tòa C]',
+      '[ID: Mọt Sách Bàn Cuối]', '[ID: Kẻ Đếm Phút 22:30]', '[ID: Đom Đóm Tòa F]',
+      '[ID: Cà Phê Đen 24°C]', '[ID: Ghim Bạc Lớp 1]'
+    ];
+    let currentAnonId = anonPool[0];
+    document.getElementById('btnNewAnonId').addEventListener('click', () => {
+      currentAnonId = anonPool[Math.floor(Math.random() * anonPool.length)];
+      document.getElementById('tiebaCurrentId').textContent = currentAnonId;
+    });
+
+    const tiebaSamples = {
+      batquai: [
+        { id: '[ID: Mèo Đen Tòa A]', title: 'Ai vừa thấy 2 người đứng ở sân thượng Tòa A lúc 18:15?', body: 'Cửa thoát hiểm lại kẹt mẩu gỗ rồi, gió thổi bay cả mùi gỗ tuyết tùng xuống tận hành lang Tầng 4...' },
+        { id: '[ID: Ghế Đá Ngân Hạnh]', title: 'Cảnh tượng Đảo Tráng Miệng Tòa D trưa nay căng đét', body: 'Alpha Lớp 5 suýt va vào người của Lớp 1 ngay trước quầy nước điện giải, may có Beta chen vào kịp!' },
+        { id: '[ID: Bút Bi Hết Mực]', title: 'Tủ đồ khúc cua Tòa A–B lại có giấy hẹn màu xanh ngọc', body: 'Không biết cặp nào Khối 10 mà gan thế, Giám thị đi giày đế cao su lượn qua suốt.' }
+      ],
+      phongthan: [
+        { id: '[ID: Đứng Sau 60cm]', title: 'Bình chọn Top mùi áp bức nhất Khối 12 tuần này', body: 'Rượu rum ủ gỗ sồi pha tiêu đen đứng đầu bảng, ngồi sau đúng 60cm mà toát hết mồ hôi lạnh!' },
+        { id: '[ID: Trà Trắng Lạnh]', title: 'Hương Búp Trà Trắng & Tuyết Tùng Tầng 5 Tòa A', body: 'Thanh lãnh đến mức đi ngang qua là tự động phải cài chặt cúc cổ áo, không dám thở mạnh.' },
+        { id: '[ID: Cam Đắng Sương]', title: 'Mùi Cam Đắng Phơi Sương ở Phòng Thi Số 1', body: 'Nghe bảo hôm Nguyệt Khảo rò nhẹ 0.5m thôi mà nửa dãy bàn đầu quay lại hết.' }
+      ],
+      cuutro: [
+        { id: '[ID: Học Tra Khối 12]', title: 'Cần gấp bộ ghi chú Vật lý 110đ của Lớp 1', body: 'Đổi bằng 2 hộp cà phê đặc hoặc chép hộ sổ tay câu sai 错题本 cả tuần này!' },
+        { id: '[ID: Ngũ Tam Ngập Đầu]', title: 'Chia sẻ dàn ý nghị luận 800 chữ Chu Trắc sáng thứ Hai', body: 'Ai cần vào lưu gấp trước khi bài bị trôi nhé, phần dẫn chứng Tiên Tần siêu nét.' },
+        { id: '[ID: Dãy 1 Cửa Sổ]', title: 'Trao đổi đề cương Sinh học Tuyến thể & mẹo dán 30 giây', body: 'Thực hành bài Bác sĩ Trưởng dạy ở Đại Hội Trường nhớ vuốt kỹ mép trái C3–C4.' }
+      ]
+    };
+
+    function createTiebaPostEl(post, isFresh) {
+      const card = document.createElement('div');
+      card.className = 'tieba-post' + (isFresh ? ' is-fresh' : '');
+      card.innerHTML =
+        '<div class="post-meta"><span>' + post.id + '</span>' +
+        (isFresh ? '<span class="post-new-tag">MỚI UP</span>' : '<span>Vừa xong</span>') +
+        '</div>' +
+        '<div class="post-title"></div>' +
+        '<p class="post-body"></p>';
+      card.querySelector('.post-title').textContent = post.title;
+      card.querySelector('.post-body').textContent = post.body;
+      return card;
+    }
+
+    function pushTiebaPost(boardKey, post, isFresh) {
+      const feed = document.getElementById('feed-' + boardKey);
+      if (!feed) return;
+      const el = createTiebaPostEl(post, isFresh);
+      feed.prepend(el);
+      feed.scrollTo({ top: 0, behavior: 'smooth' });
+      while (feed.children.length > 8) {
+        feed.removeChild(feed.lastElementChild);
+      }
+    }
+
+    // Đổ mẫu ban đầu cho 3 bảng
+    ['batquai', 'phongthan', 'cuutro'].forEach((k) => {
+      tiebaSamples[k].slice().reverse().forEach((p) => pushTiebaPost(k, p, false));
+    });
+
+    // Tự động up bài random chậm rãi mỗi 4.8 giây
+    let tiebaAutoOn = true;
+    const boardKeys = ['batquai', 'phongthan', 'cuutro'];
+    setInterval(() => {
+      if (!tiebaAutoOn) return;
+      const bk = boardKeys[Math.floor(Math.random() * boardKeys.length)];
+      const pool = tiebaSamples[bk];
+      const base = pool[Math.floor(Math.random() * pool.length)];
+      const rndId = anonPool[Math.floor(Math.random() * anonPool.length)];
+      pushTiebaPost(bk, { id: rndId, title: base.title, body: base.body }, true);
+    }, 4800);
+
+    document.getElementById('btnToggleAutoTieba').addEventListener('click', (e) => {
+      tiebaAutoOn = !tiebaAutoOn;
+      e.currentTarget.classList.toggle('is-active', tiebaAutoOn);
+      e.currentTarget.textContent = tiebaAutoOn ? '⏸ Tạm dừng tự up' : '▶ Tiếp tục tự up';
+      document.getElementById('tiebaStatusPill').textContent = tiebaAutoOn
+        ? '● Hệ thống đang tự up bài random chậm rãi mỗi 4.8 giây...'
+        : '○ Đã tạm dừng luồng up bài tự động.';
+    });
+
+    document.getElementById('btnSubmitTieba').addEventListener('click', () => {
+      const bk = document.getElementById('tiebaBoardSelect').value;
+      const titleEl = document.getElementById('tiebaPostTitle');
+      const bodyEl  = document.getElementById('tiebaPostBody');
+      const t = titleEl.value.trim() || 'Bài ẩn danh vừa gửi từ KTX';
+      const b = bodyEl.value.trim()  || 'Vừa cập nhật trạng thái mới lên St. Vanguard Tieba.';
+      pushTiebaPost(bk, { id: currentAnonId, title: t, body: b }, true);
+      titleEl.value = '';
+      bodyEl.value  = '';
+    });
+
+    const tiebaTabs = document.querySelectorAll('[data-tieba-tab]');
+    const tiebaBoxes = document.querySelectorAll('[data-board-box]');
+    tiebaTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        tiebaTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const key = btn.getAttribute('data-tieba-tab');
+        tiebaBoxes.forEach((bx) => {
+          bx.classList.toggle('is-hidden-board', key !== 'all' && bx.getAttribute('data-board-box') !== key);
+        });
+      });
+    });
+
+    /* === TỊ PHONG CẢNG: CẢNH BÁO, ERROR LỒNG LỘN & LUẬT TRẢ GIÁ === */
+    const tpFeedList = document.getElementById('tpFeedList');
+    const tpAlertBar = document.getElementById('tpLiveAlertText');
+    const tpConsole  = document.getElementById('tiphongConsole');
+    const tpAlerts = [
+      { cls: 'tp-warn', banner: '⚠ [PROXY F3]: Phát hiện Alpha sốt tiền Rut gần Bể bơi Tòa D — Omega tránh đường!', msg: '[CẢNH BÁO RUT]: Hành lang Tầng 3 Tòa D đang nồng mùi, tuyệt đối đi vòng qua Tòa B!' },
+      { cls: 'tp-err',  banner: '✖ [ERR_T80_403]: T-80 Tòa A vừa quét gói tin proxy — Hạn chế mở màn hình sáng!', msg: '[SYSTEM ERROR 403]: Gói tin cầu cứu bị tường lửa Tầng 5 Tòa A chặn nhịp 1.2s — Đã chuyển hướng sang Proxy F3!' },
+      { cls: '',        banner: '🕯 [CỨU TRỢ WC]: Có sẵn 2 miếng dán cách ly tại hộp kín WC nam Tầng 2 Tòa C.', msg: '[ĐOM ĐÓM #19]: Đã để lại 2 miếng dán & thuốc hạ nhiệt nhẹ sau bồn rửa tầng 2 Tòa C (Miễn phí).' },
+      { cls: 'tp-err',  banner: '🚨 [LUẬT TRẢ GIÁ]: Yêu cầu xóa log T-80 mã 302 vừa gửi — Chờ định giá tương đương!', msg: '[GIAO DỊCH NGẦM]: Nhận xử lý che camera cầu thang Tòa C ➔ Giá: Trộm đề cương mật Lớp 1 trước Thứ Hai.' }
+    ];
+
+    function pushTpMessage(cls, text, isFresh) {
+      const item = document.createElement('div');
+      item.className = 'tp-msg ' + cls + (isFresh ? ' is-fresh' : '');
+      item.textContent = text;
+      tpFeedList.prepend(item);
+      tpFeedList.scrollTo({ top: 0, behavior: 'smooth' });
+      while (tpFeedList.children.length > 8) {
+        tpFeedList.removeChild(tpFeedList.lastElementChild);
+      }
+    }
+
+    tpAlerts.forEach((a) => pushTpMessage(a.cls, a.msg, false));
+
+    let tpTick = 0;
+    setInterval(() => {
+      tpTick = (tpTick + 1) % tpAlerts.length;
+      const a = tpAlerts[tpTick];
+      tpAlertBar.textContent = a.banner;
+      pushTpMessage(a.cls, a.msg, true);
+    }, 5500);
+
+    document.getElementById('btnTpGlitch').addEventListener('click', () => {
+      tpConsole.classList.remove('is-glitching');
+      void tpConsole.offsetWidth;
+      tpConsole.classList.add('is-glitching');
+      tpAlertBar.textContent = '🚨 [CRITICAL ERROR 0xT80]: PHÁT HIỆN TÍN HIỆU DÒ TÌM PROXY TỪ ĐỘI CỜ ĐỎ!';
+      pushTpMessage('tp-err', '[CRITICAL ERR // 0xT80]: Cảnh báo va chạm gói tin! Khuyến nghị hạ độ sáng hoặc kích hoạt Panic ngay!', true);
+      setTimeout(() => tpConsole.classList.remove('is-glitching'), 950);
+    });
+
+    document.getElementById('btnTpPanic').addEventListener('click', () => {
+      document.getElementById('tpPanicCover').classList.add('is-active');
+    });
+    document.getElementById('btnTpRestore').addEventListener('click', () => {
+      document.getElementById('tpPanicCover').classList.remove('is-active');
+    });
+
+    const tpModeSelect = document.getElementById('tpModeSelect');
+    const tpPriceWarn  = document.getElementById('tpPriceWarn');
+    tpModeSelect.addEventListener('change', () => {
+      if (tpModeSelect.value === 'big') {
+        tpPriceWarn.className = 'rank-status-msg is-danger';
+        tpPriceWarn.innerHTML = '⚠ <strong>CẢNH BÁO LUẬT TRẢ GIÁ:</strong> Việc lớn bắt buộc trả giá tương đương (Tiền mặt / Làm bài hộ cả kỳ / Trộm đề cương Lớp 1)!';
+      } else {
+        tpPriceWarn.className = 'rank-status-msg is-safe';
+        tpPriceWarn.innerHTML = '<strong>Mức Miễn phí:</strong> Hỗ trợ khẩn cấp tại điểm hẹn khuất camera (WC / Tủ đồ hành lang).';
+      }
+    });
+
+    document.getElementById('btnSendTpHelp').addEventListener('click', () => {
+      const inp = document.getElementById('tpHelpInput');
+      const txt = inp.value.trim() || 'Cần hỗ trợ khẩn cấp tại hành lang Tòa A!';
+      const isBig = tpModeSelect.value === 'big';
+      pushTpMessage(
+        isBig ? 'tp-err' : 'tp-warn',
+        (isBig ? '[LUẬT TRẢ GIÁ · KHẨN] ' : '[CẦU CỨU MIỄN PHÍ] ') + txt,
+        true
+      );
+      inp.value = '';
+    });
+
+    // 9.3 Lễ Tuyên Thệ 100 Ngày
+    document.getElementById('btnOath100').addEventListener('click', (e) => {
+      const box = document.getElementById('oath100Box');
+      box.classList.remove('is-oath');
+      void box.offsetWidth;
+      box.classList.add('is-oath');
+      e.currentTarget.textContent = '🔥 “Máu đổ trên đề thi!”';
+      setTimeout(() => box.classList.remove('is-oath'), 950);
     });
   </script>
 </body>
