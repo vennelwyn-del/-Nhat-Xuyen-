@@ -3338,6 +3338,29 @@
         grid-template-columns: 1fr;
       }
     }
+    /* === THANH TRƯỢT CUỘN RIÊNG CHO PHẦN 2 (THUẬT NGỮ) === */
+    .lex-scroll-body {
+      max-height: 68vh;
+      overflow-y: auto;
+      padding-right: 10px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--gold-text) rgba(255, 255, 255, 0.14);
+    }
+    .lex-scroll-body::-webkit-scrollbar {
+      width: 8px;
+    }
+    .lex-scroll-body::-webkit-scrollbar-track {
+      background: rgba(0, 0, 0, 0.22);
+      border-radius: 999px;
+    }
+    .lex-scroll-body::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, var(--gold-text), var(--c-deep));
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+    }
+    .lex-scroll-body::-webkit-scrollbar-thumb:hover {
+      background: var(--gold-text);
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -6629,6 +6652,8 @@
               </div>
             </div>
           </div>
+        </div> <!-- hết #chap-10 -->
+          </section> <!-- hết #sec-1 -->
           <!-- PHẦN 2: TỪ ĐIỂN THUẬT NGỮ HỌC ĐƯỜNG -->
         <section class="content-section is-hidden-sec" id="sec-2">
           <div class="sec-kicker">Phần 2 ౨ৎ Từ điển &amp; Thuật ngữ Học đường</div>
@@ -6654,7 +6679,7 @@
               <button type="button" class="soft-pill-tab" data-lex-chap="lc-5">5. Văn hóa ngầm (5)</button>
             </div>
           </div>
-
+          <div class="lex-scroll-body" id="lexScrollBody">
           <!-- ==================== CHƯƠNG 1: SINH HỌC & CẢM QUAN ABO ==================== -->
           <div class="lex-chap-block" data-lex-block="lc-1">
             <div class="lex-chap-head">
@@ -7072,8 +7097,9 @@
                 <div class="lex-text-part">
                   <span class="lex-tag-pill">The Beta Anchor</span>
                   <h4 class="lex-term-title">Mỏ neo thực tế</h4>
-                <p class="lex-term-desc">Khái niệm chỉ 30% học sinh Beta trong trường (135/450 học sinh). Do hoàn toàn điếc mùi và miễn nhiễm 100% với áp bách tin tức tố, họ đứng ngoài mọi xung đột sinh học, thường xuyên kéo bầu không khí căng thẳng về lại thực tại bằng việc quay xuống mượn cục tẩy, mượn máy tính Casio hoặc hỏi bài tập.</p>                  <div class="lex-detail-drawer"><strong>Vai trò trong lớp:</strong> “Lá chắn sống” khi Lão Ban tách đôi Alpha–Omega bằng cách nhét Beta vào giữa.</div>
-                </div>
+               <p class="lex-term-desc">Khái niệm chỉ 30% học sinh Beta trong trường (135/450 học sinh). Do hoàn toàn điếc mùi và miễn nhiễm 100% với áp bách tin tức tố, họ đứng ngoài mọi xung đột sinh học, thường xuyên kéo bầu không khí căng thẳng về lại thực tại bằng việc quay xuống mượn cục tẩy, mượn máy tính Casio hoặc hỏi bài tập.</p>
+               <button type="button" class="lex-detail-btn">⌖ Chỉ điểm chi tiết</button>
+               <div class="lex-detail-drawer"><strong>Vai trò trong lớp:</strong> “Lá chắn sống” khi Lão Ban tách đôi Alpha, Omega bằng cách nhét Beta vào giữa.</div>                </div>
               </article>
 
               <!-- Học bổng Vanguard (Có ảnh T10) -->
@@ -7897,6 +7923,7 @@
               </article>
             </div>
           </div>
+          </div> <!-- hết .lex-scroll-body -->
         </section>
         <!-- PHẦN 3 -->
         <section class="content-section is-hidden-sec" id="sec-3">
