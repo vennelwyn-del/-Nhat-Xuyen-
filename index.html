@@ -3754,6 +3754,92 @@
         margin: 0 auto;
       }
     }
+    /* === CẢNH BÁO NHÁY ĐỎ LIÊN HỒI CHO BÍ MẬT CỐT LÕI === */
+    @keyframes classifiedRedFlash {
+      0%, 100% {
+        border-color: rgba(255, 75, 75, 0.95);
+        background: rgba(135, 18, 22, 0.34);
+        box-shadow: 0 0 18px rgba(255, 60, 60, 0.45), inset 0 0 18px rgba(255, 50, 50, 0.22);
+      }
+      50% {
+        border-color: rgba(255, 180, 180, 1);
+        background: rgba(195, 24, 30, 0.58);
+        box-shadow: 0 0 34px rgba(255, 65, 65, 0.92), inset 0 0 28px rgba(255, 75, 75, 0.44);
+      }
+    }
+
+    .secret-alert-btn {
+      border-color: rgba(255, 95, 95, 0.90) !important;
+      color: #FFD6D6 !important;
+      animation: classifiedRedFlash 0.9s ease-in-out infinite;
+    }
+
+    .secret-gate-box {
+      margin-top: 12px;
+      padding: 18px 20px;
+      border-radius: 14px;
+      border: 1.5px solid #FF5252;
+      animation: classifiedRedFlash 0.9s ease-in-out infinite;
+      display: none;
+    }
+    .secret-gate-box.is-open {
+      display: block;
+    }
+    .secret-gate-box.is-shake {
+      animation: blockClickShake 0.38s ease-in-out, classifiedRedFlash 0.9s ease-in-out infinite;
+    }
+    .secret-gate-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.04rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #FFD2D2;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .secret-gate-warn {
+      margin: 0 0 12px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: #FFEAEA;
+    }
+    .secret-pass-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .secret-pass-input {
+      flex: 1;
+      min-width: 190px;
+      padding: 9px 13px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 145, 145, 0.65);
+      background: rgba(12, 6, 8, 0.72);
+      color: #FFFFFF;
+      font-size: 0.96rem;
+      outline: none;
+    }
+    .secret-pass-input:focus {
+      border-color: #FF8A8A;
+      box-shadow: 0 0 12px rgba(255, 80, 80, 0.65);
+    }
+    .secret-pass-input:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .secret-gate-status {
+      margin-top: 10px;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #FFE08A;
+    }
+    .secret-gate-status.is-locked-24h {
+      color: #FFB4B4;
+      font-size: 0.96rem;
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -7731,7 +7817,20 @@
                 <div class="spotlight-rows" id="spRows"></div>
 
                 <div style="margin-top:14px;">
-                  <button type="button" class="soft-action-btn" id="btnToggleCharSecret">🔓 Hiện Bí mật cốt lõi</button>
+                  <button type="button" class="soft-action-btn secret-alert-btn" id="btnToggleCharSecret">🚨 Cảnh báo · Mở khóa Bí mật cốt lõi</button>
+                  <!-- Khung nhập mật khẩu nháy đỏ liên hồi -->
+                  <div class="secret-gate-box" id="secretGateBox">
+                    <div class="secret-gate-title">🚨 CẢNH BÁO AN NINH CẤP MẬT · BÍ MẬT CỐT LÕI</div>
+                    <p class="secret-gate-warn">
+                      Hồ sơ bị khóa bảo mật. Bắt buộc nhập đúng mật khẩu để xem nội dung (không có gợi ý). Nhập sai quá <strong>10 lần</strong> sẽ bị khóa truy cập trong <strong>24 giờ</strong>.
+                    </p>
+                    <div class="secret-pass-row">
+                      <input type="password" class="secret-pass-input" id="secretPassInput" placeholder="Nhập mật khẩu..." autocomplete="off" />
+                      <button type="button" class="red-alarm-btn" style="padding:8px 16px; font-size:0.9rem;" id="btnUnlockSecret">🔑 Xác thực</button>
+                    </div>
+                    <div class="secret-gate-status" id="secretGateStatus">Số lần nhập sai: 0 / 10</div>
+                  </div>
+
                   <div class="spotlight-secret-box" id="spSecretBox"></div>
                 </div>
               </div>
@@ -9881,25 +9980,190 @@
         }
       });
     });
-    /* === PHẦN 3: RENDER & LỌC HỒ SƠ NHÂN VẬT TỪ CHARACTERS.JS === */
+   /* === PHẦN 3: HỒ SƠ NHÂN VẬT + KHÓA BÍ MẬT NHÁY ĐỎ 24H === */
     (function initPart3Characters() {
-      const list = window.NHAT_XUYEN_CHARS || [];
-      const gridEl = document.getElementById('charGridV3');
-      const countEl = document.getElementById('charCountLabel');
+      // >>> ĐỔI MẬT KHẨU RIÊNG CỦA BẠN TẠI ĐÂY <<<
+      const SECRET_PASS = 'nhatxuyen123';
+      const MAX_TRIES   = 10;
+      const LOCK_MS     = 24 * 60 * 60 * 1000; // 24 giờ
+      const KEY_FAILS   = 'nx_secret_fails_v1';
+      const KEY_LOCK    = 'nx_secret_lock_until_v1';
+
+      const list      = window.NHAT_XUYEN_CHARS || [];
+      const gridEl    = document.getElementById('charGridV3');
+      const countEl   = document.getElementById('charCountLabel');
       const spotlight = document.getElementById('charDossierSpotlight');
       const gradeBtns = document.querySelectorAll('[data-char-grade]');
+
+      const gateBox     = document.getElementById('secretGateBox');
+      const passInput   = document.getElementById('secretPassInput');
+      const btnUnlock   = document.getElementById('btnUnlockSecret');
+      const gateStatus  = document.getElementById('secretGateStatus');
+      const btnToggle   = document.getElementById('btnToggleCharSecret');
+      const secBox      = document.getElementById('spSecretBox');
+
       if (!gridEl || list.length === 0) return;
 
-      let activeGrade = 'all';
+      let activeGrade     = 'all';
       let currentFiltered = list.slice();
-      let activeCharId = null;
-      let secretOpened = false;
+      let activeCharId    = null;
+      let isUnlocked      = sessionStorage.getItem('nx_secret_ok_v1') === '1';
+      let secretVisible   = false;
+      let lockTimer       = null;
+
+      // Bảo vệ luôn cả các hộp bí mật bên Chương 10 (giấu text khỏi DOM khi chưa nhập pass)
+      const chap10SecretStash = new Map();
+      document.querySelectorAll('#chap-10 .npc-secret-box').forEach((box, idx) => {
+        chap10SecretStash.set(idx, box.innerHTML);
+        if (!isUnlocked) {
+          box.innerHTML = '<strong style="color:#FFB4B4;">🚨 BÍ MẬT BỊ KHÓA:</strong> Vui lòng mở hồ sơ nhân vật ở Phần 3 và nhập mật khẩu để giải mã.';
+        }
+      });
+
+      function restoreChap10Secrets() {
+        document.querySelectorAll('#chap-10 .npc-secret-box').forEach((box, idx) => {
+          if (chap10SecretStash.has(idx)) {
+            box.innerHTML = chap10SecretStash.get(idx);
+          }
+        });
+      }
 
       function escHtml(s) {
         return String(s || '')
           .replace(/&/g, '&amp;')
           .replace(/</g, '&lt;')
           .replace(/>/g, '&gt;');
+      }
+
+      function getFails() {
+        return Number(localStorage.getItem(KEY_FAILS) || '0');
+      }
+      function getLockUntil() {
+        return Number(localStorage.getItem(KEY_LOCK) || '0');
+      }
+
+      function formatCountdown(ms) {
+        const totalSec = Math.max(0, Math.ceil(ms / 1000));
+        const h = Math.floor(totalSec / 3600);
+        const m = Math.floor((totalSec % 3600) / 60);
+        const s = totalSec % 60;
+        return String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+      }
+
+      function refreshGateUI() {
+        clearInterval(lockTimer);
+        const lockUntil = getLockUntil();
+        const now = Date.now();
+
+        if (lockUntil > now) {
+          if (passInput) { passInput.disabled = true; passInput.value = ''; }
+          if (btnUnlock) btnUnlock.disabled = true;
+
+          const updateTick = () => {
+            const rem = getLockUntil() - Date.now();
+            if (rem <= 0) {
+              clearInterval(lockTimer);
+              localStorage.removeItem(KEY_LOCK);
+              localStorage.removeItem(KEY_FAILS);
+              refreshGateUI();
+              return;
+            }
+            gateStatus.className = 'secret-gate-status is-locked-24h';
+            gateStatus.textContent = '⛔ ĐÃ KHÓA 24 GIỜ DO NHẬP SAI QUÁ 10 LẦN! Mở khóa sau: ' + formatCountdown(rem);
+          };
+          updateTick();
+          lockTimer = setInterval(updateTick, 1000);
+          return;
+        }
+
+        // Hết khóa 24h hoặc chưa khóa
+        if (lockUntil > 0 && lockUntil <= now) {
+          localStorage.removeItem(KEY_LOCK);
+          localStorage.removeItem(KEY_FAILS);
+        }
+        if (passInput) passInput.disabled = false;
+        if (btnUnlock) btnUnlock.disabled = false;
+        const fails = getFails();
+        gateStatus.className = 'secret-gate-status';
+        gateStatus.textContent = fails > 0
+          ? ('⚠ Mật khẩu không đúng! Đã sai ' + fails + ' / ' + MAX_TRIES + ' lần (còn ' + (MAX_TRIES - fails) + ' lần).')
+          : ('Số lần nhập sai: 0 / ' + MAX_TRIES);
+      }
+
+      function updateSecretUIForChar(ch) {
+        if (!secBox || !btnToggle || !gateBox) return;
+        if (isUnlocked) {
+          gateBox.classList.remove('is-open');
+          btnToggle.classList.remove('secret-alert-btn');
+          secBox.innerHTML = '<strong style="color:#FFB4B4;">🔓 Bí mật cốt lõi:</strong> ' + escHtml(ch.secret);
+          secBox.classList.toggle('is-shown', secretVisible);
+          btnToggle.classList.toggle('is-active', secretVisible);
+          btnToggle.textContent = secretVisible ? '🔒 Ẩn Bí mật cốt lõi' : '🔓 Hiện Bí mật cốt lõi (Đã giải mã)';
+        } else {
+          // Khi chưa nhập pass: tuyệt đối không đưa ch.secret vào DOM
+          secBox.innerHTML = '';
+          secBox.classList.remove('is-shown');
+          btnToggle.classList.add('secret-alert-btn');
+          btnToggle.classList.remove('is-active');
+          btnToggle.textContent = '🚨 Cảnh báo · Mở khóa Bí mật cốt lõi';
+        }
+      }
+
+      function attemptUnlock() {
+        if (getLockUntil() > Date.now()) {
+          refreshGateUI();
+          return;
+        }
+        const entered = passInput ? passInput.value : '';
+        if (entered === SECRET_PASS) {
+          localStorage.removeItem(KEY_FAILS);
+          localStorage.removeItem(KEY_LOCK);
+          sessionStorage.setItem('nx_secret_ok_v1', '1');
+          isUnlocked = true;
+          secretVisible = true;
+          if (passInput) passInput.value = '';
+          restoreChap10Secrets();
+          const ch = list.find((c) => c.id === activeCharId);
+          if (ch) updateSecretUIForChar(ch);
+        } else {
+          const nextFails = getFails() + 1;
+          localStorage.setItem(KEY_FAILS, String(nextFails));
+          if (nextFails >= MAX_TRIES) {
+            localStorage.setItem(KEY_LOCK, String(Date.now() + LOCK_MS));
+          }
+          if (passInput) passInput.value = '';
+          gateBox.classList.remove('is-shake');
+          void gateBox.offsetWidth;
+          gateBox.classList.add('is-shake');
+          refreshGateUI();
+        }
+      }
+
+      if (btnUnlock) btnUnlock.addEventListener('click', attemptUnlock);
+      if (passInput) {
+        passInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            attemptUnlock();
+          }
+        });
+      }
+
+      if (btnToggle) {
+        btnToggle.addEventListener('click', () => {
+          const ch = list.find((c) => c.id === activeCharId);
+          if (!ch) return;
+          if (isUnlocked) {
+            secretVisible = !secretVisible;
+            updateSecretUIForChar(ch);
+          } else {
+            const opened = gateBox.classList.toggle('is-open');
+            refreshGateUI();
+            if (opened && passInput && !passInput.disabled) {
+              setTimeout(() => passInput.focus(), 60);
+            }
+          }
+        });
       }
 
       // Cập nhật số đếm trên 4 nút All / Khối 10 / 11 / 12
@@ -9944,11 +10208,11 @@
               '<span class="char-v3-btn">📖 Xem hồ sơ chi tiết</span>' +
             '</div>';
 
-          card.addEventListener('click', () => openCharDossier(ch.id));
+          card.addEventListener('click', () => window.openCharDossier(ch.id));
           card.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' || e.key === ' ') {
               e.preventDefault();
-              openCharDossier(ch.id);
+              window.openCharDossier(ch.id);
             }
           });
           gridEl.appendChild(card);
@@ -9959,7 +10223,7 @@
         const ch = list.find((item) => item.id === charId);
         if (!ch || !spotlight) return;
         activeCharId = ch.id;
-        secretOpened = false;
+        secretVisible = false;
 
         document.getElementById('spSubLabel').textContent = ch.gradeLabel + ' · ' + ch.classRoom + (ch.isOc ? ' · ★ OC của crt' : '');
         const spName = document.getElementById('spName');
@@ -10000,23 +10264,15 @@
         }
         document.getElementById('spRows').innerHTML = rowsHtml;
 
-        const secBox = document.getElementById('spSecretBox');
-        const secBtn = document.getElementById('btnToggleCharSecret');
-        secBox.classList.remove('is-shown');
-        secBox.innerHTML = '<strong style="color:#FFB4B4;">🔒 Bí mật cốt lõi:</strong> ' + escHtml(ch.secret);
-        secBtn.classList.remove('is-active');
-        secBtn.textContent = '🔓 Hiện Bí mật cốt lõi';
+        if (!isUnlocked) {
+          gateBox.classList.add('is-open');
+          refreshGateUI();
+        }
+        updateSecretUIForChar(ch);
 
         spotlight.classList.add('is-open');
         spotlight.scrollIntoView({ behavior: 'smooth', block: 'start' });
       };
-
-      document.getElementById('btnToggleCharSecret').addEventListener('click', (e) => {
-        secretOpened = !secretOpened;
-        document.getElementById('spSecretBox').classList.toggle('is-shown', secretOpened);
-        e.currentTarget.classList.toggle('is-active', secretOpened);
-        e.currentTarget.textContent = secretOpened ? '🔒 Ẩn Bí mật cốt lõi' : '🔓 Hiện Bí mật cốt lõi';
-      });
 
       document.getElementById('btnCloseSpotlight').addEventListener('click', () => {
         spotlight.classList.remove('is-open');
@@ -10039,7 +10295,6 @@
         });
       });
 
-      // Tự động nối nút "Thông tin" ở Chương 10 sang đúng hồ sơ chi tiết ở Phần 3
       const chap10El = document.getElementById('chap-10');
       if (chap10El) {
         chap10El.addEventListener('click', (e) => {
@@ -10061,6 +10316,7 @@
           }
         });
       }
+
       renderCharGrid();
     })();
   </script>
