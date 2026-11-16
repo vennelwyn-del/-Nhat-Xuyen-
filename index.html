@@ -1852,6 +1852,106 @@
         width: 100% !important;
       }
     }
+    /* === DECOR RIÊNG CHO CHƯƠNG 4 (ĐỒNG PHỤC & HUY HIỆU) === */
+    .knit-preview-bar {
+      margin-top: 12px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      background: rgba(0, 0, 0, 0.18);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: border-color 0.3s ease;
+    }
+    .knit-sample {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      background: #EDE6D3;
+      flex-shrink: 0;
+      box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.16);
+      transition: background 0.35s ease, transform 0.3s ease;
+    }
+    .knit-preview-bar:hover .knit-sample { transform: scale(1.06); }
+
+    .badge-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .crest-card {
+      position: relative;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+    .crest-card:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.13);
+      border-color: var(--gold-text);
+      box-shadow: 0 0 18px var(--glow-color);
+    }
+    .crest-card.is-hidden-card { display: none; }
+    .crest-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .crest-gem {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      border: 1px solid rgba(255, 255, 255, 0.55);
+      flex-shrink: 0;
+    }
+    .gem-gold {
+      background: linear-gradient(135deg, #F5D77F, #C99A2E);
+      color: #1D283A;
+      box-shadow: 0 0 10px rgba(245, 215, 127, 0.45);
+    }
+    .gem-silver {
+      background: linear-gradient(135deg, #F3F6FA, #A7B4C4);
+      color: #1D283A;
+      box-shadow: 0 0 10px rgba(220, 230, 242, 0.40);
+    }
+    .gem-garnet {
+      background: linear-gradient(135deg, #E2E8F0, #94A3B8);
+      color: #7D1624;
+      box-shadow: 0 0 10px rgba(185, 48, 68, 0.55);
+    }
+    .crest-role {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--gold-text);
+    }
+    .crest-pos {
+      font-size: 0.78rem;
+      color: rgba(255, 253, 245, 0.72);
+    }
+    .crest-card p {
+      margin: 0;
+      font-size: 0.96rem;
+      line-height: 1.55;
+      color: rgba(255, 253, 245, 0.90);
+    }
+
+    .collar-rule-box {
+      margin-top: 18px;
+      padding: 18px 20px;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.26);
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -1995,6 +2095,10 @@
               <span>↳ Chương 3 · Kim tự tháp &amp; Học bổng</span>
               <span class="hb-bow">౨ৎ</span>
             </button>
+            <button type="button" class="hb-item hb-sub" data-view="chap-4">
+              <span>↳ Chương 4 · Đồng phục &amp; Huy hiệu</span>
+              <span class="hb-bow">౨ৎ</span>
+            </button>
             <button type="button" class="hb-item" data-view="sec-2">
               <span>Phần 2 ౨ৎ Thuật ngữ</span>
               <span class="hb-bow">౨ৎ</span>
@@ -2019,6 +2123,7 @@
               <button type="button" class="soft-pill-tab is-active" data-quick-view="chap-1">Chương 1</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-2">Chương 2</button>
               <button type="button" class="soft-pill-tab" data-quick-view="chap-3">Chương 3</button>
+              <button type="button" class="soft-pill-tab" data-quick-view="chap-4">Chương 4</button>
             </div>
           </div>
 
@@ -2246,95 +2351,7 @@
               </div>
             </div>
           </div>
-          <div class="ch1-section-block" id="ch1-5">
-            <div class="ch1-tag">1.3 · Quy chuẩn đồng phục đặc chế &amp; Lá chắn sinh học · Bespoke Uniform Code</div>
-            <p class="ch1-body-p" style="margin-bottom:18px;">
-              Đồng phục của Học viện Nhất Xuyên được may đo riêng theo phong cách trường dự bị tinh hoa Anh Quốc (British Elite Prep School) với bảng màu chủ đạo <strong>Xanh Midnight Navy &amp; Trắng Tinh Khiết</strong>.
-            </p>
-
-            <div class="ch1-split" style="margin-bottom:20px;">
-              <div class="ch1-info-stack">
-                <div class="sub-card">
-                  <div class="ch1-side-label">A · Kiến trúc trang phục</div>
-                  <h3>Áo khoác ngoài &amp; Sơ mi</h3>
-                  <ul class="tier-bullet-list">
-                    <li><strong>Áo khoác ngoài (Outer Blazer):</strong> Dáng ôm vừa vặn (slim-fit), chất liệu dạ len pha cashmere đứng phom màu xanh Midnight Navy. Ngực trái thêu huy hiệu trường Nhất Xuyên bằng chỉ bạc/chỉ kim loại; khuy áo kim loại dập nổi biểu tượng chim ưng tiên phong.</li>
-                    <li><strong>Áo sơ mi &amp; Lớp len thu - đông:</strong> Sơ mi trắng chất liệu cotton Ai Cập dệt mật độ cao, cổ bẻ cứng cáp; mùa thu - đông mặc kèm áo gile dệt kim hoặc áo len cổ chữ V mỏng màu xám khói hoặc navy nhạt.</li>
-                  </ul>
-                </div>
-
-                <div class="sub-card bio-shield-card">
-                  <div class="bio-shield-sheen" aria-hidden="true"></div>
-                  <div class="ch1-side-label">🛡️ Cấu trúc Lá chắn Tuyến thể</div>
-                  <h3>Gland Bio-Shield Architecture</h3>
-                  <p>Mặt trong chân cổ áo sơ mi và ve áo blazer được may lót một lớp <strong>lụa tơ tằm siêu mềm (anti-friction silk lining)</strong> nhằm bảo vệ vùng da nhạy cảm sau gáy, <strong>ngăn chặn tuyệt đối việc cổ áo cọ xát làm rách hoặc bong mép miếng dán cách ly</strong>.</p>
-                </div>
-              </div>
-
-              <!-- KHUNG ẢNH 07 -->
-              <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
-                <!-- DÁN LINK ẢNH VÀO src="" BÊN DƯỚI -->
-                <img src="" alt="Đồng phục Midnight Navy Học viện Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
-                <div class="photo-placeholder">
-                  <span class="ph-badge">Ảnh 07</span>
-                  <span class="ph-icon">✦</span>
-                  <span class="ph-title">Thiết kế đồng phục Midnight Navy · 3 Khối</span>
-                  <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
-                </div>
-                <div class="photo-caption">Fig. 07 — Blazer Midnight Navy, lớp lót lụa sau gáy &amp; mã màu theo khối</div>
-              </div>
-            </div>
-
-            <div class="ch1-two-cols">
-              <div class="sub-card">
-                <div class="uniform-head-row">
-                  <div>
-                    <div class="ch1-side-label">B · Quy chuẩn trang phục</div>
-                    <h3>Nam sinh &amp; Nữ sinh</h3>
-                  </div>
-                  <div class="uniform-gender-switch">
-                    <button type="button" class="soft-pill-tab is-active" data-gender="male">Nam sinh</button>
-                    <button type="button" class="soft-pill-tab" data-gender="female">Nữ sinh</button>
-                  </div>
-                </div>
-
-                <div class="gender-panel is-visible" id="gender-male">
-                  <p><strong>Nam sinh:</strong> Quần âu may đo ống đứng bằng len xước màu xám tro đậm (charcoal grey), xếp ly đôi thanh lịch, gấu quần chạm nhẹ thân giày da; thắt lưng da đen khóa bạc. Cà vạt bản vừa thắt nút Windsor kép kèm kẹp cà vạt mạ bạc đính logo trường. Giày da Oxford/Derby đen buộc dây.</p>
-                </div>
-                <div class="gender-panel" id="gender-female">
-                  <p><strong>Nữ sinh:</strong> Chân váy xếp ly chữ A cùng tông xám tro đậm, xếp ly sắc nét, độ dài chuẩn mực chạm ngay trên đầu gối 3cm, khóa kéo giấu hông. Nơ bướm bằng lụa satin xếp lớp cố định bằng chốt kim loại dưới cổ bẻ (hoặc cà vạt theo khối). Giày Loafer/Mary Jane đen bóng đi kèm tất len cao cổ.</p>
-                </div>
-              </div>
-
-              <div class="sub-card">
-                <div class="ch1-side-label">C · Color-Coded Trim</div>
-                <h3>Mã màu phân cấp theo Khối học</h3>
-
-                <div class="trim-selector">
-                  <button type="button" class="trim-btn is-active" data-trim="g10">
-                    <span class="trim-swatch" style="background:#1F8A5B;"></span> Khối 10
-                  </button>
-                  <button type="button" class="trim-btn" data-trim="g11">
-                    <span class="trim-swatch" style="background:#8D2638;"></span> Khối 11
-                  </button>
-                  <button type="button" class="trim-btn" data-trim="g12">
-                    <span class="trim-swatch" style="background:linear-gradient(135deg,#1B3C73 50%,#E5C158 50%);"></span> Khối 12
-                  </button>
-                </div>
-
-                <div class="lapel-preview" id="lapelPreview">
-                  <div class="lapel-fabric" id="lapelFabric">
-                    <span class="lapel-piping" id="lapelPiping"></span>
-                    <span class="lapel-badge">✦ Huy hiệu Tiên Phong</span>
-                  </div>
-                  <div class="lapel-info" id="lapelInfo">
-                    <strong>Khối 10 (Cao Nhất) ➔ XANH NGỌC LỤC BẢO (Emerald Green):</strong> Viền ve áo blazer bằng chỉ xanh ngọc lục bảo mảnh 2mm; cà vạt/nơ xanh ngọc dệt vân chìm — tượng trưng cho sự khởi đầu và quá trình vừa phân hóa ABO.
-                  </div>
-                </div>
-              </div>
-            </div>
-       </div>
-          </div> <!-- hết #chap-1 -->
+                    </div> <!-- hết #chap-1 -->
 
           <div class="chapter-divider"></div>
 
@@ -2873,8 +2890,269 @@
               </div>
             </div>
           </div>
-        </section>
+          <div class="chapter-divider"></div>
 
+          <!-- ==================== CHƯƠNG 4 ==================== -->
+          <div class="chapter-block is-hidden-chap" id="chap-4">
+            <div class="ch1-tag">Chương 4 ౨ৎ Bản thiết kế Đồng phục May đo Nhất Xuyên</div>
+            <h2 style="margin:0 0 8px; font-size:1.75rem; color:#FFFFFF;">Bản thiết kế Đồng phục May đo Nhất Xuyên</h2>
+            <div class="ch1-subtitle-en">BESPOKE UNIFORM CODE · BRITISH ELITE PREP SCHOOL</div>
+
+            <div class="ch1-quote-strip" style="margin-top:12px;">
+              <span class="ch1-quote-bar"></span>
+              <p>Phong cách dự bị tinh hoa Anh Quốc (may đo chuẩn từng cá nhân) · Tông chủ đạo: <strong>Xanh Navy Đêm (Midnight Navy)</strong>, <strong>Trắng Tinh Khiết</strong> &amp; <strong>Xám Tro Đậm (Charcoal Grey)</strong>.</p>
+            </div>
+
+            <nav class="ch2-jump-nav" aria-label="Mục lục Chương 4">
+              <a href="#ch4-1" class="ch2-jump-pill">4.1 Cấu trúc &amp; Lá chắn</a>
+              <a href="#ch4-2" class="ch2-jump-pill">4.2 Nam &amp; Nữ sinh</a>
+              <a href="#ch4-3" class="ch2-jump-pill">4.3 Mã màu &amp; 7 Huy hiệu</a>
+            </nav>
+
+            <!-- 4.1 -->
+            <div class="ch2-subblock" id="ch4-1">
+              <div class="ch1-tag">4.1 · Cấu trúc may đo cơ bản &amp; Lá chắn Tuyến thể</div>
+              <div class="ch1-split">
+                <div class="ch1-info-stack">
+                  <div class="sub-card">
+                    <h3>Áo khoác ngoài &amp; Sơ mi trắng</h3>
+                    <ul class="tier-bullet-list">
+                      <li><strong>Áo khoác ngoài (Outer Blazer):</strong> Dáng ôm vừa vặn (<em>slim-fit</em>), chất liệu dạ len pha cashmere đứng phom màu Midnight Navy. Ngực trái thêu huy hiệu trường Nhất Xuyên bằng chỉ bạc/chỉ kim loại; hàng khuy kim loại dập nổi biểu tượng chim ưng tiên phong.</li>
+                      <li><strong>Áo sơ mi trắng (Dress Shirt):</strong> Chất liệu cotton Ai Cập dệt mật độ cao, phom cổ bẻ cứng cáp giữ độ đứng quanh vùng cổ.</li>
+                    </ul>
+                  </div>
+
+                  <div class="sub-card">
+                    <div class="ch1-side-label">Lớp thu-đông &amp; Tiết thể dục (Bấm đổi màu len)</div>
+                    <h3>Áo Gile / Len lót &amp; Áo khoác gió</h3>
+                    <div class="scent-group-pills" style="margin-top:8px;">
+                      <button type="button" class="soft-pill-tab is-active" data-knit="beige">Be ngà</button>
+                      <button type="button" class="soft-pill-tab" data-knit="smoke">Xám khói</button>
+                      <button type="button" class="soft-pill-tab" data-knit="navy">Xanh navy nhạt</button>
+                      <button type="button" class="soft-pill-tab" data-knit="sport">🏃 Đồ Thể dục</button>
+                    </div>
+                    <div class="knit-preview-bar" id="knitPreviewBox">
+                      <span class="knit-sample" id="knitSwatch"></span>
+                      <div class="spec-val" id="knitDesc">
+                        <strong>Áo Gile / Len cổ chữ V — Be ngà:</strong> Len dệt kim mềm mịn mặc bên trong blazer vào mùa thu - đông, giữ ấm nhẹ nhàng mà vẫn tôn dáng sơ mi trắng.
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="sub-card bio-shield-card">
+                    <div class="bio-shield-sheen" aria-hidden="true"></div>
+                    <div class="ch1-side-label">🛡️ The Bio-Shield Collar</div>
+                    <h3>Cổ Áo Bảo Vệ Tuyến Thể</h3>
+                    <p>Mặt trong chân cổ áo sơ mi và ve áo blazer bắt buộc may lót một lớp <strong>lụa tơ tằm siêu mềm (<em>anti-friction silk lining</em>)</strong> nhằm bảo vệ vùng da mỏng sau gáy, <strong>ngăn chặn tuyệt đối việc mép vải cọ xát làm rách hoặc bong tróc miếng dán cách ly</strong> khi vận động.</p>
+                  </div>
+                </div>
+
+                <!-- KHUNG ẢNH 19 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Cấu trúc Blazer và Cổ áo lót lụa Bio-Shield" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 19</span>
+                    <span class="ph-icon">🛡️</span>
+                    <span class="ph-title">Blazer Midnight Navy &amp; Cổ áo lót lụa Bio-Shield</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 19 — Lớp lụa tơ tằm chống ma sát sau gáy &amp; 3 màu len lót</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4.2 -->
+            <div class="ch2-subblock" id="ch4-2">
+              <div class="ch1-tag">4.2 · Quy chuẩn trang phục Nam &amp; Nữ</div>
+              <div class="ch1-split">
+                <div class="sub-card">
+                  <div class="uniform-head-row">
+                    <div>
+                      <div class="ch1-side-label">British Elite Prep Tailoring</div>
+                      <h3>Chi tiết trang phục Nam sinh &amp; Nữ sinh</h3>
+                    </div>
+                    <div class="uniform-gender-switch">
+                      <button type="button" class="soft-pill-tab is-active" data-gender="male">👔 Nam sinh</button>
+                      <button type="button" class="soft-pill-tab" data-gender="female">🎀 Nữ sinh</button>
+                      <button type="button" class="soft-pill-tab" data-gender="both">Xem cả 2</button>
+                    </div>
+                  </div>
+
+                  <div class="gender-panel is-visible" id="gender-male">
+                    <h3 style="margin-top:8px;">Nam sinh</h3>
+                    <ul class="tier-bullet-list">
+                      <li>Quần âu may đo ống đứng bằng len xước màu xám tro đậm (<em>charcoal grey</em>), xếp ly đôi thanh lịch, gấu quần chạm nhẹ thân giày; thắt lưng da đen khóa bạc.</li>
+                      <li>Cà vạt bản vừa thắt nút Windsor kép kèm kẹp cà vạt mạ bạc đính logo trường. Giày da <strong>Oxford hoặc Derby</strong> đen bóng buộc dây.</li>
+                    </ul>
+                  </div>
+
+                  <div class="gender-panel" id="gender-female" style="margin-top:12px;">
+                    <h3>Nữ sinh</h3>
+                    <ul class="tier-bullet-list">
+                      <li>Chân váy xếp ly chữ A cùng tông xám tro đậm, nếp gấp sắc nét, độ dài chuẩn mực chạm ngay trên đầu gối 3cm, khóa kéo giấu hông.</li>
+                      <li>Cổ áo cài <strong>Nơ bướm bằng lụa satin</strong> xếp lớp cố định bằng chốt kim loại <strong>hoặc thắt Cà vạt bản mảnh</strong> theo mã màu khối. Giày da <strong>Loafer hoặc Mary Jane</strong> đen bóng đi kèm tất len cao cổ.</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <!-- KHUNG ẢNH 20 -->
+                <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Đồng phục Nam sinh và Nữ sinh Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 20</span>
+                    <span class="ph-icon">👔</span>
+                    <span class="ph-title">Phác họa đồng phục Nam sinh &amp; Nữ sinh</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 20 — Quần âu charcoal grey, váy xếp ly &amp; giày da chuẩn mực</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4.3 -->
+            <div class="ch2-subblock" id="ch4-3">
+              <div class="ch1-tag">4.3 · Hệ thống mã màu phân khối &amp; Huy hiệu đặc quyền</div>
+
+              <div class="sub-card" style="margin-bottom:18px;">
+                <div class="ch1-side-label">A · Color-Coded Trim</div>
+                <h3>Mã màu nhận diện theo 3 Khối lớp</h3>
+
+                <div class="trim-selector">
+                  <button type="button" class="trim-btn is-active" data-trim="g10">
+                    <span class="trim-swatch" style="background:#1F8A5B;"></span> Khối 10 · Ngọc Lục Bảo
+                  </button>
+                  <button type="button" class="trim-btn" data-trim="g11">
+                    <span class="trim-swatch" style="background:#8D2638;"></span> Khối 11 · Đỏ Rượu Vang
+                  </button>
+                  <button type="button" class="trim-btn" data-trim="g12">
+                    <span class="trim-swatch" style="background:linear-gradient(135deg,#1B3C73 50%,#E5C158 50%);"></span> Khối 12 · Hoàng Gia &amp; Vàng Kim
+                  </button>
+                </div>
+
+                <div class="lapel-preview" id="lapelPreview">
+                  <div class="lapel-fabric" id="lapelFabric">
+                    <span class="lapel-piping" id="lapelPiping"></span>
+                    <span class="lapel-badge">✦ Đường chỉ ve áo 2mm · Midnight Navy</span>
+                  </div>
+                  <div class="lapel-info" id="lapelInfo">
+                    <strong>Khối 10 (Cao Nhất) ➔ XANH NGỌC LỤC BẢO (<em>Emerald Green</em>):</strong> Viền ve áo blazer bằng chỉ xanh ngọc lục bảo mảnh 2mm; cà vạt/nơ xanh ngọc dệt vân chìm <em>(tượng trưng cho sự khởi đầu và tuyến thể vừa phân hóa)</em>.
+                  </div>
+                </div>
+              </div>
+
+              <div class="sub-card" style="margin-bottom:18px;">
+                <div class="ch1-side-label">B · Hệ thống Ghim cài chức vụ &amp; Kỷ luật tác phong</div>
+                <h3>07 Huy hiệu quyền lực học đường (Cài ngực trái / ve áo)</h3>
+
+                <div class="scent-group-pills" style="margin-top:10px;">
+                  <button type="button" class="soft-pill-tab is-active" data-crest="all">Tất cả (7)</button>
+                  <button type="button" class="soft-pill-tab" data-crest="council">Hội Học Sinh</button>
+                  <button type="button" class="soft-pill-tab" data-crest="discipline">Học thuật &amp; Kỷ luật</button>
+                  <button type="button" class="soft-pill-tab" data-crest="special">Âm nhạc &amp; Vanguard</button>
+                </div>
+
+                <div class="badge-grid">
+                  <div class="crest-card" data-crest-cat="council">
+                    <div class="crest-top">
+                      <span class="crest-gem gem-gold">♛</span>
+                      <div><div class="crest-role">Hội Trưởng Hội Học Sinh</div><div class="crest-pos">Vàng nguyên khối · Đá Sapphire</div></div>
+                    </div>
+                    <p>Huy hiệu Vàng nguyên khối đính đá Sapphire hình <strong>Chim Ưng Đội Vương Miện</strong>.</p>
+                  </div>
+
+                  <div class="crest-card" data-crest-cat="council">
+                    <div class="crest-top">
+                      <span class="crest-gem gem-gold">🦅</span>
+                      <div><div class="crest-role">Phó Chủ Tịch Hội Học Sinh</div><div class="crest-pos">Mạ vàng · Ngực trái / Ve áo</div></div>
+                    </div>
+                    <p>Huy hiệu mạ vàng hình <strong>Chim Ưng Tiên Phong</strong>.</p>
+                  </div>
+
+                  <div class="crest-card" data-crest-cat="council">
+                    <div class="crest-top">
+                      <span class="crest-gem gem-silver">✒</span>
+                      <div><div class="crest-role">Tổng Thư Ký</div><div class="crest-pos">Ghim Bạc</div></div>
+                    </div>
+                    <p>Ghim Bạc hình <strong>Cây Bút Lông Vũ</strong>.</p>
+                  </div>
+
+                  <div class="crest-card" data-crest-cat="discipline">
+                    <div class="crest-top">
+                      <span class="crest-gem gem-gold">🔥</span>
+                      <div><div class="crest-role">Ban Học Thuật</div><div class="crest-pos">Huy hiệu Vàng</div></div>
+                    </div>
+                    <p>Huy hiệu Vàng hình <strong>Ngọn Đuốc Trí Tuệ</strong>.</p>
+                  </div>
+
+                  <div class="crest-card" data-crest-cat="discipline">
+                    <div class="crest-top">
+                      <span class="crest-gem gem-silver">⚖</span>
+                      <div><div class="crest-role">Ban Thanh Tra Kỷ Luật</div><div class="crest-pos">Huy hiệu Bạc · Băng tay trái</div></div>
+                    </div>
+                    <p>Huy hiệu Bạc hình <strong>Chiếc Cân Công Lý &amp; Thước Thép</strong> (đi kèm băng đỏ thêu chữ vàng <em>“Thanh Tra Kỷ Luật”</em> đeo ở cánh tay trái khi tuần tra).</p>
+                  </div>
+
+                  <div class="crest-card" data-crest-cat="special">
+                    <div class="crest-top">
+                      <span class="crest-gem gem-garnet">𝄞</span>
+                      <div><div class="crest-role">Trưởng Ban Âm Nhạc</div><div class="crest-pos">Bạc · Đá Garnet đỏ sẫm</div></div>
+                    </div>
+                    <p>Huy hiệu Bạc hình <strong>Khóa Sol đính đá Garnet đỏ sẫm</strong>.</p>
+                  </div>
+
+                  <div class="crest-card" data-crest-cat="special">
+                    <div class="crest-top">
+                      <span class="crest-gem gem-silver">❧</span>
+                      <div><div class="crest-role">Học bổng Vanguard</div><div class="crest-pos">Ve áo bên phải · 06 suất</div></div>
+                    </div>
+                    <p>Cài <strong>Ghim Cành Nguyệt Quế Bạc</strong> bên ve áo phải.</p>
+                  </div>
+                </div>
+
+                <div class="collar-rule-box">
+                  <div class="ch1-side-label">Lệnh kiểm soát cổ áo · Thầy Giám thị &amp; Đội Cờ đỏ</div>
+                  <p style="margin:0 0 12px;">Học sinh toàn trường (trừ những kẻ có huy hiệu đặc quyền che chắn) <strong>nghiêm cấm mở quá 02 cúc cổ áo sơ mi</strong> làm lộ phần chân gáy và miếng dán cách ly.</p>
+
+                  <div class="patch-steps" style="margin-bottom:10px;">
+                    <button type="button" class="soft-pill-tab is-active" data-collar="c0">Cài kín 0 cúc</button>
+                    <button type="button" class="soft-pill-tab" data-collar="c1">Mở 1 cúc</button>
+                    <button type="button" class="soft-pill-tab" data-collar="c2">Mở 2 cúc (Giới hạn)</button>
+                    <button type="button" class="soft-pill-tab" data-collar="c3">⚠ Mở 3 cúc</button>
+                  </div>
+                  <div class="rank-status-msg is-safe" id="collarStatusBox">
+                    <strong>Chuẩn mực tuyệt đối (0 cúc mở):</strong> Cổ áo sơ mi đứng phom, che kín 100% lớp lụa Bio-Shield và vùng tuyến thể C3–C4.
+                  </div>
+                </div>
+              </div>
+
+              <div class="ch1-two-cols">
+                <!-- KHUNG ẢNH 21 -->
+                <div class="photo-slot interactive-photo" style="min-height:195px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Bộ sưu tập 7 huy hiệu Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 21</span>
+                    <span class="ph-icon">♛</span>
+                    <span class="ph-title">07 Huy hiệu quyền lực &amp; Băng tay Thanh Tra</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 21 — Chim ưng vương miện Sapphire, Khóa Sol Garnet &amp; Cân Công Lý</div>
+                </div>
+
+                <!-- KHUNG ẢNH 22 -->
+                <div class="photo-slot interactive-photo" style="min-height:195px;" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+                  <img src="" alt="Mã màu 3 khối và kiểm tra tác phong cổ áo" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <div class="photo-placeholder">
+                    <span class="ph-badge">Ảnh 22</span>
+                    <span class="ph-icon">✦</span>
+                    <span class="ph-title">Ve áo 3 khối &amp; Lệnh kiểm soát 02 cúc cổ</span>
+                    <span class="ph-sub">Di chuột để sáng · Chạm vào lá rơi lả tả</span>
+                  </div>
+                  <div class="photo-caption">Fig. 22 — Emerald · Burgundy · Royal Gold &amp; tác phong cổ áo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
         <!-- PHẦN 2 -->
         <section class="content-section is-hidden-sec" id="sec-2">
           <div class="sec-kicker">Phần 2 ౨ৎ</div>
@@ -3086,6 +3364,7 @@
     const chap1 = document.getElementById('chap-1');
     const chap2 = document.getElementById('chap-2');
     const chap3 = document.getElementById('chap-3');
+    const chap4 = document.getElementById('chap-4')
 
     function openHandbookMenu() {
       clearTimeout(closeHoverTimer);
@@ -3116,6 +3395,7 @@
       if (chap1) chap1.classList.add('is-hidden-chap');
       if (chap2) chap2.classList.add('is-hidden-chap');
       if (chap3) chap3.classList.add('is-hidden-chap');
+      if (chap4) chap4.classList.add('is-hidden-chap')
 
       let scrollTarget = document.getElementById('worldContentTop');
       if (viewKey === 'sec-1-all') {
@@ -3123,6 +3403,7 @@
         if (chap1) chap1.classList.remove('is-hidden-chap');
         if (chap2) chap2.classList.remove('is-hidden-chap');
         if (chap3) chap3.classList.remove('is-hidden-chap');
+        if (chap4) chap4.classList.remove('is-hidden-chap')
         scrollTarget = sec1;
       } else if (viewKey === 'chap-1') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
@@ -3135,6 +3416,10 @@
       } else if (viewKey === 'chap-3') {
         if (sec1)  sec1.classList.remove('is-hidden-sec');
         if (chap3) chap3.classList.remove('is-hidden-chap');
+        scrollTarget = sec1;
+      } else if (viewKey === 'chap-4') {
+        if (sec1)  sec1.classList.remove('is-hidden-sec');
+        if (chap4) chap4.classList.remove('is-hidden-chap');
         scrollTarget = sec1;
       } else if (viewKey === 'sec-2') {
         if (sec2) sec2.classList.remove('is-hidden-sec');
@@ -3457,33 +3742,63 @@
       rankStatusMsg.className = 'rank-status-msg ' + st.cls;
       rankStatusMsg.innerHTML = st.html;
     });
+   /* === TƯƠNG TÁC CHƯƠNG 4 (ĐỒNG PHỤC & HUY HIỆU) === */
+    // 4.1 Đổi màu Gile / Len & Đồ thể dục
+    const knitData = {
+      beige: {
+        bg: '#EDE6D3',
+        text: '<strong>Áo Gile / Len cổ chữ V — Be ngà:</strong> Len dệt kim mềm mịn mặc bên trong blazer vào mùa thu - đông, giữ ấm nhẹ nhàng mà vẫn tôn dáng sơ mi trắng.'
+      },
+      smoke: {
+        bg: '#7D8590',
+        text: '<strong>Áo Gile / Len cổ chữ V — Xám khói:</strong> Tông xám trầm trung tính đồng bộ với quần/váy charcoal grey, tạo vẻ điềm đạm chuẩn học thần.'
+      },
+      navy: {
+        bg: '#3B547A',
+        text: '<strong>Áo Gile / Len cổ chữ V — Xanh navy nhạt:</strong> Lớp chuyển sắc dịu mắt nằm giữa sơ mi trắng và blazer Midnight Navy.'
+      },
+      sport: {
+        bg: 'linear-gradient(135deg, #5F6770, #3A4048)',
+        text: '<strong>Tiết Thể dục / Ngoại khóa:</strong> Mặc đồng phục thể thao kèm <strong>áo khoác gió màu xám tro có khóa kéo cao sát cằm</strong> che chắn tuyến thể khi vận động.'
+      }
+    };
+    const knitTabs = document.querySelectorAll('[data-knit]');
+    knitTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        knitTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const d = knitData[btn.getAttribute('data-knit')];
+        document.getElementById('knitSwatch').style.background = d.bg;
+        document.getElementById('knitDesc').innerHTML = d.text;
+      });
+    });
 
-    // 1.5 Chuyển đổi Nam/Nữ & Mã màu theo Khối
+    // 4.2 Nam sinh / Nữ sinh / Xem cả 2
     const genderTabs = document.querySelectorAll('[data-gender]');
     genderTabs.forEach((btn) => {
       btn.addEventListener('click', () => {
         const g = btn.getAttribute('data-gender');
         genderTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
-        document.getElementById('gender-male').classList.toggle('is-visible', g === 'male');
-        document.getElementById('gender-female').classList.toggle('is-visible', g === 'female');
+        document.getElementById('gender-male').classList.toggle('is-visible', g === 'male' || g === 'both');
+        document.getElementById('gender-female').classList.toggle('is-visible', g === 'female' || g === 'both');
       });
     });
 
+    // 4.3A Mã màu 3 khối
     const trimData = {
       g10: {
         color: '#1F8A5B',
         glow: 'rgba(31, 138, 91, 0.75)',
-        text: '<strong>Khối 10 (Cao Nhất) ➔ XANH NGỌC LỤC BẢO (Emerald Green):</strong> Viền ve áo blazer bằng chỉ xanh ngọc lục bảo mảnh 2mm; cà vạt/nơ xanh ngọc dệt vân chìm — tượng trưng cho sự khởi đầu và quá trình vừa phân hóa ABO.'
+        text: '<strong>Khối 10 (Cao Nhất) ➔ XANH NGỌC LỤC BẢO (<em>Emerald Green</em>):</strong> Viền ve áo blazer bằng chỉ xanh ngọc lục bảo mảnh 2mm; cà vạt/nơ xanh ngọc dệt vân chìm <em>(tượng trưng cho sự khởi đầu và tuyến thể vừa phân hóa)</em>.'
       },
       g11: {
         color: '#8D2638',
         glow: 'rgba(141, 38, 56, 0.75)',
-        text: '<strong>Khối 11 (Cao Nhị) ➔ ĐỎ RƯỢU VANG (Burgundy):</strong> Viền ve áo màu đỏ rượu vang trầm ấm; cà vạt/nơ màu đỏ bordeaux sọc chéo navy — tượng trưng cho sự tăng tốc của tài năng và ma sát học đường.'
+        text: '<strong>Khối 11 (Cao Nhị) ➔ ĐỎ RƯỢU VANG (<em>Burgundy / Bordeaux</em>):</strong> Viền ve áo màu đỏ rượu vang trầm ấm; cà vạt/nơ màu đỏ bordeaux sọc chéo navy <em>(tượng trưng cho sự tăng tốc học thuật và ma sát học đường)</em>.'
       },
       g12: {
         color: '#E5C158',
         glow: 'rgba(229, 193, 88, 0.85)',
-        text: '<strong>Khối 12 (Cao Tam) ➔ XANH HOÀNG GIA &amp; VÀNG KIM (Royal Navy &amp; Gold):</strong> Đường viền ve áo thêu bằng chỉ vàng kim lấp lánh (Gold piping); cà vạt/nơ xanh hoàng gia phối kẻ vàng kim — tượng trưng cho tinh anh tối cao sắp bước vào kỳ thi Cao Khảo sinh tử.'
+        text: '<strong>Khối 12 (Cao Tam) ➔ XANH HOÀNG GIA VIỀN VÀNG KIM (<em>Royal Navy &amp; Gold</em>):</strong> Đường viền ve áo thêu chỉ vàng kim lấp lánh (<em>Gold piping</em>); cà vạt/nơ xanh hoàng gia phối kẻ vàng kim <em>(tượng trưng cho tinh anh tối cao trước kỳ thi Cao Khảo)</em>.'
       }
     };
     const trimBtns    = document.querySelectorAll('[data-trim]');
@@ -3500,6 +3815,37 @@
         lapelPiping.style.background = d.color;
         lapelPiping.style.boxShadow  = '0 0 10px ' + d.glow;
         lapelInfo.innerHTML = d.text;
+      });
+    });
+
+    // 4.3B Lọc 7 Huy hiệu quyền lực
+    const crestTabs  = document.querySelectorAll('[data-crest]');
+    const crestCards = document.querySelectorAll('[data-crest-cat]');
+    crestTabs.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        crestTabs.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const cat = btn.getAttribute('data-crest');
+        crestCards.forEach((c) => {
+          c.classList.toggle('is-hidden-card', cat !== 'all' && c.getAttribute('data-crest-cat') !== cat);
+        });
+      });
+    });
+
+    // 4.3B Lệnh kiểm soát cổ áo (0 -> 3 cúc)
+    const collarData = {
+      c0: { cls: 'is-safe',   html: '<strong>Chuẩn mực tuyệt đối (0 cúc mở):</strong> Cổ áo sơ mi đứng phom, che kín 100% lớp lụa Bio-Shield và vùng tuyến thể C3–C4.' },
+      c1: { cls: 'is-safe',   html: '<strong>Trong phạm vi cho phép (Mở 1 cúc):</strong> Giữ vẻ gọn gàng khi thắt cà vạt hoặc nơ bướm satin, vẫn che kín phần chân gáy.' },
+      c2: { cls: 'is-warn',   html: '<strong>Ngưỡng giới hạn (Mở 2 cúc):</strong> Mức tối đa theo nội quy — cần cẩn trọng khi vận động mạnh kẻo lộ mép miếng dán.' },
+      c3: { cls: 'is-danger', html: '<strong>VI PHẠM TÁC PHONG (Mở 3 cúc trở lên):</strong> Lộ chân gáy &amp; miếng dán cách ly! Lập tức bị Đội Cờ đỏ / Thanh Tra Kỷ Luật chặn kiểm tra (trừ trường hợp có huy hiệu đặc quyền che chắn).' }
+    };
+    const collarBtns = document.querySelectorAll('[data-collar]');
+    collarBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        collarBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+        const d = collarData[btn.getAttribute('data-collar')];
+        const box = document.getElementById('collarStatusBox');
+        box.className = 'rank-status-msg ' + d.cls;
+        box.innerHTML = d.html;
       });
     });
   </script>
