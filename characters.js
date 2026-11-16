@@ -315,7 +315,7 @@ window.NHAT_XUYEN_CHARS = [
     role: "OC của crt · Lớp 11-1",
     abo: "Alpha lặn",
     age: "17 tuổi",
-    origin: "OC của creator (thứ hạng #14 cố định trên Hồng Bảng Khối 11)."
+    origin: "OC của creator (thứ hạng #14 cố định trên Hồng Bảng Khối 11).",
     img: "",
     isOc: true,
     appearance: "Cao 1m80, nặng 72kg (tỷ lệ cơ thể chuẩn mực của dòng dõi quý tộc). Ẩn dưới lớp âu phục là khung cơ bụng 6 múi săn chắc nhờ luyện tập kiếm thuật từ nhỏ, nhưng bề ngoài lại sở hữu làn da trắng hồng mềm mại, không có vẻ thô ráp của các Alpha thể thao. Mái tóc đen tuyền cắt tỉa layer rủ nhẹ tự nhiên trước trán. Đôi mắt màu xám khói ánh xanh nhạt sắc sảo, sống mũi thẳng tắp quý phái, bờ môi mỏng phớt hồng tự nhiên. Khí chất toát lên vẻ phong lưu, trang nhã của một công tử hào môn vừa bước ra từ bàn tiệc rượu.",
