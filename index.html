@@ -3998,18 +3998,23 @@
     .jar-custom-photo {
       position: absolute;
       inset: 4px;
-      z-index: 1;
       display: none;
       width: calc(100% - 8px);
       height: calc(100% - 8px);
       object-fit: contain;
-      opacity: 0.96;
-      filter: drop-shadow(0 12px 16px rgba(14, 22, 34, 0.36));
       pointer-events: none;
     }
     .jar-custom-photo.loaded { display: block; }
-    .quote-jar.has-custom-photo.is-shaking {
-      animation: jarCustomShake 0.85s cubic-bezier(.36,.07,.19,.97);
+    .jar-photo-back {
+      z-index: 1;
+      opacity: 0.96;
+      filter: drop-shadow(0 12px 16px rgba(14, 22, 34, 0.36));
+    }
+    .jar-photo-front {
+      z-index: 3;
+      opacity: 0.54;
+      mix-blend-mode: hard-light;
+      filter: contrast(1.32) brightness(1.04);
     }
     @keyframes jarCustomShake {
       0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
@@ -4893,9 +4898,12 @@
 
           <div class="quote-jar-wrap">
             <button class="quote-jar" id="quoteJarButton" type="button" aria-label="Lắc hũ và rút một thẻ quote">
+              <!-- Lớp 1 (phía sau): Ảnh bình pha lê gốc -->
+              <img class="jar-custom-photo jar-photo-back" src="./assets/assets/OPW/Nhatxuyen/System/glassjar.png" alt="" onload="this.classList.add('loaded'); this.closest('.quote-jar').classList.add('has-custom-photo');" onerror="this.style.display='none'" />
+              <!-- Lớp 2 (bên trong lòng bình): Viên ngọc từ link ảnh của bạn (hoặc 3D mặc định) -->
               <canvas class="jar-3d-canvas" id="jar3dCanvas" width="440" height="410" aria-hidden="true"></canvas>
-              <!-- Nếu muốn dùng ảnh hũ thật, dán link vào src="" bên dưới; Hũ 3D Canvas sẽ tự ẩn đi -->
-              <img class="jar-custom-photo" src="./assets/assets/OPW/Nhatxuyen/System/glassjar.png" alt="" onload="this.classList.add('loaded'); this.closest('.quote-jar').classList.add('has-custom-photo');" onerror="this.style.display='none'" />
+              <!-- Lớp 3 (mặt kính phía trước): Phủ gân pha lê & ánh sáng kính đè lên trước viên ngọc -->
+              <img class="jar-custom-photo jar-photo-front" src="./assets/assets/OPW/Nhatxuyen/System/glassjar.png" alt="" onload="this.classList.add('loaded');" onerror="this.style.display='none'" />
             </button>
           </div>
 
@@ -11306,6 +11314,23 @@
       const canvas = document.getElementById('jar3dCanvas');
       const hint = document.getElementById('quoteJarHint');
       const stage = document.getElementById('quoteCardStage');
+      /* =========================================================
+         DÁN LINK ẢNH MINH HỌA CÁC VIÊN NGỌC TRONG HŨ TẠI ĐÂY
+         (Nên dùng ảnh PNG nền trong suốt. Có thể thêm bao nhiêu link tùy thích;
+          nếu để trống hoặc ảnh lỗi thì tự dùng ngọc 3D mặc định)
+      ========================================================= */
+      const JAR_GEM_IMAGES = [
+        './assets/assets/OPW/Nhatxuyen/System/gem1.png',
+        './assets/assets/OPW/Nhatxuyen/System/gem2.png',
+        './assets/assets/OPW/Nhatxuyen/System/gem3.png'
+      ];
+      const loadedGemImgs = [];
+      JAR_GEM_IMAGES.forEach((src) => {
+        if (!src || !src.trim()) return;
+        const im = new Image();
+        im.onload = () => loadedGemImgs.push(im);
+        im.src = src.trim();
+      });
       if (!jar || !hint || !stage) return;
 
       function rRect(c2d, x, y, w, h, r) {
@@ -11413,17 +11438,17 @@
         }
 
         const gems3D = [];
-        const totalGems = 45;
+        const totalGems = 64;
         for (let i = 0; i < totalGems; i++) {
-          const row = Math.floor(i / 8);
-          const yNorm = 0.86 - (row / 5.2) * 1.38 + (Math.random() - 0.5) * 0.10;
-          const widthScale = yNorm > 0.2 ? 0.62 : (yNorm < -0.2 ? 0.96 : 0.84);
-          const maxR = 74 * widthScale;
-          const angle = i * 2.39996 + Math.random() * 0.45;
-          const rad = Math.sqrt((i % 8 + 0.5) / 8.2) * maxR;
+          const t = i / (totalGems - 1); // 0 = sát đáy bình -> 1 = sát vai bình
+          const yNorm = 0.92 - t * 1.62 + (Math.random() - 0.5) * 0.14;
+          // Lòng bình phình to ở vai trên và thon dần xuống đáy
+          const maxR = yNorm > 0.35 ? 38 : (yNorm < -0.15 ? 74 : 62);
+          const angle = i * 2.39996 + Math.random() * 0.5;
+          const rad = Math.sqrt(((i % 9) + 0.6) / 9.2) * maxR;
           const x = Math.cos(angle) * rad;
           const z = Math.sin(angle) * rad * 0.65;
-          const y = yNorm * 66 + 16;
+          const y = yNorm * 82 + 12;
           const isPearl = (i % 3 === 1);
           const palIdx = isPearl ? 2 : (i % 5);
           gems3D.push({
@@ -11432,9 +11457,10 @@
             vx: 0, vy: 0, vz: 0,
             rx: Math.random() * 6.28, ry: Math.random() * 6.28, rz: Math.random() * 6.28,
             vrx: 0, vry: 0, vrz: 0,
-            radius: 14.5 + (i % 4) * 1.9,
+            radius: 14.5 + (i % 4) * 2.1,
             type: isPearl ? 'pearl' : (i % 2 === 0 ? 'cut' : 'oct'),
-            palIdx
+            palIdx,
+            imgIdx: i
           });
         }
 
@@ -11495,7 +11521,21 @@
             const sx = g.x * scale;
             const sy = g.y * scale;
             const sr = g.radius * scale;
-
+            if (loadedGemImgs.length > 0) {
+              const gImg = loadedGemImgs[g.imgIdx % loadedGemImgs.length];
+              const size = sr * 2.35;
+              ctx.save();
+              ctx.translate(sx, sy);
+              ctx.rotate(g.rz * 0.45);
+              // Viên nằm sâu phía sau hơi tối nhẹ tạo chiều sâu 3D trong bình
+              ctx.filter = g.z < -8 ? 'brightness(0.82)' : 'brightness(1.02)';
+              ctx.shadowColor = 'rgba(18, 12, 24, 0.34)';
+              ctx.shadowBlur = 6;
+              ctx.shadowOffsetY = 2;
+              ctx.drawImage(gImg, -size * 0.5, -size * 0.5, size, size);
+              ctx.restore();
+              continue;
+            }
             if (g.type === 'pearl') {
               const pg = ctx.createRadialGradient(sx - sr * 0.34, sy - sr * 0.34, sr * 0.08, sx, sy, sr);
               pg.addColorStop(0, '#FFFFFF');
@@ -11549,18 +11589,14 @@
 
           if (shakeEnergy > 0.005) {
             shakeEnergy *= Math.pow(0.93, dt);
-            jarOffX = Math.sin(tSec * 52) * 14 * shakeEnergy;
-            jarOffY = Math.cos(tSec * 44) * 6 * shakeEnergy;
-            jarAngle = Math.sin(tSec * 48) * 0.17 * shakeEnergy;
-            lidBounce = Math.abs(Math.sin(tSec * 28)) * 16 * shakeEnergy;
-          } else {
-            shakeEnergy = 0;
-            jarOffX *= 0.8;
-            jarOffY *= 0.8;
-            jarAngle *= 0.8;
-            lidBounce *= 0.8;
-          }
-
+          if (!hasPhoto) {
+              jarOffX = Math.sin(tSec * 52) * 14 * shakeEnergy;
+              jarOffY = Math.cos(tSec * 44) * 6 * shakeEnergy;
+              jarAngle = Math.sin(tSec * 48) * 0.17 * shakeEnergy;
+              lidBounce = Math.abs(Math.sin(tSec * 28)) * 16 * shakeEnergy;
+            } else {
+              jarOffX = 0; jarOffY = 0; jarAngle = 0; lidBounce = 0;
+            }
           gems3D.forEach((g, idx) => {
             if (shakeEnergy > 0.05) {
               g.vy += 0.45 * dt;
@@ -11704,6 +11740,29 @@
             ctx.textBaseline = 'middle';
             ctx.fillText('𖤐', 0, 68);
           } else {
+            ctx.save();
+            // Bo khít lòng trong của glassjar.png, chừa viền thành pha lê bên ngoài
+            ctx.beginPath();
+            ctx.moveTo(-26, -64);
+            ctx.bezierCurveTo(-76, -54, -88, -28, -84, 4);
+            ctx.bezierCurveTo(-80, 38, -64, 72, -40, 96);
+            ctx.quadraticCurveTo(0, 104, 40, 96);
+            ctx.bezierCurveTo(64, 72, 80, 38, 84, 4);
+            ctx.bezierCurveTo(88, -28, 76, -54, 26, -64);
+            ctx.closePath();
+            ctx.clip();
+
+            ctx.globalAlpha = 0.94;
+            drawAllGems3D(palettes);
+
+            // Đổ bóng viền trong của thành bình pha lê để ngọc chìm hẳn vào trong
+            const innerDepth = ctx.createRadialGradient(0, 16, 46, 0, 18, 96);
+            innerDepth.addColorStop(0.55, 'rgba(0, 0, 0, 0)');
+            innerDepth.addColorStop(1.00, 'rgba(18, 28, 42, 0.34)');
+            ctx.fillStyle = innerDepth;
+            ctx.fillRect(-100, -76, 200, 190);
+            ctx.restore();
+          }
             ctx.save();
             ctx.beginPath();
             ctx.moveTo(-42, -48);
