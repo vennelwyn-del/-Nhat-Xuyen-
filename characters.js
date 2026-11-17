@@ -25,7 +25,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Trị vì Hội Học Sinh bằng bàn tay sắt bọc nhung và chiến lược tài chính sắc bén.",
     secret: "Mắc chứng Kỳ Mẫn cảm dị biệt (Anomalous Female Rut) gây sốt bốc hỏa thiêu đốt từ bên trong; phải lén dùng thuốc ức chế dạng xịt mũi mua từ chợ đen quốc tế ngay tại phòng nghỉ Penthouse Tầng 5, gây tác dụng phụ đau thắt ngực khi gặp lạnh.",
     relationships: "Chưa cập nhật — bạn có thể điền thêm quan hệ với các nhân vật khác tại đây.",
-    quote: "“Quyền lực ở Nhất Xuyên không nằm trên nắm đấm, mà nằm trên bàn đàm phán.”",
+    quote: "“Này bạn học, ánh mắt cậu vừa trượt từ huy hiệu Hội Trưởng trên ngực tôi xuống tận đường xẻ tà chân váy rồi đấy, định chối à? Không sao, chị đây không định trừ điểm hạnh kiểm của cậu đâu...”",
     extraNotes: ""
   },
   {
@@ -48,7 +48,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Bất cần, ngạo nghễ, chuyên dùng nắm đấm và áp chế sinh học để dẹp loạn đám Alpha cá biệt.",
     secret: "Đang chịu cơn Sốt Tiền Mẫn Cảm (Pre-Rut Prodrome) tuổi 18 làm mắt vằn tia máu và gáy bốc hỏa; do dị ứng nặng với thuốc xịt của Trạm Y tế nên phải trốn lên Sân thượng Tòa A hoặc bật điều hòa 18°C tại Penthouse để cắn răng chịu đựng một mình.",
     relationships: "",
-    quote: "",
+    quote: "“Nóng chết được, dán kín mít thế kia thì thở bằng cái gì? Còn nhìn nữa là tôi ném cậu cùng xấp đề Ngũ Tam kia xuống sân bóng bây giờ.”",
     extraNotes: ""
   },
   {
@@ -71,7 +71,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Là “bộ não quy củ” nắm giữ con dấu, biên bản mật và hồ sơ tài trợ toàn trường; điềm tĩnh, chuẩn mực đến từng nếp áo.",
     secret: "Mắc Hội chứng kháng thuốc ức chế do lén uống quá liều từ năm lớp 10 để thức đêm làm việc và tránh bị gia tộc ép liên hôn; Kỳ Heat đầu đời đang bị nén tới cực hạn, nhiều đêm phải cắn chặt khăn tay chịu cơn đau quặn bụng dưới tại phòng Thư ký Tầng 5.",
     relationships: "",
-    quote: "",
+    quote: "“Viên thuốc thứ tư trong ngày rồi mà nhiệt độ sau gáy vẫn không chịu hạ... Đừng gọi Bác sĩ Tạ. Tôi chỉ cần ngồi im năm phút thôi, ngày mai vẫn phải nộp báo cáo đúng hạn.”",
     extraNotes: ""
   },
   {
@@ -94,7 +94,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "“Hồ ly đeo kính” mỉm cười dịu dàng nhưng sẵn sàng khóa trật khớp cổ tay kẻ gây rối trong 1 giây.",
     secret: "Mắc hội chứng con cả cực đoan (Parentification), tự cấm bản thân phạm sai lầm hay yếu đuối; khi áp lực chạm ngưỡng chỉ dám trốn vào kho lưu trữ tối rơi vài giọt nước mắt trong im lặng rồi lau khô, chỉnh lại kính bước ra ngoài với vỏ bọc hoàn hảo.",
     relationships: "Anh trai ruột của Túc Triệu Thư (Lớp 10-1).",
-    quote: "",
+    quote: "(Một thành viên Hội học sinh từng run lẩy bẩy kể lại, mình vô tình nhìn thấy Trưởng Ban kỷ luật quyền uy vô đối nằm ôm gấu bông trên sô pha của Penthouse Hội học sinh.)",
     extraNotes: ""
   },
   {
@@ -117,7 +117,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Nghiêm khắc, thẳng tay, ngồi trực màn hình CCTV tại Tòa Án Học Đường Tầng 5 và dám dí thẳng máy đo T-80 vào gáy Phó Dã.",
     secret: "Tuyến thể khiếm khuyết đang thức tỉnh cưỡng chế thành Omega; đúng 22:00 mỗi đêm cô phải lén dùng mật mã admin xóa sạch các log cảnh báo rò rỉ mùi phát ra từ bàn học của chính mình trên máy chủ trung tâm để không bị tước học bổng.",
     relationships: "",
-    quote: "",
+    quote: "“Camera hành lang Tòa C có độ phân giải 4K kèm cảm biến nhiệt đấy. Hai người tưởng nấp sau chậu cây phát tài là lãng mạn lắm hả? Trên màn hình trực của tôi trông hai người chẳng khác gì hai cục thịt phát sáng đang bắt chấy cho nhau đâu. Giải tán trong 10 giây.”",
     extraNotes: ""
   },
   {
@@ -140,7 +140,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Lý tính tuyệt đối, sắc bén, là khắc tinh lớn nhất khiến sự ngạo mạn của Phó Dã bị vô hiệu hóa.",
     secret: "Mắc chứng ám ảnh cưỡng chế điểm số (Academic OCD); tuần trước trong đêm cày đề đến 3 giờ sáng trên Tầng 5 đã vô tình làm thất lạc một bản thảo đáp án Toán nâng cao có chữ ký mật của Hội đồng Ra đề và đang âm thầm truy quét camera để tìm lại.",
     relationships: "",
-    quote: "",
+    quote: "“Cậu vừa lãng phí của tôi 45 giây chỉ để phô trương cái mùi tin tức tố mà tôi hoàn toàn không ngửi thấy đấy. Xả mùi xong chưa? Xong rồi thì cầm bút lên giải nốt câu tích phân số 12 đi, còn 18 phút nữa là thu bài.”",
     extraNotes: ""
   },
   {
@@ -163,7 +163,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Lạnh lùng với cả trường nhưng ngoan ngoãn tuyệt đối và hay đỏ mặt khoe khoang mỗi khi nhắc tới “Anh hai”.",
     secret: "Là người duy nhất từng vô tình thấy anh trai Túc Vĩnh Sâm tháo kính khóc thầm trong góc tối phòng lưu trữ; từ đó nung nấu ý định tự biến mình thành một “bạo chúa kỷ luật không cảm xúc” để gánh hết mọi sự thù ghét và trách nhiệm thay cho anh.",
     relationships: "Em trai ruột của Túc Vĩnh Sâm (Lớp 12-2).",
-    quote: "",
+    quote: "“Theo Quy chế Kỷ luật Học viện, Điều X, Khoản Y…”",
     extraNotes: ""
   },
   {
@@ -186,7 +186,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Châm biếm, điềm tĩnh, nắm quyền sinh sát: ký lệnh cưỡng chế cách ly 48 giờ, đình chỉ tư cách thi Cao Khảo hoặc trừ thẳng 20 điểm rèn luyện.",
     secret: "Nắm giữ vân tay mở Tủ dược phẩm Class-S và đang bí mật lập “Danh Sách Đen Sinh Học” ghi chép toàn bộ chỉ số bất thường của Phó Dã, Thẩm Hoài Bích, Lục Tri Vi, Cố Khởi La — chờ xem kẻ nào sẽ sụp đổ đầu tiên trên bàn khám của mình.",
     relationships: "",
-    quote: "",
+    quote: "“Thân nhiệt 36.7 độ C, chỉ số T-80 bằng không. Muốn trốn tiết Toán của lão Ban thì tìm cái cớ nào sáng tạo hơn đi. Còn nếu thực sự muốn thử cảm giác nằm trong buồng cách ly áp suất âm, tôi rất sẵn lòng tặng em một mũi Class-S tĩnh mạch.”",
     extraNotes: ""
   },
   {
@@ -209,7 +209,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Thanh cao, xa cách, nhạy cảm cực độ với âm thanh và tin tức tố xung quanh.",
     secret: "Mắc chứng sang chấn tâm lý (PTSD) và sợ Alpha cực độ do năm 15 tuổi suýt bị một Alpha họ hàng cưỡng bức đánh dấu nhưng lại bị chính gia đình đổ lỗi; mỗi khi rơi vào trạng thái phân ly trong Xưởng Mỹ thuật Tòa C, y thường tự trích máu đầu ngón tay hòa vào màu vẽ hoa bách hợp trắng, còn cây trâm vàng trên tóc là vũ khí y sẵn sàng dùng để đâm kẻ nào dám cưỡng ép mình.",
     relationships: "",
-    quote: "",
+    quote: "(Nhìn thấy Alpha, khẽ khàng lấy khăn tay ra che mũi) “Tôi bị cảm thôi, không sao.”",
     extraNotes: ""
   },
   {
@@ -232,7 +232,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Kiêu hãnh, sắc sảo, luôn giữ vị trí trung tâm trong mọi hoạt động nghệ thuật và truyền thông.",
     secret: "Mắc Hội chứng ám ảnh sự chú ý do bị gia tộc xem nhẹ hơn anh trai Alpha Vu Cảnh Hiên; thường ngầm thao túng thứ tự biểu diễn và độ nổi bật của các thành viên trong Ban Âm nhạc để giữ vị trí trung tâm, dù sâu bên trong luôn bất an sợ bị bỏ rơi nếu đánh mất ánh hào quang.",
     relationships: "",
-    quote: "",
+    quote: "“Honey,tôi không có thói quen nhường lại những gì mình đã để mắt đến, nhất là khi tôi biết rõ mình có thể làm tốt hơn bất kỳ ai.”",
     extraNotes: ""
   },
   {
@@ -255,7 +255,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Mặt lạnh nhưng mở miệng là nói những câu hài nhạt tỉnh bơ và cực kỳ thích đứng nép sau cột hành lang “hóng drama”.",
     secret: "Sợ rớt khỏi Top 3 mất tiền trợ cấp nuôi bà ở quê; dù có bộ óc tranh biện sắc bén trên giấy tờ nhưng lại mắc chứng “ngây thơ xã hội”, hoàn toàn mù tịt trước các bẫy tâm lý và sự lợi dụng của người khác.",
     relationships: "",
-    quote: "",
+    quote: "“Chúng ta không màng thế sự, là drama tự tìm tới ta.” (Cũng là Nhiên: đứng núp sau tường ngóng người khác cãi nhau)",
     extraNotes: ""
   },
   {
@@ -278,7 +278,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Bề ngoài là nữ sinh học lực trung bình vô tư (“Bé sóc nhỏ / Túi khí tích cực” của Lớp 12-4), thực chất sở hữu trí tuệ Học bá đẳng cấp Top 5 toàn khối.",
     secret: "Từng bị nhóm bạn thân thời cấp 2 phản bội, vu khống và bạo lực lạnh sau khi giành học bổng nên mắc chấn thương tâm lý sợ bị bỏ rơi; cô cố tình tính sai để ghìm điểm ở Hạng 88 an toàn, lén giải đề Toán - Hóa quốc gia dưới gầm bàn rồi gạch nát vứt đi, dùng nụ cười ngọt ngào làm lớp khiên che giấu sự cô độc tuyệt đối ghi trong cuốn sổ khóa mã số.",
     relationships: "",
-    quote: "",
+    quote: "“Tớ còn dư hai cây kẹo mút này, cậu ăn không?”",
     extraNotes: ""
   },
   {
@@ -301,7 +301,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Ít nói, cảnh giác, sống khép kín ngoài lề đám đông nhưng âm thầm mềm lòng với mèo hoang.",
     secret: "Năm 12 tuổi từng đâm mảnh chai vào cổ người cha nát rượu để tự vệ sau khi mẹ và chị gái bị bạo hành qua đời; năm 15 tuổi khi phát hiện mình phân hóa thành Omega, vì ghê tởm và sợ hãi bản năng nên đã tự cầm dao rọc giấy rạch nát tuyến thể sau gáy, để lại mô sẹo lồi biến dạng đau buốt mỗi khi trở trời.",
     relationships: "",
-    quote: "",
+    quote: "(Lẩm bẩm) “Hôm nay phải tăng ca, hết đồ ăn cho mèo rồi…”",
     extraNotes: ""
   },
   {
@@ -311,7 +311,6 @@ window.NHAT_XUYEN_CHARS = [
     gradeLabel: "Khối 11 (Cao Nhị)",
     classRoom: "11-1",
     rank: "Hạng 14/150 (Cố định)",
-    desk: "Đang cập nhật",
     role: "OC của crt · Lớp 11-1",
     abo: "Alpha lặn",
     age: "17 tuổi",
@@ -334,20 +333,41 @@ window.NHAT_XUYEN_CHARS = [
     gradeLabel: "Khối 11 (Cao Nhị)",
     classRoom: "11-2",
     rank: "Hạng 17/150 (Cố định)",
-    desk: "Đang cập nhật",
     role: "OC của crt · Lớp 11-2",
     abo: "Đang cập nhật",
     age: "17 tuổi",
     origin: "OC của creator (thứ hạng #17 cố định trên Hồng Bảng Khối 11).",
     img: "",
     isOc: true,
-    appearance: "Bạn điền mô tả ngoại hình & tác phong của Thượng Tư Úc tại đây trong file characters.js.",
-    scent: "Đang cập nhật",
-    patchInfo: "Đang cập nhật",
+    appearance: "Chiều cao 1m72 (Trước phân hóa, sau phân hóa vọt lên 1m77), vóc dáng của người hay chơi thể thao, cao gầy săn chắc khỏe khoắn. Ngũ quan lai Tây. Lông mày kiếm, mắt sáng, ngũ quan sắc sảo, làn da trắng lạnh. Đôi mắt màu xanh đại dương với con ngươi chính giữa màu vàng kim, hốc mắt sâu. Sống mũi cao thẳng, môi mỏng hơi nhạt màu. Tóc đen mun dài đến ⅔ lưng, mái lòa xòa trước trán, quá lông mày một chút, không chia ngôi.",
+    scent: "Mùi trầm hương thêm một tầng Tuyết lạnh (Sau khi phân hóa, giờ chỉ tỏa ra mùi trầm hương nhạt).",
+    patchInfo: "Tin tức tố thanh nhã, mang đến cảm giác thư thái, ngọt nhẹ ở phần đầu nhưng hơi đắng hậu vị, ở mức dao động dữ dội thì chuyển sang lạnh buốt và đắng ngắt.",
     personality: "Đang cập nhật",
-    secret: "Đang cập nhật bí mật cốt lõi (bạn sửa trực tiếp trong characters.js).",
+    secret: "Đang sốt nhẹ trước kỳ bộc phát thứ cấp nhưng không nhận ra, vì cơn sốt này thi thoảng cứ xuất hiện sau khi uống thuốc kích thích phân hóa đặc chế của Thượng gia nên Tư Úc sớm đã quen đến mức chai sạn rồi.",
     relationships: "",
-    quote: "",
+    quote: "(Ngoắc nhẹ ngón trỏ) “Bạn học, tôi là người rất dễ nói chuyện đấy, đừng dè dặt thế chứ.”",
+    extraNotes: ""
+  },
+  {
+    id: "yen-tu-tranh",
+    name: "Yến Tư Tranh",
+    grade: "10",
+    gradeLabel: "Khối 10 (Cao Nhất)",
+    classRoom: "10-1",
+    rank: "Hạng 1/150 (Cố định)",
+    role: "OC của crt · Lớp 10-1",
+    abo: "Nam Omega",
+    age: "16 tuổi",
+    origin: "OC của creator (thứ hạng #1 cố định trên Hồng Bảng Khối 10).",
+    img: "",
+    isOc: true,
+    appearance: "1m70, 58kg.",
+    scent: "Không tiện công khai.",
+    patchInfo: "Miếng dán sau gáy có hình mèo con",
+    personality: "Đang cập nhật",
+    secret: "Đã là secret thì ai lại ghi vào~",
+    relationships: "",
+    quote: "Meo meo",
     extraNotes: ""
   }
 ];
