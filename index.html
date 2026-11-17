@@ -3867,997 +3867,6 @@
       color: #FFB4B4;
       font-size: 0.96rem;
     }
-  
-
-    /* =========================================================
-       HŨ THẺ QUOTE ĐỰNG NGỌC & CARD GOTHIC BAROQUE BÓNG LỘN
-       (Xanh dương -> Đỏ Crimson | Xanh lá -> Hồng Rose Pink)
-    ========================================================= */
-   /* =========================================================
-       HŨ NGỌC & CARD QUOTES GOTHIC BAROQUE (BÓNG LỘN & BLINK BLINK)
-       Web Xanh Dương -> Thẻ Đỏ | Web Xanh Lá -> Thẻ Hồng
-    ========================================================= */
-    :root {
-      --qcard-accent:        #B61932;
-      --qcard-accent-deep:   #5B0816;
-      --qcard-accent-bright: #FF4D6D;
-      --qcard-glow:          rgba(218, 28, 62, 0.72);
-      --qcard-glow-soft:     rgba(255, 86, 118, 0.36);
-      --qcard-ribbon:        linear-gradient(110deg, #4D0612 0%, #9E1329 52%, #D42845 100%);
-      --qcard-back-bg:       radial-gradient(circle at 50% 38%, rgba(255, 115, 138, 0.34), transparent 52%), linear-gradient(155deg, #6E0B1D 0%, #3A0610 56%, #1D0207 100%);
-      --qcard-front-bg:      radial-gradient(circle at 84% 12%, rgba(255, 224, 230, 0.70), transparent 42%), radial-gradient(circle at 12% 90%, rgba(245, 188, 198, 0.45), transparent 45%), linear-gradient(150deg, #FFFFFF 0%, #FFF7F8 58%, #FCECEF 100%);
-      --qcard-ink:           #261015;
-      --qcard-muted:         #70444E;
-      --qcard-rose-dark:     #7A0B1D;
-      --qcard-rose-mid:      #BA1C35;
-      --qcard-rose-light:    #F25C74;
-      --qgem-primary:        #D62442;
-      --qgem-primary-lt:     #FF8FA3;
-    }
-
-    body.afternoon-mode {
-      --qcard-accent:        #E04E8A;
-      --qcard-accent-deep:   #861C4B;
-      --qcard-accent-bright: #FF94C5;
-      --qcard-glow:          rgba(255, 102, 178, 0.76);
-      --qcard-glow-soft:     rgba(255, 150, 206, 0.42);
-      --qcard-ribbon:        linear-gradient(110deg, #7E1B48 0%, #CF417E 50%, #FF7DB4 100%);
-      --qcard-back-bg:       radial-gradient(circle at 50% 38%, rgba(255, 182, 220, 0.38), transparent 52%), linear-gradient(155deg, #A93066 0%, #6A173E 56%, #3B0821 100%);
-      --qcard-front-bg:      radial-gradient(circle at 84% 12%, rgba(255, 224, 240, 0.75), transparent 42%), radial-gradient(circle at 12% 90%, rgba(255, 198, 226, 0.50), transparent 45%), linear-gradient(150deg, #FFFFFF 0%, #FFF7FB 58%, #FDEBF4 100%);
-      --qcard-ink:           #321222;
-      --qcard-muted:         #7E4863;
-      --qcard-rose-dark:     #A6245B;
-      --qcard-rose-mid:      #E85A97;
-      --qcard-rose-light:    #FF9ECA;
-      --qgem-primary:        #EC5A96;
-      --qgem-primary-lt:     #FFB5D6;
-    }
-
-    .quote-draw-panel {
-      position: relative;
-      isolation: isolate;
-      width: 100%;
-      max-width: 340px;
-      margin: 17px auto 0;
-      padding: 16px 13px 17px;
-      overflow: visible;
-      text-align: center;
-      border: 1px solid rgba(255, 255, 255, 0.30);
-      border-radius: 19px;
-      background:
-        radial-gradient(ellipse at 50% 27%, rgba(255,255,255,0.17), transparent 56%),
-        linear-gradient(155deg, rgba(255,255,255,0.15), rgba(255,255,255,0.055));
-      box-shadow: 0 10px 26px rgba(24, 43, 66, 0.13), inset 0 1px 0 rgba(255,255,255,0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .quote-draw-panel::before,
-    .quote-draw-panel::after {
-      content: "✧";
-      position: absolute;
-      z-index: 0;
-      color: rgba(255, 242, 178, 0.25);
-      pointer-events: none;
-    }
-    .quote-draw-panel::before {
-      top: 76px;
-      left: 13px;
-      font-size: 1.6rem;
-      transform: rotate(-15deg);
-    }
-    .quote-draw-panel::after {
-      right: 14px;
-      top: 140px;
-      font-size: 1.25rem;
-      transform: rotate(13deg);
-    }
-    .quote-draw-title {
-      margin: 0;
-      color: var(--gold-text);
-      font-size: 1.02rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-shadow: 0 1px 8px rgba(0,0,0,0.25);
-    }
-    .quote-draw-subtitle {
-      margin: 5px 0 0;
-      color: rgba(255,253,245,0.84);
-      font-size: 0.88rem;
-      line-height: 1.35;
-    }
-
-    .quote-jar-wrap {
-      position: relative;
-      width: 100%;
-      display: grid;
-      justify-items: center;
-      margin: 6px auto 0;
-    }
-    .quote-jar-wrap::before {
-      content: "";
-      position: absolute;
-      z-index: -1;
-      top: 44px;
-      left: 50%;
-      width: 158px;
-      height: 126px;
-      transform: translateX(-50%);
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--qcard-glow-soft) 0%, rgba(255, 242, 178, 0.16) 55%, transparent 75%);
-      filter: blur(18px);
-      opacity: .76;
-      transition: opacity .35s ease, transform .35s ease;
-    }
-    .quote-jar-wrap:has(.quote-jar.is-shaking)::before {
-      opacity: 1;
-      transform: translateX(-50%) scale(1.26);
-    }
-
-    .quote-jar {
-      position: relative;
-      display: block;
-      width: 190px;
-      height: 180px;
-      margin: 0 auto;
-      padding: 0;
-      border: 0;
-      outline-offset: 3px;
-      background: transparent;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      filter: drop-shadow(0 10px 14px rgba(18,32,48,0.22));
-      transform-origin: 50% 82%;
-    }
-    .quote-jar:focus-visible {
-      outline: 2px solid var(--gold-text);
-      border-radius: 24px;
-    }
-    .quote-jar:disabled { cursor: wait; }
-
-    .jar-burst-glow {
-      position: absolute;
-      z-index: 6;
-      top: 12px;
-      left: 50%;
-      width: 92px;
-      height: 92px;
-      transform: translate(-50%, 8px) scale(0.25);
-      border-radius: 50%;
-      background: radial-gradient(circle, #FFFFFF 0%, var(--qcard-accent-bright) 42%, transparent 75%);
-      opacity: 0;
-      pointer-events: none;
-    }
-    .quote-jar.is-bursting .jar-burst-glow {
-      animation: jarBurstOut 0.72s ease-out forwards;
-    }
-    @keyframes jarBurstOut {
-      0%   { opacity: 0; transform: translate(-50%, 8px) scale(0.25); }
-      35%  { opacity: 0.95; transform: translate(-50%, -26px) scale(1.22); }
-      100% { opacity: 0; transform: translate(-50%, -56px) scale(1.60); }
-    }
-
-    /* Khi gắn ảnh hũ thật vào .jar-custom-photo -> tự ẩn hũ CSS mặc định */
-    .jar-custom-photo {
-      position: relative;
-      z-index: 4;
-      display: none;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      pointer-events: none;
-    }
-    .jar-custom-photo.loaded { display: block; }
-    .quote-jar.has-custom-photo .jar-lid,
-    .quote-jar.has-custom-photo .jar-neck,
-    .quote-jar.has-custom-photo .jar-body {
-      display: none;
-    }
-
-    .jar-lid {
-      position: absolute;
-      z-index: 5;
-      top: 8px;
-      left: 50%;
-      width: 82px;
-      height: 19px;
-      transform: translateX(-50%);
-      border: 1px solid rgba(255,255,255,0.92);
-      border-radius: 8px 8px 4px 4px;
-      background:
-        repeating-linear-gradient(90deg, rgba(255,255,255,0.22) 0 3px, rgba(48,66,88,0.18) 3px 6px),
-        linear-gradient(180deg, #FFFFFF 0%, #D9E2EC 38%, #8EA2B8 72%, #CAD5E2 100%);
-      box-shadow:
-        0 5px 10px rgba(18,32,48,0.25),
-        inset 0 2px 3px rgba(255,255,255,0.96),
-        inset 0 -2px 4px rgba(32,48,66,0.34);
-      transform-origin: 50% 100%;
-    }
-    .jar-lid::after {
-      content: "";
-      position: absolute;
-      left: 8px;
-      right: 8px;
-      top: 2px;
-      height: 3px;
-      border-radius: 99px;
-      background: rgba(255,255,255,0.82);
-    }
-
-    .jar-neck {
-      position: absolute;
-      z-index: 3;
-      top: 25px;
-      left: 50%;
-      width: 72px;
-      height: 18px;
-      transform: translateX(-50%);
-      border: 2px solid rgba(255,255,255,0.82);
-      border-bottom: 0;
-      border-radius: 8px 8px 0 0;
-      background:
-        linear-gradient(90deg, rgba(255,255,255,0.45) 0 14%, rgba(255,255,255,0.12) 26% 68%, rgba(255,255,255,0.48) 84% 100%),
-        linear-gradient(180deg, rgba(200,224,244,0.34), rgba(255,255,255,0.08));
-      box-shadow: inset 0 4px 6px rgba(20,38,58,0.18);
-    }
-
-    .jar-body {
-      position: absolute;
-      top: 39px;
-      left: 50%;
-      width: 142px;
-      height: 132px;
-      overflow: hidden;
-      transform: translateX(-50%);
-      border: 2.2px solid rgba(255,255,255,0.88);
-      border-radius: 38px 38px 34px 34px / 30px 30px 34px 34px;
-      background:
-        radial-gradient(ellipse at 50% 14%, rgba(255,255,255,0.46), transparent 52%),
-        linear-gradient(104deg, rgba(255,255,255,0.42) 0%, rgba(255,255,255,0.08) 28%, rgba(215,234,250,0.18) 58%, rgba(255,255,255,0.28) 100%),
-        linear-gradient(180deg, rgba(235,246,255,0.22) 0%, rgba(16,28,44,0.20) 100%);
-      box-shadow:
-        inset 10px 0 16px rgba(255,255,255,0.34),
-        inset -9px 0 16px rgba(28,48,72,0.22),
-        inset 0 -10px 14px rgba(255,255,255,0.42),
-        inset 0 6px 10px rgba(255,255,255,0.30),
-        0 10px 22px rgba(18,32,48,0.24);
-    }
-    .jar-body::before {
-      content: "";
-      position: absolute;
-      z-index: 6;
-      top: 10px;
-      left: 9px;
-      width: 14px;
-      height: 88px;
-      border-radius: 99px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.42) 48%, rgba(255,255,255,0.06) 100%);
-      filter: blur(0.6px);
-      opacity: .84;
-      pointer-events: none;
-    }
-    .jar-body::after {
-      content: "";
-      position: absolute;
-      z-index: 6;
-      right: 8px;
-      top: 16px;
-      bottom: 12px;
-      width: 6px;
-      border-radius: 99px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.52), rgba(255,255,255,0.16));
-      filter: blur(0.6px);
-      pointer-events: none;
-    }
-
-    .jar-glass-base {
-      position: absolute;
-      z-index: 5;
-      left: 6px;
-      right: 6px;
-      bottom: 2px;
-      height: 10px;
-      border-radius: 0 0 28px 28px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.62));
-      border-top: 1px solid rgba(255,255,255,0.46);
-      pointer-events: none;
-    }
-
-    .jar-gems-bed {
-      position: absolute;
-      inset: 10px 4px 7px;
-      z-index: 2;
-      pointer-events: none;
-    }
-    .jar-gem {
-      position: absolute;
-      left: var(--gx, 50%);
-      top: var(--gy, 50%);
-      width: var(--gs, 24px);
-      height: var(--gs, 24px);
-      transform: translate(-50%, -50%) rotate(var(--gr, 0deg));
-      will-change: transform;
-      animation: gemRestShimmer 3.6s ease-in-out infinite;
-      animation-delay: var(--gd, 0s);
-    }
-    .jar-gem.gem-facet {
-      clip-path: polygon(50% 2%, 88% 24%, 98% 62%, 72% 96%, 28% 96%, 2% 62%, 12% 24%);
-      background:
-        radial-gradient(circle at 32% 28%, rgba(255,255,255,0.95) 0 12%, transparent 28%),
-        conic-gradient(from var(--gr, 0deg) at 50% 50%,
-          #FFFFFF 0deg 35deg,
-          var(--gc-1, var(--qgem-primary)) 35deg 95deg,
-          var(--gc-2, var(--qcard-accent-deep)) 95deg 155deg,
-          var(--gc-3, var(--qgem-primary-lt)) 155deg 225deg,
-          var(--gc-1, var(--qgem-primary)) 225deg 290deg,
-          var(--gc-2, var(--qcard-accent-deep)) 290deg 330deg,
-          #FFFFFF 330deg 360deg);
-      filter: drop-shadow(0 2px 3px rgba(14,16,28,0.42));
-    }
-    .jar-gem.gem-facet::after {
-      content: "";
-      position: absolute;
-      inset: 22%;
-      clip-path: polygon(50% 0%, 95% 36%, 78% 95%, 22% 95%, 5% 36%);
-      background: linear-gradient(135deg, rgba(255,255,255,0.72), rgba(255,255,255,0.08));
-      border: 1px solid rgba(255,255,255,0.45);
-    }
-    .jar-gem.gem-diamond {
-      clip-path: polygon(50% 0%, 100% 42%, 50% 100%, 0% 42%);
-      background:
-        radial-gradient(circle at 35% 30%, #FFFFFF 0 14%, transparent 34%),
-        conic-gradient(from 12deg at 50% 44%,
-          #FFFFFF 0deg 45deg,
-          var(--gc-3, #FFDCE8) 45deg 130deg,
-          var(--gc-1, var(--qgem-primary)) 130deg 225deg,
-          var(--gc-2, var(--qcard-accent-deep)) 225deg 315deg,
-          #FFFFFF 315deg 360deg);
-      filter: drop-shadow(0 2px 3px rgba(14,16,28,0.45));
-    }
-    .jar-gem.gem-pearl {
-      border-radius: 50%;
-      background:
-        radial-gradient(circle at 30% 26%, #FFFFFF 0%, #FFFDF9 18%, var(--gc-3, #F5E6EC) 52%, var(--gc-2, #A894A4) 88%, #6D5D6A 100%);
-      box-shadow:
-        inset -3px -4px 6px rgba(45,35,52,0.28),
-        0 2px 4px rgba(14,16,28,0.38);
-    }
-    .jar-gem.gem-pearl::after {
-      content: "";
-      position: absolute;
-      top: 18%;
-      left: 22%;
-      width: 26%;
-      height: 18%;
-      border-radius: 50%;
-      background: rgba(255,255,255,0.95);
-      transform: rotate(-28deg);
-    }
-    .jar-gem.depth-back  { z-index: 1; opacity: 0.86; }
-    .jar-gem.depth-mid   { z-index: 2; }
-    .jar-gem.depth-front { z-index: 3; }
-
-    .gem-c-main     { --gc-1: var(--qgem-primary); --gc-2: var(--qcard-accent-deep); --gc-3: var(--qgem-primary-lt); }
-    .gem-c-gold     { --gc-1: #F3C465; --gc-2: #8C6018; --gc-3: #FFF4C8; }
-    .gem-c-ice      { --gc-1: #B4D7F5; --gc-2: #4A749C; --gc-3: #F2FAFF; }
-    .gem-c-amethyst { --gc-1: #C282D8; --gc-2: #58286B; --gc-3: #F6DCFF; }
-    .gem-c-pearl    { --gc-2: #A695A4; --gc-3: #FBEFF4; }
-
-    @keyframes gemRestShimmer {
-      0%, 100% { filter: brightness(0.98) drop-shadow(0 2px 3px rgba(14,16,28,0.40)); }
-      50%      { filter: brightness(1.14) drop-shadow(0 2px 5px rgba(255,255,255,0.34)); }
-    }
-
-    .jar-mark {
-      position: absolute;
-      z-index: 7;
-      left: 50%;
-      bottom: 10px;
-      width: 44px;
-      height: 24px;
-      display: grid;
-      place-items: center;
-      transform: translateX(-50%);
-      border: 1px solid rgba(255,255,255,0.92);
-      border-radius: 7px;
-      background: linear-gradient(145deg, rgba(255,252,244,0.95), rgba(242,232,226,0.90));
-      color: var(--qcard-accent-deep);
-      font-size: .92rem;
-      font-weight: 700;
-      box-shadow: 0 3px 8px rgba(18,28,42,0.28), inset 0 1px 0 #FFFFFF;
-    }
-
-    .jar-sparkle {
-      position: absolute;
-      z-index: 8;
-      color: var(--gold-text);
-      text-shadow: 0 0 10px var(--qcard-glow), 0 0 16px rgba(255,255,255,0.9);
-      pointer-events: none;
-      animation: jarTwinkle 1.6s ease-in-out infinite;
-    }
-    .jar-sparkle.sparkle-left  { top: 54px; left: 12px; font-size: 1.1rem; }
-    .jar-sparkle.sparkle-right { top: 88px; right: 7px; font-size: .88rem; animation-delay: .5s; }
-    .jar-sparkle.sparkle-top   { top: 20px; right: 32px; font-size: .78rem; animation-delay: .9s; }
-    @keyframes jarTwinkle {
-      0%, 100% { opacity: .35; transform: scale(.72) rotate(0deg); }
-      50%      { opacity: 1; transform: scale(1.24) rotate(22deg); }
-    }
-
-    .quote-jar.is-shaking {
-      animation: quoteJarViolentShake 0.85s cubic-bezier(.36,.07,.19,.97);
-    }
-    .quote-jar.is-shaking .jar-lid {
-      animation: quoteJarLidPop 0.85s ease-in-out;
-    }
-    .quote-jar.is-shaking .jar-gem {
-      animation: quoteGemTumble 0.42s ease-in-out infinite alternate;
-      animation-delay: var(--gd, 0s);
-    }
-    @keyframes quoteJarViolentShake {
-      0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-      8%  { transform: translate3d(-11px, -4px, 0) rotate(-11deg) scale(1.04, 0.96); }
-      18% { transform: translate3d(12px, -6px, 0) rotate(12deg) scale(0.97, 1.05); }
-      28% { transform: translate3d(-12px, 3px, 0) rotate(-10deg) scale(1.04, 0.96); }
-      38% { transform: translate3d(11px, -7px, 0) rotate(11deg) scale(0.96, 1.06); }
-      48% { transform: translate3d(-10px, 2px, 0) rotate(-9deg) scale(1.03, 0.97); }
-      58% { transform: translate3d(10px, -5px, 0) rotate(8deg) scale(0.98, 1.04); }
-      68% { transform: translate3d(-8px, -2px, 0) rotate(-7deg); }
-      78% { transform: translate3d(7px, -4px, 0) rotate(5deg); }
-      88% { transform: translate3d(-4px, 1px, 0) rotate(-3deg); }
-    }
-    @keyframes quoteJarLidPop {
-      0%, 100% { transform: translateX(-50%) translateY(0) rotate(0deg); }
-      18% { transform: translateX(-50%) translateY(-10px) rotate(-12deg); }
-      38% { transform: translateX(-50%) translateY(-6px) rotate(13deg); }
-      58% { transform: translateX(-50%) translateY(-12px) rotate(-9deg); }
-      78% { transform: translateX(-50%) translateY(-4px) rotate(7deg); }
-    }
-    @keyframes quoteGemTumble {
-      0%   { transform: translate(-50%, -50%) rotate(calc(var(--gr, 0deg) - 24deg)) translate(-4px, 3px) scale(1.05); }
-      50%  { transform: translate(-50%, -50%) rotate(calc(var(--gr, 0deg) + 26deg)) translate(5px, -8px) scale(0.96); }
-      100% { transform: translate(-50%, -50%) rotate(calc(var(--gr, 0deg) - 16deg)) translate(-3px, -4px) scale(1.04); }
-    }
-
-    .quote-card-stage {
-      position: relative;
-      z-index: 6;
-      width: 100%;
-      min-height: 0;
-      padding-top: 8px;
-      perspective: 1200px;
-    }
-
-    .quote-reveal-card {
-      position: relative;
-      width: min(100%, 272px);
-      margin: 0 auto;
-      transform-origin: 50% 10%;
-    }
-    .quote-reveal-card.is-arriving {
-      animation: quoteCardBurstOut 0.88s cubic-bezier(.16, .88, .26, 1.18) both;
-    }
-    .quote-reveal-card.is-leaving {
-      animation: quoteCardLeave 0.26s ease-in forwards;
-    }
-    @keyframes quoteCardBurstOut {
-      0%   { opacity: 0; transform: translate3d(0, -100px, 0) rotate(-18deg) scale(0.28); }
-      45%  { opacity: 1; transform: translate3d(6px, -14px, 0) rotate(6deg) scale(1.06); }
-      72%  { opacity: 1; transform: translate3d(-4px, 4px, 0) rotate(-2.5deg) scale(0.98); }
-      100% { opacity: 1; transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
-    }
-    @keyframes quoteCardLeave {
-      to { opacity: 0; transform: translate3d(14px, -24px, 0) rotate(9deg) scale(0.82); }
-    }
-
-    .quote-card-float {
-      position: relative;
-      animation: quoteCardLevitate 3.4s ease-in-out infinite;
-    }
-    @keyframes quoteCardLevitate {
-      0%, 100% { transform: translate3d(0, 0px, 0) rotate(-0.6deg); }
-      50%      { transform: translate3d(0, -9px, 0) rotate(0.7deg); }
-    }
-
-    .card-orbit-sparkle {
-      position: absolute;
-      z-index: 12;
-      pointer-events: none;
-      color: #FFFFFF;
-      text-shadow: 0 0 8px var(--qcard-accent-bright), 0 0 16px var(--qcard-glow);
-      animation: blinkStar 1.25s ease-in-out infinite;
-    }
-    .card-orbit-sparkle.os-1 { top: -10px; left: 26px;  font-size: 1.05rem; animation-delay: 0s; }
-    .card-orbit-sparkle.os-2 { top: 28px;  right: -9px; font-size: 0.92rem; animation-delay: 0.35s; }
-    .card-orbit-sparkle.os-3 { bottom: 38px; left: -9px; font-size: 0.95rem; animation-delay: 0.7s; }
-    .card-orbit-sparkle.os-4 { bottom: -10px; right: 24px; font-size: 1.1rem; animation-delay: 0.95s; }
-    @keyframes blinkStar {
-      0%, 100% { opacity: 0.22; transform: scale(0.65) rotate(0deg); }
-      50%      { opacity: 1; transform: scale(1.32) rotate(24deg); }
-    }
-
-    .quote-card-flip-button {
-      display: block;
-      width: 100%;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      border-radius: 16px;
-      background: transparent;
-      color: inherit;
-      text-align: left;
-      cursor: pointer;
-      -webkit-tap-highlight-color: transparent;
-      perspective: 1200px;
-    }
-    .quote-card-flip-button:focus-visible {
-      outline: 2px solid var(--qcard-accent-bright);
-      outline-offset: 5px;
-    }
-    .quote-card-flipper {
-      display: grid;
-      width: 100%;
-      transform-style: preserve-3d;
-      -webkit-transform-style: preserve-3d;
-      transition: transform 0.85s cubic-bezier(.22, .82, .20, 1);
-    }
-    .quote-reveal-card.is-flipped .quote-card-flipper {
-      transform: rotateY(180deg);
-    }
-
-    .quote-card-face {
-      position: relative;
-      grid-area: 1 / 1;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border-radius: 16px;
-      border: 1.5px solid rgba(255, 255, 255, 0.92);
-      backface-visibility: hidden;
-      -webkit-backface-visibility: hidden;
-      animation: cardAuraBlink 2.1s ease-in-out infinite;
-    }
-    @keyframes cardAuraBlink {
-      0%, 100% {
-        box-shadow:
-          0 12px 26px rgba(18, 12, 22, 0.28),
-          0 0 14px var(--qcard-glow-soft),
-          inset 0 1px 0 rgba(255,255,255,0.85);
-      }
-      50% {
-        box-shadow:
-          0 16px 32px rgba(18, 12, 22, 0.34),
-          0 0 28px var(--qcard-glow),
-          0 0 42px var(--qcard-glow-soft),
-          inset 0 1px 0 rgba(255,255,255,0.98);
-      }
-    }
-
-    .card-gloss-sheen {
-      position: absolute;
-      inset: 0;
-      z-index: 9;
-      pointer-events: none;
-      background: linear-gradient(
-        118deg,
-        transparent 18%,
-        rgba(255, 255, 255, 0.06) 36%,
-        rgba(255, 255, 255, 0.62) 48%,
-        rgba(255, 255, 255, 0.14) 56%,
-        transparent 74%
-      );
-      transform: translateX(-135%);
-      animation: cardGlossSweep 3.1s ease-in-out infinite;
-    }
-    @keyframes cardGlossSweep {
-      0%   { transform: translateX(-135%); }
-      45%, 100% { transform: translateX(145%); }
-    }
-
-    .quote-card-back {
-      min-height: 356px;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 16px;
-      color: #FFFDF8;
-      text-align: center;
-      background: var(--qcard-back-bg);
-    }
-    .quote-card-back::before,
-    .quote-card-back::after {
-      content: "";
-      position: absolute;
-      pointer-events: none;
-      border: 1px solid rgba(255, 255, 255, 0.44);
-      border-radius: 12px;
-    }
-    .quote-card-back::before { inset: 9px; }
-    .quote-card-back::after  { inset: 15px; border-style: dashed; border-color: rgba(255, 232, 240, 0.42); }
-    .quote-card-back-ornament {
-      position: relative;
-      z-index: 2;
-      margin-bottom: 10px;
-      color: rgba(255, 242, 224, 0.92);
-      font-size: 1.05rem;
-      letter-spacing: 0.45em;
-      text-indent: 0.45em;
-      text-shadow: 0 0 10px var(--qcard-accent-bright);
-    }
-    .quote-card-seal {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      place-items: center;
-      width: 78px;
-      height: 78px;
-      margin-bottom: 14px;
-      border: 1.5px solid rgba(255, 255, 255, 0.86);
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255,255,255,0.28), var(--qcard-accent) 72%, var(--qcard-accent-deep) 100%);
-      color: #FFFFFF;
-      font-size: 2rem;
-      box-shadow: 0 0 0 6px rgba(255,255,255,0.08), 0 0 24px var(--qcard-glow);
-      animation: quoteSealPulse 1.9s ease-in-out infinite;
-    }
-    @keyframes quoteSealPulse {
-      0%, 100% { transform: scale(1); box-shadow: 0 0 0 6px rgba(255,255,255,0.08), 0 0 18px var(--qcard-glow); }
-      50%      { transform: scale(1.07); box-shadow: 0 0 0 10px rgba(255,255,255,0.12), 0 0 32px var(--qcard-glow); }
-    }
-    .quote-card-back-kicker {
-      position: relative;
-      z-index: 2;
-      margin: 0 0 5px;
-      color: #FFE9EF;
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .22em;
-    }
-    .quote-card-back-title {
-      position: relative;
-      z-index: 2;
-      margin: 0;
-      color: #FFFFFF;
-      font-size: 1.32rem;
-      font-weight: 700;
-      letter-spacing: .09em;
-      text-shadow: 0 2px 10px rgba(0,0,0,0.35);
-    }
-    .quote-card-back-hint {
-      position: relative;
-      z-index: 2;
-      margin: 8px 0 0;
-      color: rgba(255,253,245,.90);
-      font-size: .88rem;
-      font-style: italic;
-    }
-    .quote-card-back-footer {
-      position: relative;
-      z-index: 2;
-      margin-top: 18px;
-      color: rgba(255,240,245,.82);
-      font-size: .62rem;
-      letter-spacing: .16em;
-    }
-
-    .quote-card-front {
-      transform: rotateY(180deg);
-      background: var(--qcard-front-bg);
-      color: var(--qcard-ink);
-    }
-    .quote-card-front::before {
-      content: "";
-      position: absolute;
-      inset: 5px;
-      z-index: 1;
-      border: 1px solid rgba(170, 178, 190, 0.55);
-      border-radius: 12px;
-      pointer-events: none;
-    }
-
-    .quote-card-ribbon {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 11px;
-      background: var(--qcard-ribbon);
-      color: #FFFFFF;
-      font-size: .63rem;
-      font-weight: 700;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-      border-bottom: 1.5px solid rgba(255,255,255,0.75);
-      text-shadow: 0 1px 4px rgba(0,0,0,0.28);
-    }
-
-    .card-editorial-stage {
-      position: relative;
-      z-index: 2;
-      padding: 10px 10px 4px;
-      min-height: 172px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-top-stamp {
-      position: absolute;
-      top: 6px;
-      left: 9px;
-      z-index: 5;
-      text-align: left;
-      pointer-events: none;
-    }
-    .card-stamp-num {
-      display: block;
-      font-size: 1.38rem;
-      font-weight: 700;
-      line-height: 0.9;
-      color: var(--qcard-accent-deep);
-      letter-spacing: -0.02em;
-    }
-    .card-stamp-bar {
-      display: inline-block;
-      margin-top: 2px;
-      padding: 1.5px 6px;
-      background: var(--qcard-accent-deep);
-      color: #FFFFFF;
-      font-size: 0.56rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.22);
-    }
-    .card-stamp-sub {
-      display: block;
-      margin-top: 1px;
-      font-size: 0.55rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      color: var(--qcard-accent);
-      text-transform: uppercase;
-    }
-
-    .card-gothic-cross {
-      position: absolute;
-      top: 6px;
-      right: 10px;
-      z-index: 5;
-      width: 36px;
-      height: 44px;
-      transform: rotate(15deg);
-      pointer-events: none;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.24));
-      animation: crossGlint 2.4s ease-in-out infinite;
-    }
-    @keyframes crossGlint {
-      0%, 100% { filter: drop-shadow(0 2px 4px rgba(0,0,0,0.24)) brightness(1); }
-      50%      { filter: drop-shadow(0 0 8px var(--qcard-glow)) brightness(1.24); }
-    }
-
-    .card-side-note-left {
-      position: absolute;
-      left: 8px;
-      bottom: 30px;
-      z-index: 3;
-      text-align: left;
-      font-size: 0.54rem;
-      font-style: italic;
-      line-height: 1.25;
-      color: var(--qcard-muted);
-      max-width: 56px;
-    }
-    .card-side-note-right {
-      position: absolute;
-      right: 6px;
-      top: 56px;
-      z-index: 5;
-      text-align: right;
-      pointer-events: none;
-    }
-    .card-side-note-right strong {
-      display: block;
-      font-size: 0.72rem;
-      letter-spacing: 0.06em;
-      color: var(--qcard-ink);
-      text-shadow: 0 1px 0 rgba(255,255,255,0.9);
-    }
-    .card-side-note-right span {
-      display: block;
-      font-size: 0.58rem;
-      font-style: italic;
-      color: var(--qcard-accent);
-    }
-
-    .card-baroque-frame-wrap {
-      position: relative;
-      width: 136px;
-      height: 154px;
-      margin-top: 8px;
-      transform: rotate(-3.5deg);
-      box-shadow: 0 8px 18px rgba(24, 14, 22, 0.28), 0 0 12px var(--qcard-glow-soft);
-      border-radius: 6px;
-    }
-    .card-frame-crown {
-      position: absolute;
-      top: -19px;
-      left: -14px;
-      z-index: 7;
-      width: 44px;
-      height: 30px;
-      transform: rotate(-22deg);
-      pointer-events: none;
-      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.32));
-    }
-    .card-frame-svg {
-      position: absolute;
-      inset: 0;
-      z-index: 5;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .quote-card-photo {
-      position: absolute;
-      inset: 14px 13px;
-      z-index: 2;
-      overflow: hidden;
-      border-radius: 2px;
-      background:
-        radial-gradient(circle at 50% 34%, rgba(255,255,255,0.85), transparent 52%),
-        linear-gradient(155deg, #F5EEF0 0%, var(--qcard-accent-bright) 140%);
-      box-shadow: inset 0 2px 8px rgba(0,0,0,0.34);
-    }
-    .quote-card-photo::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 3;
-      pointer-events: none;
-      background: linear-gradient(135deg, rgba(255,255,255,0.38) 0%, transparent 42%, rgba(255,255,255,0.16) 100%);
-    }
-    .quote-card-photo img {
-      position: relative;
-      z-index: 1;
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 22%;
-    }
-    .quote-photo-fallback {
-      position: absolute;
-      z-index: 2;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 3px;
-      color: var(--qcard-accent-deep);
-      text-align: center;
-      font-size: .68rem;
-      letter-spacing: .04em;
-      padding: 6px;
-    }
-    .quote-photo-fallback[hidden] { display: none; }
-    .quote-photo-fallback .quote-photo-initial {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      margin-bottom: 2px;
-      border: 1.5px solid var(--qcard-accent);
-      border-radius: 50%;
-      background: rgba(255,255,255,.78);
-      font-size: 1.45rem;
-      font-weight: 700;
-      box-shadow: 0 2px 8px var(--qcard-glow-soft);
-    }
-
-    .card-corner-rose {
-      position: absolute;
-      left: -4px;
-      bottom: 4px;
-      z-index: 3;
-      width: 48px;
-      height: 46px;
-      opacity: 0.92;
-      pointer-events: none;
-    }
-    .card-corner-pearls {
-      position: absolute;
-      right: 4px;
-      bottom: 6px;
-      z-index: 3;
-      width: 48px;
-      height: 36px;
-      pointer-events: none;
-    }
-
-    .quote-card-copy {
-      position: relative;
-      z-index: 4;
-      display: block;
-      padding: 6px 13px 11px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.88) 32%);
-    }
-    .quote-card-name {
-      display: block;
-      margin: 0 0 1px;
-      color: var(--qcard-ink);
-      font-size: 1.12rem;
-      font-weight: 700;
-      line-height: 1.15;
-      text-align: center;
-    }
-    .quote-card-meta {
-      display: block;
-      margin: 0 0 7px;
-      color: var(--qcard-accent);
-      font-size: .72rem;
-      font-weight: 600;
-      letter-spacing: .04em;
-      text-align: center;
-    }
-    .quote-card-quote {
-      display: block;
-      position: relative;
-      margin: 0;
-      padding: 3px 6px 3px 10px;
-      border-left: 2.5px solid var(--qcard-accent);
-      border-radius: 0 6px 6px 0;
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--qcard-ink);
-      font-size: .95rem;
-      font-style: italic;
-      font-weight: 600;
-      line-height: 1.38;
-      overflow-wrap: anywhere;
-    }
-    .quote-card-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-top: 8px;
-      padding-top: 6px;
-      border-top: 1px dashed rgba(120, 72, 88, 0.32);
-      color: var(--qcard-muted);
-      font-size: .60rem;
-      font-weight: 600;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-    }
-
-    .quote-jar-hint {
-      min-height: 2.55em;
-      margin: 9px auto 0;
-      color: rgba(255,253,245,.9);
-      font-size: .9rem;
-      line-height: 1.38;
-    }
-    @media (max-width: 820px) {
-      .quote-draw-panel { max-width: 420px; margin-top: 14px; }
-      .quote-jar { height: 178px; }
-      .quote-reveal-card { width: min(100%, 282px); }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      .jar-sparkle,
-      .quote-card-seal,
-      .quote-card-float,
-      .card-orbit-sparkle,
-      .card-gloss-sheen,
-      .quote-card-face,
-      .jar-gem { animation: none !important; }
-      .quote-jar.is-shaking,
-      .quote-jar.is-shaking .jar-lid,
-      .quote-jar.is-shaking .jar-gem,
-      .quote-reveal-card.is-arriving,
-      .quote-reveal-card.is-leaving { animation-duration: .01ms !important; }
-      .quote-card-flipper { transition-duration: .01ms !important; }
-    }
     /* =========================================================
        MOBILE HANDBOOK MENU — chuyển toàn bộ mục lục vào nút ☰
        Desktop giữ nguyên sidebar; mobile dùng menu kính nổi góc phải.
@@ -5167,26 +4176,15 @@
             </button>
           </div>
         </div>
-
-       <section class="quote-draw-panel" id="quoteDrawPanel" aria-label="Hũ thẻ trích dẫn nhân vật">
+        <section class="quote-draw-panel" id="quoteDrawPanel" aria-label="Hũ thẻ trích dẫn nhân vật">
           <h3 class="quote-draw-title">ʚ HŨ LỜI NHẮN ɞ</h3>
           <p class="quote-draw-subtitle">Một câu nói ngẫu nhiên từ NPC</p>
 
           <div class="quote-jar-wrap">
             <button class="quote-jar" id="quoteJarButton" type="button" aria-label="Lắc hũ và rút một thẻ quote">
-              <span class="jar-burst-glow" aria-hidden="true"></span>
-              <!-- Nếu muốn dùng ảnh hũ thật, dán link vào src="" bên dưới; khung CSS cũ sẽ tự ẩn đi -->
-              <img class="jar-custom-photo" src="" alt="" onload="this.classList.add('loaded'); this.closest('.quote-jar').classList.add('has-custom-photo');" onerror="this.style.display='none'" />
-              <span class="jar-lid" aria-hidden="true"></span>
-              <span class="jar-neck" aria-hidden="true"></span>
-              <span class="jar-body" aria-hidden="true">
-                <span class="jar-gems-bed" id="jarGemsBed"></span>
-                <span class="jar-glass-base"></span>
-                <span class="jar-mark">𖤐</span>
-              </span>
-              <span class="jar-sparkle sparkle-left" aria-hidden="true">✦</span>
-              <span class="jar-sparkle sparkle-right" aria-hidden="true">✧</span>
-              <span class="jar-sparkle sparkle-top" aria-hidden="true">✦</span>
+              <canvas class="jar-3d-canvas" id="jar3dCanvas" width="440" height="410" aria-hidden="true"></canvas>
+              <!-- Nếu muốn dùng ảnh hũ thật, dán link vào src="" bên dưới; Hũ 3D Canvas sẽ tự ẩn đi -->
+              <img class="jar-custom-photo" src="./assets/assets/OPW/Nhatxuyen/System/glassjar.png" alt="" onload="this.classList.add('loaded'); this.closest('.quote-jar').classList.add('has-custom-photo');" onerror="this.style.display='none'" />
             </button>
           </div>
 
@@ -11589,69 +10587,779 @@
       renderCharGrid();
     })();
   </script>
-  <script>
-    /* === HŨ NGỌC & THẺ QUOTE GOTHIC BAROQUE: lấy quote + img từ characters.js === */
+    /* === HŨ NGỌC 3D REALTIME & CARD QUOTES GOTHIC BAROQUE: lấy từ characters.js === */
     (function initCharacterQuoteJar() {
       const jar = document.getElementById('quoteJarButton');
-      const gemsBed = document.getElementById('jarGemsBed');
+      const canvas = document.getElementById('jar3dCanvas');
       const hint = document.getElementById('quoteJarHint');
       const stage = document.getElementById('quoteCardStage');
       if (!jar || !hint || !stage) return;
 
-      // Đổ đầy kín 30 viên ngọc 3D nhiều tầng vào trong hũ thủy tinh
-      if (gemsBed) {
-        const gemLayout = [
-          { x: 14, y: 84, s: 25, r: -18, t: 'gem-facet',   c: 'gem-c-main',     d: 'depth-back',  dl: '0.0s' },
-          { x: 32, y: 86, s: 24, r:  14, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-back',  dl: '0.1s' },
-          { x: 52, y: 88, s: 26, r:  22, t: 'gem-diamond', c: 'gem-c-gold',     d: 'depth-back',  dl: '0.2s' },
-          { x: 72, y: 86, s: 25, r: -14, t: 'gem-facet',   c: 'gem-c-ice',      d: 'depth-back',  dl: '0.15s' },
-          { x: 88, y: 83, s: 24, r:  28, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-back',  dl: '0.05s' },
-
-          { x: 20, y: 68, s: 26, r:  16, t: 'gem-diamond', c: 'gem-c-amethyst', d: 'depth-back',  dl: '0.12s' },
-          { x: 40, y: 70, s: 27, r: -22, t: 'gem-facet',   c: 'gem-c-main',     d: 'depth-mid',   dl: '0.22s' },
-          { x: 60, y: 71, s: 25, r:  10, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-mid',   dl: '0.08s' },
-          { x: 81, y: 69, s: 26, r: -26, t: 'gem-facet',   c: 'gem-c-gold',     d: 'depth-back',  dl: '0.18s' },
-
-          { x: 13, y: 52, s: 24, r: -10, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-mid',   dl: '0.06s' },
-          { x: 30, y: 53, s: 27, r:  26, t: 'gem-facet',   c: 'gem-c-ice',      d: 'depth-mid',   dl: '0.16s' },
-          { x: 50, y: 55, s: 28, r: -12, t: 'gem-facet',   c: 'gem-c-main',     d: 'depth-front', dl: '0.24s' },
-          { x: 70, y: 54, s: 25, r:  18, t: 'gem-diamond', c: 'gem-c-main',     d: 'depth-mid',   dl: '0.04s' },
-          { x: 87, y: 51, s: 24, r: -20, t: 'gem-facet',   c: 'gem-c-amethyst', d: 'depth-mid',   dl: '0.14s' },
-
-          { x: 18, y: 36, s: 24, r:  20, t: 'gem-diamond', c: 'gem-c-gold',     d: 'depth-mid',   dl: '0.20s' },
-          { x: 36, y: 37, s: 26, r: -16, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-front', dl: '0.09s' },
-          { x: 55, y: 38, s: 26, r:  30, t: 'gem-facet',   c: 'gem-c-main',     d: 'depth-mid',   dl: '0.19s' },
-          { x: 74, y: 36, s: 24, r: -12, t: 'gem-facet',   c: 'gem-c-ice',      d: 'depth-front', dl: '0.03s' },
-          { x: 86, y: 33, s: 21, r:  15, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-back',  dl: '0.17s' },
-
-          { x: 24, y: 21, s: 22, r: -24, t: 'gem-facet',   c: 'gem-c-main',     d: 'depth-front', dl: '0.11s' },
-          { x: 42, y: 19, s: 21, r:  12, t: 'gem-diamond', c: 'gem-c-ice',      d: 'depth-mid',   dl: '0.25s' },
-          { x: 60, y: 20, s: 22, r: -15, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-front', dl: '0.07s' },
-          { x: 76, y: 22, s: 21, r:  24, t: 'gem-facet',   c: 'gem-c-gold',     d: 'depth-mid',   dl: '0.21s' },
-          { x: 49, y:  9, s: 19, r:   8, t: 'gem-facet',   c: 'gem-c-main',     d: 'depth-front', dl: '0.13s' },
-
-          { x: 22, y: 80, s: 22, r:  28, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-front', dl: '0.15s' },
-          { x: 42, y: 82, s: 24, r: -14, t: 'gem-facet',   c: 'gem-c-main',     d: 'depth-front', dl: '0.02s' },
-          { x: 64, y: 82, s: 23, r:  18, t: 'gem-diamond', c: 'gem-c-ice',      d: 'depth-front', dl: '0.23s' },
-          { x: 79, y: 78, s: 21, r: -22, t: 'gem-facet',   c: 'gem-c-main',     d: 'depth-front', dl: '0.10s' },
-          { x: 27, y: 63, s: 21, r: -25, t: 'gem-facet',   c: 'gem-c-gold',     d: 'depth-front', dl: '0.18s' },
-          { x: 73, y: 64, s: 22, r:  12, t: 'gem-pearl',   c: 'gem-c-pearl',    d: 'depth-front', dl: '0.05s' }
-        ];
-
-        const frag = document.createDocumentFragment();
-        gemLayout.forEach((g) => {
-          const el = document.createElement('span');
-          el.className = 'jar-gem ' + g.t + ' ' + g.c + ' ' + g.d;
-          el.style.setProperty('--gx', g.x + '%');
-          el.style.setProperty('--gy', g.y + '%');
-          el.style.setProperty('--gs', g.s + 'px');
-          el.style.setProperty('--gr', g.r + 'deg');
-          el.style.setProperty('--gd', g.dl);
-          frag.appendChild(el);
-        });
-        gemsBed.replaceChildren(frag);
+      function rRect(c2d, x, y, w, h, r) {
+        c2d.beginPath();
+        if (c2d.roundRect) {
+          c2d.roundRect(x, y, w, h, r);
+        } else {
+          const rr = Math.min(r, w / 2, h / 2);
+          c2d.moveTo(x + rr, y);
+          c2d.lineTo(x + w - rr, y);
+          c2d.quadraticCurveTo(x + w, y, x + w, y + rr);
+          c2d.lineTo(x + w, y + h - rr);
+          c2d.quadraticCurveTo(x + w, y + h, x + w - rr, y + h);
+          c2d.lineTo(x + rr, y + h);
+          c2d.quadraticCurveTo(x, y + h, x, y + h - rr);
+          c2d.lineTo(x, y + rr);
+          c2d.quadraticCurveTo(x, y, x + rr, y);
+          c2d.closePath();
+        }
       }
 
+      /* =========================================================
+         1. HŨ THỦY TINH 3D REALTIME + 45 VIÊN NGỌC 3D ĐẦY KÍN HŨ
+      ========================================================= */
+      let triggerJarShakeEffect = function () {};
+      if (canvas && canvas.getContext) {
+        const ctx = canvas.getContext('2d');
+        const W = canvas.width;
+        const H = canvas.height;
+        const CX = W * 0.5;
+        const CY = H * 0.59;
+        const FOV = 520;
+
+        function vSub(a, b) { return [a[0] - b[0], a[1] - b[1], a[2] - b[2]]; }
+        function vDot(a, b) { return a[0] * b[0] + a[1] * b[1] + a[2] * b[2]; }
+        function vCross(a, b) {
+          return [
+            a[1] * b[2] - a[2] * b[1],
+            a[2] * b[0] - a[0] * b[2],
+            a[0] * b[1] - a[1] * b[0]
+          ];
+        }
+        function vNorm(v) {
+          const l = Math.hypot(v[0], v[1], v[2]) || 1;
+          return [v[0] / l, v[1] / l, v[2] / l];
+        }
+
+        function makeGemMesh(kind) {
+          const verts = [];
+          const rawFaces = [];
+          if (kind === 'oct') {
+            verts.push([0, -1.05, 0], [1, 0, 0], [0, 0, 1], [-1, 0, 0], [0, 0, -1], [0, 1.05, 0]);
+            rawFaces.push([0,1,2],[0,2,3],[0,3,4],[0,4,1],[5,2,1],[5,3,2],[5,4,3],[5,1,4]);
+          } else {
+            verts.push([0, -0.78, 0]);
+            for (let i = 0; i < 6; i++) {
+              const a = (i * Math.PI) / 3;
+              verts.push([0.56 * Math.cos(a), -0.74, 0.56 * Math.sin(a)]);
+            }
+            for (let i = 0; i < 6; i++) {
+              const a = ((i + 0.5) * Math.PI) / 3;
+              verts.push([1.0 * Math.cos(a), -0.08, 1.0 * Math.sin(a)]);
+            }
+            verts.push([0, 1.05, 0]);
+            for (let i = 0; i < 6; i++) {
+              const n = (i + 1) % 6;
+              rawFaces.push([0, 1 + i, 1 + n]);
+              rawFaces.push([1 + i, 7 + i, 1 + n]);
+              rawFaces.push([1 + n, 7 + i, 7 + n]);
+              rawFaces.push([13, 7 + n, 7 + i]);
+            }
+          }
+          const faces = rawFaces.map((f) => {
+            const a = verts[f[0]], b = verts[f[1]], c = verts[f[2]];
+            const n = vCross(vSub(b, a), vSub(c, a));
+            const cent = [(a[0]+b[0]+c[0])/3, (a[1]+b[1]+c[1])/3, (a[2]+b[2]+c[2])/3];
+            return vDot(n, cent) < 0 ? [f[0], f[2], f[1]] : f;
+          });
+          return { verts, faces };
+        }
+
+        const MESH_OCT = makeGemMesh('oct');
+        const MESH_CUT = makeGemMesh('cut');
+        const LIGHT_DIR = vNorm([-0.42, -0.68, 0.62]);
+        const HALF_VEC  = vNorm([-0.24, -0.38, 0.89]);
+
+        function getThemePalettes() {
+          const isGreen = document.body.classList.contains('afternoon-mode');
+          if (isGreen) {
+            return [
+              { base: [240, 82, 146],  hi: [255, 206, 230], dark: [120, 20, 62] },
+              { base: [255, 134, 185], hi: [255, 232, 245], dark: [148, 42, 92] },
+              { base: [248, 236, 242], hi: [255, 255, 255], dark: [164, 140, 154] },
+              { base: [246, 198, 108], hi: [255, 248, 214], dark: [138, 92, 24] },
+              { base: [182, 224, 250], hi: [242, 252, 255], dark: [76, 122, 160] }
+            ];
+          }
+          return [
+            { base: [208, 28, 58],  hi: [255, 165, 182], dark: [88, 8, 22] },
+            { base: [244, 72, 102], hi: [255, 210, 220], dark: [122, 18, 42] },
+            { base: [246, 240, 244], hi: [255, 255, 255], dark: [152, 138, 150] },
+            { base: [242, 194, 98], hi: [255, 248, 212], dark: [134, 88, 20] },
+            { base: [168, 212, 248], hi: [242, 252, 255], dark: [64, 108, 152] }
+          ];
+        }
+
+        const gems3D = [];
+        const totalGems = 45;
+        for (let i = 0; i < totalGems; i++) {
+          const row = Math.floor(i / 8);
+          const yNorm = 0.85 - (row / 5.4) * 1.48 + (Math.random() - 0.5) * 0.14;
+          const maxR = (yNorm < -0.35 ? 62 : 78);
+          const angle = i * 2.39996 + Math.random() * 0.5;
+          const rad = Math.sqrt((i % 8 + 0.6) / 8.2) * maxR;
+          const x = Math.cos(angle) * rad;
+          const z = Math.sin(angle) * rad * 0.72;
+          const y = yNorm * 68;
+          const isPearl = (i % 3 === 1);
+          const palIdx = isPearl ? 2 : (i % 5);
+          gems3D.push({
+            homeX: x, homeY: y, homeZ: z,
+            x, y, z,
+            vx: 0, vy: 0, vz: 0,
+            rx: Math.random() * 6.28, ry: Math.random() * 6.28, rz: Math.random() * 6.28,
+            vrx: 0, vry: 0, vrz: 0,
+            radius: 17 + (i % 4) * 2.2,
+            type: isPearl ? 'pearl' : (i % 2 === 0 ? 'cut' : 'oct'),
+            palIdx
+          });
+        }
+
+        const burstParticles = [];
+        let shakeEnergy = 0;
+        let lidBounce = 0;
+        let jarAngle = 0;
+        let jarOffX = 0;
+        let jarOffY = 0;
+
+        triggerJarShakeEffect = function () {
+          shakeEnergy = 1.0;
+          gems3D.forEach((g) => {
+            g.vx = (Math.random() - 0.5) * 16;
+            g.vy = -8 - Math.random() * 14;
+            g.vz = (Math.random() - 0.5) * 14;
+            g.vrx = (Math.random() - 0.5) * 0.36;
+            g.vry = (Math.random() - 0.5) * 0.36;
+            g.vrz = (Math.random() - 0.5) * 0.30;
+          });
+          window.setTimeout(() => {
+            for (let p = 0; p < 24; p++) {
+              const ang = -Math.PI / 2 + (Math.random() - 0.5) * 1.45;
+              const spd = 3.5 + Math.random() * 6.5;
+              burstParticles.push({
+                x: CX + (Math.random() - 0.5) * 32,
+                y: 86,
+                vx: Math.cos(ang) * spd,
+                vy: Math.sin(ang) * spd - 1.5,
+                size: 4 + Math.random() * 6,
+                life: 1.0,
+                decay: 0.018 + Math.random() * 0.015,
+                gold: p % 2 === 0
+              });
+            }
+          }, 680);
+        };
+
+        function rotPoint(p, rx, ry, rz) {
+          let [x, y, z] = p;
+          const cx = Math.cos(rx), sx = Math.sin(rx);
+          let y1 = y * cx - z * sx, z1 = y * sx + z * cx;
+          const cy = Math.cos(ry), sy = Math.sin(ry);
+          let x2 = x * cy + z1 * sy, z2 = -x * sy + z1 * cy;
+          const cz = Math.cos(rz), sz = Math.sin(rz);
+          let x3 = x2 * cz - y1 * sz, y3 = x2 * sz + y1 * cz;
+          return [x3, y3, z2];
+        }
+
+        function clampColor(v) { return Math.max(0, Math.min(255, Math.round(v))); }
+
+        let lastTime = performance.now();
+        function renderJar3D(now) {
+          const dt = Math.min(2.2, (now - lastTime) / 16.67);
+          lastTime = now;
+          const tSec = now * 0.001;
+          const palettes = getThemePalettes();
+
+          if (shakeEnergy > 0.005) {
+            shakeEnergy *= Math.pow(0.93, dt);
+            jarOffX = Math.sin(tSec * 52) * 14 * shakeEnergy;
+            jarOffY = Math.cos(tSec * 44) * 6 * shakeEnergy;
+            jarAngle = Math.sin(tSec * 48) * 0.17 * shakeEnergy;
+            lidBounce = Math.abs(Math.sin(tSec * 28)) * 16 * shakeEnergy;
+          } else {
+            shakeEnergy = 0;
+            jarOffX *= 0.8;
+            jarOffY *= 0.8;
+            jarAngle *= 0.8;
+            lidBounce *= 0.8;
+          }
+
+          gems3D.forEach((g, idx) => {
+            if (shakeEnergy > 0.05) {
+              g.vy += 0.45 * dt;
+              g.x += g.vx * dt;
+              g.y += g.vy * dt;
+              g.z += g.vz * dt;
+              g.rx += g.vrx * dt;
+              g.ry += g.vry * dt;
+              g.rz += g.vrz * dt;
+              const rHoriz = Math.hypot(g.x, g.z);
+              if (rHoriz > 76) {
+                const k = 76 / rHoriz;
+                g.x *= k; g.z *= k;
+                g.vx *= -0.68; g.vz *= -0.68;
+              }
+              if (g.y > 68) { g.y = 68; g.vy *= -0.58; }
+              if (g.y < -66) { g.y = -66; g.vy *= -0.55; }
+            } else {
+              g.x += (g.homeX - g.x) * 0.14 * dt;
+              g.y += (g.homeY - g.y) * 0.14 * dt;
+              g.z += (g.homeZ - g.z) * 0.14 * dt;
+              g.ry += 0.004 * dt * ((idx % 2 === 0) ? 1 : -1);
+            }
+          });
+
+          ctx.clearRect(0, 0, W, H);
+
+          if (!jar.classList.contains('has-custom-photo')) {
+            ctx.save();
+            ctx.translate(CX + jarOffX, CY + jarOffY);
+            ctx.rotate(jarAngle);
+
+            const shGrad = ctx.createRadialGradient(0, 108, 12, 0, 108, 118);
+            shGrad.addColorStop(0, 'rgba(10, 18, 30, 0.44)');
+            shGrad.addColorStop(0.65, 'rgba(10, 18, 30, 0.16)');
+            shGrad.addColorStop(1, 'rgba(10, 18, 30, 0)');
+            ctx.fillStyle = shGrad;
+            ctx.beginPath();
+            ctx.ellipse(0, 108, 115, 24, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            function traceJarBodyPath() {
+              ctx.beginPath();
+              ctx.moveTo(-64, -104);
+              ctx.bezierCurveTo(-98, -94, -106, -54, -106, -12);
+              ctx.lineTo(-106, 56);
+              ctx.bezierCurveTo(-106, 94, -84, 104, 0, 104);
+              ctx.bezierCurveTo(84, 104, 106, 94, 106, 56);
+              ctx.lineTo(106, -12);
+              ctx.bezierCurveTo(106, -54, 98, -94, 64, -104);
+              ctx.closePath();
+            }
+
+            traceJarBodyPath();
+            const backGlass = ctx.createLinearGradient(-106, -104, 106, 104);
+            backGlass.addColorStop(0, 'rgba(255, 255, 255, 0.28)');
+            backGlass.addColorStop(0.5, 'rgba(205, 226, 246, 0.12)');
+            backGlass.addColorStop(1, 'rgba(24, 40, 62, 0.26)');
+            ctx.fillStyle = backGlass;
+            ctx.fill();
+
+            ctx.save();
+            traceJarBodyPath();
+            ctx.clip();
+
+            const sorted = gems3D.slice().sort((a, b) => a.z - b.z);
+            for (let i = 0; i < sorted.length; i++) {
+              const g = sorted[i];
+              const pal = palettes[g.palIdx % palettes.length];
+              const scale = FOV / (FOV - g.z);
+              const sx = g.x * scale;
+              const sy = g.y * scale + 6;
+              const sr = g.radius * scale;
+
+              if (g.type === 'pearl') {
+                const pg = ctx.createRadialGradient(sx - sr * 0.34, sy - sr * 0.34, sr * 0.08, sx, sy, sr);
+                pg.addColorStop(0, '#FFFFFF');
+                pg.addColorStop(0.28, 'rgb(' + pal.hi.join(',') + ')');
+                pg.addColorStop(0.75, 'rgb(' + pal.base.join(',') + ')');
+                pg.addColorStop(1, 'rgb(' + pal.dark.join(',') + ')');
+                ctx.fillStyle = pg;
+                ctx.beginPath();
+                ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = 'rgba(255,255,255,0.92)';
+                ctx.beginPath();
+                ctx.ellipse(sx - sr * 0.35, sy - sr * 0.35, sr * 0.24, sr * 0.14, -0.6, 0, Math.PI * 2);
+                ctx.fill();
+              } else {
+                const mesh = g.type === 'oct' ? MESH_OCT : MESH_CUT;
+                const rVerts = mesh.verts.map((v) => rotPoint(v, g.rx, g.ry, g.rz));
+                for (let fIdx = 0; fIdx < mesh.faces.length; fIdx++) {
+                  const f = mesh.faces[fIdx];
+                  const v0 = rVerts[f[0]], v1 = rVerts[f[1]], v2 = rVerts[f[2]];
+                  const n = vNorm(vCross(vSub(v1, v0), vSub(v2, v0)));
+                  if (n[2] <= 0.02) continue;
+                  const diff = Math.max(0.12, vDot(n, LIGHT_DIR));
+                  const spec = Math.pow(Math.max(0, vDot(n, HALF_VEC)), 22);
+                  const rC = clampColor(pal.dark[0] * (1 - diff) + pal.base[0] * diff + pal.hi[0] * spec * 1.15);
+                  const gC = clampColor(pal.dark[1] * (1 - diff) + pal.base[1] * diff + pal.hi[1] * spec * 1.15);
+                  const bC = clampColor(pal.dark[2] * (1 - diff) + pal.base[2] * diff + pal.hi[2] * spec * 1.15);
+
+                  ctx.fillStyle = 'rgb(' + rC + ',' + gC + ',' + bC + ')';
+                  ctx.beginPath();
+                  ctx.moveTo(sx + v0[0] * sr, sy + v0[1] * sr);
+                  ctx.lineTo(sx + v1[0] * sr, sy + v1[1] * sr);
+                  ctx.lineTo(sx + v2[0] * sr, sy + v2[1] * sr);
+                  ctx.closePath();
+                  ctx.fill();
+                  ctx.strokeStyle = 'rgba(255,255,255,' + (0.18 + spec * 0.55).toFixed(2) + ')';
+                  ctx.lineWidth = 0.7;
+                  ctx.stroke();
+                }
+              }
+            }
+
+            const frontSheen = ctx.createLinearGradient(-96, -80, -34, 80);
+            frontSheen.addColorStop(0, 'rgba(255, 255, 255, 0.74)');
+            frontSheen.addColorStop(0.45, 'rgba(255, 255, 255, 0.16)');
+            frontSheen.addColorStop(1, 'rgba(255, 255, 255, 0.02)');
+            ctx.fillStyle = frontSheen;
+            ctx.beginPath();
+            ctx.moveTo(-88, -74);
+            ctx.bezierCurveTo(-96, -32, -96, 36, -82, 74);
+            ctx.lineTo(-64, 70);
+            ctx.bezierCurveTo(-76, 34, -76, -30, -68, -70);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.36)';
+            ctx.beginPath();
+            ctx.ellipse(90, 0, 5, 62, 0, 0, Math.PI * 2);
+            ctx.fill();
+
+            const baseGrad = ctx.createLinearGradient(0, 84, 0, 104);
+            baseGrad.addColorStop(0, 'rgba(255, 255, 255, 0.08)');
+            baseGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.62)');
+            baseGrad.addColorStop(1, 'rgba(210, 232, 250, 0.80)');
+            ctx.fillStyle = baseGrad;
+            ctx.fillRect(-106, 86, 212, 20);
+            ctx.restore();
+
+            traceJarBodyPath();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.88)';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.fillStyle = 'rgba(235, 246, 255, 0.32)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.86)';
+            ctx.lineWidth = 2.4;
+            rRect(ctx, -66, -124, 132, 24, 8);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.save();
+            ctx.translate(0, -lidBounce);
+            ctx.rotate(lidBounce * 0.012 * Math.sin(tSec * 22));
+            const lidGrad = ctx.createLinearGradient(-74, -148, 74, -122);
+            lidGrad.addColorStop(0, '#D4DCE6');
+            lidGrad.addColorStop(0.24, '#FFFFFF');
+            lidGrad.addColorStop(0.55, '#92A3B8');
+            lidGrad.addColorStop(0.82, '#E8EFF6');
+            lidGrad.addColorStop(1, '#708094');
+            ctx.fillStyle = lidGrad;
+            rRect(ctx, -74, -148, 148, 28, 10);
+            ctx.fill();
+            for (let gx = -62; gx <= 62; gx += 10) {
+              ctx.fillStyle = 'rgba(32, 48, 68, 0.16)';
+              ctx.fillRect(gx, -144, 3, 20);
+              ctx.fillStyle = 'rgba(255, 255, 255, 0.45)';
+              ctx.fillRect(gx + 3, -144, 2, 20);
+            }
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.94)';
+            ctx.lineWidth = 2;
+            rRect(ctx, -74, -148, 148, 28, 10);
+            ctx.stroke();
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
+            ctx.beginPath();
+            ctx.ellipse(0, -148, 68, 7, 0, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+
+            ctx.fillStyle = 'rgba(255, 252, 245, 0.92)';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.98)';
+            ctx.lineWidth = 1.6;
+            rRect(ctx, -34, 52, 68, 30, 9);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = document.body.classList.contains('afternoon-mode') ? '#861C4B' : '#5B0816';
+            ctx.font = 'bold 20px Georgia, serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('𖤐', 0, 68);
+
+            ctx.restore();
+          } else {
+            const spPos = [[66, 120, 0], [374, 150, 1.4], [346, 56, 2.5]];
+            spPos.forEach(([sx, sy, ph]) => {
+              const pulse = 0.4 + 0.6 * (0.5 + 0.5 * Math.sin(tSec * 3.5 + ph));
+              const sz = 6 + pulse * 5;
+              ctx.save();
+              ctx.globalAlpha = pulse;
+              ctx.translate(sx, sy);
+              ctx.fillStyle = '#FFF2B2';
+              ctx.shadowColor = document.body.classList.contains('afternoon-mode') ? '#FF66B2' : '#FF3355';
+              ctx.shadowBlur = 10;
+              ctx.beginPath();
+              ctx.moveTo(0, -sz); ctx.lineTo(sz * 0.28, -sz * 0.28);
+              ctx.lineTo(sz, 0); ctx.lineTo(sz * 0.28, sz * 0.28);
+              ctx.lineTo(0, sz); ctx.lineTo(-sz * 0.28, sz * 0.28);
+              ctx.lineTo(-sz, 0); ctx.lineTo(-sz * 0.28, -sz * 0.28);
+              ctx.closePath();
+              ctx.fill();
+              ctx.restore();
+            });
+          }
+
+          for (let i = burstParticles.length - 1; i >= 0; i--) {
+            const p = burstParticles[i];
+            p.x += p.vx * dt;
+            p.y += p.vy * dt;
+            p.vy += 0.18 * dt;
+            p.life -= p.decay * dt;
+            if (p.life <= 0) {
+              burstParticles.splice(i, 1);
+              continue;
+            }
+            ctx.save();
+            ctx.globalAlpha = Math.max(0, p.life);
+            ctx.translate(p.x, p.y);
+            ctx.fillStyle = p.gold ? '#FFF2B2' : '#FFFFFF';
+            ctx.shadowColor = document.body.classList.contains('afternoon-mode') ? '#FF66B2' : '#FF3355';
+            ctx.shadowBlur = 12;
+            const s = p.size * (0.5 + p.life * 0.6);
+            ctx.beginPath();
+            ctx.moveTo(0, -s); ctx.lineTo(s * 0.28, -s * 0.28);
+            ctx.lineTo(s, 0); ctx.lineTo(s * 0.28, s * 0.28);
+            ctx.lineTo(0, s); ctx.lineTo(-s * 0.28, s * 0.28);
+            ctx.lineTo(-s, 0); ctx.lineTo(-s * 0.28, -s * 0.28);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
+          }
+
+          requestAnimationFrame(renderJar3D);
+        }
+        requestAnimationFrame(renderJar3D);
+      }
+
+      /* =========================================================
+         2. RENDER HỌA TIẾT 3D BAROQUE SILVER (2X RETINA CANVAS)
+      ========================================================= */
+      const artCache = {};
+
+      function getBaroqueFrameArt() {
+        if (artCache.frame) return artCache.frame;
+        const c = document.createElement('canvas');
+        c.width = 260; c.height = 304;
+        const g = c.getContext('2d');
+        g.scale(2, 2);
+
+        g.save();
+        g.shadowColor = 'rgba(18, 8, 14, 0.42)';
+        g.shadowBlur = 10;
+        g.shadowOffsetX = 3;
+        g.shadowOffsetY = 5;
+        g.fillStyle = '#2A2F38';
+        g.beginPath();
+        g.rect(5, 5, 120, 142);
+        g.rect(18, 18, 94, 116);
+        g.fill('evenodd');
+        g.restore();
+
+        const metal = g.createLinearGradient(0, 0, 130, 152);
+        metal.addColorStop(0.00, '#FFFFFF');
+        metal.addColorStop(0.18, '#B8C1CE');
+        metal.addColorStop(0.38, '#3B424E');
+        metal.addColorStop(0.55, '#EEF2F7');
+        metal.addColorStop(0.76, '#484F5C');
+        metal.addColorStop(1.00, '#E3E8F0');
+
+        g.fillStyle = metal;
+        rRect(g, 4, 4, 122, 144, 6);
+        g.rect(18, 18, 94, 116);
+        g.fill('evenodd');
+
+        g.strokeStyle = '#181B22';
+        g.lineWidth = 2.2;
+        g.strokeRect(17, 17, 96, 118);
+
+        g.strokeStyle = 'rgba(255, 255, 255, 0.85)';
+        g.lineWidth = 1.2;
+        g.strokeRect(12, 12, 106, 128);
+
+        g.strokeStyle = '#2B303A';
+        g.lineWidth = 1.4;
+        g.strokeRect(7, 7, 116, 138);
+
+        function drawScrollNode(cx, cy, r) {
+          g.save();
+          g.fillStyle = 'rgba(16, 18, 24, 0.65)';
+          g.beginPath(); g.arc(cx + 1.4, cy + 1.6, r + 1.5, 0, Math.PI * 2); g.fill();
+          const sg = g.createRadialGradient(cx - r * 0.35, cy - r * 0.35, 1, cx, cy, r + 1);
+          sg.addColorStop(0, '#FFFFFF');
+          sg.addColorStop(0.45, '#C5CDD8');
+          sg.addColorStop(0.85, '#3E4552');
+          sg.addColorStop(1, '#1A1E26');
+          g.fillStyle = sg;
+          g.beginPath(); g.arc(cx, cy, r, 0, Math.PI * 2); g.fill();
+          g.restore();
+        }
+
+        [
+          [8, 8, 1, 1], [122, 8, -1, 1], [8, 144, 1, -1], [122, 144, -1, -1]
+        ].forEach(([ox, oy, dx, dy]) => {
+          drawScrollNode(ox + dx * 3, oy + dy * 3, 6.5);
+          drawScrollNode(ox + dx * 13, oy + dy * 3, 4.2);
+          drawScrollNode(ox + dx * 3, oy + dy * 13, 4.2);
+          g.strokeStyle = '#FFFFFF';
+          g.lineWidth = 1.3;
+          g.beginPath();
+          g.moveTo(ox + dx * 2, oy + dy * 16);
+          g.quadraticCurveTo(ox + dx * 2, oy + dy * 2, ox + dx * 16, oy + dy * 2);
+          g.stroke();
+        });
+
+        [[65, 8], [65, 144], [8, 76], [122, 76]].forEach(([mx, my]) => {
+          drawScrollNode(mx, my, 5.5);
+          drawScrollNode(mx + (mx === 65 ? -8 : 0), my + (my === 76 ? -8 : 0), 3.3);
+          drawScrollNode(mx + (mx === 65 ? 8 : 0), my + (my === 76 ? 8 : 0), 3.3);
+        });
+
+        for (let x = 26; x <= 104; x += 9) {
+          if (Math.abs(x - 65) > 12) {
+            drawScrollNode(x, 10, 1.8);
+            drawScrollNode(x, 142, 1.8);
+          }
+        }
+        for (let y = 26; y <= 126; y += 10) {
+          if (Math.abs(y - 76) > 12) {
+            drawScrollNode(10, y, 1.8);
+            drawScrollNode(120, y, 1.8);
+          }
+        }
+
+        artCache.frame = c.toDataURL();
+        return artCache.frame;
+      }
+
+      function getCrownArt() {
+        if (artCache.crown) return artCache.crown;
+        const c = document.createElement('canvas');
+        c.width = 108; c.height = 80;
+        const g = c.getContext('2d');
+        g.scale(2, 2);
+
+        g.save();
+        g.translate(27, 22);
+        g.rotate(-0.36);
+
+        g.fillStyle = '#181B22';
+        g.beginPath();
+        g.moveTo(-18, 9);
+        g.lineTo(-14, -7); g.lineTo(-7, 2); g.lineTo(0, -11); g.lineTo(7, 2); g.lineTo(14, -7);
+        g.lineTo(18, 9);
+        g.closePath();
+        g.fill();
+
+        g.shadowColor = 'rgba(0,0,0,0.45)';
+        g.shadowBlur = 4;
+        g.shadowOffsetY = 2;
+        const cg = g.createLinearGradient(-20, -14, 20, 12);
+        cg.addColorStop(0, '#FFFFFF');
+        cg.addColorStop(0.35, '#CBD3DE');
+        cg.addColorStop(0.7, '#434A57');
+        cg.addColorStop(1, '#F2F5FA');
+        g.fillStyle = cg;
+        g.strokeStyle = '#171A21';
+        g.lineWidth = 1.3;
+        g.beginPath();
+        g.moveTo(-19, 10);
+        g.lineTo(-22, -10); g.lineTo(-11, 2);
+        g.lineTo(-8, -14);  g.lineTo(-2, 1);
+        g.lineTo(0, -17);   g.lineTo(2, 1);
+        g.lineTo(8, -14);   g.lineTo(11, 2);
+        g.lineTo(22, -10);  g.lineTo(19, 10);
+        g.quadraticCurveTo(0, 14, -19, 10);
+        g.closePath();
+        g.fill();
+        g.stroke();
+
+        g.fillStyle = '#2B313C';
+        g.beginPath();
+        g.moveTo(-19, 7);
+        g.quadraticCurveTo(0, 11, 19, 7);
+        g.lineTo(19, 11);
+        g.quadraticCurveTo(0, 15, -19, 11);
+        g.closePath();
+        g.fill();
+
+        [[-22,-10],[-8,-14],[0,-17],[8,-14],[22,-10]].forEach(([px, py]) => {
+          g.fillStyle = '#FFFFFF';
+          g.beginPath(); g.arc(px, py, 2.0, 0, Math.PI * 2); g.fill();
+        });
+        g.restore();
+
+        artCache.crown = c.toDataURL();
+        return artCache.crown;
+      }
+
+      function getCrossArt() {
+        if (artCache.cross) return artCache.cross;
+        const c = document.createElement('canvas');
+        c.width = 96; c.height = 108;
+        const g = c.getContext('2d');
+        g.scale(2, 2);
+
+        g.save();
+        g.translate(24, 27);
+        g.rotate(0.28);
+        g.shadowColor = 'rgba(18, 12, 20, 0.36)';
+        g.shadowBlur = 5;
+        g.shadowOffsetX = 2;
+        g.shadowOffsetY = 3;
+
+        const mg = g.createLinearGradient(-16, -22, 16, 22);
+        mg.addColorStop(0, '#FFFFFF');
+        mg.addColorStop(0.32, '#BAC3D0');
+        mg.addColorStop(0.66, '#39404B');
+        mg.addColorStop(1, '#EEF2F8');
+
+        g.fillStyle = mg;
+        g.strokeStyle = '#181B22';
+        g.lineWidth = 1.2;
+        g.beginPath();
+        g.moveTo(0, -22);
+        g.lineTo(4.5, -15); g.lineTo(2.8, -14); g.lineTo(2.8, -5.5);
+        g.lineTo(11, -5.5); g.lineTo(12, -8.5); g.lineTo(18, -3); g.lineTo(12, 2.5); g.lineTo(11, -0.5);
+        g.lineTo(2.8, -0.5); g.lineTo(2.8, 15); g.lineTo(5.5, 17); g.lineTo(0, 23);
+        g.lineTo(-5.5, 17); g.lineTo(-2.8, 15); g.lineTo(-2.8, -0.5);
+        g.lineTo(-11, -0.5); g.lineTo(-12, 2.5); g.lineTo(-18, -3); g.lineTo(-12, -8.5); g.lineTo(-11, -5.5);
+        g.lineTo(-2.8, -5.5); g.lineTo(-2.8, -14); g.lineTo(-4.5, -15);
+        g.closePath();
+        g.fill();
+        g.stroke();
+
+        g.shadowColor = 'transparent';
+        g.strokeStyle = '#1A1E26';
+        g.lineWidth = 1.6;
+        g.beginPath();
+        g.moveTo(0, -15); g.lineTo(0, 16);
+        g.moveTo(-11, -3); g.lineTo(11, -3);
+        g.stroke();
+
+        g.fillStyle = '#FFFFFF';
+        g.beginPath(); g.arc(0, -3, 2.2, 0, Math.PI * 2); g.fill();
+        g.restore();
+
+        artCache.cross = c.toDataURL();
+        return artCache.cross;
+      }
+
+      function getRoseArt(isGreen) {
+        const key = isGreen ? 'rosePink' : 'roseRed';
+        if (artCache[key]) return artCache[key];
+        const c = document.createElement('canvas');
+        c.width = 132; c.height = 120;
+        const g = c.getContext('2d');
+        g.scale(2, 2);
+
+        const cDark = isGreen ? '#7A1642' : '#4A040E';
+        const cMid  = isGreen ? '#D64582' : '#9E1226';
+        const cLite = isGreen ? '#FF9CC8' : '#E84A62';
+
+        g.fillStyle = 'rgba(24, 10, 16, 0.24)';
+        g.beginPath(); g.ellipse(27, 34, 21, 17, 0.2, 0, Math.PI * 2); g.fill();
+
+        g.fillStyle = isGreen ? '#527348' : '#2C3828';
+        [[-18, -10, -0.7], [16, 12, 0.5]].forEach(([lx, ly, rot]) => {
+          g.save(); g.translate(26 + lx, 31 + ly); g.rotate(rot);
+          g.beginPath(); g.ellipse(0, 0, 10, 4.5, 0, 0, Math.PI * 2); g.fill();
+          g.restore();
+        });
+
+        for (let ring = 0; ring < 3; ring++) {
+          const count = 6 - ring;
+          const dist = 12 - ring * 4.2;
+          const rP = 11 - ring * 2.4;
+          for (let i = 0; i < count; i++) {
+            const ang = (i / count) * Math.PI * 2 + ring * 0.55;
+            const px = 26 + Math.cos(ang) * dist;
+            const py = 30 + Math.sin(ang) * dist;
+            g.save();
+            g.translate(px, py);
+            g.rotate(ang + 1.2);
+            const pg = g.createRadialGradient(-rP * 0.2, -rP * 0.35, 1, 0, 0, rP + 2);
+            pg.addColorStop(0, cLite);
+            pg.addColorStop(0.55, cMid);
+            pg.addColorStop(1, cDark);
+            g.fillStyle = pg;
+            g.beginPath();
+            g.ellipse(0, 0, rP, rP * 0.72, 0, 0, Math.PI * 2);
+            g.fill();
+            g.restore();
+          }
+        }
+        const cg = g.createRadialGradient(25, 29, 1, 26, 30, 6);
+        cg.addColorStop(0, cDark);
+        cg.addColorStop(0.7, cMid);
+        cg.addColorStop(1, cLite);
+        g.fillStyle = cg;
+        g.beginPath(); g.arc(26, 30, 5.2, 0, Math.PI * 2); g.fill();
+
+        [[52, 48, 0.4], [46, 55, -0.5]].forEach(([px, py, rot]) => {
+          g.save(); g.translate(px, py); g.rotate(rot);
+          g.fillStyle = cMid;
+          g.beginPath(); g.ellipse(0, 0, 5, 2.8, 0, 0, Math.PI * 2); g.fill();
+          g.restore();
+        });
+
+        artCache[key] = c.toDataURL();
+        return artCache[key];
+      }
+
+      function getPearlsArt() {
+        if (artCache.pearls) return artCache.pearls;
+        const c = document.createElement('canvas');
+        c.width = 120; c.height = 88;
+        const g = c.getContext('2d');
+        g.scale(2, 2);
+
+        const pearls = [
+          [14, 30, 6.2], [26, 26, 7.5], [38, 30, 6.8], [49, 25, 8.2], [32, 16, 5.4], [44, 13, 4.6]
+        ];
+        pearls.forEach(([x, y, r]) => {
+          g.fillStyle = 'rgba(24, 12, 20, 0.22)';
+          g.beginPath(); g.ellipse(x + 1.5, y + r * 0.7, r * 0.9, r * 0.45, 0, 0, Math.PI * 2); g.fill();
+          const pg = g.createRadialGradient(x - r * 0.35, y - r * 0.35, r * 0.08, x, y, r);
+          pg.addColorStop(0, '#FFFFFF');
+          pg.addColorStop(0.35, '#FAF3F6');
+          pg.addColorStop(0.75, '#D2C4CC');
+          pg.addColorStop(1, '#85747E');
+          g.fillStyle = pg;
+          g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); g.fill();
+          g.fillStyle = 'rgba(255,255,255,0.95)';
+          g.beginPath(); g.arc(x - r * 0.32, y - r * 0.32, r * 0.22, 0, Math.PI * 2); g.fill();
+        });
+
+        artCache.pearls = c.toDataURL();
+        return artCache.pearls;
+      }
+
+      const themeBtn = document.getElementById('btnThemeToggle');
+      if (themeBtn) {
+        themeBtn.addEventListener('click', () => {
+          window.setTimeout(() => {
+            const isGreen = document.body.classList.contains('afternoon-mode');
+            stage.querySelectorAll('.card-art-rose').forEach((img) => {
+              img.src = getRoseArt(isGreen);
+            });
+          }, 20);
+        });
+      }
+
+      /* =========================================================
+         3. TẠO THẺ QUOTE & HIỆU ỨNG BUNG TỪ HŨ
+      ========================================================= */
       const characters = Array.isArray(window.NHAT_XUYEN_CHARS)
         ? window.NHAT_XUYEN_CHARS
         : [];
@@ -11663,7 +11371,6 @@
 
       let isDrawing = false;
       let lastCharacterId = null;
-      let cardSeq = 0;
 
       if (!quotePool.length) {
         jar.disabled = true;
@@ -11680,153 +11387,8 @@
         return pool[Math.floor(Math.random() * pool.length)];
       }
 
-      function createSvg(tag, attrs) {
-        const el = document.createElementNS('http://www.w3.org/2000/svg', tag);
-        Object.keys(attrs).forEach((k) => el.setAttribute(k, attrs[k]));
-        return el;
-      }
-
-      function buildGothicCrossSvg(uid) {
-        const svg = createSvg('svg', { viewBox: '0 0 64 80', class: 'card-gothic-cross', 'aria-hidden': 'true' });
-        const defs = createSvg('defs', {});
-        const grad = createSvg('linearGradient', { id: 'nxSilverCross-' + uid, x1: '0%', y1: '0%', x2: '100%', y2: '100%' });
-        grad.append(
-          createSvg('stop', { offset: '0%', 'stop-color': '#FFFFFF' }),
-          createSvg('stop', { offset: '42%', 'stop-color': '#B8C2CE' }),
-          createSvg('stop', { offset: '75%', 'stop-color': '#3A414D' }),
-          createSvg('stop', { offset: '100%', 'stop-color': '#EDF2F7' })
-        );
-        defs.appendChild(grad);
-        svg.appendChild(defs);
-        svg.appendChild(createSvg('path', {
-          d: 'M32 3 L38 14 L35 16 L35 28 L50 28 L52 24 L61 32 L52 40 L50 36 L35 36 L35 66 L39 69 L32 78 L25 69 L29 66 L29 36 L14 36 L12 40 L3 32 L12 24 L14 28 L29 28 L29 16 L26 14 Z',
-          fill: 'url(#nxSilverCross-' + uid + ')',
-          stroke: '#1E242E',
-          'stroke-width': '1.6'
-        }));
-        svg.appendChild(createSvg('path', {
-          d: 'M32 13 L32 67 M14 32 L50 32',
-          stroke: '#1B1F27',
-          'stroke-width': '2.4',
-          'stroke-linecap': 'round'
-        }));
-        svg.appendChild(createSvg('circle', { cx: '32', cy: '32', r: '3.2', fill: '#FFFFFF', stroke: '#232833', 'stroke-width': '1.2' }));
-        return svg;
-      }
-
-      function buildCrownSvg(uid) {
-        const svg = createSvg('svg', { viewBox: '0 0 80 54', class: 'card-frame-crown', 'aria-hidden': 'true' });
-        const defs = createSvg('defs', {});
-        const grad = createSvg('linearGradient', { id: 'nxSilverCrown-' + uid, x1: '0%', y1: '0%', x2: '100%', y2: '100%' });
-        grad.append(
-          createSvg('stop', { offset: '0%', 'stop-color': '#FFFFFF' }),
-          createSvg('stop', { offset: '45%', 'stop-color': '#B5BFC9' }),
-          createSvg('stop', { offset: '85%', 'stop-color': '#495260' }),
-          createSvg('stop', { offset: '100%', 'stop-color': '#F3F7FA' })
-        );
-        defs.appendChild(grad);
-        svg.appendChild(defs);
-        svg.appendChild(createSvg('path', {
-          d: 'M10 44 L4 14 L22 28 L40 6 L58 28 L76 14 L70 44 Z',
-          fill: 'url(#nxSilverCrown-' + uid + ')',
-          stroke: '#1E232C',
-          'stroke-width': '2'
-        }));
-        svg.appendChild(createSvg('rect', { x: '10', y: '41', width: '60', height: '7', rx: '3', fill: '#313845', stroke: '#FFFFFF', 'stroke-width': '1.2' }));
-        [4, 40, 76].forEach((cx, idx) => {
-          svg.appendChild(createSvg('circle', { cx: String(cx), cy: idx === 1 ? '5' : '13', r: '3.2', fill: '#FFFFFF', stroke: '#1E232C', 'stroke-width': '1.2' }));
-        });
-        return svg;
-      }
-
-      function buildBaroqueFrameSvg(uid) {
-        const svg = createSvg('svg', { viewBox: '0 0 140 160', class: 'card-frame-svg', 'aria-hidden': 'true' });
-        const defs = createSvg('defs', {});
-        const grad = createSvg('linearGradient', { id: 'nxBaroqueMetal-' + uid, x1: '0%', y1: '0%', x2: '100%', y2: '100%' });
-        grad.append(
-          createSvg('stop', { offset: '0%', 'stop-color': '#F8FAFC' }),
-          createSvg('stop', { offset: '28%', 'stop-color': '#9BA5B4' }),
-          createSvg('stop', { offset: '55%', 'stop-color': '#39404B' }),
-          createSvg('stop', { offset: '82%', 'stop-color': '#DCE3EC' }),
-          createSvg('stop', { offset: '100%', 'stop-color': '#7B8494' })
-        );
-        defs.appendChild(grad);
-        svg.appendChild(defs);
-
-        svg.appendChild(createSvg('path', {
-          d: 'M8,8 L132,8 L132,152 L8,152 Z M16,16 L16,144 L124,144 L124,16 Z',
-          'fill-rule': 'evenodd',
-          fill: 'url(#nxBaroqueMetal-' + uid + ')',
-          stroke: '#1F242D',
-          'stroke-width': '1.6'
-        }));
-        svg.appendChild(createSvg('rect', {
-          x: '4', y: '4', width: '132', height: '152', rx: '5',
-          fill: 'none', stroke: 'rgba(255,255,255,0.82)', 'stroke-width': '1.2'
-        }));
-        svg.appendChild(createSvg('rect', {
-          x: '13', y: '13', width: '114', height: '134', rx: '2',
-          fill: 'none', stroke: '#1C2028', 'stroke-width': '1.5'
-        }));
-        [
-          'M4 14 Q4 4 14 4 L22 4 Q12 12 4 22 Z',
-          'M136 14 Q136 4 126 4 L118 4 Q128 12 136 22 Z',
-          'M4 146 Q4 156 14 156 L22 156 Q12 148 4 138 Z',
-          'M136 146 Q136 156 126 156 L118 156 Q128 148 136 138 Z'
-        ].forEach((d) => {
-          svg.appendChild(createSvg('path', { d, fill: '#FFFFFF', stroke: '#252A34', 'stroke-width': '1.2' }));
-        });
-        [[70, 8], [70, 152], [8, 80], [132, 80]].forEach(([cx, cy]) => {
-          svg.appendChild(createSvg('circle', { cx: String(cx), cy: String(cy), r: '4.2', fill: '#FFFFFF', stroke: '#252A34', 'stroke-width': '1.3' }));
-        });
-        return svg;
-      }
-
-      function buildRoseSvg() {
-        const svg = createSvg('svg', { viewBox: '0 0 80 76', class: 'card-corner-rose', 'aria-hidden': 'true' });
-        svg.appendChild(createSvg('path', {
-          d: 'M14 58 C4 48 6 28 22 24 C28 14 48 14 52 28 C64 32 62 52 46 58 C34 66 22 66 14 58 Z',
-          fill: 'var(--qcard-rose-dark)'
-        }));
-        svg.appendChild(createSvg('path', {
-          d: 'M18 52 C12 40 16 26 28 26 C36 20 48 24 48 36 C54 44 46 56 34 56 C24 58 20 55 18 52 Z',
-          fill: 'var(--qcard-rose-mid)'
-        }));
-        svg.appendChild(createSvg('path', {
-          d: 'M24 44 C22 35 28 30 35 31 C42 32 44 42 38 47 C32 50 26 48 24 44 Z',
-          fill: 'var(--qcard-rose-light)'
-        }));
-        svg.appendChild(createSvg('path', { d: 'M56 64 Q64 56 70 62 Q63 70 56 64 Z', fill: 'var(--qcard-rose-mid)' }));
-        svg.appendChild(createSvg('path', { d: 'M46 68 Q52 62 56 68 Q50 73 46 68 Z', fill: 'var(--qcard-rose-dark)' }));
-        return svg;
-      }
-
-      function buildPearlsSvg(uid) {
-        const svg = createSvg('svg', { viewBox: '0 0 84 60', class: 'card-corner-pearls', 'aria-hidden': 'true' });
-        const defs = createSvg('defs', {});
-        const grad = createSvg('radialGradient', { id: 'nxPearlGrad-' + uid, cx: '34%', cy: '30%', r: '66%' });
-        grad.append(
-          createSvg('stop', { offset: '0%', 'stop-color': '#FFFFFF' }),
-          createSvg('stop', { offset: '55%', 'stop-color': '#F5ECEF' }),
-          createSvg('stop', { offset: '100%', 'stop-color': '#A8949E' })
-        );
-        defs.appendChild(grad);
-        svg.appendChild(defs);
-        [
-          [22, 42, 8], [36, 38, 10], [52, 42, 9], [66, 36, 11], [44, 24, 7], [60, 22, 6]
-        ].forEach(([cx, cy, r]) => {
-          svg.appendChild(createSvg('circle', {
-            cx: String(cx), cy: String(cy), r: String(r),
-            fill: 'url(#nxPearlGrad-' + uid + ')',
-            stroke: 'rgba(255,255,255,0.85)',
-            'stroke-width': '0.9'
-          }));
-        });
-        return svg;
-      }
-
       function makeQuoteCard(character, idxNumber) {
-        const uid = String(++cardSeq);
+        const isGreen = document.body.classList.contains('afternoon-mode');
         const card = document.createElement('article');
         card.className = 'quote-reveal-card is-arriving';
         card.addEventListener('animationend', (e) => {
@@ -11834,6 +11396,11 @@
             card.classList.remove('is-arriving');
           }
         });
+
+        const shadow = document.createElement('div');
+        shadow.className = 'quote-card-shadow';
+        shadow.setAttribute('aria-hidden', 'true');
+        card.appendChild(shadow);
 
         const floater = document.createElement('div');
         floater.className = 'quote-card-float';
@@ -11844,6 +11411,20 @@
           sp.setAttribute('aria-hidden', 'true');
           sp.textContent = glyph;
           floater.appendChild(sp);
+        });
+
+        const tiltWrap = document.createElement('div');
+        tiltWrap.className = 'quote-card-tilt';
+        tiltWrap.addEventListener('mousemove', (e) => {
+          const r = tiltWrap.getBoundingClientRect();
+          const nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+          const ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+          tiltWrap.style.setProperty('--tilt-rx', (-ny * 10).toFixed(2) + 'deg');
+          tiltWrap.style.setProperty('--tilt-ry', (nx * 10).toFixed(2) + 'deg');
+        });
+        tiltWrap.addEventListener('mouseleave', () => {
+          tiltWrap.style.setProperty('--tilt-rx', '0deg');
+          tiltWrap.style.setProperty('--tilt-ry', '0deg');
         });
 
         const flipButton = document.createElement('button');
@@ -11919,6 +11500,11 @@
         stampSub.textContent = 'NHẤT XUYÊN';
         topStamp.append(stampNum, stampBar, stampSub);
 
+        const crossImg = document.createElement('img');
+        crossImg.className = 'card-art-cross';
+        crossImg.alt = '';
+        crossImg.src = getCrossArt();
+
         const sideLeft = document.createElement('span');
         sideLeft.className = 'card-side-note-left';
         sideLeft.innerHTML = 'a little<br/>memory';
@@ -11933,6 +11519,16 @@
 
         const frameWrap = document.createElement('span');
         frameWrap.className = 'card-baroque-frame-wrap';
+
+        const crownImg = document.createElement('img');
+        crownImg.className = 'card-art-crown';
+        crownImg.alt = '';
+        crownImg.src = getCrownArt();
+
+        const frameImg = document.createElement('img');
+        frameImg.className = 'card-art-frame';
+        frameImg.alt = '';
+        frameImg.src = getBaroqueFrameArt();
 
         const photo = document.createElement('span');
         photo.className = 'quote-card-photo';
@@ -11961,17 +11557,19 @@
           photo.appendChild(image);
         }
 
-        frameWrap.append(buildCrownSvg(uid), photo, buildBaroqueFrameSvg(uid));
+        frameWrap.append(crownImg, photo, frameImg);
 
-        editorialStage.append(
-          topStamp,
-          buildGothicCrossSvg(uid),
-          sideLeft,
-          sideRight,
-          frameWrap,
-          buildRoseSvg(),
-          buildPearlsSvg(uid)
-        );
+        const roseImg = document.createElement('img');
+        roseImg.className = 'card-art-rose';
+        roseImg.alt = '';
+        roseImg.src = getRoseArt(isGreen);
+
+        const pearlsImg = document.createElement('img');
+        pearlsImg.className = 'card-art-pearls';
+        pearlsImg.alt = '';
+        pearlsImg.src = getPearlsArt();
+
+        editorialStage.append(topStamp, crossImg, sideLeft, sideRight, frameWrap, roseImg, pearlsImg);
 
         const copy = document.createElement('span');
         copy.className = 'quote-card-copy';
@@ -12003,7 +11601,8 @@
 
         flipper.append(back, front);
         flipButton.appendChild(flipper);
-        floater.appendChild(flipButton);
+        tiltWrap.appendChild(flipButton);
+        floater.appendChild(tiltWrap);
         card.appendChild(floater);
 
         flipButton.addEventListener('click', () => {
@@ -12022,30 +11621,30 @@
         isDrawing = true;
         jar.disabled = true;
         jar.setAttribute('aria-busy', 'true');
-        hint.textContent = 'Rung lắc dữ dội… những viên ngọc đang chọn người gửi lời nhắn!';
+        hint.textContent = 'Rung lắc dữ dội… những viên ngọc 3D đang chọn người gửi lời nhắn!';
 
         const previousCard = stage.querySelector('.quote-reveal-card');
         if (previousCard) previousCard.classList.add('is-leaving');
 
-        jar.classList.remove('is-shaking', 'is-bursting');
+        jar.classList.remove('is-shaking');
         void jar.offsetWidth;
         jar.classList.add('is-shaking');
+        triggerJarShakeEffect();
 
         window.setTimeout(() => {
-          jar.classList.add('is-bursting');
           const character = chooseCharacter();
           const poolIdx = quotePool.indexOf(character) + 1;
           lastCharacterId = character.id || character.name || null;
           stage.replaceChildren(makeQuoteCard(character, poolIdx));
-          hint.textContent = 'Một tấm thẻ vừa bay ra lơ lửng! Chạm vào mặt thẻ để lật nhé ✦';
+          hint.textContent = 'Thẻ vừa bay ra lơ lửng! Chạm vào mặt thẻ để lật nhé ✦';
         }, 720);
 
         window.setTimeout(() => {
-          jar.classList.remove('is-shaking', 'is-bursting');
+          jar.classList.remove('is-shaking');
           jar.removeAttribute('aria-busy');
           jar.disabled = false;
           isDrawing = false;
-        }, 1200);
+        }, 1220);
       });
     })();
   </script>
