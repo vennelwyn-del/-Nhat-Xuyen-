@@ -232,7 +232,7 @@ window.NHAT_XUYEN_CHARS = [
     personality: "Kiêu hãnh, sắc sảo, luôn giữ vị trí trung tâm trong mọi hoạt động nghệ thuật và truyền thông.",
     secret: "Mắc Hội chứng ám ảnh sự chú ý do bị gia tộc xem nhẹ hơn anh trai Alpha Vu Cảnh Hiên; thường ngầm thao túng thứ tự biểu diễn và độ nổi bật của các thành viên trong Ban Âm nhạc để giữ vị trí trung tâm, dù sâu bên trong luôn bất an sợ bị bỏ rơi nếu đánh mất ánh hào quang.",
     relationships: "",
-    quote: "“Honey,tôi không có thói quen nhường lại những gì mình đã để mắt đến, nhất là khi tôi biết rõ mình có thể làm tốt hơn bất kỳ ai.”",
+    quote: "“Honey, tôi không có thói quen nhường lại những gì mình đã để mắt đến, nhất là khi tôi biết rõ mình có thể làm tốt hơn bất kỳ ai.”",
     extraNotes: ""
   },
   {

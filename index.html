@@ -3988,7 +3988,7 @@
 
     .jar-3d-canvas {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       display: block;
       width: 100%;
       height: 100%;
@@ -3998,12 +3998,12 @@
     .jar-custom-photo {
       position: absolute;
       inset: 4px;
-      z-index: 3;
+      z-index: 1;
       display: none;
       width: calc(100% - 8px);
       height: calc(100% - 8px);
       object-fit: contain;
-      opacity: 0.86;
+      opacity: 0.96;
       filter: drop-shadow(0 12px 16px rgba(14, 22, 34, 0.36));
       pointer-events: none;
     }
@@ -4079,8 +4079,10 @@
 
     .quote-card-tilt {
       position: relative;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
       transition: transform 0.18s ease-out;
-      transform: perspective(1200px) rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
+      transform: rotateX(var(--tilt-rx, 0deg)) rotateY(var(--tilt-ry, 0deg));
     }
 
     .card-orbit-sparkle {
@@ -4099,8 +4101,7 @@
       0%, 100% { opacity: 0.20; transform: scale(0.6) rotate(0deg); }
       50%      { opacity: 1; transform: scale(1.38) rotate(28deg); }
     }
-
-    .quote-card-flip-button {
+     .quote-card-flip-button {
       display: block;
       width: 100%;
       margin: 0;
@@ -4113,6 +4114,7 @@
       cursor: pointer;
       -webkit-tap-highlight-color: transparent;
       perspective: 1400px;
+      -webkit-perspective: 1400px;
     }
     .quote-card-flip-button:focus-visible {
       outline: 2px solid var(--qcard-accent-bright);
@@ -4123,7 +4125,7 @@
       width: 100%;
       transform-style: preserve-3d;
       -webkit-transform-style: preserve-3d;
-      transition: transform 0.85s cubic-bezier(.22, .82, .20, 1);
+      transition: transform 0.84s cubic-bezier(.22, .82, .20, 1);
     }
     .quote-reveal-card.is-flipped .quote-card-flipper {
       transform: rotateY(180deg);
@@ -4186,6 +4188,13 @@
       color: #FFFDF8;
       text-align: center;
       background: var(--qcard-back-bg);
+      transform: rotateY(0deg) translateZ(2px);
+      opacity: 1;
+      transition: opacity 0s linear 0.42s;
+    }
+    .quote-reveal-card.is-flipped .quote-card-back {
+      opacity: 0;
+      pointer-events: none;
     }
     .quote-card-back::before,
     .quote-card-back::after {
@@ -4265,20 +4274,17 @@
 
     .quote-card-front {
       min-height: 446px;
-      transform: rotateY(180deg);
+      transform: rotateY(180deg) translateZ(2px);
       background: var(--qcard-front-bg);
       color: var(--qcard-ink);
-    }
-    .quote-card-front::before {
-      content: "";
-      position: absolute;
-      inset: 5px;
-      z-index: 1;
-      border: 1px solid rgba(170, 178, 190, 0.55);
-      border-radius: 12px;
+      opacity: 0;
       pointer-events: none;
+      transition: opacity 0s linear 0.42s;
     }
-
+    .quote-reveal-card.is-flipped .quote-card-front {
+      opacity: 1;
+      pointer-events: auto;
+    }
     .quote-card-ribbon {
       position: relative;
       z-index: 2;
@@ -4883,6 +4889,7 @@
           <div class="quote-text-block">
           <h3 class="quote-draw-title">ʚ HŨ LỜI NHẮN ɞ</h3>
           <p class="quote-draw-subtitle">Một câu nói ngẫu nhiên từ NPC</p>
+          </div>
 
           <div class="quote-jar-wrap">
             <button class="quote-jar" id="quoteJarButton" type="button" aria-label="Lắc hũ và rút một thẻ quote">
