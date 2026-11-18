@@ -12,9 +12,9 @@
   <style>
     :root {
       /* === LINK ẢNH CỦA BẠN === */
-      --intro-bg-image:  url('./assets/assets/OPW/Nhatxuyen/System/nhatxuyen1.png'), url('./assets/assets/OPW/Nhatxuyen/nhatxuyen1.png'), url('./assets/assets/OPW/Nhatxuyen/System/nhatxuyen2.png');
-      --book-page-image: url('./assets/assets/OPW/Nhatxuyen/System/nhatxuyen2.png');
-      --world-bg-image:  url('./assets/assets/OPW/Nhatxuyen/System/nhatxuyen1.png'), url('./assets/assets/OPW/Nhatxuyen/nhatxuyen1.png'), url('./assets/assets/OPW/Nhatxuyen/System/nhatxuyen2.png');
+      --intro-bg-image:  url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen1.png'), url('./assets/assets/OPW/Nhatxuyen/Nhatxuyen1.png'), url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen2.png');
+      --book-page-image: url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen2.png');
+      --world-bg-image:  url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen1.png'), url('./assets/assets/OPW/Nhatxuyen/Nhatxuyen1.png'), url('./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen2.png');
 
       /* === BẢNG MÀU BÌNH MINH === */
       --c-accent-1: #FFF2B2;
@@ -5141,7 +5141,7 @@
 
                 <!-- KHUNG ẢNH 01 -->
                 <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
-                  <img src="./assets/assets/OPW/Nhatxuyen/System/nhatxuyen1.png" alt="Toàn cảnh Học viện Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                  <img src="./assets/assets/OPW/Nhatxuyen/System/Nhatxuyen1.png" alt="Toàn cảnh Học viện Nhất Xuyên" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
                   <div class="photo-placeholder">
                     <span class="ph-badge">Ảnh 01</span>
                     <span class="ph-icon">🏛</span>
@@ -8074,7 +8074,7 @@
                 <article class="npc-dossier-card" data-abo="omega">
                   <div class="npc-photo-col">
                     <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
-                      <img src="./assets/assets/OPW/Nhatxuyen/NPC/yenchievi.png" alt="Yên Chỉ Vi" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
+                      <img src="./assets/assets/OPW/Nhatxuyen/NPC/yenchivi.png" alt="Yên Chỉ Vi" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
                       <a href="#sec-3" class="npc-info-glass-link" data-open-char="yen-chi-vi">✦ Thông tin ➔</a>
                       <div class="photo-placeholder"><span class="ph-badge">Ảnh 83 · NPC 12</span><span class="ph-icon">🍬</span><span class="ph-title">Yên Chỉ Vi</span></div>
                       <div class="char-glass-caption">
@@ -10507,7 +10507,7 @@
     });
 
     /* === KẾT NỐI FIREBASE REALTIME CHO WEB CHUNG (TIEBA + TỊ PHONG CẢNG) === */
-    const nhatXuyenFirebaseConfig = {
+    const NhatxuyenFirebaseConfig = {
       apiKey: "AIzaSyB4FWI8zc2ZpclY0bDTiwZg8Krd5wsArHA",
       authDomain: "baoungdoinhau.firebaseapp.com",
       databaseURL: "https://baoungdoinhau-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -10525,11 +10525,11 @@
 
     if (typeof firebase !== 'undefined') {
       try {
-        const nxApp = firebase.apps.length ? firebase.app() : firebase.initializeApp(nhatXuyenFirebaseConfig);
+        const nxApp = firebase.apps.length ? firebase.app() : firebase.initializeApp(NhatxuyenFirebaseConfig);
         nxDb = nxApp.database();
 
         boardKeys.forEach((bk) => {
-          nxDb.ref('nhatxuyen_tieba/' + bk)
+          nxDb.ref('Nhatxuyen_tieba/' + bk)
             .orderByChild('ts')
             .limitToLast(10)
             .on('child_added', (snap) => {
@@ -10542,7 +10542,7 @@
             });
         });
 
-        nxDb.ref('nhatxuyen_tiphong')
+        nxDb.ref('Nhatxuyen_tiphong')
           .orderByChild('ts')
           .limitToLast(10)
           .on('child_added', (snap) => {
@@ -10580,7 +10580,7 @@
       lastPostTime = now;
 
       if (nxDb) {
-        nxDb.ref('nhatxuyen_tieba/' + bk).push({
+        nxDb.ref('Nhatxuyen_tieba/' + bk).push({
           id: currentAnonId,
           title: t,
           body: b,
@@ -10615,7 +10615,7 @@
       const msgCls  = isBig ? 'tp-err' : 'tp-warn';
 
       if (nxDb) {
-        nxDb.ref('nhatxuyen_tiphong').push({
+        nxDb.ref('Nhatxuyen_tiphong').push({
           cls: msgCls,
           text: msgText,
           ts: firebase.database.ServerValue.TIMESTAMP
