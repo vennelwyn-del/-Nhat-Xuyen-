@@ -41,6 +41,7 @@ window.NHAT_XUYEN_CHARS = [
     age: "18 tuổi",
     origin: "Nhị thiếu gia Tập đoàn Hàng hải Phó thị (nhà tài trợ xây Tòa D & E). Học thần khối Tự nhiên nhưng cố tình bỏ trắng tự luận Văn - Anh để không bị tống lên Lớp 1.",
     img: "",
+    imgLink: '',
     isOc: false,
     appearance: "Cao 1m88, cơ bắp săn chắc, tóc nâu hạt dẻ ướt mồ hôi, mắt hổ phách lười biếng; áo sơ mi luôn phanh 2 cúc cổ nhưng cài Huy hiệu mạ vàng Chim Ưng Tiên Phong giúp miễn nhiễm kiểm tra tác phong. Nắm thẻ từ Penthouse Tầng 5 và chìa khóa Sân thượng Tòa A.",
     scent: "Vỏ cam đắng sấy nắng gắt pha rượu rum trắng và muối biển (thân nhiệt cao 37.5°C).",
