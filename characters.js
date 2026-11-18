@@ -282,7 +282,7 @@ window.NHAT_XUYEN_CHARS = [
     patchInfo: "Miếng dán gọn nhẹ phù hợp đồng phục.",
     personality: "Bề ngoài là nữ sinh học lực trung bình vô tư (“Bé sóc nhỏ / Túi khí tích cực” của Lớp 12-4), thực chất sở hữu trí tuệ Học bá đẳng cấp Top 5 toàn khối.",
     secret: "Từng bị nhóm bạn thân thời cấp 2 phản bội, vu khống và bạo lực lạnh sau khi giành học bổng nên mắc chấn thương tâm lý sợ bị bỏ rơi; cô cố tình tính sai để ghìm điểm ở Hạng 88 an toàn, lén giải đề Toán - Hóa quốc gia dưới gầm bàn rồi gạch nát vứt đi, dùng nụ cười ngọt ngào làm lớp khiên che giấu sự cô độc tuyệt đối ghi trong cuốn sổ khóa mã số.",
-    relationships: "",
+    relationships:"",
     quote: "“Tớ còn dư hai cây kẹo mút này, cậu ăn không?”",
     extraNotes: ""
   },
