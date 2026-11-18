@@ -4881,6 +4881,18 @@
       }
       .gland-label .g-full { display: none; }
     }
+    /* === CHỈNH ẢNH FIG. 62 (CHƯƠNG 8) TRẢI NGANG FULL ẢNH 16:9 === */
+    .ch8-v-split {
+      grid-template-columns: 1fr !important;
+    }
+    .ch8-fig62-slot {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      min-height: 220px;
+    }
+    .ch8-fig62-slot img {
+      object-fit: contain;
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -7217,7 +7229,7 @@
             </p>
 
             <!-- SƠ ĐỒ CHỮ V TƯƠNG TÁC + ẢNH 62 MINH HỌA ĐẦU TIÊN -->
-            <div class="ch1-split" style="margin-bottom:24px;">
+            <div class="ch1-split ch8-v-split" style="margin-bottom:24px;">
               <div class="v-diagram-box">
                 <button type="button" class="v-node is-selected" data-vwing="gate">
                   <strong>⛩ CỔNG VÀO KÝ TÚC XÁ &amp; TRẠM BẢO VỆ CHÍNH</strong>
@@ -7244,9 +7256,8 @@
                   <strong>Cổng vào &amp; Trạm Bảo vệ chính:</strong> Điểm kiểm soát duy nhất nối khu KTX Tòa F với giảng đường. Quẹt thẻ và đo thân nhiệt tự động trước khi sập chốt điện từ 22:30.
                 </div>
               </div>
-
               <!-- ẢNH 62: MINH HỌA SƠ ĐỒ KHU KTX TÒA F CHỮ V -->
-              <div class="photo-slot interactive-photo" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
+              <div class="photo-slot interactive-photo ch8-fig62-slot" role="button" tabindex="0" title="Di chuột làm sáng · Nhấn để lá rơi">
                 <img src="./assets/assets/OPW/Nhatxuyen/System/fig62.png" alt="Toàn cảnh Cụm Ký túc xá Tòa F kiến trúc chữ V" onload="this.classList.add('loaded')" onerror="this.style.display='none'" />
                 <div class="photo-placeholder">
                   <span class="ph-badge">Ảnh 62 · Tổng thể Tòa F</span>
