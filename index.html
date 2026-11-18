@@ -4931,6 +4931,174 @@
       }
       .gland-label .g-full { display: none; }
     }
+    /* === HỆ THỐNG MŨI TÊN CHỈ ĐIỂM CHÍNH XÁC (SVG LEADER + DETAIL TOAST) === */
+    .anno-layer {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    .chap7-hide-annos .anno-layer,
+    .photo-slot:not(.has-loaded-img) .anno-layer {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .anno-pin {
+      position: absolute;
+      width: 0;
+      height: 0;
+      pointer-events: auto;
+      z-index: 4;
+      transition: opacity 0.24s ease;
+    }
+    .anno-layer.has-active-pin .anno-pin:not(.is-pin-active) {
+      opacity: 0.32;
+    }
+    .anno-pin:hover,
+    .anno-pin.is-pin-active {
+      z-index: 10;
+      opacity: 1 !important;
+    }
+
+    /* Tâm điểm chỉ định nằm chính xác tại (x%, y%) */
+    .anno-dot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 10px;
+      height: 10px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: var(--pin-color, var(--gold-text));
+      border: 1.5px solid #FFFFFF;
+      box-shadow: 0 0 10px var(--pin-color, var(--glow-color)), 0 0 0 3px rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      animation: annoPulse 2.3s ease-in-out infinite;
+    }
+    .anno-dot::after {
+      content: "";
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 1px solid var(--pin-color, var(--gold-text));
+      opacity: 0.6;
+      animation: annoRingPing 2.3s ease-out infinite;
+    }
+    @keyframes annoRingPing {
+      0%   { transform: scale(0.75); opacity: 0.8; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    .anno-leader-svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1px;
+      height: 1px;
+      overflow: visible;
+      pointer-events: none;
+    }
+    .anno-leader-shadow {
+      fill: none;
+      stroke: rgba(8, 12, 16, 0.82);
+      stroke-width: 3.4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .anno-leader-line {
+      fill: none;
+      stroke: var(--pin-color, var(--gold-text));
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .anno-leader-head {
+      fill: var(--pin-color, var(--gold-text));
+      stroke: rgba(8, 12, 16, 0.78);
+      stroke-width: 0.8;
+      stroke-linejoin: round;
+    }
+
+    .anno-label {
+      position: absolute;
+      max-width: 158px;
+      padding: 4px 10px;
+      border-radius: 10px;
+      background: rgba(12, 18, 22, 0.86);
+      border: 1px solid var(--pin-color, rgba(255, 242, 178, 0.65));
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      color: #FFFDF5;
+      font-size: 0.74rem;
+      font-weight: 600;
+      line-height: 1.25;
+      white-space: normal;
+      text-align: left;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.40);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .anno-pin:hover .anno-label,
+    .anno-pin.is-pin-active .anno-label {
+      background: rgba(12, 18, 22, 0.96);
+      color: var(--pin-color, var(--gold-text));
+      box-shadow: 0 0 16px var(--glow-color), 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Hộp giải thích chi tiết hiện ra khi bấm vào mũi tên */
+    .anno-detail-toast {
+      position: absolute;
+      left: 10px;
+      right: 10px;
+      bottom: 36px;
+      z-index: 12;
+      padding: 9px 13px;
+      border-radius: 10px;
+      background: rgba(12, 18, 24, 0.94);
+      border: 1px solid var(--gold-text);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      color: #FFFDF5;
+      font-size: 0.84rem;
+      line-height: 1.45;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.48);
+      display: none;
+      animation: softFadeIn 0.2s ease;
+    }
+    .anno-detail-toast.is-open { display: block; }
+    .anno-detail-toast strong { color: var(--gold-text); }
+
+    /* Chế độ soi tọa độ giúp bạn căn lại từng pixel trên ảnh thật nếu muốn */
+    body.anno-coord-mode .photo-slot.has-loaded-img {
+      cursor: crosshair !important;
+    }
+    .coord-readout-pill {
+      display: none;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(16, 24, 20, 0.88);
+      border: 1px solid var(--gold-text);
+      color: var(--gold-text);
+      font-size: 0.82rem;
+    }
+    body.anno-coord-mode .coord-readout-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    @media (max-width: 600px) {
+      .anno-label {
+        max-width: 118px;
+        padding: 3px 7px;
+        font-size: 0.66rem;
+      }
+      .anno-detail-toast {
+        font-size: 0.78rem;
+        padding: 7px 10px;
+      }
+    }
   </style>
 </head>
 <body class="intro-locked">
@@ -6796,6 +6964,8 @@
                 <a href="#ch7-5" class="ch2-jump-pill">7.5 Vệ sinh &amp; 4 Góc chết</a>
               </nav>
               <button type="button" class="soft-action-btn is-active" id="btnToggleAnnos">📍 Ẩn / Hiện mũi tên chú thích</button>
+              <button type="button" class="soft-action-btn" id="btnCoordPicker">⌖ Lấy tọa độ ảnh</button>
+              <span class="coord-readout-pill" id="coordReadoutPill">Chạm vào 1 điểm trên ảnh để lấy x, y</span>           
             </div>
 
             <!-- 7.1 TÒA A -->
@@ -12840,6 +13010,613 @@
         legendBar.prepend(resetBtn);
 
         setActive(-1);
+      });
+    })();
+  </script>
+  <script>
+    (function initPrecisionCalloutArrows() {
+      // Bộ dữ liệu mũi tên chi tiết theo mã ảnh (Ảnh 01 -> 71, T02 -> T16)
+      // x, y = tọa độ % chính xác của điểm cần chỉ; dx, dy = hướng đặt nhãn (px); color = màu mũi tên
+      const PHOTO_CALLOUTS = {
+        '01': [
+          { x: 36, y: 34, dx: -44, dy: -26, label: 'Tòa giảng đường gạch xám', detail: 'Kiến trúc Anh Quốc mặt trước Khối Chữ U — chứa 15 phòng học bàn đơn & Penthouse Tầng 5.' },
+          { x: 64, y: 56, dx: 42,  dy: -24, label: 'Hàng cây ngân hạnh', detail: 'Rợp bóng sân trung tâm Khối Chữ U, nằm trọn dưới tầm quét CCTV từ Tòa A.' },
+          { x: 50, y: 78, dx: -36, dy: 24,  label: 'Cổng sắt khóa thẻ từ', detail: 'Nội trú khép kín 100% Thứ Hai–Thứ Sáu; ra vào quét thẻ sinh trắc học.' }
+        ],
+        '02': [
+          { x: 38, y: 36, dx: -40, dy: -24, color: '#FF8A8A', label: 'Khuất lưới T-80 cũ', detail: 'Tầng 5 Tòa C tách biệt tầm kiểm soát 3 năm trước — điểm khởi nguồn bi kịch bị ém nhẹm.' },
+          { x: 66, y: 58, dx: 40,  dy: 22,  label: 'Phòng Lab khóa trong', detail: 'Hiện trường nam sinh Omega học bổng bị nhóm Alpha tài phiệt ép phát sốt Heat.' }
+        ],
+        '03': [
+          { x: 28, y: 30, dx: 44,  dy: -20, color: '#9EE8FF', label: 'Cảm biến Model T-80', detail: 'Phủ kín hành lang và lớp học, truyền số liệu ppm trực tiếp về Tòa Án Học Đường Tầng 5.' },
+          { x: 66, y: 62, dx: -44, dy: 22,  label: 'Chốt thẻ từ sinh trắc', detail: 'Quét thẻ + đo thân nhiệt tự động; thời gian cưỡng chế rò rỉ chỉ 60–90 giây.' }
+        ],
+        '04': [
+          { x: 24, y: 42, dx: 44,  dy: -24, label: 'Dãy 1 · Bàn cửa sổ', detail: 'Vị trí ưu tiên Top đầu sau nghi thức Chia lại giang sơn; nắng gắt dễ làm mồ hôi rã keo.' },
+          { x: 54, y: 52, dx: 40,  dy: 24,  color: '#FF9A9A', label: 'Véc-tơ 60cm sau gáy', detail: 'Người bàn sau nhìn thẳng vào gáy và mép miếng dán đốt sống C3–C4 người bàn trước.' },
+          { x: 72, y: 72, dx: -44, dy: 20,  label: 'Lối đi giữa dãy 80cm', detail: 'Chia 3 dãy × 10 bàn đơn; vừa đủ vạt blazer sượt qua khi Giám thị tuần tra.' }
+        ],
+        '09': [
+          { x: 36, y: 42, dx: -38, dy: -24, label: 'Xấp đề Ngũ Tam & Cà phê', detail: 'Ôn thi khuya + cà phê đặc gây rối loạn nội tiết tuổi 18 trùng tuần Bách Nhật Thệ Sư.' },
+          { x: 66, y: 62, dx: 38,  dy: 22,  color: '#FF8A8A', label: 'Ngưỡng sốt 39.2–40°C', detail: 'Buộc chọn giữa tiêm Class-S suy giảm trí nhớ hoặc vào Buồng áp suất âm Tòa B.' }
+        ],
+        '10': [
+          { x: 46, y: 46, dx: -44, dy: -24, color: '#FF8A8A', label: 'Lõi tuyến thể C3–C4', detail: 'Tạm thời cắn sâu 2–3mm giữ 10–30s (7–14 ngày); Vĩnh viễn cắn ngập lõi khi Khóa Nút.' },
+          { x: 62, y: 64, dx: 40,  dy: 22,  label: 'Sẹo lồi & Rửa dấu Laser', detail: 'Phẫu thuật laser xóa dấu tử vong cao, rối loạn thân nhiệt & giảm thọ 5–10 năm.' }
+        ],
+        '11': [
+          { x: 34, y: 36, dx: 44,  dy: -22, color: '#9EE8FF', label: 'Bể bơi ẩm 90% (T3 Tòa D)', detail: 'Nước ấm + độ ẩm 90% làm keo sinh học rã cực nhanh, dễ gây rò rỉ diện rộng.' },
+          { x: 64, y: 62, dx: -44, dy: 22,  label: 'Mép keo bong 30–70%', detail: 'Chỉ hở mép nhỏ, gió điều hòa 24°C đủ thổi hương phủ khắp lớp trong 40 giây.' }
+        ],
+        '12': [
+          { x: 30, y: 32, dx: 44,  dy: -20, color: '#FF7B7B', label: 'Màn LED T-80 mép bảng', detail: 'Xanh (<5) · Vàng (15–29.9 dừng tiết) · Đỏ (≥30 ppm Mã 302 xả mù bạc hà).' },
+          { x: 72, y: 62, dx: -44, dy: 22,  label: 'Tủ thuốc khóa vân tay', detail: 'Mở bằng vân tay Lớp trưởng/Ủy viên Kỷ luật; chứa 5 miếng dán & 2 bình xịt nhẹ.' }
+        ],
+        '13': [
+          { x: 36, y: 26, dx: 42,  dy: -18, color: '#9EE8FF', label: 'Quạt hút áp suất âm', detail: 'Khóa 100% tin tức tố rò rỉ bên trong buồng, ngăn phát tán ra hành lang Tòa B.' },
+          { x: 62, y: 54, dx: -42, dy: 20,  label: 'Kính 1 chiều & Vòng cổ 48h', detail: 'Cách âm chống đập; tiêm Class-S hạ 35.5°C và đeo vòng cổ định vị suốt 48 giờ.' }
+        ],
+        '14': [
+          { x: 48, y: 44, dx: -42, dy: -24, label: 'Gáy phẳng lì (Beta)', detail: 'Beta không có mô tuyến thể gồ; xịt hương giả dễ lộ vì mùi “phẳng” không có nhiệt sống.' },
+          { x: 56, y: 74, dx: 40,  dy: 18,  label: 'Tay bấu mép bàn kìm nén', detail: 'Điểm hở của Omega giả Beta khi rịn mồ hôi lạnh chịu áp bách giữa lớp 24°C.' }
+        ],
+        '15': [
+          { x: 34, y: 32, dx: 42,  dy: -20, label: '5 Tầng lớp học Tòa A', detail: 'Từ Lớp 1 (Tinh anh) đến Lớp 5 (Đặc tài & Thể thao) — cùng xếp chung bảng 750đ.' },
+          { x: 66, y: 66, dx: -42, dy: 20,  label: 'Bảng tổng sắp 750 điểm', detail: 'Không đặc cách điểm văn hóa; tụt hạng sẽ bị đổi chỗ ngồi ngay sáng Thứ Hai.' }
+        ],
+        '16': [
+          { x: 30, y: 46, dx: 42,  dy: -22, color: '#9EE8FF', label: 'Lớp 1 · Băng giá Olympic', detail: 'Im lặng tuyệt đối, chỉ có tiếng ngòi bút kim loại cào rách mép giấy nháp.' },
+          { x: 70, y: 58, dx: -42, dy: 20,  label: 'Lớp 5 · Alpha thể chất', detail: 'Hạt giống thể thao & nghệ thuật lệch tủ, giàu bản năng cạnh tranh cơ bắp.' }
+        ],
+        '17': [
+          { x: 50, y: 48, dx: 44,  dy: -24, label: 'Ghim ve áo bên phải', detail: 'Chỉ cấp cho 06 học giả Vanguard (2/khối); trượt Top 3 hai tháng liền bị thu hồi ngay.' },
+          { x: 34, y: 66, dx: -36, dy: 22,  label: 'Cành Nguyệt Quế Bạc', detail: 'Biểu tượng danh giá của tầng lớp bình dân nhưng luôn bị hội tài phiệt săm soi.' }
+        ],
+        '18': [
+          { x: 34, y: 42, dx: 42,  dy: -22, label: 'Thẻ ăn VIP Tòa D', detail: 'Dùng không giới hạn từ quầy bếp Á–Âu tới Đảo tráng miệng & Quầy điện giải.' },
+          { x: 68, y: 62, dx: -42, dy: 20,  label: 'Phòng đôi 30m² Tầng 2 Tòa F', detail: '2 giường cách 2m có rèm lụa cách ly, cấp miễn phí suốt 3 năm giữ Top 3.' }
+        ],
+        '19': [
+          { x: 48, y: 32, dx: 44,  dy: -22, color: '#9EE8FF', label: 'Lớp lụa tơ tằm Bio-Shield', detail: 'Lót mặt trong chân cổ sơ mi và ve blazer, chống cọ xát làm rách miếng dán C3–C4.' },
+          { x: 40, y: 64, dx: -40, dy: 22,  label: 'Khuy kim loại Chim Ưng', detail: 'Dập nổi biểu tượng chim ưng tiên phong trên nền dạ len pha cashmere Midnight Navy.' }
+        ],
+        '20': [
+          { x: 32, y: 48, dx: -36, dy: -24, label: 'Quần charcoal & Cà vạt', detail: 'Quần âu len xước xếp ly đôi, thắt nút Windsor kép kèm kẹp bạc & giày Oxford/Derby.' },
+          { x: 68, y: 54, dx: 36,  dy: 22,  label: 'Váy chữ A & Nơ lụa satin', detail: 'Chân váy xếp ly trên gối 3cm, tất len cao cổ kèm giày Loafer hoặc Mary Jane.' }
+        ],
+        '21': [
+          { x: 30, y: 38, dx: 44,  dy: -22, label: 'Huy hiệu Hội Học Sinh', detail: 'Chim ưng Sapphire (Hội trưởng), Chim ưng vàng (Phó CT) & Bút lông vũ bạc (Thư ký).' },
+          { x: 70, y: 62, dx: -44, dy: 20,  color: '#FF8A8A', label: 'Băng tay Thanh Tra Kỷ Luật', detail: 'Băng đỏ thêu chữ vàng đeo tay trái kèm ghim Cân Công Lý & Thước Thép.' }
+        ],
+        '22': [
+          { x: 36, y: 34, dx: 42,  dy: -22, label: 'Đường chỉ ve áo 2mm', detail: 'Ngọc lục bảo (K10) · Đỏ rượu vang (K11) · Xanh hoàng gia viền vàng kim (K12).' },
+          { x: 56, y: 52, dx: -42, dy: 24,  color: '#FF9A9A', label: 'Giới hạn mở tối đa 02 cúc', detail: 'Mở từ 3 cúc làm lộ chân gáy sẽ bị Cờ đỏ & Giám thị chặn phạt ngay lập tức.' }
+        ],
+        '23': [
+          { x: 38, y: 62, dx: -40, dy: -24, label: 'Đường chạy 400m × 2 vòng', detail: '06:30 toàn trường chạy 800m theo đội hình lớp sau khi thay miếng dán mới lúc 06:00.' },
+          { x: 68, y: 38, dx: 36,  dy: -18, label: 'Kiểm soát nhịp sinh học', detail: 'Khởi động thể chất ổn định trước giờ ăn sáng 07:00 tại Đại Sảnh Tòa D.' }
+        ],
+        '24': [
+          { x: 32, y: 38, dx: 42,  dy: -20, label: '07:50 · Tảo Tự Tập', detail: 'Đọc cổ thi / từ vựng học thuật; Ủy viên Học tập kiểm tra bài tập từng dãy bàn.' },
+          { x: 68, y: 64, dx: -42, dy: 20,  label: '10:10 · Tuần tra T-80', detail: 'Giãn cơ cổ-gáy dưới sự rà soát gắt gao miếng dán của Thầy Giám thị.' }
+        ],
+        '25': [
+          { x: 34, y: 44, dx: 42,  dy: -22, label: '13:00 · Ngủ trưa đèn mờ', detail: '40 phút hồi phục thần kinh & ổn định nhiệt tuyến thể; cấm đi lại giữa các phòng.' },
+          { x: 68, y: 58, dx: -42, dy: 22,  label: '14:00–18:30 · Lab & CLB', detail: 'Thực hành Tầng 2 Tòa C, CLB Tòa A/C và tập luyện đội tuyển tại Tòa D–E.' }
+        ],
+        '26': [
+          { x: 34, y: 34, dx: 42,  dy: -20, color: '#9EE8FF', label: 'Điều hòa kín 24°C', detail: 'Cửa kính đóng chặt suốt 3 ca Vãn tự tập, gió quạt thông thổi xuyên 3 dãy bàn.' },
+          { x: 64, y: 64, dx: -42, dy: 22,  color: '#FF8A8A', label: 'Ca 3 · Sổ Tay Câu Sai', detail: '20:50–21:40: Khung giờ nguy cơ rò rỉ cao nhất do kiệt sức sau 14 tiếng học.' }
+        ],
+        '27': [
+          { x: 36, y: 28, dx: 42,  dy: -18, color: '#FF7B7B', label: 'Camera hồng ngoại 24/7', detail: 'Đèn trần tắt lúc 22:30, Giám thị giám sát mọi chuyển động qua hồng ngoại hành lang.' },
+          { x: 64, y: 62, dx: -42, dy: 22,  label: 'Chốt điện từ Lockdown', detail: 'Khóa chặt sảnh F1–F2–F3 và ngắt cầu thang liên tòa đến 06:00 sáng hôm sau.' }
+        ],
+        '28': [
+          { x: 34, y: 42, dx: 42,  dy: -22, label: 'Tủ kính tang vật T5', detail: 'Tịch thu vĩnh viễn điện thoại dùng lén, thuốc lá và thuốc ức chế chui không đơn.' },
+          { x: 66, y: 62, dx: -42, dy: 20,  color: '#FF7B7B', label: 'Vành đai 10m cổng F1', detail: 'Alpha tiến vào bán kính 10m cổng Omega sẽ kích hoạt còi báo động thẳng Giám thị.' }
+        ],
+        '29': [
+          { x: 36, y: 44, dx: 42,  dy: -22, label: 'Đề thi 750đ & Luận 800 chữ', detail: '450đ 3 môn lõi + 300đ tổ hợp phân ban; sai một nét bút tụt hạng trên Hồng Bảng.' },
+          { x: 68, y: 62, dx: -42, dy: 20,  label: 'Thực hành 30s dán gáy', detail: 'Thi sơ cứu & xử lý miếng dán rách trong 30 giây tại Đại Hội Trường Tòa C.' }
+        ],
+        '30': [
+          { x: 34, y: 36, dx: 42,  dy: -20, label: 'Chu Trắc Thứ Hai (45p)', detail: 'Kiểm tra tốc độ đầu giờ Tảo tự tập sau cuối tuần.' },
+          { x: 66, y: 62, dx: -42, dy: 22,  label: 'Nguyệt Khảo & Tam Mô', detail: 'Nguyệt Khảo định đoạt 06 suất Vanguard; Tam Mô liên trường vào Tháng 1, 3, 5.' }
+        ],
+        '31': [
+          { x: 30, y: 48, dx: 42,  dy: -22, color: '#FF9A9A', label: 'Chốt rà T-80 cửa phòng', detail: 'Quét độ phẳng miếng dán; rách mép bị áp giải sang Trạm Y tế thay mới ngay.' },
+          { x: 68, y: 54, dx: -42, dy: 22,  color: '#9EE8FF', label: 'Buồng thi sau lồng kính', detail: 'Dành cho thí sinh sốt tiền Rut/Heat kiên quyết không bỏ thi, có bác sĩ túc trực.' }
+        ],
+        '32': [
+          { x: 34, y: 34, dx: 42,  dy: -20, color: '#FF9A9A', label: 'Hồng Bảng 10m Sảnh B', detail: 'Niêm yết 07:00 sáng Thứ Hai đủ 150 HS/khối kèm chỉ số [▲ Tăng] / [▼ Tụt].' },
+          { x: 66, y: 64, dx: -42, dy: 22,  label: 'Nhét Beta Ngăn Mùi', detail: 'Tách đôi Alpha–Omega ngồi gần bằng 1 Beta 0.0 ppm ngồi chắn chính giữa.' }
+        ],
+        '33': [
+          { x: 24, y: 26, dx: 44,  dy: -20, label: 'Khối Chữ U (Tòa A–B–C)', detail: 'Mặt trước gồm Tòa A (Học thuật), Tòa B (Hành chính/Y tế) & Tòa C (Nghệ thuật/Lab).' },
+          { x: 52, y: 34, dx: 42,  dy: -24, color: '#9EE8FF', label: 'Cầu kính Tầng 2–3', detail: 'Hành lang kính trên không nối liền mạch 3 tòa giảng đường A–B–C.' },
+          { x: 26, y: 68, dx: 44,  dy: 20,  label: 'Sân 400m & Tòa D–E', detail: 'Phía sau gồm Đại Sảnh Ẩm Thực D, Nhà thi đấu Elip E và đường chạy Pit-tơ.' },
+          { x: 76, y: 70, dx: -44, dy: 20,  label: 'Cụm KTX Chữ V (F1–F3)', detail: 'Tòa F3 Beta chắn trước làm vùng đệm ngăn F1 Omega và F2 Alpha cách nhau 150m.' }
+        ],
+        '34': [
+          { x: 34, y: 20, dx: 44,  dy: -16, label: 'T5: Penthouse & Tòa Án', detail: 'Đỉnh tháp quyền lực chia đôi giữa Hội Học Sinh (trái) và Ban Kỷ Luật (phải).' },
+          { x: 68, y: 42, dx: -42, dy: -16, label: 'T4: Khu CLB Học Thuật', detail: 'Phòng sinh hoạt CLB Nhiếp ảnh, Thiên văn & Tranh biện Quốc tế MUN.' },
+          { x: 66, y: 60, dx: -42, dy: 14,  color: '#FF9A9A', label: 'T3: Khối 12 (Ngũ Tam)', detail: 'Không gian ngột ngạt nhất trường với đề thi thử chất cao ngang đầu.' },
+          { x: 32, y: 78, dx: 42,  dy: 14,  label: 'T1–2: Khối 10 & Khối 11', detail: 'Khối 10 mới phân hóa nên máy T-80 được hiệu chuẩn dày nhất.' }
+        ],
+        '35': [
+          { x: 26, y: 26, dx: 44,  dy: -18, color: '#9EE8FF', label: 'Vách kính cong cao 6m', detail: 'Thiết kế thông tầng nhìn bao quát toàn bộ quảng trường Chữ U và sân vận động.' },
+          { x: 58, y: 54, dx: -44, dy: -22, label: 'Bàn đá cẩm thạch đen', detail: 'Bàn Hội trưởng kết hợp gỗ óc chó và bàn hội nghị 14 chỗ có micro âm bàn.' },
+          { x: 74, y: 70, dx: -44, dy: 18,  label: 'Sofa da & Trà sứ xương', detail: 'Khu tiếp khách Chesterfield nâu cognac, bàn đá onyx & bộ tách trà hoàng gia.' }
+        ],
+        '36': [
+          { x: 28, y: 26, dx: 44,  dy: -18, color: '#9EE8FF', label: 'Ma trận LED CCTV & T-80', detail: 'Hiển thị trực tiếp số ppm tin tức tố mọi phòng học theo thời gian thực.' },
+          { x: 72, y: 48, dx: -44, dy: -20, color: '#FF8A8A', label: 'Tủ kính chống đạn', detail: 'Lưu giữ tang vật tịch thu, hồ sơ đen và hộp vòng cổ định vị điện tử 48h.' },
+          { x: 40, y: 72, dx: 42,  dy: 18,  label: 'Bàn thẩm vấn Spotlight', detail: 'Đá đen nguyên khối dưới 1 ngọn đèn chiếu duy nhất tại Trạm kiểm định sinh học.' }
+        ],
+        '37': [
+          { x: 34, y: 22, dx: 42,  dy: 20,  color: '#9EE8FF', label: '4 Họng điều hòa 24°C', detail: 'Luồng gió âm trần cuốn mùi rò rỉ lan khắp phòng học chỉ trong 40 giây.' },
+          { x: 56, y: 56, dx: -44, dy: -22, label: '30 Bàn đơn Melamine', detail: 'Phủ trắng chống lóa, xếp 3 dãy dọc × 10 bàn độc lập không có bạn cùng bàn.' },
+          { x: 74, y: 72, dx: -42, dy: 18,  label: 'Lối đi giữa dãy 80cm', detail: 'Khoảng cách chuẩn vừa đủ vạt áo blazer sượt nhẹ qua mép bàn đơn.' }
+        ],
+        '38': [
+          { x: 24, y: 30, dx: 44,  dy: -18, color: '#FF7B7B', label: 'T-80 mép trái bảng 86"', detail: 'Theo dõi ppm tại lớp; chạm ≥30 ppm kích hoạt vòi xả bạc hà trên trần.' },
+          { x: 72, y: 54, dx: -44, dy: -20, label: 'Véc-tơ 60cm sau gáy', detail: 'Cự ly trực diện nhìn thẳng vào gáy và miếng dán của người ngồi bàn trước.' },
+          { x: 36, y: 74, dx: 42,  dy: 16,  label: 'Tủ thuốc vân tay cuối lớp', detail: 'Chứa 5 miếng dán & 2 bình xịt trung hòa nhẹ, mở khi báo động Vàng.' }
+        ],
+        '39': [
+          { x: 34, y: 24, dx: 42,  dy: -16, label: 'T5: Văn phòng Hiệu trưởng', detail: 'Nơi làm việc của Hiệu trưởng & Ban Cố vấn Học viện Nhất Xuyên.' },
+          { x: 64, y: 46, dx: -42, dy: -16, label: 'T2–4: Tổ bộ môn & Phòng họp', detail: 'Tổ Xã hội (T2), Tổ Tự nhiên (T3) và Phòng họp giao ban (T4).' },
+          { x: 72, y: 72, dx: -42, dy: 18,  color: '#9EE8FF', label: 'T1: Trạm Y tế & Hồng Bảng', detail: 'Cửa kính thẻ từ Y tế nồng mùi cồn 84 & Sảnh niêm yết Hồng Bảng 10m.' }
+        ],
+        '40': [
+          { x: 28, y: 30, dx: 42,  dy: -18, color: '#FF8A8A', label: 'Tủ Class-S khóa vân tay', detail: 'Chỉ mở bằng vân tay Bác sĩ Tạ; chứa thuốc ức chế cưỡng chế & dán Class-S.' },
+          { x: 72, y: 58, dx: -42, dy: 18,  color: '#9EE8FF', label: '6 Giường rèm xanh bạc', detail: 'Ngăn cách bằng rèm vải xanh bạc mỏng manh đối diện bàn trực gắn T-80.' }
+        ],
+        '41': [
+          { x: 34, y: 24, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Quạt hút áp suất âm', detail: 'Vận hành liên tục khóa chặt 100% mùi bên trong không cho rò ra ngoài.' },
+          { x: 70, y: 58, dx: -42, dy: 18,  label: 'Kính 1 chiều & Cửa gioăng', detail: 'Kính chống đập cách âm, khóa điện tử giữ kín trong giai đoạn cưỡng chế.' }
+        ],
+        '42': [
+          { x: 34, y: 28, dx: 42,  dy: -16, label: 'T4: Xưởng sơn dầu · T5: Trống', detail: 'Tầng 4 nồng mùi toan vẽ; Tầng 5 là chuỗi phòng bỏ trống khuất kiểm soát.' },
+          { x: 68, y: 56, dx: -42, dy: 18,  color: '#9EE8FF', label: 'T2 Lab · T3 Phòng Nhạc', detail: 'Phòng thí nghiệm Hóa–Sinh có máy hút mùi (T2) & phòng thu âm cách âm (T3).' }
+        ],
+        '43': [
+          { x: 34, y: 30, dx: 42,  dy: -16, color: '#FF8A8A', label: 'Rèm nhung đỏ cách âm 100%', detail: 'Che khuất cánh gà sân khấu — một trong 4 “Góc Chết” an toàn nhất trường.' },
+          { x: 68, y: 66, dx: -42, dy: 18,  label: 'Khán phòng 1.200 chỗ', detail: 'Ghế bậc thang nơi diễn ra Winter Gala và tiết thực hành Đạo đức Tuyến thể.' }
+        ],
+        '44': [
+          { x: 38, y: 30, dx: 42,  dy: -16, label: 'Đèn lờ mờ khuất T-80', detail: 'Xa tầm kiểm soát của giáo viên, ít người bén mảng sau giờ chính khóa.' },
+          { x: 66, y: 64, dx: -42, dy: 18,  color: '#FF8A8A', label: 'Dấu tích Lab 3 năm trước', detail: 'Chuỗi phòng đa năng bỏ trống gắn với sự cố chấn động của trường.' }
+        ],
+        '45': [
+          { x: 38, y: 22, dx: 42,  dy: -14, color: '#9EE8FF', label: 'T5: Đài Thiên Văn Vòm Kính', detail: 'Khu vực tĩnh lặng trên cùng; Tầng 4 bên dưới là Gym, Yoga & vòi sen riêng.' },
+          { x: 70, y: 48, dx: -42, dy: -14, color: '#FF6B6B', label: 'T3: Bể bơi 90% [BÁO ĐỘNG ĐỎ]', detail: 'Nước ấm + ẩm 90% làm rã keo miếng dán cực nhanh — tỷ lệ rò mùi cao nhất!' },
+          { x: 34, y: 74, dx: 42,  dy: 14,  label: 'T1–2: Đại Sảnh Ẩm Thực', detail: 'Không gian thông tầng vách kính phục vụ 3 bữa chính + Dạ tiêu 21:40.' }
+        ],
+        '46': [
+          { x: 36, y: 26, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Vách kính thông 2 tầng', detail: 'Trần cao đón trọn ánh nắng sân sau và kết nối lên khu Gác lửng Tầng 2.' }
+        ],
+        '47': [
+          { x: 68, y: 34, dx: -42, dy: 18,  label: 'Quầy Bếp Mở Á–Âu', detail: 'Chế biến trực tiếp tại chỗ kèm bảng điện tử báo chỉ số Calo từng phần ăn.' }
+        ],
+        '48': [
+          { x: 36, y: 54, dx: 42,  dy: -20, color: '#C7DDAA', label: 'Đảo đá cẩm thạch ngọc bích', detail: 'Ngã tư chạm mặt đông đúc nhất giờ ăn — nơi dễ va chạm & ngửi thoảng mùi nhau.' }
+        ],
+        '49': [
+          { x: 68, y: 36, dx: -42, dy: 20,  color: '#9EE8FF', label: 'Quầy Bù Khoáng Điện Giải', detail: 'Cung cấp nước bù khoáng & điện giải chuyên biệt cho Alpha/Omega sau thể chất.' }
+        ],
+        '50': [
+          { x: 36, y: 44, dx: 42,  dy: 20,  label: 'Booth Sofa bán khép kín', detail: 'Góc Gác lửng Tầng 2 đủ riêng tư để bàn chuyện kín hoặc né đám đông bên dưới.' }
+        ],
+        '51': [
+          { x: 30, y: 30, dx: 42,  dy: -16, label: 'Khu máy tập Gym & Yoga', detail: 'Vận động mạnh làm tăng thân nhiệt; cần kiểm tra mép dán ngay sau khi tập.' },
+          { x: 70, y: 60, dx: -42, dy: 18,  color: '#9EE8FF', label: 'Buồng tắm vòi sen riêng', detail: 'Phân khu kín đáo giúp học sinh tắm rửa, thay miếng dán chống nước trước bữa tối.' }
+        ],
+        '52': [
+          { x: 34, y: 24, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Vòm kính ngắm sao', detail: 'Tầng 5 Tòa D — điểm cao thoáng đãng và tĩnh lặng nhất toàn khu phía sau.' },
+          { x: 68, y: 58, dx: -42, dy: 18,  label: 'Kính thiên văn CLB', detail: 'Không gian tụ họp ban đêm của CLB Thiên văn trước giờ giới nghiêm 22:05.' }
+        ],
+        '53': [
+          { x: 38, y: 34, dx: 42,  dy: -16, label: 'Mái vòm hình Elip', detail: 'Nhà thi đấu đa năng Tòa E nối liền phía nam khu sân thể thao ngoài trời.' }
+        ],
+        '54': [
+          { x: 30, y: 36, dx: 42,  dy: -16, color: '#C7DDAA', label: 'Sân bóng đá cỏ nhân tạo', detail: 'Nằm ngay phía sau Tòa B–C, khu vực tập luyện giờ thể chất buổi chiều.' },
+          { x: 72, y: 60, dx: -42, dy: 18,  label: '2 Sân bóng chuyền', detail: 'Bố trí song song bên cạnh sân cỏ dành cho tiết huấn luyện Tiết 8.' }
+        ],
+        '55': [
+          { x: 36, y: 52, dx: 42,  dy: -20, label: 'Đường chạy Pit-tơ 400m', detail: 'Nơi 450 học sinh chạy bắt buộc 800m lúc 06:30 sáng & thi 1.000m Đại hội Tháng 10.' }
+        ],
+        '56': [
+          { x: 34, y: 28, dx: 42,  dy: 18,  label: '3 Tầng khán đài vòm dốc', detail: 'Bao quanh sân đấu bóng rổ, cầu lông tiêu chuẩn của đội tuyển Lớp 5.' },
+          { x: 68, y: 62, dx: -42, dy: 18,  label: 'Sân gỗ bóng rổ & cầu lông', detail: 'Lãnh địa tập luyện của Đội trưởng Phó Dã và các Alpha thể chất vượt trội.' }
+        ],
+        '57': [
+          { x: 30, y: 26, dx: 42,  dy: 18,  label: 'Cửa gỗ sồi kịch trần', detail: 'Zero-Gap chạy kín từ sàn lên sát trần nhà, cách âm 100%, có đèn LED báo khóa.' },
+          { x: 72, y: 54, dx: -42, dy: -16, color: '#FF9A9A', label: 'Hộp hủy ống tiêm gắn tường', detail: 'Trang bị máy khử ion âm & hộp kim loại riêng để bỏ vỏ ống tiêm ức chế, giấy gói dán.' }
+        ],
+        '58': [
+          { x: 34, y: 56, dx: 42,  dy: -22, color: '#FF9A9A', label: 'Mẩu gỗ chèn cửa sắt', detail: 'Góc chết 01: Ngay trên đầu Hội Học Sinh — trốn Vãn tự tập, ngắm hoàng hôn hoặc hút thuốc.' }
+        ],
+        '59': [
+          { x: 68, y: 34, dx: -42, dy: 20,  color: '#FF8A8A', label: 'Sau rèm nhung đỏ dày', detail: 'Góc chết 02: Cách âm 100%, nồng mùi gỗ thông & sơn — trú ẩn khẩn khi phát sốt Heat.' }
+        ],
+        '60': [
+          { x: 36, y: 42, dx: 42,  dy: -18, label: 'Cửa chống cháy lên T5', detail: 'Góc chết 03: Cầu thang sắt cũ đèn chập chờn nối thẳng lên tầng bỏ trống — điểm giao dịch mật.' }
+        ],
+        '61': [
+          { x: 68, y: 52, dx: -42, dy: -20, label: 'Khe tủ “Hộp thư chết”', detail: 'Góc chết 04: Khúc cua nối Tòa A–B — nơi lén nhét thư hẹn, kẹo ngậm hoặc thuốc bọc khăn tay.' }
+        ],
+        '62': [
+          { x: 50, y: 18, dx: 42,  dy: 18,  label: 'Cổng chính & Bảo vệ', detail: 'Điểm quét thẻ từ & thân nhiệt trước giờ chốt điện từ 22:30.' },
+          { x: 38, y: 34, dx: -42, dy: -14, color: '#C7DDAA', label: 'Tòa F3 · Vùng đệm Beta', detail: 'Đặt phía trước làm tường cản mùi vô hương: F3a (Nam 20P) | F3b (Nữ 20P).' },
+          { x: 24, y: 66, dx: 42,  dy: -18, color: '#FFE08A', label: 'Tòa F1 · Omega (Rào 10m)', detail: 'F1a & F1b (3 tầng, 88P + dự phòng); gắn nút đỏ đầu giường & vành đai 10m.' },
+          { x: 76, y: 66, dx: -42, dy: -18, color: '#9EE8FF', label: 'Tòa F2 · Alpha (Cách 150m)', detail: 'F2a & F2b (112P); cách Tòa F1 đúng 150m qua hàng cây phong chắn gió.' }
+        ],
+        '63': [
+          { x: 28, y: 28, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Máy lọc ion âm độc lập', detail: 'Phòng đơn 45m² Tầng 3 cánh Nam (F1a/F2a-3xx) khử sạch mùi riêng biệt.' },
+          { x: 72, y: 62, dx: -42, dy: -18, label: 'Tủ lạnh thuốc ức chế', detail: 'Bảo quản thuốc y tế chuyên dụng kèm ban công riêng, không có bạn cùng phòng.' }
+        ],
+        '64': [
+          { x: 30, y: 26, dx: 42,  dy: 18,  label: 'Ban công cách ly riêng', detail: 'Phòng đơn 45m² Tầng 3 cánh Nữ (F1b/F2b-3xx) dành cho đại tiểu thư & bệnh lý tuyến thể.' },
+          { x: 70, y: 60, dx: -42, dy: -18, label: 'Giường đôi & Bàn riêng', detail: 'Nội thất khép kín sang trọng, cách biệt hoàn toàn tiếng ồn hành lang.' }
+        ],
+        '65': [
+          { x: 48, y: 36, dx: 42,  dy: -18, color: '#9EE8FF', label: 'Rèm lụa cách ly ở giữa', detail: 'Ngăn đôi không gian 30m² giữa 2 giường đơn đặt cách nhau 2 mét.' },
+          { x: 72, y: 64, dx: -42, dy: 16,  label: 'Khu phòng Vanguard Tầng 2', detail: 'Cấp miễn phí cho 06 học giả Vanguard kèm 2 bàn đơn & buồng tắm kính.' }
+        ],
+        '66': [
+          { x: 32, y: 30, dx: 42,  dy: 18,  color: '#C7DDAA', label: 'Giường tầng + Bàn học dưới', detail: 'Phòng 4 người 35m² cánh Nam Beta (F3a-xxx), không cần lắp máy khử mùi.' },
+          { x: 72, y: 62, dx: -42, dy: -16, label: 'Tủ thép khóa mã số', detail: 'Mỗi học sinh có 1 tủ thép khóa mã bảo mật cá nhân.' }
+        ],
+        '67': [
+          { x: 30, y: 32, dx: 42,  dy: 18,  color: '#C7DDAA', label: 'Góc học tập 4 người F3b', detail: 'Phòng 35m² cánh Nữ Beta thuộc vùng đệm vô hương 0.0 ppm.' },
+          { x: 72, y: 60, dx: -42, dy: -16, label: 'Khu sinh hoạt F3b', detail: 'Đo thân nhiệt & chốt cửa điện từ tại sảnh F3 lúc 22:05–22:30.' }
+        ],
+        '68': [
+          { x: 30, y: 28, dx: 42,  dy: 18,  label: 'Proxy Wi-Fi KTX Tòa F', detail: 'Chạy qua máy chủ lậu để tránh Tường lửa Tòa A khi cầu cứu miếng dán/cảnh báo Rut.' },
+          { x: 72, y: 64, dx: -42, dy: -18, color: '#FF8A8A', label: 'Luật Trả Giá việc lớn', detail: 'Xóa log T-80 hoặc che camera phải trả bằng tiền mặt, làm bài hộ hoặc trộm đề Lớp 1.' }
+        ],
+        '69': [
+          { x: 34, y: 40, dx: 42,  dy: -18, color: '#FF9A9A', label: 'Nắng 32°C · Đường chạy 1.000m', detail: 'Mồ hôi rã keo dán sau gáy khiến tin tức tố Alpha bốc nồng nặc.' },
+          { x: 68, y: 66, dx: -42, dy: 16,  label: 'Đụng độ Lớp 1 vs Lớp 5', detail: 'Áo thể thao in số lớp làm bùng nổ va chạm giữa tinh anh học thuật & hạt giống thể thao.' }
+        ],
+        '70': [
+          { x: 34, y: 34, dx: 42,  dy: 18,  label: 'Đèn chùm Đại Hội Trường Tòa C', detail: 'Đêm tiệc duy nhất thoát khỏi đồng phục — lộ khoảng cách Haute Couture và lễ phục thuê.' },
+          { x: 68, y: 64, dx: -42, dy: -18, color: '#FF9A9A', label: 'Điệu khiêu vũ áp sát gáy', detail: 'Cơ hội hợp pháp duy nhất chạm tay vào eo & sát gáy nhau dưới ánh đèn mờ.' }
+        ],
+        '71': [
+          { x: 34, y: 32, dx: 42,  dy: 18,  color: '#FF7B7B', label: 'Đồng hồ lật số 100 Sảnh B', detail: 'Bách Nhật Thệ Sư: 150 HS Khối 12 viền vàng kim đeo băng đỏ trên trán.' },
+          { x: 68, y: 64, dx: -42, dy: -18, label: 'Ngòi nổ Rut/Heat tuổi 18', detail: 'Áp lực thức trắng & tiếng hô lời thề làm nội tiết tuổi 18 bùng nổ đồng loạt.' }
+        ],
+        'T02': [
+          { x: 30, y: 32, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Class-S Tơ tằm siêu mỏng', detail: 'Khóa kín tin tức tố 0.0 ppm, giảm ma sát vùng biểu bì gáy mỏng -40%.' },
+          { x: 70, y: 64, dx: -42, dy: -18, color: '#FF9A9A', label: 'Mép keo bong khi ẩm 90%', detail: 'Cần thay mới bắt buộc lúc 06:00 mỗi sáng trước khi chạy 800m.' }
+        ],
+        'T03': [
+          { x: 30, y: 30, dx: 42,  dy: 18,  color: '#FF7B7B', label: 'Ống tiêm Class-S (35.5°C)', detail: 'Hạ sốt tĩnh mạch trong 10 phút nhưng gây nôn khan & suy giảm trí nhớ ngắn hạn.' },
+          { x: 70, y: 64, dx: -42, dy: -18, label: 'Xịt 30s & Viên nén 06:00', detail: 'Dạng xịt khẩn cấp tác dụng sau 30 giây; viên nén uống định kỳ mỗi sáng.' }
+        ],
+        'T04': [
+          { x: 32, y: 32, dx: 42,  dy: 18,  color: '#FF7B7B', label: 'Tiền Rut · Mắt vằn tia máu', detail: 'Thân nhiệt vọt 38.5–39.2°C, bứt rứt với mọi tiếng ồn lớp học.' },
+          { x: 70, y: 64, dx: -42, dy: -18, label: 'Chính Heat · Bủn rủn 40°C', detail: 'Tuyến thể nóng rực như than hồng, run tay rơi bút bi & tiết dịch gấp 100 lần.' }
+        ],
+        'T05': [
+          { x: 32, y: 34, dx: 42,  dy: 18,  color: '#FF8A8A', label: 'Vết cắn tạm 2–3mm', detail: 'Giữ 10–30s để phủ hương bảo hộ & làm dịu sốt Heat; lành sau 7–14 ngày.' },
+          { x: 70, y: 64, dx: -42, dy: -18, label: 'Sẹo vĩnh viễn & Rửa Laser', detail: 'Hình thành khi Khóa Nút 15–30p; phẫu thuật laser xóa dấu làm giảm thọ 5–10 năm.' }
+        ],
+        'T06': [
+          { x: 30, y: 32, dx: 42,  dy: 18,  label: 'Xấp đề Ngũ Tam dày cộp', detail: 'Bộ “5 Năm Cao Khảo, 3 Năm Mô Phỏng” chất cao ngang đầu trên mặt bàn đơn.' },
+          { x: 70, y: 64, dx: -42, dy: -18, label: 'Thác Đề Bản (错题本)', detail: 'Sổ cắt dán câu làm sai hoàn thiện vào Ca 3 Vãn tự tập (20:50–21:40).' }
+        ],
+        'T07': [
+          { x: 30, y: 30, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Phòng Thi Số 1 (Hạng 1–30)', detail: 'Tập trung Học thần, Hội Học Sinh & Vanguard; không khí lạnh như băng.' },
+          { x: 70, y: 64, dx: -42, dy: -18, label: 'Đề bấm giờ 60p · Phòng 24°C', detail: 'Đóng kín cửa sổ trong 3 ca Vãn tự tập; Phòng Số 5 (Hạng 121–150) ở đáy tháp.' }
+        ],
+        'T08': [
+          { x: 30, y: 30, dx: 42,  dy: 18,  color: '#FF9A9A', label: 'Cột [▲ Tăng] / [▼ Tụt]', detail: 'Bảng đỏ 10m tại Sảnh Tòa B niêm yết 150 học sinh mỗi khối lúc 07:00 Thứ Hai.' },
+          { x: 70, y: 64, dx: -42, dy: -18, color: '#C7DDAA', label: 'Nhét Beta ngăn mùi ở giữa', detail: 'Nghi thức “Chia lại giang sơn”: tách Alpha & Omega bằng 1 Beta 0.0 ppm.' }
+        ],
+        'T09': [
+          { x: 32, y: 32, dx: 42,  dy: 18,  color: '#FF8A8A', label: 'Thước thép 50cm & T-80', detail: 'Soi từng milimet độ phẳng miếng dán sau gáy & lỗi mở quá 2 cúc cổ áo.' },
+          { x: 70, y: 66, dx: -42, dy: -18, label: 'Giày đế cao su im lặng', detail: 'Thầy Giám thị rình ngoài cửa kính hành lang không phát ra tiếng bước chân.' }
+        ],
+        'T10': [
+          { x: 36, y: 38, dx: 42,  dy: 18,  label: 'Ghim ve áo phải (06 suất)', detail: 'Đặt cạnh huy hiệu trường; mất Top 3 hai tháng liền bị thu hồi và trục xuất trong ngày.' }
+        ],
+        'T11': [
+          { x: 34, y: 24, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Vòi xả mù bạc hà 60s', detail: 'Tự động phun sương cay nồng trung hòa mùi khi T-80 chạm báo động Đỏ.' },
+          { x: 70, y: 58, dx: -42, dy: -18, color: '#FF7B7B', label: 'Màn LED T-80 (Mã 302)', detail: '≥30.0 ppm kích hoạt cưỡng chế trong 60–90s bởi Giám thị & Đội Cờ đỏ.' }
+        ],
+        'T12': [
+          { x: 30, y: 32, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Kính 1 chiều chống đập', detail: '02 buồng cách ly Tầng 1 Tòa B duy trì áp suất âm liên tục.' },
+          { x: 70, y: 64, dx: -42, dy: -18, color: '#FF8A8A', label: 'Vòng cổ định vị 48 giờ', detail: 'Khóa mã số điện tử bắt buộc đeo 48h sau tiêm Class-S hạ thân nhiệt 35.5°C.' }
+        ],
+        'T13': [
+          { x: 32, y: 34, dx: 42,  dy: 18,  color: '#9EE8FF', label: 'Lót lụa Bio-Shield cổ áo', detail: 'Ngăn mép vải sơ mi cứng làm bong tróc miếng dán tại đốt sống cổ C3–C4.' },
+          { x: 70, y: 64, dx: -42, dy: -18, label: 'Góc nhìn 60cm sau gáy', detail: 'Mọi cử động đưa tay miết gáy đều lọt thẳng vào mắt người bàn đơn phía sau.' }
+        ],
+        'T14': [
+          { x: 28, y: 30, dx: 42,  dy: 18,  label: 'Penthouse vs Tòa Án (T5)', detail: 'Hai thái cực đối lập trên đỉnh Tòa A: Sofa Chesterfield & Bàn thẩm vấn đá đen.' },
+          { x: 70, y: 64, dx: -42, dy: -18, label: 'WC Gỗ sồi kịch trần', detail: 'Cửa Zero-Gap cách âm 100%, máy ion âm & hộp vứt vỏ ống tiêm kín đáo.' }
+        ],
+        'T15': [
+          { x: 28, y: 30, dx: 42,  dy: 18,  label: 'Tieba công khai (Đổi ID ngày)', detail: '3 bảng: Bát Quái Thị Phi · Bảng Phong Thần Khứu Giác · Cứu Trợ Học Tập.' },
+          { x: 70, y: 64, dx: -42, dy: -18, color: '#FF8A8A', label: 'Proxy Tị Phong Cảng', detail: 'Việc nhỏ miễn phí; việc lớn buộc tuân thủ Luật Trả Giá tàn nhẫn.' }
+        ],
+        'T16': [
+          { x: 36, y: 46, dx: 42,  dy: -18, label: 'Khe tủ sắt hành lang A–B', detail: 'Góc chết không CCTV: lén nhét kẹo ngậm, thư hẹn hoặc ống ức chế bọc khăn tay.' }
+        ]
+      };
+
+      const pinRefs = [];
+      let coordMode = false;
+
+      function renderSinglePin(slot, pin) {
+        const layer = pin.closest('.anno-layer');
+        const svg   = pin.querySelector('.anno-leader-svg');
+        const polyS = pin.querySelector('.anno-leader-shadow');
+        const polyL = pin.querySelector('.anno-leader-line');
+        const head  = pin.querySelector('.anno-leader-head');
+        const label = pin.querySelector('.anno-label');
+        if (!slot || !svg || !label) return;
+
+        const W = slot.clientWidth;
+        const H = slot.clientHeight;
+        if (W < 40 || H < 40) return;
+
+        const xPct = parseFloat(pin.dataset.x || '50');
+        const yPct = parseFloat(pin.dataset.y || '50');
+        const dx0  = parseFloat(pin.dataset.dx || (xPct < 50 ? '42' : '-42'));
+        const dy0  = parseFloat(pin.dataset.dy || (yPct < 45 ? '20' : '-20'));
+
+        const dotX = (xPct / 100) * W;
+        const dotY = (yPct / 100) * H;
+        const scale = W < 340 ? 0.68 : 1;
+
+        label.style.transform = 'none';
+        label.style.left = '0px';
+        label.style.top  = '0px';
+        const lw = label.offsetWidth;
+        const lh = label.offsetHeight;
+
+        const lx = dx0 * scale;
+        const ly = dy0 * scale;
+        let labelX = lx >= 0 ? lx : (lx - lw);
+        let labelY = ly - lh / 2;
+
+        // Kẹp nhãn nằm gọn trong khung ảnh (tránh đè photo-caption ở đáy)
+        const minX = 6 - dotX;
+        const maxX = (W - 6 - lw) - dotX;
+        const minY = 6 - dotY;
+        const maxY = (H - 36 - lh) - dotY;
+
+        if (labelX < minX) labelX = minX;
+        if (labelX > maxX) labelX = maxX;
+        if (labelY < minY) labelY = minY;
+        if (labelY > maxY) labelY = maxY;
+
+        label.style.left = Math.round(labelX) + 'px';
+        label.style.top  = Math.round(labelY) + 'px';
+
+        // Tính đường dẫn SVG gấp khúc từ cạnh nhãn -> đầu mũi tên chạm rìa chấm tròn (0,0)
+        const cx = labelX + lw / 2;
+        const cy = labelY + lh / 2;
+        let sx, sy, ex, ey;
+
+        if (0 < labelX - 6 || 0 > labelX + lw + 6) {
+          sx = cx >= 0 ? labelX : (labelX + lw);
+          sy = Math.max(labelY + 5, Math.min(labelY + lh - 5, cy));
+          ex = sx * 0.42;
+          ey = sy;
+        } else {
+          sx = Math.max(labelX + 8, Math.min(labelX + lw - 8, 0));
+          sy = cy >= 0 ? labelY : (labelY + lh);
+          ex = sx;
+          ey = sy * 0.48;
+        }
+
+        const vx = -ex;
+        const vy = -ey;
+        const vlen = Math.hypot(vx, vy);
+
+        if (vlen < 10) {
+          svg.style.display = 'none';
+          return;
+        }
+        svg.style.display = 'block';
+
+        const ux = vx / vlen;
+        const uy = vy / vlen;
+        const tipDist = 7.2;
+        const headLen = 7.5;
+        const headHalfW = 3.3;
+
+        const tx = -ux * tipDist;
+        const ty = -uy * tipDist;
+        const bx = tx - ux * headLen;
+        const by = ty - uy * headLen;
+        const px = -uy;
+        const py = ux;
+
+        const w1x = bx + px * headHalfW;
+        const w1y = by + py * headHalfW;
+        const w2x = bx - px * headHalfW;
+        const w2y = by - py * headHalfW;
+        const endX = bx + ux * 1.6;
+        const endY = by + uy * 1.6;
+
+        const pts = sx.toFixed(1) + ',' + sy.toFixed(1) + ' ' +
+                    ex.toFixed(1) + ',' + ey.toFixed(1) + ' ' +
+                    endX.toFixed(1) + ',' + endY.toFixed(1);
+
+        polyS.setAttribute('points', pts);
+        polyL.setAttribute('points', pts);
+        head.setAttribute('points',
+          tx.toFixed(1) + ',' + ty.toFixed(1) + ' ' +
+          w1x.toFixed(1) + ',' + w1y.toFixed(1) + ' ' +
+          w2x.toFixed(1) + ',' + w2y.toFixed(1)
+        );
+      }
+
+      function buildPinDom(slot, layer, cfg) {
+        const pin = document.createElement('div');
+        pin.className = 'anno-pin';
+        pin.style.left = cfg.x + '%';
+        pin.style.top  = cfg.y + '%';
+        pin.dataset.x  = cfg.x;
+        pin.dataset.y  = cfg.y;
+        pin.dataset.dx = cfg.dx;
+        pin.dataset.dy = cfg.dy;
+        if (cfg.color) pin.style.setProperty('--pin-color', cfg.color);
+
+        pin.innerHTML =
+          '<svg class="anno-leader-svg" aria-hidden="true">' +
+            '<polyline class="anno-leader-shadow"></polyline>' +
+            '<polyline class="anno-leader-line"></polyline>' +
+            '<polygon class="anno-leader-head"></polygon>' +
+          '</svg>' +
+          '<span class="anno-dot"></span>' +
+          '<span class="anno-label"></span>';
+
+        pin.querySelector('.anno-label').textContent = cfg.label;
+
+        pin.addEventListener('click', (e) => {
+          if (coordMode) return;
+          e.stopPropagation();
+
+          const wasActive = pin.classList.contains('is-pin-active');
+          layer.querySelectorAll('.anno-pin').forEach((p) => p.classList.remove('is-pin-active'));
+
+          let toast = slot.querySelector('.anno-detail-toast');
+          if (!toast) {
+            toast = document.createElement('div');
+            toast.className = 'anno-detail-toast';
+            toast.addEventListener('click', (ev) => {
+              ev.stopPropagation();
+              toast.classList.remove('is-open');
+              layer.classList.remove('has-active-pin');
+              layer.querySelectorAll('.anno-pin').forEach((p) => p.classList.remove('is-pin-active'));
+            });
+            slot.appendChild(toast);
+          }
+
+          if (wasActive || !cfg.detail) {
+            layer.classList.remove('has-active-pin');
+            toast.classList.remove('is-open');
+          } else {
+            pin.classList.add('is-pin-active');
+            layer.classList.add('has-active-pin');
+            toast.innerHTML = '<strong>⌖ ' + cfg.label + ':</strong> ' + cfg.detail + ' <em style="opacity:0.7;">(Chạm để đóng)</em>';
+            toast.classList.add('is-open');
+          }
+        });
+
+        layer.appendChild(pin);
+        pinRefs.push({ slot, pin });
+      }
+
+      const slotObserver = typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver((entries) => {
+            entries.forEach((entry) => {
+              const slot = entry.target;
+              pinRefs.forEach((ref) => {
+                if (ref.slot === slot) renderSinglePin(slot, ref.pin);
+              });
+            });
+          })
+        : null;
+
+      document.querySelectorAll('.photo-slot').forEach((slot) => {
+        const badgeEl = slot.querySelector('.ph-badge');
+        const badgeTxt = badgeEl ? badgeEl.textContent : '';
+        const match = badgeTxt.match(/Ảnh\s+(T?\d+)/i);
+        const key = match ? match[1].toUpperCase() : null;
+
+        let layer = slot.querySelector('.anno-layer');
+        const callouts = key && PHOTO_CALLOUTS[key];
+
+        if (callouts) {
+          if (!layer) {
+            layer = document.createElement('div');
+            layer.className = 'anno-layer';
+            const cap = slot.querySelector('.photo-caption');
+            if (cap) slot.insertBefore(layer, cap);
+            else slot.appendChild(layer);
+          } else {
+            layer.innerHTML = '';
+          }
+          callouts.forEach((cfg) => buildPinDom(slot, layer, cfg));
+        } else if (layer) {
+          // Nâng cấp mọi anno-pin lẻ khác nếu có
+          const existing = Array.from(layer.querySelectorAll('.anno-pin'));
+          layer.innerHTML = '';
+          existing.forEach((oldPin) => {
+            const leftPct = parseFloat(oldPin.style.left || '50');
+            const topPct  = parseFloat(oldPin.style.top  || '50');
+            const lblEl   = oldPin.querySelector('.anno-label');
+            const lblTxt  = lblEl ? lblEl.textContent.trim() : '';
+            if (lblTxt) {
+              buildPinDom(slot, layer, {
+                x: leftPct,
+                y: topPct,
+                dx: leftPct < 50 ? 42 : -42,
+                dy: topPct < 45 ? 20 : -20,
+                label: lblTxt,
+                detail: ''
+              });
+            }
+          });
+        }
+
+        // Bấm ra ngoài mũi tên trên ảnh sẽ đóng hộp chi tiết đang mở
+        slot.addEventListener('click', (e) => {
+          if (coordMode) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            const rect = slot.getBoundingClientRect();
+            const rx = (((e.clientX - rect.left) / rect.width) * 100).toFixed(1);
+            const ry = (((e.clientY - rect.top) / rect.height) * 100).toFixed(1);
+            const txt = (key ? ('[' + key + '] ') : '') + 'x: ' + rx + ', y: ' + ry;
+            const pill = document.getElementById('coordReadoutPill');
+            if (pill) pill.textContent = '✓ Đã copy: ' + txt;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText('x: ' + rx + ', y: ' + ry).catch(() => {});
+            }
+            return;
+          }
+          const toast = slot.querySelector('.anno-detail-toast.is-open');
+          if (toast) {
+            toast.classList.remove('is-open');
+            if (layer) {
+              layer.classList.remove('has-active-pin');
+              layer.querySelectorAll('.anno-pin').forEach((p) => p.classList.remove('is-pin-active'));
+            }
+          }
+        }, true);
+
+        if (layer && slotObserver) {
+          slotObserver.observe(slot);
+        }
+      });
+
+      // Nút bật/tắt chế độ lấy tọa độ ảnh
+      const btnCoord = document.getElementById('btnCoordPicker');
+      if (btnCoord) {
+        btnCoord.addEventListener('click', () => {
+          coordMode = !coordMode;
+          document.body.classList.toggle('anno-coord-mode', coordMode);
+          btnCoord.classList.toggle('is-active', coordMode);
+          btnCoord.textContent = coordMode ? '✓ Đang soi tọa độ' : '⌖ Lấy tọa độ ảnh';
+        });
+      }
+
+      // Render lần đầu & khi thay đổi kích thước cửa sổ
+      requestAnimationFrame(() => {
+        pinRefs.forEach((ref) => renderSinglePin(ref.slot, ref.pin));
+      });
+      window.addEventListener('resize', () => {
+        pinRefs.forEach((ref) => renderSinglePin(ref.slot, ref.pin));
       });
     })();
   </script>
