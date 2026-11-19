@@ -4893,7 +4893,67 @@
     .ch8-fig62-slot img {
       object-fit: contain;
     }
-    
+    /* === TỰ ĐỘNG FIT TOÀN BỘ ẢNH ĐÃ LOAD, KHÔNG CẮT ẢNH === */
+#world-page .photo-slot.has-loaded-img,
+#world-page .photo-slot:has(img.loaded) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 0 !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  align-self: start;
+  justify-self: center;
+  margin-inline: auto;
+}
+
+#world-page .photo-slot.has-loaded-img .photo-placeholder,
+#world-page .photo-slot:has(img.loaded) .photo-placeholder {
+  display: none;
+}
+
+#world-page .photo-slot.has-loaded-img img.loaded,
+#world-page .photo-slot:has(img.loaded) img.loaded {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 1;
+}
+
+#world-page .photo-slot.has-loaded-img:hover img.loaded,
+#world-page .photo-slot:has(img.loaded):hover img.loaded {
+  transform: none;
+}
+
+/* Thu nhỏ khung ảnh nếu muốn gắn thêm fit-sm / fit-md cho riêng vài ảnh */
+#world-page .photo-slot.fit-sm { max-width: 260px; }
+#world-page .photo-slot.fit-md { max-width: 360px; }
+
+/* === PHẦN 3: THẺ NHÂN VẬT & SPOTLIGHT KHÔNG CẮT ẢNH === */
+#sec-3 .char-v3-thumb:has(img),
+#sec-3 .spotlight-photo:has(img) {
+  aspect-ratio: auto;
+  height: auto;
+  padding: 0;
+  align-self: start;
+}
+
+#sec-3 .char-v3-thumb:has(img) img,
+#sec-3 .spotlight-photo:has(img) img {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+#sec-3 .char-card-v3:hover .char-v3-thumb img {
+  transform: none;
+}
   </style>
 </head>
 <body class="intro-locked">
@@ -6161,6 +6221,11 @@
                   </div>
                   <div class="photo-caption">Fig. 21 — Chim ưng vương miện Sapphire, Khóa Sol Garnet &amp; Cân Công Lý</div>
                 </div>
+                </div>
+            </div>
+          </div>
+
+          <div class="chapter-divider"></div>
 
           <!-- ==================== CHƯƠNG 5 ==================== -->
           <div class="chapter-block is-hidden-chap" id="chap-5">
