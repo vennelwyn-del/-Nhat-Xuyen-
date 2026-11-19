@@ -4893,6 +4893,46 @@
     .ch8-fig62-slot img {
       object-fit: contain;
     }
+    /* === CHỈNH 1 SỐ ẢNH HIỂN THỊ ĐẦY ĐỦ, TỰ CO KHUNG KHÔNG CẮT === */
+#world-page .photo-slot.fit-full.has-loaded-img,
+#world-page .photo-slot.fit-full:has(img.loaded) {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-height: 0 !important;
+  height: auto !important;
+  aspect-ratio: auto !important;
+  align-self: start;
+  justify-self: center;
+  margin-inline: auto;
+}
+
+/* Ẩn khung chữ chờ khi đã có ảnh */
+#world-page .photo-slot.fit-full.has-loaded-img .photo-placeholder,
+#world-page .photo-slot.fit-full:has(img.loaded) .photo-placeholder {
+  display: none;
+}
+
+/* Cho ảnh chạy đúng tỷ lệ gốc, tuyệt đối không cắt */
+#world-page .photo-slot.fit-full.has-loaded-img img.loaded,
+#world-page .photo-slot.fit-full:has(img.loaded) img.loaded {
+  position: relative;
+  inset: auto;
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  opacity: 1;
+}
+
+/* Không phóng to khi hover để tránh lẹm mép ảnh */
+#world-page .photo-slot.fit-full:hover img.loaded {
+  transform: none;
+}
+
+/* Class phụ để thu nhỏ cả khung ảnh lại nếu ảnh gốc quá to/cao */
+#world-page .photo-slot.fit-sm { max-width: 260px; }
+#world-page .photo-slot.fit-md { max-width: 360px; }
   </style>
 </head>
 <body class="intro-locked">
