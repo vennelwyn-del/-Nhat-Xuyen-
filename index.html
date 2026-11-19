@@ -10097,13 +10097,13 @@
         num: 12,
         top: {
           2:  { name: 'Doãn Hi',       cls: '12-1' },
-          3:  { name: 'Đào Mạn Nhiên', cls: '12-1' },
+          3:  { name: 'Đào Mạn Nhiên', cls: '12-1', fixed: true },
           4:  { name: 'Cố Khởi La',    cls: '12-2' },
           6:  { name: 'Túc Vĩnh Sâm',  cls: '12-2' },
           8:  { name: 'Thẩm Hoài Bích', cls: '12-2' },
           12: { name: 'Phó Dã',        cls: '12-4' }
         },
-        mid: null,
+        mid: { rank: 88, name: 'Yên Chỉ Vi', cls: '12-4', score: 500 },
         bot: {
           148: { name: 'Du Vĩ An', cls: '12-5' }
         }
@@ -10140,7 +10140,7 @@
           uid: gKey + '-' + cfg.mid.rank,
           npc: cfg.mid.name,
           cls: cfg.mid.cls,
-          fixed: true,
+          fixed: false,
           isOc: false,
           isMid: true,
           rank: cfg.mid.rank,
