@@ -110,7 +110,7 @@ window.NHAT_XUYEN_CHARS = [
     rank: "Hạng 03/150 (Cố định Học bổng)",
     desk: "Bàn đơn 03 - Dãy 3",
     role: "Ủy Viên Kỷ Luật & Thẩm Tra Dữ Liệu · Học bổng Vanguard Khối 11",
-    abo: "Nữ Omega phân hóa muộn (Hồ sơ công khai: Beta)",
+    abo: "Beta",
     age: "17 tuổi",
     origin: "Con gái cựu Viện phó Viện Nghiên cứu Kích thích tố sa sút; Ủy viên Học tập Lớp 11-1.",
     img: "./assets/assets/OPW/Nhatxuyen/NPC/luctrivi.png",
