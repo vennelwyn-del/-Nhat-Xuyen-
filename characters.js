@@ -234,7 +234,7 @@ window.NHAT_XUYEN_CHARS = [
     age: "17 tuổi",
     origin: "Con gái duy nhất của Chủ tịch Tập đoàn Truyền thông & Giải trí Vu thị.",
     img: "./assets/assets/OPW/Nhatxuyen/NPC/vucanhy.png",
-    imgLinh: "https://tensor.art/images/1013217182714224182?post_id=1013217178419256842",
+    imgLink: "https://tensor.art/images/1013217182714224182?post_id=1013217178419256842",
     isOc: false,
     appearance: "Cao 1m70, sắc sảo quyến rũ chuẩn Queen Bee, tóc nâu hạt dẻ uốn sóng, mắt nâu mật, cài Huy hiệu Bạc hình Khóa Sol đính đá Garnet đỏ sẫm.",
     scent: "Hoa bạch trà nở đêm, đào trắng chín mọng và hổ phách trắng.",

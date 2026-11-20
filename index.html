@@ -8883,7 +8883,7 @@
   </div>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.0/firebase-database-compat.js"></script>
-  <script src="./characters.js"></script>
+  <script src="./characters.js?v=2"></script>.
   <script>
     const introStage     = document.getElementById('intro-stage');
     const centerStack    = document.getElementById('center-stack');
@@ -11358,7 +11358,31 @@
           }
         });
       }
+      // Tự động đồng bộ ảnh & link ảnh từ characters.js sang Chương 10
+      document.querySelectorAll('#chap-10 .npc-dossier-card').forEach((card) => {
+        const infoLink = card.querySelector('[data-open-char]');
+        if (!infoLink) return;
+        const ch = list.find((item) => item.id === infoLink.getAttribute('data-open-char'));
+        if (!ch) return;
 
+        const img = card.querySelector('.npc-photo-col img');
+        const slot = card.querySelector('.npc-photo-col .photo-slot');
+        if (img && ch.img && ch.img.trim()) {
+          img.style.display = '';
+          img.onload = () => {
+            img.classList.add('loaded');
+            if (slot) slot.classList.add('has-loaded-img');
+          };
+          img.src = ch.img.trim();
+          if (img.complete && img.naturalWidth > 0) img.onload();
+        }
+
+        const capLink = card.querySelector('.char-caption-link');
+        const linkVal = (ch.imgLink && ch.imgLink.trim()) || (ch.img && ch.img.trim()) || '';
+        if (capLink && linkVal) {
+          capLink.setAttribute('href', linkVal);
+        }
+      });
       renderCharGrid();
     })();
   </script>
